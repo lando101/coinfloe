@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "cryptoliov2": {
+      "hosting": {
+        "cryptolio-v-2": [
+          "cryptoliov2"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "cryptoliov2"
+  }
+}
