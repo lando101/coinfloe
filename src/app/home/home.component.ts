@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { finalize } from 'rxjs/operators';
+import { filter, finalize } from 'rxjs/operators';
 
-import { QuoteService } from './quote.service';
+import { Coin } from 'src/models/coins.model';
+import { CryptoDataServiceService, CryptoQuery } from '@app/services/crypto-data-service.service';
 
 @Component({
   selector: 'app-home',
@@ -11,20 +12,38 @@ import { QuoteService } from './quote.service';
 export class HomeComponent implements OnInit {
   quote: string | undefined;
   isLoading = false;
+  coins: Coin[] = [];
+  theme: string = '';
 
-  constructor(private quoteService: QuoteService) {}
+  defaultQuery: CryptoQuery = {
+    coin: 'Bitcoin',
+    symbol: 'BTC',
+    limit: 100,
+    fiat: 'USD',
+  };
+  constructor(private cryptoService: CryptoDataServiceService) {}
 
   ngOnInit() {
     this.isLoading = true;
-    this.quoteService
-      .getRandomQuote({ category: 'dev' })
+    this.getCryptosList();
+  }
+
+  getCryptosList() {
+    this.isLoading = true;
+    this.cryptoService
+      .getCryptoData(this.defaultQuery)
       .pipe(
         finalize(() => {
           this.isLoading = false;
         })
       )
-      .subscribe((quote: string) => {
-        this.quote = quote;
+      .subscribe((data) => {
+        // console.log(data);
+        // data.forEach((element: Coin) => {
+        //   this.coins.push(element);
+        // });
+        this.coins = data;
+        console.log(this.coins);
       });
   }
 }
