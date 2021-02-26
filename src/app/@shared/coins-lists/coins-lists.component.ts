@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { Coin } from 'src/models/coins.model';
+import { CoinDetailsComponent } from '../coin-details/coin-details.component';
 
 @Component({
   selector: 'app-coins-lists',
@@ -24,4 +25,8 @@ export class CoinsListsComponent implements OnInit {
       this.localCoins = this.Coins;
     }
   }
+
+  // openBottomSheet(): void {
+  //   this._bottomSheet.open(CoinDetailsComponent);
+  // }
 }

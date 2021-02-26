@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Coin } from 'src/models/coins.model';
-
+import { MatBottomSheet, MatBottomSheetRef } from '@angular/material/bottom-sheet';
+import { CoinDetailsComponent } from '../coin-details/coin-details.component';
 @Component({
   selector: 'app-coin-item',
   templateUrl: './coin-item.component.html',
@@ -12,4 +13,8 @@ export class CoinItemComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  // openBottomSheet(): void {
+  //   this._bottomSheet.open(CoinDetailsComponent);
+  // }
 }
