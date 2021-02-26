@@ -8,12 +8,55 @@
   z-index: 1;
 }
 
-.brand {
-  color: mat-color($app-primary, "default-contrast");
-  text-decoration: none;
-  padding-right: 1rem;
-}
+// .brand {
+//   color: mat-color($app-primary, "default-contrast");
+//   text-decoration: none;
+//   padding-right: 1rem;
+// }
 
 .menu-button {
   margin-right: 1rem;
+}
+
+@mixin theme-mixin($light-theme: true) {
+  $brand: $primary-color;
+  $font: $primary-font-color;
+  $bg-color: $white-background;
+  @if $light-theme != true {
+    $brand: $primary-color;
+    $font: $dark-primary-font-color;
+    $bg-color: $dark-secondary-background;
+  }
+  background-color: $bg-color !important;
+
+  .coinfloe-brand {
+    font-family: "Righteous", cursive;
+    font-size: 2rem;
+    color: $brand;
+    &:hover {
+      color: lighten($brand, 5%) !important;
+      text-decoration: none !important;
+    }
+  }
+
+  button {
+    border-radius: 0.5rem;
+    opacity: 0.65;
+    color: $font;
+    i {
+      font-size: 25px;
+    }
+    &.active {
+      color: $primary-color !important;
+      opacity: 1;
+    }
+  }
+}
+
+.dark.theme-container {
+  @include theme-mixin($light-theme: false);
+}
+
+.theme-container {
+  @include theme-mixin($light-theme: true);
 }

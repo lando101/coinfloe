@@ -1,3 +1,5 @@
-<div *ngFor="let coin of localCoins">
-  {{ coin.CoinInfo.Name }}
+<div fxLayout="column" fxLayoutGap="20px">
+  <div class="{{ theme }}" *ngFor="let coin of localCoins">
+    <app-coin-item [coin]="coin" [theme]="theme"></app-coin-item>
+  </div>
 </div>

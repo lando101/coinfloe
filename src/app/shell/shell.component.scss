@@ -1,5 +1,5 @@
 @import "src/theme/theme-variables";
-
+@import "../../styles/index";
 :host {
   display: flex;
   flex: 1;
@@ -49,4 +49,24 @@
   :host ::ng-deep .mat-drawer-backdrop {
     top: 56px;
   }
+}
+
+@mixin theme-mixin($light-theme: true) {
+  $brand: $primary-color;
+  $font: $primary-font-color;
+  $bg-color: $body-background;
+  @if $light-theme != true {
+    $brand: $primary-color;
+    $font: $dark-primary-font-color;
+    $bg-color: $dark-body-background;
+  }
+  background-color: $bg-color !important;
+}
+
+.dark.theme-container {
+  @include theme-mixin($light-theme: false);
+}
+
+.theme-container {
+  @include theme-mixin($light-theme: true);
 }

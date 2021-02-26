@@ -25,25 +25,30 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.isLoading = true;
-    this.getCryptosList();
+    // this.getCryptosList();
+    this.cryptoService.coinsObs.subscribe((data) => {
+      console.log('HOME');
+      console.log(data);
+      this.coins = data;
+    });
   }
 
-  getCryptosList() {
-    this.isLoading = true;
-    this.cryptoService
-      .getCryptoData(this.defaultQuery)
-      .pipe(
-        finalize(() => {
-          this.isLoading = false;
-        })
-      )
-      .subscribe((data) => {
-        // console.log(data);
-        // data.forEach((element: Coin) => {
-        //   this.coins.push(element);
-        // });
-        this.coins = data;
-        console.log(this.coins);
-      });
-  }
+  // getCryptosList() {
+  //   this.isLoading = true;
+  //   this.cryptoService.coinsObs
+  //     .pipe(
+  //       finalize(() => {
+  //         this.isLoading = false;
+  //       })
+  //     )
+  //     .subscribe((data) => {
+  //       // console.log(data);
+  //       // data.forEach((element: Coin) => {
+  //       //   this.coins.push(element);
+  //       // });
+  //       console.log('HOME');
+  //       this.coins = data;
+  //       console.log(data);
+  //     });
+  // }
 }

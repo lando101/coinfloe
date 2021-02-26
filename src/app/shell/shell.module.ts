@@ -10,8 +10,31 @@ import { AuthModule } from '@app/auth';
 import { ShellComponent } from './shell.component';
 import { HeaderComponent } from './header/header.component';
 
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
+import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+
+const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+  suppressScrollX: true,
+};
+
 @NgModule({
-  imports: [CommonModule, TranslateModule, FlexLayoutModule, MaterialModule, AuthModule, I18nModule, RouterModule],
+  imports: [
+    PerfectScrollbarModule,
+    CommonModule,
+    TranslateModule,
+    FlexLayoutModule,
+    MaterialModule,
+    AuthModule,
+    I18nModule,
+    RouterModule,
+  ],
   declarations: [HeaderComponent, ShellComponent],
+  providers: [
+    {
+      provide: PERFECT_SCROLLBAR_CONFIG,
+      useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG,
+    },
+  ],
 })
 export class ShellModule {}

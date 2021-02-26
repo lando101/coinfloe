@@ -8,6 +8,7 @@ import { Coin } from 'src/models/coins.model';
 })
 export class CoinsListsComponent implements OnInit {
   @Input() Coins: [];
+  @Input() theme: string;
 
   localCoins: Coin[] = [];
   constructor() {}
