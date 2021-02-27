@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Coin } from 'src/models/coins.model';
 import { CoinDetailsComponent } from '../coin-details/coin-details.component';
 
@@ -10,7 +10,9 @@ import { CoinDetailsComponent } from '../coin-details/coin-details.component';
 export class CoinsListsComponent implements OnInit {
   @Input() Coins: [];
   @Input() theme: string;
-
+  @Input() showBottomSheet: boolean;
+  @Output() showCoinDetails = new EventEmitter<boolean>();
+  @Output() coin = new EventEmitter<Coin>();
   localCoins: Coin[] = [];
   constructor() {}
 
@@ -29,4 +31,10 @@ export class CoinsListsComponent implements OnInit {
   // openBottomSheet(): void {
   //   this._bottomSheet.open(CoinDetailsComponent);
   // }
+
+  openBottomSheet(coin: Coin) {
+    console.log('SHOW BOTTOM SHEET');
+    this.showCoinDetails.emit(true);
+    this.coin.emit(coin);
+  }
 }

@@ -1,3 +1,15 @@
 <div class="container">
-  <app-coins-lists [Coins]="coins" [theme]="theme"></app-coins-lists>
+  <app-coins-lists
+    [Coins]="coins"
+    [theme]="theme"
+    (coin)="setSelectedCoin($event)"
+    (showCoinDetails)="displayCoin($event)"
+  ></app-coins-lists>
+</div>
+<div>
+  <app-bottom-sheet-custom
+    [coin]="selectedCoin"
+    [visible]="bottomSheet"
+    (hideCoinDetails)="displayCoin($event)"
+  ></app-bottom-sheet-custom>
 </div>

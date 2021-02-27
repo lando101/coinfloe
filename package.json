@@ -21,7 +21,7 @@
     "generate": "ng generate"
   },
   "dependencies": {
-    "@angular/animations": "^11.0.8",
+    "@angular/animations": "^11.2.3",
     "@angular/cdk": "^11.0.3",
     "@angular/common": "^11.0.8",
     "@angular/compiler": "^11.0.8",
@@ -36,6 +36,7 @@
     "@angular/router": "^11.0.8",
     "@angular/service-worker": "^11.0.8",
     "@ngx-translate/core": "^13.0.0",
+    "angular-animations": "^0.11.0",
     "angulartics2": "^10.0.0",
     "bootstrap": "^4.6.0",
     "bootstrap-icons": "^1.4.0",

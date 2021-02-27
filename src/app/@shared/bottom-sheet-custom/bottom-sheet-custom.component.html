@@ -1,0 +1,4 @@
+<div class="w-100 h-100 bottom-sheet-wrapper">
+  <div class="outer-click-container" (click)="closeBottomSheet()"></div>
+  <div *ngIf="visible" [@fadeInUpOnEnter] [@fadeOutDownOnLeave] class="inner-container">Hello</div>
+</div>
