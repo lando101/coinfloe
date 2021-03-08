@@ -7,7 +7,8 @@ import { Coin } from 'src/models/coins.model';
 import { UntilDestroy, untilDestroyed } from '@core';
 import { CryptoDataServiceService, CryptoQuery } from '@app/services/crypto-data-service.service';
 import { ThemeService } from '@app/services/theme.service';
-import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+import { PerfectScrollbarComponent, PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+import { BottomSheetService } from '@app/services/bottom-sheet.service';
 
 @UntilDestroy()
 @Component({
@@ -16,12 +17,14 @@ import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
   styleUrls: ['./shell.component.scss'],
 })
 export class ShellComponent implements OnInit {
+  @ViewChild('perfectscroll') perfectScroll: PerfectScrollbarComponent;
   @ViewChild('sidenav', { static: false }) sidenav!: MatSidenav;
   isLoading: boolean;
   coins: Coin[] = [];
   theme: string = '';
   public config: PerfectScrollbarConfigInterface = {
-    wheelSpeed: 0.85,
+    wheelSpeed: 0.25,
+    // suppressScrollY: false,
   };
   defaultQuery: CryptoQuery = {
     coin: 'Bitcoin',
@@ -32,7 +35,8 @@ export class ShellComponent implements OnInit {
   constructor(
     private media: MediaObserver,
     private cryptoService: CryptoDataServiceService,
-    private themeService: ThemeService
+    private themeService: ThemeService,
+    private bottomSheetService: BottomSheetService
   ) {}
 
   ngOnInit() {
@@ -66,6 +70,19 @@ export class ShellComponent implements OnInit {
     });
   }
 
+  ngAfterViewInit(): void {
+    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    //Add 'implements AfterViewInit' to the class.
+    this.bottomSheetService.bottomSheetShow.subscribe((data) => {
+      if (data) {
+        // this.config.suppressScrollY = data;
+      }
+      this.config.suppressScrollY = data;
+
+      console.log(data);
+      console.log('BOTTOM SHEET STATE');
+    });
+  }
   // getCryptosList() {
   //   this.isLoading = true;
   //   this.cryptoService
