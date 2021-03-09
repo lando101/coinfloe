@@ -9,12 +9,28 @@ import { CryptoDataServiceService, CryptoQuery } from '@app/services/crypto-data
 import { ThemeService } from '@app/services/theme.service';
 import { PerfectScrollbarComponent, PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { BottomSheetService } from '@app/services/bottom-sheet.service';
+import { ChangeDetectorRef } from '@angular/core';
+
+import {
+  fadeInOnEnterAnimation,
+  fadeOutOnLeaveAnimation,
+  fadeInUpOnEnterAnimation,
+  fadeOutDownOnLeaveAnimation,
+} from 'angular-animations';
 
 @UntilDestroy()
 @Component({
   selector: 'app-shell',
   templateUrl: './shell.component.html',
   styleUrls: ['./shell.component.scss'],
+  animations: [
+    fadeInUpOnEnterAnimation({
+      duration: 300,
+    }),
+    fadeOutDownOnLeaveAnimation({
+      duration: 300,
+    }),
+  ],
 })
 export class ShellComponent implements OnInit {
   @ViewChild('perfectscroll') perfectScroll: PerfectScrollbarComponent;
@@ -22,6 +38,8 @@ export class ShellComponent implements OnInit {
   isLoading: boolean;
   coins: Coin[] = [];
   theme: string = '';
+  scrollTop = false;
+
   public config: PerfectScrollbarConfigInterface = {
     wheelSpeed: 0.25,
     // suppressScrollY: false,
@@ -36,7 +54,8 @@ export class ShellComponent implements OnInit {
     private media: MediaObserver,
     private cryptoService: CryptoDataServiceService,
     private themeService: ThemeService,
-    private bottomSheetService: BottomSheetService
+    private bottomSheetService: BottomSheetService,
+    private cd: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
@@ -68,19 +87,31 @@ export class ShellComponent implements OnInit {
     this.cryptoService.getCryptoData().subscribe((data) => {
       console.log(data);
     });
+
+    setTimeout(() => {}, 1000);
   }
 
   ngAfterViewInit(): void {
-    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
-    //Add 'implements AfterViewInit' to the class.
     this.bottomSheetService.bottomSheetShow.subscribe((data) => {
-      if (data) {
-        // this.config.suppressScrollY = data;
+      if (data === true) {
+        this.config.wheelSpeed = 0;
+      } else {
+        this.config.wheelSpeed = 0.25;
       }
-      this.config.suppressScrollY = data;
+    });
+    this.perfectScroll.psScrollY.subscribe((data: any) => {
+      let top = Number(this.perfectScroll.directiveRef.ps().lastScrollTop);
+      console.log(Number(top));
 
-      console.log(data);
-      console.log('BOTTOM SHEET STATE');
+      this.scrollTop = true;
+
+      if (top > 480) {
+        this.scrollTop = true;
+        this.cd.detectChanges(); // manually triggers change detection :: something about shell component is off
+      } else {
+        this.scrollTop = false;
+        this.cd.detectChanges();
+      }
     });
   }
   // getCryptosList() {

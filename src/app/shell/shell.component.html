@@ -19,10 +19,22 @@
     <!-- <mat-sidenav-content class="ps" [perfectScrollbar]="config">
       <router-outlet></router-outlet>
     </mat-sidenav-content> -->
-    <mat-sidenav-content>
+    <mat-sidenav-content class="overflow-hidden">
       <perfect-scrollbar #perfectscroll class="ps" [config]="config">
         <router-outlet></router-outlet>
       </perfect-scrollbar>
+      <button
+        *ngIf="scrollTop"
+        [@fadeInUpOnEnter]
+        [@fadeOutDownOnLeave]
+        mat-fab
+        color="primary"
+        class="scrollToTopButton"
+        aria-label="Example icon button with a delete icon"
+      >
+        {{ scrollTop }}
+        <!-- <mat-icon>delete</mat-icon> -->
+      </button>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>

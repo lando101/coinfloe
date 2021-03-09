@@ -61,6 +61,13 @@
     $bg-color: $dark-body-background;
   }
   background-color: $bg-color !important;
+
+  .scrollToTopButton {
+    position: absolute;
+    border-radius: 50% !important;
+    bottom: 25px;
+    right: 55px;
+  }
 }
 
 .dark.theme-container {
