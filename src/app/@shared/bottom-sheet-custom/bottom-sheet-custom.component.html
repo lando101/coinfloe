@@ -1,4 +1,4 @@
-<div *ngIf="visible" [@fadeInOnEnter] [@fadeOutOnLeave] class="w-100 h-100 bottom-sheet-wrapper">
+<div *ngIf="visible" [@fadeInOnEnter] [@fadeOutOnLeave] class="w-100 h-100 bottom-sheet-wrapper {{ theme }}">
   <div class="outer-click-container" (click)="closeBottomSheet()"></div>
   <div *ngIf="visible" [@fadeInUpOnEnter] [@fadeOutDownOnLeave] class="inner-container">Hello</div>
 </div>

@@ -7,6 +7,7 @@ import {
   fadeOutDownOnLeaveAnimation,
 } from 'angular-animations';
 import { BottomSheetService } from '@app/services/bottom-sheet.service';
+import { ThemeService } from '@app/services/theme.service';
 
 @Component({
   selector: 'app-bottom-sheet-custom',
@@ -32,10 +33,20 @@ export class BottomSheetCustomComponent implements OnInit {
   @Input() coin: Coin;
   @Output() hideCoinDetails = new EventEmitter<boolean>();
 
-  constructor(private bottomSheetService: BottomSheetService) {}
+  theme: string = '';
+
+  constructor(private bottomSheetService: BottomSheetService, private themeService: ThemeService) {}
 
   ngOnInit(): void {
     this.bottomSheetService.setState(false);
+
+    this.themeService.themeTypeBS.subscribe((data) => {
+      if (data) {
+        this.theme = data;
+      } else {
+        this.theme = 'light';
+      }
+    });
   }
 
   ngOnChanges(changes: SimpleChanges): void {

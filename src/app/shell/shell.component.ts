@@ -114,6 +114,10 @@ export class ShellComponent implements OnInit {
       }
     });
   }
+
+  backToTop() {
+    this.perfectScroll.directiveRef.scrollToTop(0, 350);
+  }
   // getCryptosList() {
   //   this.isLoading = true;
   //   this.cryptoService

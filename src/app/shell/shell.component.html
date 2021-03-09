@@ -25,14 +25,15 @@
       </perfect-scrollbar>
       <button
         *ngIf="scrollTop"
+        (click)="backToTop()"
         [@fadeInUpOnEnter]
         [@fadeOutDownOnLeave]
         mat-fab
         color="primary"
         class="scrollToTopButton"
-        aria-label="Example icon button with a delete icon"
+        aria-label="Back to top of page"
       >
-        {{ scrollTop }}
+        <i class="bi bi-arrow-up"></i>
         <!-- <mat-icon>delete</mat-icon> -->
       </button>
     </mat-sidenav-content>
