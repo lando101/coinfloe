@@ -14,14 +14,15 @@
 }
 
 ::ng-deep .popover {
-  width: 280px;
-  max-width: 280px;
+  width: 295px;
+  max-width: 295px;
   position: absolute;
 
   .search-result-button {
     max-height: 80px;
     border: none;
     background-color: transparent;
+    font-weight: 500;
   }
 }
 
@@ -47,11 +48,12 @@
 .search-bar {
   border-radius: 50px;
   overflow: visible;
-  background-color: #fcfcfc;
+  backdrop-filter: brightness(0.96);
   width: auto;
   display: flex;
   flex-wrap: nowrap;
   transition: 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
+  border: 1px solid #b4b4b438;
 
   .search-input {
     height: auto !important;
@@ -62,7 +64,7 @@
   }
   &:hover {
     transition: 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
-    background: #fcfcfc;
+    backdrop-filter: brightness(1);
     box-shadow: 0px 0px 5px 1px #8080802e;
   }
   input {

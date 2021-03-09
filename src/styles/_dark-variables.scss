@@ -11,7 +11,7 @@ $dark-header-translucent-background: #33333378;
 // COLORS
 $dark-mat-muted-icon: #888888;
 $dark-text-color: #747474;
-$dark-primary-font-color: #f0f0f0;
+$dark-primary-font-color: #dcdcdc;
 $dark-alternate-text-color: white;
 $dark-desc-text-color: #848484;
 
@@ -19,10 +19,11 @@ $dark-desc-text-color: #848484;
 $dark-primary-border: #353535;
 $dark-primary-border-dark: darken($dark-primary-border, 15%);
 $dark-border-darkest: #b6b6b64a;
+$dark-header-border: #80808014;
 
 // SHADOWS
 $dark-primary-shadow: #12121280;
 $dark-primary-shadow-light: #0303032e;
 $dark-primary-text-shadow: #9c122e;
-
+$dark-card-shadow: #0000003b;
 //=========================================================

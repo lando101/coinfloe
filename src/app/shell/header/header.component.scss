@@ -22,13 +22,15 @@
   $brand: $primary-color;
   $font: $primary-font-color;
   $bg-color: $white-background;
+  $border: $header-border;
   @if $light-theme != true {
     $brand: $primary-color;
     $font: $dark-primary-font-color;
     $bg-color: $dark-secondary-background;
+    $border: $dark-header-border;
   }
   background-color: $bg-color !important;
-
+  border-bottom: 1px solid $border;
   .coinfloe-brand {
     font-family: "Righteous", cursive;
     font-size: 2rem;

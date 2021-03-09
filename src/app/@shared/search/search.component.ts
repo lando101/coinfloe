@@ -9,6 +9,7 @@ export interface CoinSearch {
   name?: string;
   symbol?: string;
   price?: any;
+  change?: number;
   img?: string;
 }
 
@@ -55,6 +56,7 @@ export class SearchComponent implements OnInit {
             name: element.CoinInfo.FullName,
             symbol: element.CoinInfo.Name,
             price: element.DISPLAY.USD.PRICE,
+            change: element.RAW.USD.CHANGEPCT24HOUR / 100,
             img: element.CoinInfo.ImageUrl,
           });
         });
@@ -74,6 +76,6 @@ export class SearchComponent implements OnInit {
     console.log(pattern);
     this.searchTerm = pattern;
     console.log(this.fuse.search(pattern));
-    this.searchResult = this.fuse.search(pattern, { limit: 100 });
+    this.searchResult = this.fuse.search(pattern, { limit: 10 });
   }
 }

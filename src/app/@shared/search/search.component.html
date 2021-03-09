@@ -1,4 +1,4 @@
-<div class="input-group border search-bar m-0 ml-4">
+<div class="input-group search-bar m-0 mr-4">
   <div class="input-group-prepend">
     <span class="input-group-text border-0 icon-container" id="basic-addon1">
       <svg
@@ -38,15 +38,19 @@
                 </div>
                 <div>
                   <div class="d-flex align-items-center">
-                    <small class="text-muted font-weight-bold">{{ result?.item?.symbol }}</small>
+                    <small class="text-muted">{{ result?.item?.symbol }}</small>
                   </div>
-                  <div class="font-weight-bold d-flex align-items-center text-capitalize">
+                  <div class="d-flex align-items-center text-capitalize">
                     {{ result?.item?.name }}
                   </div>
                 </div>
               </div>
-              <div class="font-smaller">
-                <small>{{ result?.item?.price }}</small>
+              <div class="font-smaller text-right">
+                <small class="d-block">{{ result?.item?.price }}</small>
+                <small
+                  [ngClass]="{ 'text-success': result?.item?.change > 0, 'text-danger': result?.item?.change < 0 }"
+                  >{{ result?.item?.change | percent: '0.1-2' }}</small
+                >
               </div>
             </div>
           </button>

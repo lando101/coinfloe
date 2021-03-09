@@ -1,6 +1,6 @@
 <div fxLayout="column" fxLayoutGap="20px">
-  <div class="{{ theme }}" *ngFor="let coin of localCoins">
-    <button mat-flat-button (click)="openBottomSheet(coin)" class="p-0 w-100">
+  <div class="{{ theme }} theme-container" *ngFor="let coin of localCoins">
+    <button mat-flat-button (click)="openBottomSheet(coin)" class="p-0 w-100 rounded-2">
       <app-coin-item [coin]="coin" [theme]="theme"></app-coin-item>
     </button>
   </div>
