@@ -34,95 +34,126 @@
     <button mat-menu-item (click)="logout()" translate>Logout</button>
   </mat-menu>
 </mat-toolbar> -->
-<nav class="navbar navbar-expand-lg navbar-light {{ theme }} theme-container">
-  <div fxFlexFill fxLayout="row">
-    <div fxFlex="25">
-      <a class="coinfloe-brand" href="#" translate>APP_NAME</a>
-    </div>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-toggle="collapse"
-      data-target="#navbarNav"
-      aria-controls="navbarNav"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    ></button>
-    <div fxFlex="50" class="justify-content-center">
-      <div class="collapse navbar-collapse" class="d-flex justify-content-center h-100" id="navbarNav">
-        <ul class="navbar-nav" fxLayout="row" fxLayoutGap="20px">
-          <button mat-button routerLink="/home" routerLinkActive="active" matTooltip="Home">
-            <i [ngClass]="{ 'bi bi-house-fill': router.url === '/home', 'bi bi-house': router.url != '/home' }"></i>
-          </button>
-          <button mat-button routerLinkActive="active" routerLink="/charts" matTooltip="Charts">
-            <i
-              [ngClass]="{
-                'bi bi-bar-chart-line-fill': router.url === '/charts',
-                'bi bi-bar-chart-line': router.url != '/charts'
-              }"
-            ></i>
-          </button>
-          <button mat-button routerLinkActive="active" routerLink="/groups" matTooltip="Groups">
-            <i
-              [ngClass]="{
-                'bi bi-people-fill': router.url === '/groups',
-                'bi bi-people': router.url != '/groups'
-              }"
-            ></i>
-          </button>
-          <button mat-button routerLinkActive="active" routerLink="/explore" matTooltip="Explore">
-            <i
-              [ngClass]="{
-                'bi bi-compass-fill': router.url === '/explore',
-                'bi bi-compass': router.url != '/explore'
-              }"
-            ></i>
-          </button>
-        </ul>
+<nav class="navbar navbar-expand-lg navbar-light {{ theme }} theme-container px-0 pb-0">
+  <div fxFlexFill fxLayout="column">
+    <div fxFlexFill fxLayout="row" class="px-3 mb-2">
+      <div fxFlex="25">
+        <a class="coinfloe-brand" href="#" translate>APP_NAME</a>
       </div>
-    </div>
-    <div fxFlex="25" class="justify-content-end d-flex align-items-center">
-      <!-- <app-language-selector icon="true"></app-language-selector> -->
-      <app-search></app-search>
-      <div fxHide.lt-lg fxLayout="row">
-        <button mat-icon-button (click)="setTheme()">
-          <i class="bi bi-sun"></i>
-        </button>
-        <button mat-icon-button>
-          <i class="bi bi-bell"></i>
-        </button>
-        <button mat-icon-button [matMenuTriggerFor]="userMenu">
-          <i class="bi bi-person-circle"></i>
-        </button>
-        <mat-menu #userMenu="matMenu">
-          <mat-list>
-            <mat-list-item>
-              <span translate>Logged in as</span>&nbsp;<b>{{ username }}</b>
-            </mat-list-item>
-            <mat-divider></mat-divider>
-          </mat-list>
-          <button mat-menu-item (click)="logout()" translate>Logout</button>
-        </mat-menu>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      ></button>
+      <div fxFlex="50" class="justify-content-center">
+        <div class="collapse navbar-collapse" class="d-flex justify-content-center h-100" id="navbarNav">
+          <ul class="navbar-nav" fxLayout="row" fxLayoutGap="20px">
+            <button mat-button routerLink="/home" routerLinkActive="active" matTooltip="Home">
+              <i [ngClass]="{ 'bi bi-house-fill': router.url === '/home', 'bi bi-house': router.url != '/home' }"></i>
+            </button>
+            <button mat-button routerLinkActive="active" routerLink="/charts" matTooltip="Charts">
+              <i
+                [ngClass]="{
+                  'bi bi-bar-chart-line-fill': router.url === '/charts',
+                  'bi bi-bar-chart-line': router.url != '/charts'
+                }"
+              ></i>
+            </button>
+            <button mat-button routerLinkActive="active" routerLink="/groups" matTooltip="Groups">
+              <i
+                [ngClass]="{
+                  'bi bi-people-fill': router.url === '/groups',
+                  'bi bi-people': router.url != '/groups'
+                }"
+              ></i>
+            </button>
+            <button mat-button routerLinkActive="active" routerLink="/explore" matTooltip="Explore">
+              <i
+                [ngClass]="{
+                  'bi bi-compass-fill': router.url === '/explore',
+                  'bi bi-compass': router.url != '/explore'
+                }"
+              ></i>
+            </button>
+          </ul>
+        </div>
       </div>
+      <div fxFlex="25" class="justify-content-end d-flex align-items-center">
+        <!-- <app-language-selector icon="true"></app-language-selector> -->
+        <app-search></app-search>
+        <div fxHide.lt-lg fxLayout="row">
+          <button mat-icon-button (click)="setTheme()">
+            <i class="bi bi-sun"></i>
+          </button>
+          <button mat-icon-button>
+            <i class="bi bi-bell"></i>
+          </button>
+          <button mat-icon-button [matMenuTriggerFor]="userMenu">
+            <i class="bi bi-person-circle"></i>
+          </button>
+          <mat-menu #userMenu="matMenu">
+            <mat-list>
+              <mat-list-item>
+                <span translate>Logged in as</span>&nbsp;<b>{{ username }}</b>
+              </mat-list-item>
+              <mat-divider></mat-divider>
+            </mat-list>
+            <button mat-menu-item (click)="logout()" translate>Logout</button>
+          </mat-menu>
+        </div>
 
-      <div fxHide.gt-md>
-        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Theme, notifications and profile menu">
-          <mat-icon><i class="bi bi-list"></i></mat-icon>
-        </button>
-        <mat-menu #menu="matMenu">
-          <button mat-menu-item (click)="setTheme()">
-            <mat-icon> <i class="bi bi-sun"></i> </mat-icon>
-            <span>Theme</span>
+        <div fxHide.gt-md>
+          <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Theme, notifications and profile menu">
+            <mat-icon><i class="bi bi-list"></i></mat-icon>
           </button>
-          <button mat-menu-item>
-            <mat-icon><i class="bi bi-bell"></i></mat-icon>
-            <span>Notifications</span>
-          </button>
-          <button mat-menu-item>
-            <mat-icon><i class="bi bi-person-circle"></i></mat-icon>
-            <span>Profile</span>
-          </button>
-        </mat-menu>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="setTheme()">
+              <mat-icon> <i class="bi bi-sun"></i> </mat-icon>
+              <span>Theme</span>
+            </button>
+            <button mat-menu-item>
+              <mat-icon><i class="bi bi-bell"></i></mat-icon>
+              <span>Notifications</span>
+            </button>
+            <button mat-menu-item>
+              <mat-icon><i class="bi bi-person-circle"></i></mat-icon>
+              <span>Profile</span>
+            </button>
+          </mat-menu>
+        </div>
+      </div>
+    </div>
+    <div fxFlexFill fxLayout="row" class="px-3 py-2 info-banner">
+      <div class="container">
+        <div class="d-flex justify-content-between align-items-center w-100">
+          <small class="d-flex align-items-center">
+            <span class="text-muted mr-1">Market Cap:</span>
+            <b class="brand-text">$1,000,000,000,000</b>
+            <i matTooltip="Sum of total coin market caps" class="bi bi-info-circle ml-1"></i>
+          </small>
+          <small class="d-flex align-items-center">
+            <span class="text-muted mr-1">BTC Dominance:</span>
+            <b class="brand-text">66%</b>
+            <i
+              matTooltip="Percentage BTC market cap vs alt coins (i.e. ETH, ADA, etc.)"
+              class="bi bi-info-circle ml-1"
+            ></i>
+          </small>
+          <small class="d-flex align-items-center">
+            <span class="text-muted mr-1">BTC Sentiment:</span>
+            <b class="brand-text">Bullish</b>
+            <i matTooltip='Most addresses are "in the money" or profitable' class="bi bi-info-circle ml-1"></i>
+          </small>
+          <small class="d-flex align-items-center">
+            <span class="text-muted mr-1">New BTC Adresses:</span>
+            <b class="brand-text">{{ blockChainInfo.new_addresses || 0 | number }}</b>
+            <i matTooltip="New BTC addresses for the past day" class="bi bi-info-circle ml-1"></i>
+          </small>
+        </div>
       </div>
     </div>
   </div>

@@ -5,6 +5,8 @@ import { MatSidenav } from '@angular/material/sidenav';
 
 import { AuthenticationService, CredentialsService } from '@app/auth';
 import { ThemeService } from '@app/services/theme.service';
+import { CryptoDataServiceService } from '@app/services/crypto-data-service.service';
+import { BlockChainInfo } from 'src/models/coins.model';
 
 @Component({
   selector: 'app-header',
@@ -14,13 +16,14 @@ import { ThemeService } from '@app/services/theme.service';
 export class HeaderComponent implements OnInit {
   @Input() sidenav!: MatSidenav;
   theme: string = '';
-
+  blockChainInfo: BlockChainInfo = {};
   constructor(
     public router: Router,
     private titleService: Title,
     private authenticationService: AuthenticationService,
     private credentialsService: CredentialsService,
-    private themeService: ThemeService
+    private themeService: ThemeService,
+    private cryptoService: CryptoDataServiceService
   ) {}
 
   ngOnInit() {
@@ -29,6 +32,12 @@ export class HeaderComponent implements OnInit {
         this.theme = data;
         console.log(data);
         console.log('THEME');
+      }
+    });
+
+    this.cryptoService.btcBlockChainObs.subscribe((data) => {
+      if (data) {
+        this.blockChainInfo = data;
       }
     });
   }

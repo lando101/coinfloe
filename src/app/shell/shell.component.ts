@@ -88,7 +88,9 @@ export class ShellComponent implements OnInit {
       console.log(data);
     });
 
-    setTimeout(() => {}, 1000);
+    this.cryptoService.getCryptoBlockChainData().subscribe((data) => {
+      console.log(data);
+    });
   }
 
   ngAfterViewInit(): void {

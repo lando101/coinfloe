@@ -127,3 +127,24 @@ export interface USD1 {
   TOTALTOPTIERVOLUME24HTO: string;
   IMAGEURL: string;
 }
+
+export interface BlockChainInfo {
+  id?: number;
+  time?: number;
+  symbol?: string;
+  partner_symbol?: string;
+  zero_balance_addresses_all_time?: number;
+  unique_addresses_all_time?: number;
+  new_addresses?: number;
+  active_addresses?: number;
+  average_transaction_value?: number;
+  block_height?: number;
+  hashrate?: number;
+  difficulty?: number;
+  block_time?: number;
+  block_size?: number;
+  current_supply?: number;
+  transaction_count?: number;
+  transaction_count_all_time?: number;
+  large_transaction_count?: number;
+}
