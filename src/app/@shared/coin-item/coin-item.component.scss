@@ -3,3 +3,16 @@
 .card {
   background: transparent !important;
 }
+.img-container {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  overflow: hidden;
+  img {
+    width: 30px;
+    height: 30px;
+  }
+}

@@ -1,5 +1,18 @@
 <div class="card {{ theme }} border-0">
-  <div class="card-body d-flex">
-    {{ coin.CoinInfo.Name }}
+  <div class="card-body d-flex" fxFlexFill fxLayout="row">
+    <div fxLayout="column" class="justify-content-center align-items-center">
+      <div class="img-container mr-3">
+        <img src="{{ prettyImgURL }}" (error)="prettyImgURL = imgURL" />
+        <!-- <img
+          src="https://cryptologos.cc/logos/{{ coin?.CoinInfo?.FullName.replace(' ', '-') | lowercase }}-{{
+            coin?.CoinInfo?.Name | lowercase
+          }}-logo.png?v=010"
+        /> -->
+      </div>
+    </div>
+    <div fxLayout="column" class="text-left">
+      <small>{{ coin.CoinInfo.Name }}</small>
+      <label>{{ coin.CoinInfo.FullName }}</label>
+    </div>
   </div>
 </div>

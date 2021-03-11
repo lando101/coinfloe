@@ -112,7 +112,7 @@ export class ShellComponent implements OnInit {
     });
     this.perfectScroll.psScrollY.subscribe((data: any) => {
       let top = Number(this.perfectScroll.directiveRef.ps().lastScrollTop);
-      console.log(Number(top));
+      // console.log(Number(top));
 
       this.scrollTop = true;
 

@@ -84,7 +84,7 @@
       </div>
       <div fxFlex="25" class="justify-content-end d-flex align-items-center">
         <!-- <app-language-selector icon="true"></app-language-selector> -->
-        <app-search></app-search>
+        <app-search [theme]="theme"></app-search>
         <div fxHide.lt-lg fxLayout="row">
           <button mat-icon-button (click)="setTheme()">
             <i class="bi bi-sun"></i>

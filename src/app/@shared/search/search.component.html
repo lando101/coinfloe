@@ -1,70 +1,72 @@
-<div class="input-group search-bar m-0 mr-4">
-  <div class="input-group-prepend">
-    <span class="input-group-text border-0 icon-container" id="basic-addon1">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="16"
-        height="16"
-        fill="currentColor"
-        class="bi bi-search"
-        viewBox="0 0 16 16"
-      >
-        <path
-          d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
-        />
-      </svg>
-    </span>
-  </div>
-  <input
-    #search
-    (keyup)="searchReports(search.value)"
-    type="text"
-    class="form-control search-input border-0"
-    [placement]="'bottom left'"
-    placeholder="Search coins..."
-    [popover]="popTemplate"
-    triggers="keypress:clickout"
-    [outsideClick]="true"
-  />
-  <ng-template #popTemplate>
-    <perfect-scrollbar #perfectscroll class="ps" [config]="config">
-      <div *ngIf="searchResult?.length > 0; else noresults" class="p-3">
-        <div *ngFor="let result of searchResult">
-          <button class="w-100 m-0 text-left py-2 search-result-button">
-            <div class="d-flex align-items-center justify-content-between">
-              <div class="d-flex align-items-center">
-                <div class="img-container mr-2">
-                  <img src="https://www.cryptocompare.com{{ result?.item?.img }}" />
+<div class="{{ theme }} theme-container">
+  <div class="input-group search-bar m-0 mr-4">
+    <div class="input-group-prepend">
+      <span class="input-group-text border-0 icon-container" id="basic-addon1">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          class="bi bi-search"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
+          />
+        </svg>
+      </span>
+    </div>
+    <input
+      #search
+      (keyup)="searchReports(search.value)"
+      type="text"
+      class="form-control search-input border-0"
+      [placement]="'bottom left'"
+      placeholder="Search coins..."
+      [popover]="popTemplate"
+      triggers="keypress:clickout"
+      [outsideClick]="true"
+    />
+    <ng-template #popTemplate>
+      <perfect-scrollbar #perfectscroll class="ps" [config]="config">
+        <div *ngIf="searchResult?.length > 0; else noresults" class="p-3">
+          <div *ngFor="let result of searchResult">
+            <button class="w-100 m-0 text-left py-2 search-result-button">
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="d-flex align-items-center">
+                  <div class="img-container mr-2">
+                    <img src="https://www.cryptocompare.com{{ result?.item?.img }}" />
+                  </div>
+                  <div>
+                    <div class="d-flex align-items-center">
+                      <small class="text-muted">{{ result?.item?.symbol }}</small>
+                    </div>
+                    <div class="d-flex align-items-center text-capitalize">
+                      {{ result?.item?.name }}
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <div class="d-flex align-items-center">
-                    <small class="text-muted">{{ result?.item?.symbol }}</small>
-                  </div>
-                  <div class="d-flex align-items-center text-capitalize">
-                    {{ result?.item?.name }}
-                  </div>
+                <div class="font-smaller text-right">
+                  <small class="d-block">{{ result?.item?.price }}</small>
+                  <small
+                    [ngClass]="{ 'text-success': result?.item?.change > 0, 'text-danger': result?.item?.change < 0 }"
+                    >{{ result?.item?.change | percent: '0.1-2' }}</small
+                  >
                 </div>
               </div>
-              <div class="font-smaller text-right">
-                <small class="d-block">{{ result?.item?.price }}</small>
-                <small
-                  [ngClass]="{ 'text-success': result?.item?.change > 0, 'text-danger': result?.item?.change < 0 }"
-                  >{{ result?.item?.change | percent: '0.1-2' }}</small
-                >
-              </div>
-            </div>
-          </button>
+            </button>
+          </div>
+        </div>
+      </perfect-scrollbar>
+    </ng-template>
+    <ng-template #noresults>
+      <div *ngIf="search.value">
+        <div class="w-100 text-center p-5">
+          <label class="poppins-font-style"
+            ><b>No coins matched "{{ searchTerm }}".</b></label
+          >
         </div>
       </div>
-    </perfect-scrollbar>
-  </ng-template>
-  <ng-template #noresults>
-    <div *ngIf="search.value">
-      <div class="w-100 text-center p-5">
-        <label class="poppins-font-style"
-          ><b>No coins matched "{{ searchTerm }}".</b></label
-        >
-      </div>
-    </div>
-  </ng-template>
+    </ng-template>
+  </div>
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 import { Coin } from 'src/models/coins.model';
 import Fuse from 'fuse.js';
@@ -19,6 +19,7 @@ export interface CoinSearch {
   styleUrls: ['./search.component.scss'],
 })
 export class SearchComponent implements OnInit {
+  @Input() theme: string;
   coins: CoinSearch[] = [];
   searchTerm: string = '';
   public config: PerfectScrollbarConfigInterface = {
