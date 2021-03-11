@@ -26,6 +26,8 @@
 // Theme customization
 @import "theme/theme";
 @import "~perfect-scrollbar/css/perfect-scrollbar.css";
+
 .ps__rail-y {
-  right: 5px !important;
+  background-color: transparent !important;
+  backdrop-filter: brightness(0.95) !important;
 }

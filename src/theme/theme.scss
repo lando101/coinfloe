@@ -17,3 +17,7 @@ body {
   font-family: "Roboto", sans-serif;
   overflow: hidden;
 }
+
+::ng-deep .perfect-scrollbar > .ps.ps--active-y > .ps__rail-y {
+  background-color: transparent !important;
+}

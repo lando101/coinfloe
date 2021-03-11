@@ -33,10 +33,6 @@ export class ThemeService {
   // }
 
   setThemeCookie(themeString: string) {
-    console.log('THEME==============================');
     this.cookieService.put('theme', themeString);
-    // let theme = this.getThemeCookie('theme');
-    // console.log(theme);
-    // console.log('THEME==============================');
   }
 }
