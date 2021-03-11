@@ -1,5 +1,5 @@
 import { Title } from '@angular/platform-browser';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatSidenav } from '@angular/material/sidenav';
 
@@ -7,6 +7,7 @@ import { AuthenticationService, CredentialsService } from '@app/auth';
 import { ThemeService } from '@app/services/theme.service';
 import { CryptoDataServiceService } from '@app/services/crypto-data-service.service';
 import { BlockChainInfo } from 'src/models/coins.model';
+import { SidenavService } from '@app/services/sidenav.service';
 
 @Component({
   selector: 'app-header',
@@ -15,7 +16,10 @@ import { BlockChainInfo } from 'src/models/coins.model';
 })
 export class HeaderComponent implements OnInit {
   @Input() sidenav!: MatSidenav;
+  @Output() sideNavToggle = new EventEmitter<boolean>(true);
+
   theme: string = '';
+  cookieTheme = '';
   blockChainInfo: BlockChainInfo = {};
   constructor(
     public router: Router,
@@ -23,7 +27,8 @@ export class HeaderComponent implements OnInit {
     private authenticationService: AuthenticationService,
     private credentialsService: CredentialsService,
     private themeService: ThemeService,
-    private cryptoService: CryptoDataServiceService
+    private cryptoService: CryptoDataServiceService,
+    private sideNavService: SidenavService
   ) {}
 
   ngOnInit() {
@@ -33,6 +38,12 @@ export class HeaderComponent implements OnInit {
         console.log(data);
         console.log('THEME');
       }
+
+      console.log('HEADER GOT THEME');
+      // console.log(this.themeService.getThemeCookie('theme'));
+      console.log('HEADER GOT THEME');
+
+      // this.themeService.getThemeCookie('theme');
     });
 
     this.cryptoService.btcBlockChainObs.subscribe((data) => {
@@ -40,6 +51,8 @@ export class HeaderComponent implements OnInit {
         this.blockChainInfo = data;
       }
     });
+
+    this.sideNavService.sideNavShow.subscribe((data) => {});
   }
 
   logout() {
@@ -64,5 +77,9 @@ export class HeaderComponent implements OnInit {
       theme = 'dark';
       this.themeService.setTheme(theme);
     }
+  }
+
+  toggleSideNav(profile: boolean) {
+    this.sideNavToggle.emit(profile);
   }
 }

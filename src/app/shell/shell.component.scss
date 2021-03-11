@@ -30,7 +30,6 @@
   position: unset;
 }
 
-.mat-sidenav,
 .mat-drawer-content,
 // Force style down to child components
 // See https://angular.io/guide/component-styles#deep
@@ -42,6 +41,11 @@
   height: auto;
   position: absolute;
   z-index: 0;
+}
+
+.mat-sidenav {
+  top: 89px;
+  right: 0px;
 }
 
 @media ($mat-xsmall) {
@@ -70,6 +74,12 @@
     right: 55px;
     background-color: $brand !important;
     font-size: 1.55rem;
+  }
+
+  ::ng-deep .mat-drawer-side.mat-drawer-end {
+    border-left: 1px solid #80808014;
+    border-right: none;
+    background: lighten($bg-color, 3%);
   }
 }
 

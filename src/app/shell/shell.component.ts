@@ -17,6 +17,9 @@ import {
   fadeInUpOnEnterAnimation,
   fadeOutDownOnLeaveAnimation,
 } from 'angular-animations';
+import { Title } from '@angular/platform-browser';
+import { AuthenticationService, CredentialsService } from '@app/auth';
+import { Router } from '@angular/router';
 
 @UntilDestroy()
 @Component({
@@ -39,6 +42,9 @@ export class ShellComponent implements OnInit {
   coins: Coin[] = [];
   theme: string = '';
   scrollTop = false;
+  showProfile: boolean = null;
+  user_name = '';
+  title_display = '';
 
   public config: PerfectScrollbarConfigInterface = {
     wheelSpeed: 0.25,
@@ -55,7 +61,11 @@ export class ShellComponent implements OnInit {
     private cryptoService: CryptoDataServiceService,
     private themeService: ThemeService,
     private bottomSheetService: BottomSheetService,
-    private cd: ChangeDetectorRef
+    private cd: ChangeDetectorRef,
+    private titleService: Title,
+    private authenticationService: AuthenticationService,
+    private credentialsService: CredentialsService,
+    public router: Router
   ) {}
 
   ngOnInit() {
@@ -70,12 +80,6 @@ export class ShellComponent implements OnInit {
       )
       .subscribe(() => this.sidenav.close());
 
-    // this.getCryptosList();
-    // this.themeService.themeTypeBS.subscribe((data: any) => {
-    //   if (data) {
-    //     this.theme = data;
-    //   }
-    // });
     this.themeService.themeTypeBS.subscribe((data) => {
       if (data) {
         this.theme = data;
@@ -91,6 +95,11 @@ export class ShellComponent implements OnInit {
     this.cryptoService.getCryptoBlockChainData().subscribe((data) => {
       console.log(data);
     });
+
+    // this.themeService.setThemeCookie();
+
+    this.username();
+    this.title();
   }
 
   ngAfterViewInit(): void {
@@ -119,6 +128,36 @@ export class ShellComponent implements OnInit {
 
   backToTop() {
     this.perfectScroll.directiveRef.scrollToTop(0, 350);
+  }
+
+  username(): string | null {
+    const credentials = this.credentialsService.credentials;
+    this.user_name = credentials ? credentials.username : null;
+    console.log(credentials);
+    return credentials ? credentials.username : null;
+  }
+
+  title(): string {
+    this.title_display = this.titleService.getTitle();
+    return this.titleService.getTitle();
+  }
+
+  logout() {
+    this.authenticationService.logout().subscribe(() => this.router.navigate(['/login'], { replaceUrl: true }));
+  }
+
+  openSidenav(profile?: boolean) {
+    if (this.showProfile != profile || this.showProfile === null) {
+      this.showProfile = profile;
+      this.sidenav.open();
+    } else {
+      this.closeSidenav();
+    }
+  }
+
+  closeSidenav() {
+    this.showProfile = null;
+    this.sidenav.close();
   }
   // getCryptosList() {
   //   this.isLoading = true;

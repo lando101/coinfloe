@@ -89,13 +89,13 @@
           <button mat-icon-button (click)="setTheme()">
             <i class="bi bi-sun"></i>
           </button>
-          <button mat-icon-button>
+          <button mat-icon-button (click)="toggleSideNav(false)">
             <i class="bi bi-bell"></i>
           </button>
-          <button mat-icon-button [matMenuTriggerFor]="userMenu">
+          <button mat-icon-button (click)="toggleSideNav(true)">
             <i class="bi bi-person-circle"></i>
           </button>
-          <mat-menu #userMenu="matMenu">
+          <!-- <mat-menu #userMenu="matMenu">
             <mat-list>
               <mat-list-item>
                 <span translate>Logged in as</span>&nbsp;<b>{{ username }}</b>
@@ -103,7 +103,7 @@
               <mat-divider></mat-divider>
             </mat-list>
             <button mat-menu-item (click)="logout()" translate>Logout</button>
-          </mat-menu>
+          </mat-menu> -->
         </div>
 
         <div fxHide.gt-md>

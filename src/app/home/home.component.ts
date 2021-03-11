@@ -3,6 +3,7 @@ import { filter, finalize } from 'rxjs/operators';
 
 import { Coin } from 'src/models/coins.model';
 import { CryptoDataServiceService, CryptoQuery } from '@app/services/crypto-data-service.service';
+import { ThemeService } from '@app/services/theme.service';
 
 @Component({
   selector: 'app-home',
@@ -21,7 +22,7 @@ export class HomeComponent implements OnInit {
     limit: 100,
     fiat: 'USD',
   };
-  constructor(private cryptoService: CryptoDataServiceService) {}
+  constructor(private cryptoService: CryptoDataServiceService, private themeService: ThemeService) {}
 
   ngOnInit() {
     this.isLoading = true;
@@ -30,6 +31,12 @@ export class HomeComponent implements OnInit {
       console.log('HOME');
       console.log(data);
       this.coins = data;
+    });
+
+    this.themeService.themeTypeBS.subscribe((data) => {
+      if (data) {
+        this.theme = data;
+      }
     });
   }
 

@@ -12,6 +12,8 @@ import { BottomSheetCustomComponent } from './bottom-sheet-custom/bottom-sheet-c
 import { SearchComponent } from './search/search.component';
 import { NgxBootstrapModule } from '@app/ngx-bootstrap.module';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { ProfileMenuComponent } from './profile-menu/profile-menu.component';
+import { NotificationsMenuComponent } from './notifications-menu/notifications-menu.component';
 
 @NgModule({
   imports: [FlexLayoutModule, MaterialModule, CommonModule, NgxBootstrapModule, PerfectScrollbarModule],
@@ -22,6 +24,8 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
     CoinDetailsComponent,
     BottomSheetCustomComponent,
     SearchComponent,
+    ProfileMenuComponent,
+    NotificationsMenuComponent,
   ],
   exports: [
     LoaderComponent,
@@ -30,6 +34,8 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
     CoinDetailsComponent,
     BottomSheetCustomComponent,
     SearchComponent,
+    ProfileMenuComponent,
+    NotificationsMenuComponent,
   ],
   providers: [{ provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } }],
   bootstrap: [CoinsListsComponent],
