@@ -1,0 +1,24 @@
+<div class="card border-0 bg-transparent" fxFlexFill fxLayout="row">
+  <div class="d-flex">
+    <div class="gravatar">
+      <ngx-skeleton-loader appearance="circle" [theme]="{ width: '50px', height: '50px' }"> </ngx-skeleton-loader>
+    </div>
+    <div class="gravatar-title">
+      <div class="text-left">
+        <div>
+          <ngx-skeleton-loader
+            [theme]="{
+              width: '200px',
+              'border-radius': '0',
+              height: '15px',
+              'margin-bottom': '10px'
+            }"
+          ></ngx-skeleton-loader>
+        </div>
+        <div>
+          <ngx-skeleton-loader [theme]="{ width: '170px', 'border-radius': '0', height: '15px' }"></ngx-skeleton-loader>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

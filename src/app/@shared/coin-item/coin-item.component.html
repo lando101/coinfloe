@@ -1,18 +1,35 @@
 <div class="card {{ theme }} border-0">
-  <div class="card-body d-flex" fxFlexFill fxLayout="row">
-    <div fxLayout="column" class="justify-content-center align-items-center">
-      <div class="img-container mr-3">
-        <img src="{{ prettyImgURL }}" (error)="prettyImgURL = imgURL" />
-        <!-- <img
+  <div class="card-body d-flex justify-content-between" fxFlexFill fxLayout="row">
+    <div fxLayout="row">
+      <div fxLayout="column" class="justify-content-center align-items-center">
+        <div class="img-container mr-3">
+          <img src="{{ prettyImgURL }}" (error)="prettyImgURL = imgURL" />
+          <!-- <img
           src="https://cryptologos.cc/logos/{{ coin?.CoinInfo?.FullName.replace(' ', '-') | lowercase }}-{{
             coin?.CoinInfo?.Name | lowercase
           }}-logo.png?v=010"
         /> -->
+        </div>
+      </div>
+      <div fxLayout="column" class="text-left">
+        <small class="mb-2">{{ coin.CoinInfo.Name }}</small>
+        <label class="mb-0">{{ coin.CoinInfo.FullName }}</label>
       </div>
     </div>
-    <div fxLayout="column" class="text-left">
-      <small>{{ coin.CoinInfo.Name }}</small>
-      <label>{{ coin.CoinInfo.FullName }}</label>
+
+    <div fxLayout="column" class="text-right">
+      <label>{{ coin?.RAW?.USD?.PRICE | currency }}</label>
+      <small
+        class="d-flex justify-content-end"
+        [ngClass]="{
+          'text-success': coin?.RAW?.USD?.CHANGEPCT24HOUR > 0,
+          'text-danger': coin?.RAW?.USD?.CHANGEPCT24HOUR < 0
+        }"
+      >
+        <i *ngIf="coin?.RAW?.USD?.CHANGEPCT24HOUR > 0" class="bi bi-arrow-up-short"></i>
+        <i *ngIf="coin?.RAW?.USD?.CHANGEPCT24HOUR < 0" class="bi bi-arrow-down-short"></i>
+        {{ coin?.RAW?.USD?.CHANGEPCT24HOUR / 100 | percent: '0.1-2' }}
+      </small>
     </div>
   </div>
 </div>

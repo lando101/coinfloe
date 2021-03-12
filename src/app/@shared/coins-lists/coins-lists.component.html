@@ -1,7 +1,52 @@
 <div fxLayout="column" fxLayoutGap="20px">
-  <div class="{{ theme }} theme-container" *ngFor="let coin of localCoins">
-    <button mat-flat-button (click)="openBottomSheet(coin)" class="p-0 w-100 rounded-2">
-      <app-coin-item [coin]="coin" [theme]="theme"></app-coin-item>
-    </button>
+  <div
+    *ngIf="localCoins?.length > 0; else loader"
+    class="{{ theme }} theme-container"
+    fxLayout="column"
+    fxLayoutGap="20px"
+  >
+    <div *ngFor="let coin of localCoins">
+      <button mat-flat-button (click)="openBottomSheet(coin)" class="p-0 w-100 rounded-2">
+        <app-coin-item [coin]="coin" [theme]="theme"></app-coin-item>
+      </button>
+    </div>
   </div>
 </div>
+
+<ng-template #loader>
+  <div class="{{ theme }} theme-container" fxLayout="column">
+    <button mat-flat-button class="p-0 w-100 rounded-2 mb-4" [ngStyle]="{ height: '78px' }">
+      <app-coin-item-loader></app-coin-item-loader>
+    </button>
+    <button mat-flat-button class="p-0 w-100 rounded-2 mb-4" [ngStyle]="{ height: '78px' }">
+      <app-coin-item-loader></app-coin-item-loader>
+    </button>
+    <button mat-flat-button class="p-0 w-100 rounded-2 mb-4" [ngStyle]="{ height: '78px' }">
+      <app-coin-item-loader></app-coin-item-loader>
+    </button>
+    <button mat-flat-button class="p-0 w-100 rounded-2 mb-4" [ngStyle]="{ height: '78px' }">
+      <app-coin-item-loader></app-coin-item-loader>
+    </button>
+    <button mat-flat-button class="p-0 w-100 rounded-2 mb-4" [ngStyle]="{ height: '78px' }">
+      <app-coin-item-loader></app-coin-item-loader>
+    </button>
+    <button mat-flat-button class="p-0 w-100 rounded-2 mb-4" [ngStyle]="{ height: '78px' }">
+      <app-coin-item-loader></app-coin-item-loader>
+    </button>
+    <button mat-flat-button class="p-0 w-100 rounded-2 mb-4" [ngStyle]="{ height: '78px' }">
+      <app-coin-item-loader></app-coin-item-loader>
+    </button>
+    <button mat-flat-button class="p-0 w-100 rounded-2 mb-4" [ngStyle]="{ height: '78px' }">
+      <app-coin-item-loader></app-coin-item-loader>
+    </button>
+    <button mat-flat-button class="p-0 w-100 rounded-2 mb-4" [ngStyle]="{ height: '78px' }">
+      <app-coin-item-loader></app-coin-item-loader>
+    </button>
+    <button mat-flat-button class="p-0 w-100 rounded-2 mb-4" [ngStyle]="{ height: '78px' }">
+      <app-coin-item-loader></app-coin-item-loader>
+    </button>
+    <button mat-flat-button class="p-0 w-100 rounded-2 mb-4" [ngStyle]="{ height: '78px' }">
+      <app-coin-item-loader></app-coin-item-loader>
+    </button>
+  </div>
+</ng-template>

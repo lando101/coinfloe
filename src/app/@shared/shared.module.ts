@@ -14,9 +14,18 @@ import { NgxBootstrapModule } from '@app/ngx-bootstrap.module';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { ProfileMenuComponent } from './profile-menu/profile-menu.component';
 import { NotificationsMenuComponent } from './notifications-menu/notifications-menu.component';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { CoinItemLoaderComponent } from './coin-item-loader/coin-item-loader.component';
 
 @NgModule({
-  imports: [FlexLayoutModule, MaterialModule, CommonModule, NgxBootstrapModule, PerfectScrollbarModule],
+  imports: [
+    FlexLayoutModule,
+    MaterialModule,
+    CommonModule,
+    NgxBootstrapModule,
+    PerfectScrollbarModule,
+    NgxSkeletonLoaderModule,
+  ],
   declarations: [
     LoaderComponent,
     CoinsListsComponent,
@@ -26,6 +35,7 @@ import { NotificationsMenuComponent } from './notifications-menu/notifications-m
     SearchComponent,
     ProfileMenuComponent,
     NotificationsMenuComponent,
+    CoinItemLoaderComponent,
   ],
   exports: [
     LoaderComponent,
@@ -36,6 +46,7 @@ import { NotificationsMenuComponent } from './notifications-menu/notifications-m
     SearchComponent,
     ProfileMenuComponent,
     NotificationsMenuComponent,
+    CoinItemLoaderComponent,
   ],
   providers: [{ provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } }],
   bootstrap: [CoinsListsComponent],

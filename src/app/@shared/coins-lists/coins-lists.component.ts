@@ -2,6 +2,10 @@ import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@
 import { Coin } from 'src/models/coins.model';
 import { CoinDetailsComponent } from '../coin-details/coin-details.component';
 
+export interface loaders {
+  number: number;
+}
+
 @Component({
   selector: 'app-coins-lists',
   templateUrl: './coins-lists.component.html',
@@ -14,11 +18,21 @@ export class CoinsListsComponent implements OnInit {
   @Output() showCoinDetails = new EventEmitter<boolean>();
   @Output() coin = new EventEmitter<Coin>();
   localCoins: Coin[] = [];
+  loader: loaders[] = [
+    { number: 1 },
+    { number: 2 },
+    { number: 3 },
+    { number: 4 },
+    { number: 5 },
+    { number: 6 },
+    { number: 7 },
+    { number: 8 },
+    { number: 9 },
+    { number: 10 },
+  ];
   constructor() {}
 
-  ngOnInit(): void {
-    this;
-  }
+  ngOnInit(): void {}
 
   ngOnChanges(changes: SimpleChanges): void {
     //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
