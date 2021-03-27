@@ -32,7 +32,8 @@ export class BottomSheetCustomComponent implements OnInit {
   @Input() visible: boolean;
   @Input() coin: Coin;
   @Output() hideCoinDetails = new EventEmitter<boolean>();
-
+  imgURL = '';
+  prettyImgURL = '';
   theme: string = '';
 
   constructor(private bottomSheetService: BottomSheetService, private themeService: ThemeService) {}
@@ -53,6 +54,11 @@ export class BottomSheetCustomComponent implements OnInit {
     //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
     //Add '${implements OnChanges}' to the class.
     this.bottomSheetService.setState(this.visible);
+    this.imgURL = `https://www.cryptocompare.com${this.coin?.CoinInfo.ImageUrl}`;
+    this.prettyImgURL = `https://cryptologos.cc/logos/${this.coin?.CoinInfo?.FullName.replace(
+      ' ',
+      '-'
+    ).toLowerCase()}-${this.coin?.CoinInfo?.Name.toLowerCase()}-logo.png?v=010`;
   }
 
   closeBottomSheet() {

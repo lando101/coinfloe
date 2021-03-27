@@ -1,5 +1,19 @@
 @import "../../../styles/index";
 
+.img-container {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  overflow: hidden;
+  img {
+    width: 30px;
+    height: 30px;
+  }
+}
+
 @mixin theme-mixin($light-theme: true) {
   $brand: $primary-color;
   $font: $primary-font-color;
@@ -42,6 +56,9 @@
     border-top-right-radius: 15px;
     border-top-left-radius: 15px;
     box-shadow: rgb(17 17 26 / 5%) 0px 4px 16px, rgb(17 17 26 / 5%) 0px 8px 32px;
+    .price-label {
+      opacity: 0.9;
+    }
   }
 }
 

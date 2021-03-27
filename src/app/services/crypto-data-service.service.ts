@@ -5,8 +5,9 @@ import { BehaviorSubject, of } from 'rxjs';
 import { BlockChainInfo, Coin } from 'src/models/coins.model';
 
 const routes = {
-  allCryptos: (c: CryptoQuery) => `/data/top/mktcapfull?limit=${c.limit}&tsym=${c.fiat}&api_key=${c.api_key}`,
-  blockChainInfo: (c: CryptoQuery) => `/data/blockchain/latest?fsym=${c.symbol}&api_key=${c.api_key}`,
+  // allCryptos: (c: CryptoQuery) => `/data/top/mktcapfull?limit=${c.limit}&tsym=${c.fiat}&api_key=${c.api_key}`,
+  allCryptos: (c: CryptoQuery) => `/crypto/top-100-cryptos`,
+  blockChainInfo: (c: CryptoQuery) => `/crypto/blockchain/${c.symbol}`,
   // `https://min-api.cryptocompare.com/data/top/mktcapfull?limit=10&tsym=USD&api_key=${this.API_KEY}`;
 };
 
@@ -15,7 +16,6 @@ export interface CryptoQuery {
   symbol?: string;
   limit?: number;
   fiat?: string;
-  api_key?: string;
 }
 
 @Injectable({
@@ -28,14 +28,11 @@ export class CryptoDataServiceService {
 
   coinsArray: Coin[] = [];
 
-  API_KEY = '641209cc5125f295360f388673546b58ea5e5a6d26846d4b05bd03d61ef8e4f2';
-
   defaultQuery: CryptoQuery = {
     coin: 'Bitcoin',
     symbol: 'BTC',
     limit: 100,
     fiat: 'USD',
-    api_key: this.API_KEY,
   };
 
   constructor(private _httpClient: HttpClient) {}
@@ -45,7 +42,7 @@ export class CryptoDataServiceService {
     if (params) {
       return this._httpClient.get(routes.allCryptos(params)).pipe(
         map((body: any) => {
-          this.setCryptoData(body.Data);
+          this.setCryptoData(body.data.Data);
           return body.Data;
         }),
         catchError(() => of('Error, couldnt get cryptos'))
@@ -53,7 +50,7 @@ export class CryptoDataServiceService {
     } else {
       return this._httpClient.get(routes.allCryptos(this.defaultQuery)).pipe(
         map((body: any) => {
-          this.setCryptoData(body.Data);
+          this.setCryptoData(body.data.Data);
           return body.Data;
         }),
         catchError(() => of('Error, couldnt get cryptos'))
@@ -66,7 +63,7 @@ export class CryptoDataServiceService {
     if (params) {
       return this._httpClient.get(routes.blockChainInfo(params)).pipe(
         map((body: any) => {
-          this.setCryptoBlockChainData(body.Data, false);
+          this.setCryptoBlockChainData(body.data.Data, false);
           return body.Data;
         })
       );
@@ -74,7 +71,7 @@ export class CryptoDataServiceService {
       return this._httpClient.get(routes.blockChainInfo(this.defaultQuery)).pipe(
         map((body: any) => {
           console.log(body);
-          this.setCryptoBlockChainData(body.Data, true);
+          this.setCryptoBlockChainData(body.data.Data, true);
           return body.Data;
         })
       );

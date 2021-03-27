@@ -10,7 +10,7 @@ const proxyConfig = [
   {
     context: '/api',
     pathRewrite: { '^/api': '' },
-    target: 'https://min-api.cryptocompare.com',
+    target: 'http://localhost:5000',
     changeOrigin: true,
     secure: false,
   },
