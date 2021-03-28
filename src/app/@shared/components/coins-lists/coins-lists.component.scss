@@ -1,4 +1,4 @@
-@import "../../../styles/index";
+@import "../../../../styles/index";
 
 @mixin theme-mixin($light-theme: true) {
   $bg-color: $white-background;
