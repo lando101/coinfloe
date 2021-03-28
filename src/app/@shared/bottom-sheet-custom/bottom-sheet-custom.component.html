@@ -24,6 +24,60 @@
               {{ coin?.RAW?.USD?.CHANGEPCT24HOUR / 100 | percent: '0.1-2' }}
             </label>
           </div>
+          <div class="d-flex justify-content-start align-items-center my-3" fxLayout="row" fxLayoutGap="15px">
+            <div class="crypto-stat-container py-2 px-2" fxLayout="column">
+              <small class="text-muted">Market Cap</small>
+              <label class="font-weight-bold mb-0">{{ coin.RAW.USD.MKTCAP | currency }}</label>
+            </div>
+            <div class="crypto-stat-container py-2 px-2" fxLayout="column">
+              <small class="text-muted">24h Volume</small>
+              <label class="font-weight-bold mb-0">{{ coin.RAW.USD.VOLUME24HOUR | number }}</label>
+            </div>
+            <div class="crypto-stat-container py-2 px-2" fxLayout="column">
+              <small class="text-muted">24h High</small>
+              <label class="font-weight-bold mb-0">{{ coin.RAW.USD.HIGH24HOUR | currency }}</label>
+            </div>
+            <div class="crypto-stat-container py-2 px-2" fxLayout="column">
+              <small class="text-muted">24h Low</small>
+              <label class="font-weight-bold mb-0">{{ coin.RAW.USD.LOW24HOUR | currency }}</label>
+            </div>
+          </div>
+          <div>
+            <mat-tab-group>
+              <mat-tab>
+                <ng-template mat-tab-label>
+                  <div class="d-flex align-items-center">
+                    <i class="bi bi-newspaper tab-icon"></i>
+                    <label class="mb-0">News</label>
+                  </div>
+                </ng-template>
+                Content 1
+              </mat-tab>
+
+              <mat-tab>
+                <ng-template mat-tab-label>
+                  <div class="d-flex justify-content-start align-items-center">
+                    <div class="d-flex align-items-center">
+                      <i class="bi bi-people tab-icon"></i>
+                      <label class="mb-0">Groups</label>
+                    </div>
+                  </div>
+                </ng-template>
+                Content 2
+              </mat-tab>
+
+              <mat-tab>
+                <ng-template mat-tab-label>
+                  <div class="d-flex align-items-center">
+                    <i class="bi bi-card-text tab-icon"></i>
+                    <label class="mb-0">About</label>
+                  </div>
+                </ng-template>
+
+                Content 3
+              </mat-tab>
+            </mat-tab-group>
+          </div>
         </div>
         <div class="p-3" fxLayout="column" fxFlex="30"></div>
       </div>
