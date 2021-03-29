@@ -19,7 +19,11 @@
     $alt-btn-bg: $dark-alt-btn-background;
     $font: $dark-primary-font-color;
   }
-
+  .chart-price {
+    position: absolute !important;
+    top: 60px;
+    left: 10px;
+  }
   .mat-chip.mat-standard-chip {
     background-color: $alt-btn-bg !important;
     color: $font;
