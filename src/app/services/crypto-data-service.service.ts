@@ -8,6 +8,7 @@ const routes = {
   // allCryptos: (c: CryptoQuery) => `/data/top/mktcapfull?limit=${c.limit}&tsym=${c.fiat}&api_key=${c.api_key}`,
   allCryptos: (c: CryptoQuery) => `/crypto/top-100-cryptos`,
   blockChainInfo: (c: CryptoQuery) => `/crypto/blockchain/${c.symbol}`,
+  cryptoDailyPrice: (c: CryptoQuery) => `/crypto/daily_historical/${c.symbol}`,
   // `https://min-api.cryptocompare.com/data/top/mktcapfull?limit=10&tsym=USD&api_key=${this.API_KEY}`;
 };
 
@@ -25,6 +26,7 @@ export class CryptoDataServiceService {
   coinsObs: BehaviorSubject<any> = new BehaviorSubject<any>(''); // subscribe for crypto data
   btcBlockChainObs: BehaviorSubject<any> = new BehaviorSubject<any>(''); // subscribe for block chain data (default query)
   coinBlockChainObs: BehaviorSubject<any> = new BehaviorSubject<any>(''); // subscribe for block chain data
+  coinDailyPriceObs: BehaviorSubject<any> = new BehaviorSubject<any>(''); // subscribe for block chain data
 
   coinsArray: Coin[] = [];
 
@@ -76,6 +78,17 @@ export class CryptoDataServiceService {
         })
       );
     }
+  }
+
+  // get coin historical price :: daily
+  public getCryptoDailyPrice(params: CryptoQuery) {
+    this._httpClient.get(routes.cryptoDailyPrice(params)).subscribe({
+      next: (data: any) => {
+        this.coinDailyPriceObs.next(data.data.Data);
+        // console.log(data);
+      },
+      error: (error) => {},
+    });
   }
 
   // set observerable array
