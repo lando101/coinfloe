@@ -9,6 +9,8 @@ const routes = {
   allCryptos: (c: CryptoQuery) => `/crypto/top-100-cryptos`,
   blockChainInfo: (c: CryptoQuery) => `/crypto/blockchain/${c.symbol}`,
   cryptoDailyPrice: (c: CryptoQuery) => `/crypto/daily_historical/${c.symbol}`,
+  cryptoHourlyPrice: (c: CryptoQuery) => `/crypto/hourly_historical/${c.symbol}`,
+  cryptoMinutePrice: (c: CryptoQuery) => `/crypto/minute_historical/${c.symbol}`,
   // `https://min-api.cryptocompare.com/data/top/mktcapfull?limit=10&tsym=USD&api_key=${this.API_KEY}`;
 };
 
@@ -27,6 +29,8 @@ export class CryptoDataServiceService {
   btcBlockChainObs: BehaviorSubject<any> = new BehaviorSubject<any>(''); // subscribe for block chain data (default query)
   coinBlockChainObs: BehaviorSubject<any> = new BehaviorSubject<any>(''); // subscribe for block chain data
   coinDailyPriceObs: BehaviorSubject<any> = new BehaviorSubject<any>(''); // subscribe for block chain data
+  coinHourlyPriceObs: BehaviorSubject<any> = new BehaviorSubject<any>(''); // subscribe for block chain data
+  coinMinutePriceObs: BehaviorSubject<any> = new BehaviorSubject<any>(''); // subscribe for block chain data
 
   coinsArray: Coin[] = [];
 
@@ -85,6 +89,28 @@ export class CryptoDataServiceService {
     this._httpClient.get(routes.cryptoDailyPrice(params)).subscribe({
       next: (data: any) => {
         this.coinDailyPriceObs.next(data.data.Data);
+        // console.log(data);
+      },
+      error: (error) => {},
+    });
+  }
+
+  // get coin historical price :: daily
+  public getCryptoHourlyPrice(params: CryptoQuery) {
+    this._httpClient.get(routes.cryptoHourlyPrice(params)).subscribe({
+      next: (data: any) => {
+        this.coinHourlyPriceObs.next(data.data.Data);
+        console.log(data);
+      },
+      error: (error) => {},
+    });
+  }
+
+  // get coin historical price :: minute
+  public getCryptoMinutePrice(params: CryptoQuery) {
+    this._httpClient.get(routes.cryptoMinutePrice(params)).subscribe({
+      next: (data: any) => {
+        this.coinMinutePriceObs.next(data.data.Data);
         // console.log(data);
       },
       error: (error) => {},

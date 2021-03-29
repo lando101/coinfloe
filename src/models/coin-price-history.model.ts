@@ -11,7 +11,7 @@ export interface PriceDataContainer {
 }
 
 export interface PriceData {
-  time?: number;
+  time?: any;
   high?: number;
   low?: number;
   open?: number;

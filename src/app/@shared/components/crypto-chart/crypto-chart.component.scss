@@ -1,1 +1,5 @@
 @import "../../../../styles/index";
+
+::ng-deep .mat-chip-list-wrapper {
+  padding: 5px;
+}
