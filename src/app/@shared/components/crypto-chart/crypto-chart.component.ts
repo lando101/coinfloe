@@ -15,6 +15,7 @@ import { Coin } from 'src/models/coins.model';
 import * as moment from 'moment';
 import { BehaviorSubject } from 'rxjs';
 import { formatCurrency } from '@angular/common';
+import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 
 export interface Chip {
   label?: string;
@@ -32,12 +33,12 @@ export interface Chip {
 export class CryptoChartComponent implements OnInit {
   @ViewChild('cryptochart', { read: ElementRef }) cryptochart: ElementRef;
   @ViewChild('hoverprice', { read: ElementRef }) divHoverPrice: ElementRef;
-
   @Input() coin: Coin;
-  dateHover: BehaviorSubject<any> = new BehaviorSubject<any>(''); // subscribe for block chain data
+  @Input() theme: string;
+
   show: boolean = false;
-  width: 0;
-  height: 450;
+  width: number = 0;
+  height: number = 450;
   hoverPrice: number = null;
   params: CryptoQuery = {};
 
@@ -106,11 +107,7 @@ export class CryptoChartComponent implements OnInit {
   areaSeries: ISeriesApi<'Area'>;
   lineSeries: ISeriesApi<'Line'>;
 
-  constructor(
-    private cryptoDataService: CryptoDataServiceService,
-    private ref: ChangeDetectorRef,
-    private ngZone: NgZone
-  ) {}
+  constructor(private cryptoDataService: CryptoDataServiceService, private ref: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     console.log(this.chipList);
@@ -129,9 +126,9 @@ export class CryptoChartComponent implements OnInit {
       if (this.priceData.Data) {
         this.formateDateTime(data, 'daily');
         console.log(this.filterDailyData);
-        setTimeout(() => {
-          this.createChart();
-        }, 1000);
+        this.show = false;
+        document.getElementById('cryptochart').innerHTML = '';
+        this.createNewChart();
       }
       // console.log(time);
     });
@@ -173,9 +170,6 @@ export class CryptoChartComponent implements OnInit {
         console.log(this.filterMinuteData);
       }
     });
-    this.dateHover.subscribe((data) => {
-      console.log(data);
-    });
   }
 
   formateDateTime(data: PriceDataContainer, type: string) {
@@ -206,17 +200,17 @@ export class CryptoChartComponent implements OnInit {
     }
   }
 
-  createChart() {
-    console.log(this.cryptochart);
-
+  createNewChart() {
     this.getDimensions();
-    document.getElementById('cryptochart').innerHTML = '';
 
     this.chart = createChart('cryptochart', {
       width: this.width,
-      height: 450,
+      height: this.height,
       localization: {
         priceFormatter: (price: string) => '$' + price,
+      },
+      handleScale: {
+        mouseWheel: false,
       },
       rightPriceScale: {
         scaleMargins: {
@@ -234,7 +228,7 @@ export class CryptoChartComponent implements OnInit {
           visible: false,
         },
         vertLines: {
-          color: '#ffffff',
+          color: 'transparent',
         },
       },
       crosshair: {
@@ -250,6 +244,12 @@ export class CryptoChartComponent implements OnInit {
           labelVisible: false,
         },
       },
+      layout: {
+        backgroundColor: 'transparent',
+        textColor: 'white',
+        fontSize: 12,
+        fontFamily: 'Calibri',
+      },
     });
     setTimeout(() => {
       this.areaSeries = this.chart.addAreaSeries({
@@ -263,8 +263,9 @@ export class CryptoChartComponent implements OnInit {
       this.chart.timeScale().fitContent();
 
       this.chart.subscribeCrosshairMove((params) => this.findDateMatch(params));
-      this.show = true;
+      console.log(this.show);
     }, 500);
+    this.show = true;
   }
 
   // find date matches b/w crosshair and crypto data
@@ -289,12 +290,12 @@ export class CryptoChartComponent implements OnInit {
 
   getDimensions() {
     console.log(this.cryptochart.nativeElement.clientWidth);
-    this.width = this.cryptochart.nativeElement.clientWidth;
+    this.width = this.cryptochart.nativeElement.clientWidth - 10; // -10 to account for scroll bar
   }
 
   resize() {
-    this.width = this.cryptochart.nativeElement.clientWidth;
-    this.chart.resize(this.width, 450);
+    this.width = this.cryptochart.nativeElement.clientWidth - 10;
+    this.chart.resize(this.width, this.height);
   }
 
   setActiveChip(chip: Chip) {
@@ -323,8 +324,9 @@ export class CryptoChartComponent implements OnInit {
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
-    // this.chart.unsubscribeCrosshairMove((params) => this.findDateMatch(params));
+
     document.getElementById('cryptochart').innerHTML = '';
     this.chart.remove();
+    this.cryptoDataService.coinDailyPriceObs.next(''); // set data to empty :: prevents old data from creating new chart on init of component
   }
 }

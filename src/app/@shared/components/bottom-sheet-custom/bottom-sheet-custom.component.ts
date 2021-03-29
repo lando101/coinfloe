@@ -8,6 +8,7 @@ import {
 } from 'angular-animations';
 import { BottomSheetService } from '@app/services/bottom-sheet.service';
 import { ThemeService } from '@app/services/theme.service';
+import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 
 @Component({
   selector: 'app-bottom-sheet-custom',
@@ -32,6 +33,12 @@ export class BottomSheetCustomComponent implements OnInit {
   @Input() visible: boolean;
   @Input() coin: Coin;
   @Output() hideCoinDetails = new EventEmitter<boolean>();
+
+  public config: PerfectScrollbarConfigInterface = {
+    wheelSpeed: 0.25,
+    // suppressScrollY: false,
+  };
+
   imgURL = '';
   prettyImgURL = '';
   theme: string = '';

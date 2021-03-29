@@ -1,18 +1,18 @@
-<div fxLayout="column">
+<div fxLayout="column" class="{{ theme }} theme-container">
   <small>USD</small>
   <h6 id="hoverprice" class="mb-3 mt-0 font-weight-bold"></h6>
-</div>
-<mat-chip-list aria-label="Fish selection">
-  <mat-chip (click)="setActiveChip(chip)" *ngFor="let chip of chipList" [selected]="selectedChip === chip">{{
-    chip.label
-  }}</mat-chip>
-  <!-- <mat-chip [selected]="true">5y</mat-chip> -->
-</mat-chip-list>
+  <mat-chip-list aria-label="Fish selection">
+    <mat-chip (click)="setActiveChip(chip)" *ngFor="let chip of chipList" [selected]="selectedChip === chip">{{
+      chip.label
+    }}</mat-chip>
+    <!-- <mat-chip [selected]="true">5y</mat-chip> -->
+  </mat-chip-list>
 
-<div
-  [ngClass]="{ visible: show, hidden: !show }"
-  #cryptochart
-  id="cryptochart"
-  class="w-100"
-  (window:resize)="resize()"
-></div>
+  <div
+    [ngClass]="{ visible: show, hidden: !show }"
+    #cryptochart
+    id="cryptochart"
+    class="w-100"
+    (window:resize)="resize()"
+  ></div>
+</div>

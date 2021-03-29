@@ -28,7 +28,7 @@
   $brand: $primary-color;
   $font: $primary-font-color;
   $bg-color: $white-background;
-  $bg-color-lighter: $primary-background-lighter;
+  $bg-color-alt: $primary-background-lighter;
   $border: $header-border;
   $shadow: $card-shadow;
 
@@ -36,6 +36,7 @@
     $brand: $primary-color;
     $font: $dark-primary-font-color;
     $bg-color: $dark-secondary-background;
+    $bg-color-alt: $dark-body-background;
     $border: $dark-header-border;
     $shadow: $dark-card-shadow;
   }
@@ -73,11 +74,19 @@
     .crypto-stat-container {
       border-radius: 10px;
       box-shadow: rgb(0 0 0 / 10%) 0px 1px 3px 0px, rgb(0 0 0 / 6%) 0px 1px 2px 0px;
-      background: $bg-color-lighter;
+      background: $bg-color-alt;
     }
     .tab-icon {
       font-size: 1.15rem;
       margin-right: 5px;
+    }
+    .crypto-header {
+      border-bottom: 1px solid $border;
+    }
+    .left-content {
+      display: flex;
+      flex: 1 1 1%;
+      height: 1px;
     }
   }
 }

@@ -11,3 +11,29 @@
 .hidden {
   visibility: hidden;
 }
+
+@mixin theme-mixin($light-theme: true) {
+  $alt-btn-bg: $alt-btn-background;
+  $font: $primary-font-color;
+  @if $light-theme == false {
+    $alt-btn-bg: $dark-alt-btn-background;
+    $font: $dark-primary-font-color;
+  }
+
+  .mat-chip.mat-standard-chip {
+    background-color: $alt-btn-bg !important;
+    color: $font;
+  }
+  .mat-chip.mat-standard-chip.mat-chip-selected.mat-primary {
+    background-color: #ff4265 !important;
+    color: white;
+  }
+}
+
+.dark.theme-container {
+  @include theme-mixin($light-theme: false);
+}
+
+.light.theme-container {
+  @include theme-mixin($light-theme: true);
+}
