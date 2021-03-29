@@ -1,3 +1,7 @@
+<div fxLayout="column">
+  <small>USD</small>
+  <h6 class="mb-3 mt-0 font-weight-bold">{{ hoverPrice | currency }}</h6>
+</div>
 <mat-chip-list aria-label="Fish selection">
   <mat-chip>1h</mat-chip>
   <mat-chip>24h</mat-chip>
@@ -8,4 +12,5 @@
   <mat-chip>1y</mat-chip>
   <mat-chip>5y</mat-chip>
 </mat-chip-list>
+
 <div #cryptochart id="cryptochart" class="w-100" (window:resize)="resize()"></div>
