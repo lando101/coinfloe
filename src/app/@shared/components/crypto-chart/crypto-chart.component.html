@@ -9,4 +9,10 @@
   <!-- <mat-chip [selected]="true">5y</mat-chip> -->
 </mat-chip-list>
 
-<div #cryptochart id="cryptochart" class="w-100" (window:resize)="resize()"></div>
+<div
+  [ngClass]="{ visible: show, hidden: !show }"
+  #cryptochart
+  id="cryptochart"
+  class="w-100"
+  (window:resize)="resize()"
+></div>

@@ -35,7 +35,7 @@ export class CryptoChartComponent implements OnInit {
 
   @Input() coin: Coin;
   dateHover: BehaviorSubject<any> = new BehaviorSubject<any>(''); // subscribe for block chain data
-
+  show: boolean = false;
   width: 0;
   height: 450;
   hoverPrice: number = null;
@@ -118,6 +118,8 @@ export class CryptoChartComponent implements OnInit {
     this.hoverPrice = Number(this.coin.RAW.USD.PRICE | 0);
 
     document.getElementById('hoverprice').innerHTML = formatCurrency(this.hoverPrice, 'en', '$'); // I don't like this but binding was having issues :: alternative
+  }
+  ngAfterViewInit(): void {
     this.cryptoDataService.coinDailyPriceObs.subscribe((data) => {
       this.priceData = data;
 
@@ -125,16 +127,29 @@ export class CryptoChartComponent implements OnInit {
       this.filterDailyData = [];
 
       if (this.priceData.Data) {
-        // this.priceData.Data.forEach((element) => {
-        //   this.filterDailyData.push({ time: moment(element.time * 1000).format('L'), value: Number(element.close) });
-        //   this.dailyData.push({ time: moment(element.time * 1000).format('L'), value: Number(element.close) });
-        // });
         this.formateDateTime(data, 'daily');
         console.log(this.filterDailyData);
-        this.createChart();
+        setTimeout(() => {
+          this.createChart();
+        }, 1000);
       }
       // console.log(time);
     });
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
+    //Add '${implements OnChanges}' to the class.
+    this.params = {
+      coin: this.coin.CoinInfo.FullName,
+      symbol: this.coin.CoinInfo.Name,
+      limit: 100,
+      fiat: 'USD',
+    };
+
+    this.cryptoDataService.getCryptoDailyPrice(this.params);
+    this.cryptoDataService.getCryptoHourlyPrice(this.params);
+    this.cryptoDataService.getCryptoMinutePrice(this.params);
 
     this.cryptoDataService.coinHourlyPriceObs.subscribe((data) => {
       this.hourlyPriceData = data;
@@ -161,22 +176,6 @@ export class CryptoChartComponent implements OnInit {
     this.dateHover.subscribe((data) => {
       console.log(data);
     });
-  }
-  ngAfterViewInit(): void {}
-
-  ngOnChanges(changes: SimpleChanges): void {
-    //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
-    //Add '${implements OnChanges}' to the class.
-    this.params = {
-      coin: this.coin.CoinInfo.FullName,
-      symbol: this.coin.CoinInfo.Name,
-      limit: 100,
-      fiat: 'USD',
-    };
-
-    this.cryptoDataService.getCryptoDailyPrice(this.params);
-    this.cryptoDataService.getCryptoHourlyPrice(this.params);
-    this.cryptoDataService.getCryptoMinutePrice(this.params);
   }
 
   formateDateTime(data: PriceDataContainer, type: string) {
@@ -209,7 +208,9 @@ export class CryptoChartComponent implements OnInit {
 
   createChart() {
     console.log(this.cryptochart);
+
     this.getDimensions();
+    document.getElementById('cryptochart').innerHTML = '';
 
     this.chart = createChart('cryptochart', {
       width: this.width,
@@ -262,7 +263,8 @@ export class CryptoChartComponent implements OnInit {
       this.chart.timeScale().fitContent();
 
       this.chart.subscribeCrosshairMove((params) => this.findDateMatch(params));
-    }, 1000);
+      this.show = true;
+    }, 500);
   }
 
   // find date matches b/w crosshair and crypto data
@@ -296,6 +298,7 @@ export class CryptoChartComponent implements OnInit {
   }
 
   setActiveChip(chip: Chip) {
+    console.log(chip);
     if (chip.type != this.selectedChip.type) {
       if (chip.type === 'daily') {
         this.areaSeries.setData(this.dailyData);
@@ -309,7 +312,8 @@ export class CryptoChartComponent implements OnInit {
       }
     }
     this.selectedChip = chip;
-    this.chart.timeScale().setVisibleRange({
+
+    this.chart?.timeScale()?.setVisibleRange({
       from: chip.startDate,
       to: chip.endDate,
     });
@@ -320,5 +324,7 @@ export class CryptoChartComponent implements OnInit {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
     // this.chart.unsubscribeCrosshairMove((params) => this.findDateMatch(params));
+    document.getElementById('cryptochart').innerHTML = '';
+    this.chart.remove();
   }
 }
