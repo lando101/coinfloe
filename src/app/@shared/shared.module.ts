@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
-
 import { MaterialModule } from '@app/material.module';
 import { LoaderComponent } from './loader/loader.component';
 import { CoinsListsComponent } from './components/coins-lists/coins-lists.component';
@@ -17,6 +16,7 @@ import { NotificationsMenuComponent } from './components/notifications-menu/noti
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { CoinItemLoaderComponent } from './components/coin-item-loader/coin-item-loader.component';
 import { CryptoChartComponent } from './components/crypto-chart/crypto-chart.component';
+import { LoaderCircleComponent } from './components/loader-circle/loader-circle.component';
 
 @NgModule({
   imports: [
@@ -39,6 +39,7 @@ import { CryptoChartComponent } from './components/crypto-chart/crypto-chart.com
     CoinItemLoaderComponent,
     CryptoChartComponent,
     CryptoChartComponent,
+    LoaderCircleComponent,
   ],
   exports: [
     LoaderComponent,
@@ -51,6 +52,7 @@ import { CryptoChartComponent } from './components/crypto-chart/crypto-chart.com
     NotificationsMenuComponent,
     CoinItemLoaderComponent,
     CryptoChartComponent,
+    LoaderCircleComponent,
   ],
   providers: [{ provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } }],
   bootstrap: [CoinsListsComponent],

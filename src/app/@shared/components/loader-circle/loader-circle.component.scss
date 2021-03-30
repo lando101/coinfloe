@@ -1,0 +1,60 @@
+@import "../../../../styles/index";
+
+.box {
+  display: inline-block;
+  height: 200px;
+  width: 33.3%;
+  float: left;
+  position: relative;
+  /*margin:0 -4px -5px -2px;*/
+  transition: all 0.2s ease;
+}
+
+.loader1 {
+  position: relative;
+  height: 80px;
+  width: 80px;
+  border-radius: 80px;
+  border: 3px solid rgb(255 66 102 / 57%);
+
+  top: 28%;
+  top: -webkit-calc(50% - 43px);
+  top: calc(50% - 43px);
+  left: 35%;
+  left: -webkit-calc(50% - 43px);
+  left: calc(50% - 43px);
+
+  -webkit-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+  -webkit-animation: loader1 1s linear infinite;
+  animation: loader1 1s linear infinite;
+}
+
+.loader1:after {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: 20px;
+  width: 11px;
+  height: 11px;
+  border-radius: 10px;
+  background-color: #ff4265;
+}
+
+@-webkit-keyframes loader1 {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes loader1 {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

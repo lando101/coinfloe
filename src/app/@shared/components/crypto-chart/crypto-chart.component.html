@@ -9,12 +9,24 @@
     }}</mat-chip>
     <!-- <mat-chip [selected]="true">5y</mat-chip> -->
   </mat-chip-list>
-
-  <div
-    [ngClass]="{ visible: show, hidden: !show }"
-    #cryptochart
-    id="cryptochart"
-    class="w-100"
-    (window:resize)="resize()"
-  ></div>
+  <div class="position-relative" style="height: 450px; width: 100%">
+    <div
+      [ngClass]="{ visible: show, hidden: !show }"
+      #cryptochart
+      id="cryptochart"
+      class="w-100"
+      (window:resize)="resize()"
+    ></div>
+    <div
+      *ngIf="!show"
+      [@fadeInOnEnter]
+      [@fadeOutOnLeave]
+      class="d-flex justify-content-center align-items-center position-absolute loader-container"
+    >
+      <!-- <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-triangle-path" [fullScreen]="false">
+      <p style="color: white">Loading...</p>
+    </ngx-spinner> -->
+      <app-loader-circle></app-loader-circle>
+    </div>
+  </div>
 </div>

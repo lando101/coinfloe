@@ -2,7 +2,7 @@
   <div class="outer-click-container" (click)="closeBottomSheet()"></div>
   <div *ngIf="visible" [@fadeInUpOnEnter] [@fadeOutDownOnLeave] class="inner-container">
     <div fxFlexFill>
-      <div fxFlexFill fxLayout="row">
+      <div fxFlexFill fxLayout="row" class="pl-3 pt-3 pr-3">
         <div class="p-3" fxLayout="column" fxFlex="70">
           <div class="crypto-header" fxLayout="column">
             <div class="d-flex justify-content-start align-items-center mb-2">
@@ -52,7 +52,7 @@
                 <mat-tab-group>
                   <mat-tab>
                     <ng-template mat-tab-label>
-                      <div class="d-flex align-items-center">
+                      <div class="d-flex align-items-center tab-header">
                         <i class="bi bi-newspaper tab-icon"></i>
                         <label class="mb-0">News</label>
                       </div>
@@ -63,7 +63,7 @@
                   <mat-tab>
                     <ng-template mat-tab-label>
                       <div class="d-flex justify-content-start align-items-center">
-                        <div class="d-flex align-items-center">
+                        <div class="d-flex align-items-center tab-header">
                           <i class="bi bi-people tab-icon"></i>
                           <label class="mb-0">Groups</label>
                         </div>
@@ -74,7 +74,7 @@
 
                   <mat-tab>
                     <ng-template mat-tab-label>
-                      <div class="d-flex align-items-center">
+                      <div class="d-flex align-items-center tab-header">
                         <i class="bi bi-card-text tab-icon"></i>
                         <label class="mb-0">About</label>
                       </div>

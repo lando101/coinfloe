@@ -8,6 +8,7 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
+import { fadeInOnEnterAnimation, fadeOutOnLeaveAnimation } from 'angular-animations';
 import { CryptoDataServiceService, CryptoQuery } from '@app/services/crypto-data-service.service';
 import { createChart, IChartApi, ISeriesApi, LineData, MouseEventHandler, MouseEventParams } from 'lightweight-charts';
 import { CoinPriceHistory, PriceDataContainer } from 'src/models/coin-price-history.model';
@@ -29,6 +30,14 @@ export interface Chip {
   selector: 'app-crypto-chart',
   templateUrl: './crypto-chart.component.html',
   styleUrls: ['./crypto-chart.component.scss'],
+  animations: [
+    fadeInOnEnterAnimation({
+      duration: 150,
+    }),
+    fadeOutOnLeaveAnimation({
+      duration: 300,
+    }),
+  ],
 })
 export class CryptoChartComponent implements OnInit {
   @ViewChild('cryptochart', { read: ElementRef }) cryptochart: ElementRef;
@@ -104,6 +113,7 @@ export class CryptoChartComponent implements OnInit {
   filterMinuteData: CoinPriceHistory[] = [];
 
   chart: IChartApi;
+  chartOptions: any;
   areaSeries: ISeriesApi<'Area'>;
   lineSeries: ISeriesApi<'Line'>;
 
@@ -202,55 +212,8 @@ export class CryptoChartComponent implements OnInit {
 
   createNewChart() {
     this.getDimensions();
-
-    this.chart = createChart('cryptochart', {
-      width: this.width,
-      height: this.height,
-      localization: {
-        priceFormatter: (price: string) => '$' + price,
-      },
-      handleScale: {
-        mouseWheel: false,
-      },
-      rightPriceScale: {
-        scaleMargins: {
-          top: 0.35,
-          bottom: 0.2,
-        },
-        borderVisible: false,
-      },
-      timeScale: {
-        borderVisible: false,
-      },
-      grid: {
-        horzLines: {
-          color: '#eee',
-          visible: false,
-        },
-        vertLines: {
-          color: 'transparent',
-        },
-      },
-      crosshair: {
-        horzLine: {
-          visible: false,
-          labelVisible: false,
-        },
-        vertLine: {
-          visible: true,
-          style: 0,
-          width: 2,
-          color: 'rgba(32, 38, 46, 0.1)',
-          labelVisible: false,
-        },
-      },
-      layout: {
-        backgroundColor: 'transparent',
-        textColor: 'white',
-        fontSize: 12,
-        fontFamily: 'Calibri',
-      },
-    });
+    this.setChartTheme(this.theme);
+    this.chart = createChart('cryptochart', this.chartOptions);
     setTimeout(() => {
       this.areaSeries = this.chart.addAreaSeries({
         topColor: 'rgba(0, 150, 136, 0.56)',
@@ -319,6 +282,108 @@ export class CryptoChartComponent implements OnInit {
       to: chip.endDate,
     });
     // this.console.log(time);
+  }
+
+  setChartTheme(theme: string) {
+    if (theme === 'light') {
+      this.chartOptions = {
+        width: this.width,
+        height: this.height,
+        localization: {
+          priceFormatter: (price: string) => '$' + price,
+        },
+        handleScale: {
+          mouseWheel: false,
+        },
+        rightPriceScale: {
+          scaleMargins: {
+            top: 0.35,
+            bottom: 0.2,
+          },
+          borderVisible: false,
+        },
+        timeScale: {
+          borderVisible: false,
+        },
+        grid: {
+          horzLines: {
+            color: '#eee',
+            visible: false,
+          },
+          vertLines: {
+            color: 'transparent',
+          },
+        },
+        crosshair: {
+          horzLine: {
+            visible: false,
+            labelVisible: false,
+          },
+          vertLine: {
+            visible: true,
+            style: 0,
+            width: 2,
+            color: 'rgba(32, 38, 46, 0.1)',
+            labelVisible: false,
+          },
+        },
+        layout: {
+          backgroundColor: 'transparent',
+          textColor: '#282828',
+          fontSize: 12,
+          fontFamily: 'Calibri',
+        },
+      };
+    } else if (theme === 'dark') {
+      this.chartOptions = {
+        width: this.width,
+        height: this.height,
+        localization: {
+          priceFormatter: (price: string) => '$' + price,
+        },
+        handleScale: {
+          mouseWheel: false,
+        },
+        rightPriceScale: {
+          scaleMargins: {
+            top: 0.35,
+            bottom: 0.2,
+          },
+          borderVisible: false,
+        },
+        timeScale: {
+          borderVisible: false,
+        },
+        grid: {
+          horzLines: {
+            color: '#eee',
+            visible: false,
+          },
+          vertLines: {
+            color: 'transparent',
+          },
+        },
+        crosshair: {
+          horzLine: {
+            visible: false,
+            labelVisible: false,
+          },
+          vertLine: {
+            visible: true,
+            style: 0,
+            width: 2,
+            color: 'rgb(209 229 255 / 15%)',
+            labelVisible: false,
+          },
+        },
+        layout: {
+          backgroundColor: 'transparent',
+          textColor: 'white',
+          fontSize: 12,
+          fontFamily: 'Calibri',
+        },
+      };
+    }
   }
 
   ngOnDestroy(): void {
