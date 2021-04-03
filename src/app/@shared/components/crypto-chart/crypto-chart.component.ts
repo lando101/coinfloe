@@ -32,7 +32,7 @@ export interface Chip {
   styleUrls: ['./crypto-chart.component.scss'],
   animations: [
     fadeInOnEnterAnimation({
-      duration: 150,
+      duration: 300,
     }),
     fadeOutOnLeaveAnimation({
       duration: 300,

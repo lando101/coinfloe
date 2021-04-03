@@ -4,11 +4,6 @@
       <div fxLayout="column" class="justify-content-center align-items-center">
         <div class="img-container mr-3">
           <img src="{{ prettyImgURL }}" (error)="prettyImgURL = imgURL" />
-          <!-- <img
-          src="https://cryptologos.cc/logos/{{ coin?.CoinInfo?.FullName.replace(' ', '-') | lowercase }}-{{
-            coin?.CoinInfo?.Name | lowercase
-          }}-logo.png?v=010"
-        /> -->
         </div>
       </div>
       <div fxLayout="column" class="text-left">

@@ -1,0 +1,19 @@
+<div class="text-left">
+  <h4>Top Losers</h4>
+  <ngx-slick-carousel
+    class="carousel"
+    #slickModal="slick-carousel"
+    [config]="slideConfig"
+    (init)="slickInit($event)"
+    (breakpoint)="breakpoint($event)"
+    (afterChange)="afterChange($event)"
+    (beforeChange)="beforeChange($event)"
+  >
+    <div ngxSlickItem *ngFor="let coin of coins?.slice(0, 10)" class="slide">
+      <!-- <img src="{{ slide.img }}" alt="" width="100%" /> -->
+      <div class="p-2 slick-slide">
+        <app-coin-card [coin]="coin"></app-coin-card>
+      </div>
+    </div>
+  </ngx-slick-carousel>
+</div>

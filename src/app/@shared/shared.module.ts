@@ -17,7 +17,10 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { CoinItemLoaderComponent } from './components/coin-item-loader/coin-item-loader.component';
 import { CryptoChartComponent } from './components/crypto-chart/crypto-chart.component';
 import { LoaderCircleComponent } from './components/loader-circle/loader-circle.component';
-
+import { TopGainersComponent } from './components/top-gainers/top-gainers.component';
+import { TopLosersComponent } from './components/top-losers/top-losers.component';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { CoinCardComponent } from './components/coin-card/coin-card.component';
 @NgModule({
   imports: [
     FlexLayoutModule,
@@ -26,6 +29,7 @@ import { LoaderCircleComponent } from './components/loader-circle/loader-circle.
     NgxBootstrapModule,
     PerfectScrollbarModule,
     NgxSkeletonLoaderModule,
+    SlickCarouselModule,
   ],
   declarations: [
     LoaderComponent,
@@ -40,6 +44,9 @@ import { LoaderCircleComponent } from './components/loader-circle/loader-circle.
     CryptoChartComponent,
     CryptoChartComponent,
     LoaderCircleComponent,
+    TopGainersComponent,
+    TopLosersComponent,
+    CoinCardComponent,
   ],
   exports: [
     LoaderComponent,
@@ -53,6 +60,9 @@ import { LoaderCircleComponent } from './components/loader-circle/loader-circle.
     CoinItemLoaderComponent,
     CryptoChartComponent,
     LoaderCircleComponent,
+    TopGainersComponent,
+    TopLosersComponent,
+    CoinCardComponent,
   ],
   providers: [{ provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } }],
   bootstrap: [CoinsListsComponent],

@@ -1,3 +1,7 @@
 <div class="container">
-  <app-coins-lists [Coins]="coins" [theme]="theme"></app-coins-lists>
+  <div fxFlexFill fxLayout="column">
+    <app-market-cap [theme]="theme"></app-market-cap>
+    <app-top-gainers [theme]="theme" [coins]="topGainerCoins"></app-top-gainers>
+    <app-top-losers [theme]="theme" [coins]="topGainerCoins"></app-top-losers>
+  </div>
 </div>
