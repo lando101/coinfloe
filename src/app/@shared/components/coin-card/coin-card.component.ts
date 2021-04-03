@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { BottomSheetService } from '@app/services/bottom-sheet.service';
 import { Coin } from 'src/models/coins.model';
 
 @Component({
@@ -7,10 +8,14 @@ import { Coin } from 'src/models/coins.model';
   styleUrls: ['./coin-card.component.scss'],
 })
 export class CoinCardComponent implements OnInit {
+  @Input() theme: string;
   @Input() coin: Coin;
+  @Output() showCoinDetails = new EventEmitter<boolean>();
+  @Output() coinEmit = new EventEmitter<Coin>();
+
   imgURL = '';
   prettyImgURL = '';
-  constructor() {}
+  constructor(private bottomSheetService: BottomSheetService) {}
 
   ngOnInit(): void {
     this.imgURL = `https://www.cryptocompare.com${this.coin?.CoinInfo.ImageUrl}`;
@@ -18,5 +23,9 @@ export class CoinCardComponent implements OnInit {
       ' ',
       '-'
     ).toLowerCase()}-${this.coin?.CoinInfo?.Name.toLowerCase()}-logo.png?v=010`;
+  }
+
+  openBottomSheet(coin: Coin) {
+    this.bottomSheetService.setState(true);
   }
 }

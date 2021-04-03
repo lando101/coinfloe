@@ -50,7 +50,7 @@
     color: $font;
   }
   .mat-chip.mat-standard-chip.mat-chip-selected.mat-primary {
-    background-color: #ff4265 !important;
+    background-color: $primary-color !important;
     color: white;
   }
 }

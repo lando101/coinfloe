@@ -5,3 +5,10 @@
     <app-top-losers [theme]="theme" [coins]="topGainerCoins"></app-top-losers>
   </div>
 </div>
+<div>
+  <app-bottom-sheet-custom
+    [coin]="selectedCoin"
+    [visible]="bottomSheet"
+    (hideCoinDetails)="displayCoin($event)"
+  ></app-bottom-sheet-custom>
+</div>

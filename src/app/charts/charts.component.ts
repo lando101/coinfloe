@@ -39,7 +39,6 @@ export class ChartsComponent implements OnInit {
   }
 
   displayCoin(event: any) {
-    console.log('asdfasdfasf');
     this.bottomSheet = !this.bottomSheet;
   }
 }

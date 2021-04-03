@@ -5,6 +5,7 @@ import { Coin, USD } from 'src/models/coins.model';
 import { CryptoDataServiceService, CryptoQuery } from '@app/services/crypto-data-service.service';
 import { ThemeService } from '@app/services/theme.service';
 import { GroupByPipe, KeysPipe, OrderByPipe, PairsPipe, FlattenPipe } from 'ngx-pipes';
+import { BottomSheetService } from '@app/services/bottom-sheet.service';
 
 @Component({
   selector: 'app-home',
@@ -19,6 +20,8 @@ export class HomeComponent implements OnInit {
   topGainerCoins: Coin[] = [];
   topLoserCoins: Coin[] = [];
   topCoins: Coin[] = [];
+  bottomSheet: boolean;
+  selectedCoin: Coin = {};
 
   theme: string = '';
 
@@ -32,7 +35,8 @@ export class HomeComponent implements OnInit {
     private cryptoService: CryptoDataServiceService,
     private themeService: ThemeService,
     private orderByPipe: OrderByPipe,
-    private flattenPipe: FlattenPipe
+    private flattenPipe: FlattenPipe,
+    private bottomSheetService: BottomSheetService
   ) {}
 
   ngOnInit() {
@@ -44,7 +48,13 @@ export class HomeComponent implements OnInit {
         console.log(data);
         this.coins = data;
         this.orderPCTGains24h(this.coins);
+        this.selectedCoin = this.coins[0];
       }
+    });
+
+    this.bottomSheetService.bottomSheetShow.subscribe((data) => {
+      this.bottomSheet = data;
+      console.log(this.bottomSheet);
     });
 
     this.themeService.themeTypeBS.subscribe((data) => {
@@ -77,5 +87,9 @@ export class HomeComponent implements OnInit {
     });
     this.topGainerCoins = tempArray;
     console.log(this.topGainerCoins);
+  }
+
+  displayCoin(event: any) {
+    this.bottomSheetService.setState(false);
   }
 }

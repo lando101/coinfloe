@@ -16,8 +16,8 @@
               <label
                 class="d-flex justify-content-end mb-0 ml-2"
                 [ngClass]="{
-                  'text-success': coin?.RAW?.USD?.CHANGEPCT24HOUR > 0,
-                  'text-danger': coin?.RAW?.USD?.CHANGEPCT24HOUR < 0
+                  'text-positive': coin?.RAW?.USD?.CHANGEPCT24HOUR > 0,
+                  'text-negative': coin?.RAW?.USD?.CHANGEPCT24HOUR < 0
                 }"
               >
                 <i *ngIf="coin?.RAW?.USD?.CHANGEPCT24HOUR > 0" class="bi bi-arrow-up-short"></i>
