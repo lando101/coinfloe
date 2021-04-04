@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Coin } from 'src/models/coins.model';
 
 @Component({
@@ -9,6 +9,11 @@ import { Coin } from 'src/models/coins.model';
 export class TopGainersComponent implements OnInit {
   @Input() theme: string;
   @Input() coins: Coin[];
+
+  @Input() showBottomSheet: boolean;
+  @Output() showCoinDetails = new EventEmitter<boolean>();
+  @Output() coin = new EventEmitter<Coin>();
+
   slides = [
     { img: 'http://placehold.it/350x150/000000' },
     { img: 'http://placehold.it/350x150/111111' },
@@ -64,5 +69,11 @@ export class TopGainersComponent implements OnInit {
       });
       this.coins.splice(0, 1); // removing empty coin
     }
+  }
+
+  openBottomSheet(coin: Coin) {
+    console.log('SHOW BOTTOM SHEET');
+    this.showCoinDetails.emit(true);
+    this.coin.emit(coin);
   }
 }

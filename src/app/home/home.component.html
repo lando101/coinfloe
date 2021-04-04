@@ -1,8 +1,28 @@
 <div class="container">
   <div fxFlexFill fxLayout="column">
     <app-market-cap [theme]="theme"></app-market-cap>
-    <app-top-gainers [theme]="theme" [coins]="topGainerCoins"></app-top-gainers>
-    <app-top-losers [theme]="theme" [coins]="topGainerCoins"></app-top-losers>
+    <app-top-gainers
+      (coin)="setSelectedCoin($event)"
+      (showCoinDetails)="displayCoin($event)"
+      [theme]="theme"
+      [coins]="topGainerCoins"
+    ></app-top-gainers>
+    <app-top-losers
+      (coin)="setSelectedCoin($event)"
+      (showCoinDetails)="displayCoin($event)"
+      [theme]="theme"
+      [coins]="topGainerCoins"
+    ></app-top-losers>
+    <div class="text-left">
+      <h4>Top Coins</h4>
+      <app-coins-lists
+        [Coins]="coins"
+        [theme]="theme"
+        [count]="10"
+        (coin)="setSelectedCoin($event)"
+        (showCoinDetails)="displayCoin($event)"
+      ></app-coins-lists>
+    </div>
   </div>
 </div>
 <div>

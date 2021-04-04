@@ -46,7 +46,7 @@ export class BottomSheetCustomComponent implements OnInit {
   constructor(private bottomSheetService: BottomSheetService, private themeService: ThemeService) {}
 
   ngOnInit(): void {
-    this.bottomSheetService.setState(false);
+    // this.bottomSheetService.setState(false);
 
     this.themeService.themeTypeBS.subscribe((data) => {
       if (data) {
@@ -69,7 +69,7 @@ export class BottomSheetCustomComponent implements OnInit {
   }
 
   closeBottomSheet() {
-    this.bottomSheetService.setState(false);
+    // this.bottomSheetService.setState(false);
     this.hideCoinDetails.emit(false);
   }
 }

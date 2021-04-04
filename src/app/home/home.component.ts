@@ -89,7 +89,13 @@ export class HomeComponent implements OnInit {
     console.log(this.topGainerCoins);
   }
 
+  setSelectedCoin(event: any) {
+    this.selectedCoin = event;
+    console.log(event);
+  }
+
   displayCoin(event: any) {
-    this.bottomSheetService.setState(false);
+    console.log('Show state: ' + event);
+    this.bottomSheet = !this.bottomSheet;
   }
 }
