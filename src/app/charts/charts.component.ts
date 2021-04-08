@@ -21,8 +21,8 @@ export class ChartsComponent implements OnInit {
 
   ngOnInit(): void {
     this.cryptoService.coinsObs.subscribe((data) => {
-      console.log('HOME');
-      console.log(data);
+      // console.log('HOME');
+      // console.log(data);
       this.coins = data;
     });
 

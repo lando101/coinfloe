@@ -1,7 +1,7 @@
 <div class="container">
   <div fxFlexFill fxLayout="column">
     <app-market-cap [theme]="theme"></app-market-cap>
-    <!-- <app-news-tiles></app-news-tiles> -->
+    <app-news-tiles [theme]="theme"></app-news-tiles>
     <app-top-gainers
       (coin)="setSelectedCoin($event)"
       (showCoinDetails)="displayCoin($event)"

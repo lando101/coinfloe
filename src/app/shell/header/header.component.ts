@@ -35,13 +35,9 @@ export class HeaderComponent implements OnInit {
     this.themeService.themeTypeBS.subscribe((data) => {
       if (data) {
         this.theme = data;
-        console.log(data);
-        console.log('THEME');
+        // console.log(data);
+        // console.log('THEME');
       }
-
-      console.log('HEADER GOT THEME');
-      // console.log(this.themeService.getThemeCookie('theme'));
-      console.log('HEADER GOT THEME');
 
       // this.themeService.getThemeCookie('theme');
     });

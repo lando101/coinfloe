@@ -72,7 +72,7 @@ export class TopGainersComponent implements OnInit {
   }
 
   openBottomSheet(coin: Coin) {
-    console.log('SHOW BOTTOM SHEET');
+    // console.log('SHOW BOTTOM SHEET');
     this.showCoinDetails.emit(true);
     this.coin.emit(coin);
   }

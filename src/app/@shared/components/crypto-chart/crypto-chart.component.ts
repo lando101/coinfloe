@@ -166,7 +166,7 @@ export class CryptoChartComponent implements OnInit {
 
       if (this.hourlyPriceData.Data) {
         this.formateDateTime(data, 'hourly');
-        console.log(this.filterHourlyData);
+        // console.log(this.filterHourlyData);
       }
     });
     this.cryptoDataService.coinMinutePriceObs.subscribe((data) => {
@@ -177,7 +177,7 @@ export class CryptoChartComponent implements OnInit {
 
       if (this.hourlyPriceData.Data) {
         this.formateDateTime(data, 'minute');
-        console.log(this.filterMinuteData);
+        // console.log(this.filterMinuteData);
       }
     });
   }
@@ -226,7 +226,7 @@ export class CryptoChartComponent implements OnInit {
       this.chart.timeScale().fitContent();
 
       this.chart.subscribeCrosshairMove((params) => this.findDateMatch(params));
-      console.log(this.show);
+      // console.log(this.show);
     }, 500);
     this.show = true;
   }
@@ -240,7 +240,7 @@ export class CryptoChartComponent implements OnInit {
     if (date) {
       //@ts-ignore
       let prettyDate = moment(`${date.month}-${date.day}-${date.year}`).format('L');
-      console.log(prettyDate);
+      // console.log(prettyDate);
       match = this.filterDailyData.find((x) => x.time === prettyDate);
       this.hoverPrice = match.value;
       //@ts-ignore
@@ -252,7 +252,7 @@ export class CryptoChartComponent implements OnInit {
   }
 
   getDimensions() {
-    console.log(this.cryptochart.nativeElement.clientWidth);
+    // console.log(this.cryptochart.nativeElement.clientWidth);
     this.width = this.cryptochart.nativeElement.clientWidth - 10; // -10 to account for scroll bar
   }
 
@@ -262,13 +262,13 @@ export class CryptoChartComponent implements OnInit {
   }
 
   setActiveChip(chip: Chip) {
-    console.log(chip);
+    // console.log(chip);
     if (chip.type != this.selectedChip.type) {
       if (chip.type === 'daily') {
         this.areaSeries.setData(this.dailyData);
       } else if (chip.type === 'hourly') {
         this.areaSeries.setData(this.hourlyData);
-        console.log(this.hourlyData);
+        // console.log(this.hourlyData);
       } else if (chip.type === 'minute') {
         this.areaSeries.setData(this.minuteData);
       } else {

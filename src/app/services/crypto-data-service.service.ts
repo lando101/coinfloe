@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
 import { BehaviorSubject, of } from 'rxjs';
 import { BlockChainInfo, Coin } from 'src/models/coins.model';
-import { News } from 'src/models/news.model';
+import { NewsSource1 } from 'src/models/news.model';
 
 const routes = {
   // allCryptos: (c: CryptoQuery) => `/data/top/mktcapfull?limit=${c.limit}&tsym=${c.fiat}&api_key=${c.api_key}`,
@@ -124,50 +124,50 @@ export class CryptoDataServiceService {
     });
   }
 
-  // // get all news data
-  // public getAllNews() {
-  //   let news: News[] = [];
+  // get all news data
+  public getAllNews() {
+    let news: NewsSource1[] = [];
 
-  //   this._httpClient.get(routes.allNews(this.defaultQuery)).subscribe({
-  //     next: (data: any) => {
-  //       news = data.data.Data;
-  //       this.allNewsObs.next(news);
-  //     },
-  //     error: (error) => {
-  //       console.log(error);
-  //     },
-  //   });
-  // }
+    this._httpClient.get(routes.allNews(this.defaultQuery)).subscribe({
+      next: (data: any) => {
+        news = data.data.Data;
+        this.allNewsObs.next(news);
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
+  }
 
-  // // get all news data
-  // public getPopNews() {
-  //   let news: News[] = [];
+  // get all news data
+  public getPopNews() {
+    let news: NewsSource1[] = [];
 
-  //   this._httpClient.get(routes.popularNews(this.defaultQuery)).subscribe({
-  //     next: (data: any) => {
-  //       news = data.data.Data;
-  //       this.popNewsObs.next(news);
-  //     },
-  //     error: (error) => {
-  //       console.log(error);
-  //     },
-  //   });
-  // }
+    this._httpClient.get(routes.popularNews(this.defaultQuery)).subscribe({
+      next: (data: any) => {
+        news = data.data.Data;
+        this.popNewsObs.next(news);
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
+  }
 
-  // // get coin news
-  // public getCoinNews(params: CryptoQuery) {
-  //   let news: News[] = [];
-  //   this._httpClient.get(routes.cryptoNews(params)).subscribe({
-  //     next: (data: any) => {
-  //       console.log('ALL NEWS!!!!!!!!!!!!!!!!!!!!!!!');
-  //       this.cryptoNewsObs.next(data.data);
-  //       console.log('ALL NEWS!!!!!!!!!!!!!!!!!!!!!!!');
-  //     },
-  //     error: (error) => {
-  //       console.log(error);
-  //     },
-  //   });
-  // }
+  // get coin news
+  public getCoinNews(params: CryptoQuery) {
+    let news: NewsSource1[] = [];
+    this._httpClient.get(routes.cryptoNews(params)).subscribe({
+      next: (data: any) => {
+        console.log('ALL NEWS!!!!!!!!!!!!!!!!!!!!!!!');
+        this.cryptoNewsObs.next(data.data);
+        console.log('ALL NEWS!!!!!!!!!!!!!!!!!!!!!!!');
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
+  }
 
   // set observerable array
   setCryptoData(coins: Coin[]) {

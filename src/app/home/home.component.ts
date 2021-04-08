@@ -44,8 +44,8 @@ export class HomeComponent implements OnInit {
     // this.getCryptosList();
     this.cryptoService.coinsObs.subscribe((data) => {
       if (data != '') {
-        console.log('HOME');
-        console.log(data);
+        // console.log('HOME');
+        // console.log(data);
         this.coins = data;
         this.orderPCTGains24h(this.coins);
         this.selectedCoin = this.coins[0];

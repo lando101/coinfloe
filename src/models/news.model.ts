@@ -1,4 +1,4 @@
-export interface News {
+export interface NewsSource1 {
   id?: any;
   guid?: string;
   published_on?: number;
@@ -19,4 +19,17 @@ export interface Source {
   name?: string;
   lang?: string;
   img?: string;
+}
+
+export interface NewsSource2 {
+  news_url?: string;
+  image_url?: string;
+  title?: string;
+  text?: string;
+  source_name?: string;
+  date?: any;
+  topics?: any[];
+  sentiment?: string;
+  type?: string;
+  tickers: string[];
 }

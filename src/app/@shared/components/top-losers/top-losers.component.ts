@@ -24,9 +24,9 @@ export class TopLosersComponent implements OnInit {
   ngOnChanges(changes: SimpleChanges): void {
     //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
     //Add '${implements OnChanges}' to the class.
-    console.log('TOP LOSERS');
-    console.log(this.coins);
-    console.log('TOP LOSERS');
+    // console.log('TOP LOSERS');
+    // console.log(this.coins);
+    // console.log('TOP LOSERS');
   }
   addSlide() {
     this.slides.push({ img: 'http://placehold.it/350x150/777777' });

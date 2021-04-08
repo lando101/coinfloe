@@ -41,8 +41,8 @@ export class CoinsListsComponent implements OnInit {
   ngOnChanges(changes: SimpleChanges): void {
     //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
     //Add '${implements OnChanges}' to the class.
-    console.log('COINS');
-    console.log(this.Coins);
+    // console.log('COINS');
+    // console.log(this.Coins);
     if (this.Coins) {
       this.orderByMarkCap(this.Coins);
       // this.localCoins = this.Coins;
@@ -73,10 +73,10 @@ export class CoinsListsComponent implements OnInit {
       let match: Coin = this.Coins.find((x) => x?.CoinInfo?.Name.toLowerCase() === coin?.FROMSYMBOL?.toLowerCase());
       tempArray.push(match);
     });
-    console.log('ORDERED BY MARKET CAP');
+    // console.log('ORDERED BY MARKET CAP');
 
-    console.log(tempArray);
-    console.log('ORDERED BY MARKET CAP');
+    // console.log(tempArray);
+    // console.log('ORDERED BY MARKET CAP');
 
     this.localCoins = tempArray.slice(0, tempArray.length - 1).reverse();
   }

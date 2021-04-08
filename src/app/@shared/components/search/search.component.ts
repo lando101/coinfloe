@@ -64,11 +64,11 @@ export class SearchComponent implements OnInit {
 
         // console.log(this.coins);
         this.list = this.coins;
-        console.log(this.list);
+        // console.log(this.list);
         this.fuse.setCollection(this.list);
 
-        console.log('SEARCH');
-        console.log(this.coins);
+        // console.log('SEARCH');
+        // console.log(this.coins);
       }
     });
   }

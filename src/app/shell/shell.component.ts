@@ -83,8 +83,8 @@ export class ShellComponent implements OnInit {
     this.themeService.themeTypeBS.subscribe((data) => {
       if (data) {
         this.theme = data;
-        console.log(data);
-        console.log('THEME');
+        // console.log(data);
+        // console.log('THEME');
       }
     });
 
