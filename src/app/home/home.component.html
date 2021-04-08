@@ -1,6 +1,7 @@
 <div class="container">
   <div fxFlexFill fxLayout="column">
     <app-market-cap [theme]="theme"></app-market-cap>
+    <!-- <app-news-tiles></app-news-tiles> -->
     <app-top-gainers
       (coin)="setSelectedCoin($event)"
       (showCoinDetails)="displayCoin($event)"
@@ -14,7 +15,7 @@
       [coins]="topGainerCoins"
     ></app-top-losers>
     <div class="text-left">
-      <h4>Top Coins</h4>
+      <h5 class="font-weight-bold mb-3">Top Coins</h5>
       <app-coins-lists
         [Coins]="coins"
         [theme]="theme"

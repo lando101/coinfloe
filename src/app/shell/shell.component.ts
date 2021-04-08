@@ -96,6 +96,8 @@ export class ShellComponent implements OnInit {
       console.log(data);
     });
 
+    // this.cryptoService.getAllNews();
+
     // this.themeService.setThemeCookie();
 
     this.username();

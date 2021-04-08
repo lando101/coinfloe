@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
 import { BehaviorSubject, of } from 'rxjs';
 import { BlockChainInfo, Coin } from 'src/models/coins.model';
+import { News } from 'src/models/news.model';
 
 const routes = {
   // allCryptos: (c: CryptoQuery) => `/data/top/mktcapfull?limit=${c.limit}&tsym=${c.fiat}&api_key=${c.api_key}`,
@@ -11,6 +12,9 @@ const routes = {
   cryptoDailyPrice: (c: CryptoQuery) => `/crypto/daily_historical/${c.symbol}`,
   cryptoHourlyPrice: (c: CryptoQuery) => `/crypto/hourly_historical/${c.symbol}`,
   cryptoMinutePrice: (c: CryptoQuery) => `/crypto/minute_historical/${c.symbol}`,
+  allNews: (c: CryptoQuery) => `/crypto/news`,
+  popularNews: (c: CryptoQuery) => `/crypto/popular-news`,
+  cryptoNews: (c: CryptoQuery) => `/crypto/news/${c.symbol}`,
   // `https://min-api.cryptocompare.com/data/top/mktcapfull?limit=10&tsym=USD&api_key=${this.API_KEY}`;
 };
 
@@ -28,9 +32,12 @@ export class CryptoDataServiceService {
   coinsObs: BehaviorSubject<any> = new BehaviorSubject<any>(''); // subscribe for crypto data
   btcBlockChainObs: BehaviorSubject<any> = new BehaviorSubject<any>(''); // subscribe for block chain data (default query)
   coinBlockChainObs: BehaviorSubject<any> = new BehaviorSubject<any>(''); // subscribe for block chain data
-  coinDailyPriceObs: BehaviorSubject<any> = new BehaviorSubject<any>(''); // subscribe for block chain data
-  coinHourlyPriceObs: BehaviorSubject<any> = new BehaviorSubject<any>(''); // subscribe for block chain data
-  coinMinutePriceObs: BehaviorSubject<any> = new BehaviorSubject<any>(''); // subscribe for block chain data
+  coinDailyPriceObs: BehaviorSubject<any> = new BehaviorSubject<any>(''); // subscribe for price data
+  coinHourlyPriceObs: BehaviorSubject<any> = new BehaviorSubject<any>(''); // subscribe for price data
+  coinMinutePriceObs: BehaviorSubject<any> = new BehaviorSubject<any>(''); // subscribe for price data
+  allNewsObs: BehaviorSubject<any> = new BehaviorSubject<any>(''); // subscribe for price data
+  popNewsObs: BehaviorSubject<any> = new BehaviorSubject<any>(''); // subscribe for price data
+  cryptoNewsObs: BehaviorSubject<any> = new BehaviorSubject<any>(''); // subscribe for price data
 
   coinsArray: Coin[] = [];
 
@@ -116,6 +123,51 @@ export class CryptoDataServiceService {
       error: (error) => {},
     });
   }
+
+  // // get all news data
+  // public getAllNews() {
+  //   let news: News[] = [];
+
+  //   this._httpClient.get(routes.allNews(this.defaultQuery)).subscribe({
+  //     next: (data: any) => {
+  //       news = data.data.Data;
+  //       this.allNewsObs.next(news);
+  //     },
+  //     error: (error) => {
+  //       console.log(error);
+  //     },
+  //   });
+  // }
+
+  // // get all news data
+  // public getPopNews() {
+  //   let news: News[] = [];
+
+  //   this._httpClient.get(routes.popularNews(this.defaultQuery)).subscribe({
+  //     next: (data: any) => {
+  //       news = data.data.Data;
+  //       this.popNewsObs.next(news);
+  //     },
+  //     error: (error) => {
+  //       console.log(error);
+  //     },
+  //   });
+  // }
+
+  // // get coin news
+  // public getCoinNews(params: CryptoQuery) {
+  //   let news: News[] = [];
+  //   this._httpClient.get(routes.cryptoNews(params)).subscribe({
+  //     next: (data: any) => {
+  //       console.log('ALL NEWS!!!!!!!!!!!!!!!!!!!!!!!');
+  //       this.cryptoNewsObs.next(data.data);
+  //       console.log('ALL NEWS!!!!!!!!!!!!!!!!!!!!!!!');
+  //     },
+  //     error: (error) => {
+  //       console.log(error);
+  //     },
+  //   });
+  // }
 
   // set observerable array
   setCryptoData(coins: Coin[]) {

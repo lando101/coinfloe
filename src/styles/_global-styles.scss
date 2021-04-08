@@ -5,3 +5,11 @@
 ::ng-deep .text-negative {
   color: #fd2d53 !important;
 }
+
+::ng-deep .slick-prev:before {
+  color: #4d4d4d42 !important;
+}
+
+::ng-deep .slick-next:before {
+  color: #4d4d4d42 !important;
+}
