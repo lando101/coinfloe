@@ -22,6 +22,7 @@ import { TopLosersComponent } from './components/top-losers/top-losers.component
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { CoinCardComponent } from './components/coin-card/coin-card.component';
 import { NewsTilesComponent } from './components/news-tiles/news-tiles.component';
+import { CoinInfoComponent } from './components/coin-info/coin-info.component';
 @NgModule({
   imports: [
     FlexLayoutModule,
@@ -49,6 +50,7 @@ import { NewsTilesComponent } from './components/news-tiles/news-tiles.component
     TopLosersComponent,
     CoinCardComponent,
     NewsTilesComponent,
+    CoinInfoComponent,
   ],
   exports: [
     LoaderComponent,
@@ -66,6 +68,7 @@ import { NewsTilesComponent } from './components/news-tiles/news-tiles.component
     TopLosersComponent,
     CoinCardComponent,
     NewsTilesComponent,
+    CoinInfoComponent,
   ],
   providers: [{ provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } }],
   bootstrap: [CoinsListsComponent],

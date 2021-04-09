@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
-import { BehaviorSubject, of } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { BlockChainInfo, Coin } from 'src/models/coins.model';
 import { NewsSource1 } from 'src/models/news.model';
 
@@ -15,6 +15,7 @@ const routes = {
   allNews: (c: CryptoQuery) => `/crypto/news`,
   popularNews: (c: CryptoQuery) => `/crypto/popular-news`,
   cryptoNews: (c: CryptoQuery) => `/crypto/news/${c.symbol}`,
+  cryptoAbout: (c: CryptoQuery) => `/crypto/info/${c.symbol}`,
   // `https://min-api.cryptocompare.com/data/top/mktcapfull?limit=10&tsym=USD&api_key=${this.API_KEY}`;
 };
 
@@ -167,6 +168,15 @@ export class CryptoDataServiceService {
         console.log(error);
       },
     });
+  }
+
+  // get coin info
+  getCoinInfo(params: CryptoQuery): Observable<any> {
+    return this._httpClient.get(routes.cryptoAbout(params)).pipe(
+      map((data) => {
+        return data;
+      })
+    );
   }
 
   // set observerable array
