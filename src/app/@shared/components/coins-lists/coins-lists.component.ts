@@ -78,7 +78,8 @@ export class CoinsListsComponent implements OnInit {
     // console.log(tempArray);
     // console.log('ORDERED BY MARKET CAP');
 
-    this.localCoins = tempArray.slice(0, tempArray.length - 1).reverse();
+    // this.localCoins = tempArray.slice(0, tempArray.length - 1).reverse();
+    this.localCoins = tempArray.reverse();
   }
 
   openBottomSheet(coin: Coin) {

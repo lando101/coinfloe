@@ -63,7 +63,7 @@
                 }"
               ></i>
             </button>
-            <button mat-button routerLinkActive="active" routerLink="/groups" matTooltip="Groups">
+            <!-- <button mat-button routerLinkActive="active" routerLink="/groups" matTooltip="Groups">
               <i
                 [ngClass]="{
                   'bi bi-people-fill': router.url === '/groups',
@@ -78,6 +78,15 @@
                   'bi bi-compass': router.url != '/explore'
                 }"
               ></i>
+            </button> -->
+            <button mat-button routerLinkActive="active" routerLink="/news" matTooltip="News">
+              <!-- <i
+                [ngClass]="{
+                  'bi bi-newspaper': router.url === '/news',
+                  'bi bi-newspaper': router.url != '/news'
+                }"
+              ></i> -->
+              <i class="bi bi-newspaper"></i>
             </button>
           </ul>
         </div>

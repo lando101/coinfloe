@@ -1,19 +1,25 @@
 <div class="container">
-  <div fxFlexFill fxLayout="column">
+  <div fxFlexFill fxLayout="column" fxLayoutGap="20px">
     <app-market-cap [theme]="theme"></app-market-cap>
     <app-news-tiles [theme]="theme"></app-news-tiles>
-    <app-top-gainers
-      (coin)="setSelectedCoin($event)"
-      (showCoinDetails)="displayCoin($event)"
-      [theme]="theme"
-      [coins]="topGainerCoins"
-    ></app-top-gainers>
-    <app-top-losers
-      (coin)="setSelectedCoin($event)"
-      (showCoinDetails)="displayCoin($event)"
-      [theme]="theme"
-      [coins]="topGainerCoins"
-    ></app-top-losers>
+    <div class="text-left w-100">
+      <h5 class="font-weight-bold mb-3">Top Gainers</h5>
+      <app-top-gainers
+        (coin)="setSelectedCoin($event)"
+        (showCoinDetails)="displayCoin($event)"
+        [theme]="theme"
+        [coins]="topGainerCoins"
+      ></app-top-gainers>
+    </div>
+    <div class="w-100 text-left">
+      <h5 class="font-weight-bold mb-3">Top Losers</h5>
+      <app-top-losers
+        (coin)="setSelectedCoin($event)"
+        (showCoinDetails)="displayCoin($event)"
+        [theme]="theme"
+        [coins]="topGainerCoins"
+      ></app-top-losers>
+    </div>
     <div class="text-left">
       <h5 class="font-weight-bold mb-3">Top Coins</h5>
       <app-coins-lists

@@ -1,6 +1,7 @@
 <div class="text-left {{ theme }} theme-container">
-  <h5 class="font-weight-bold">Top Losers</h5>
+  <!-- <h5 class="font-weight-bold">Top Losers</h5> -->
   <ngx-slick-carousel
+    *ngIf="coins?.length > 1; else loading"
     class="carousel"
     #slickModal="slick-carousel"
     [config]="slideConfig"
@@ -19,3 +20,51 @@
     </div>
   </ngx-slick-carousel>
 </div>
+
+<ng-template #loading>
+  <ngx-slick-carousel
+    class="carousel"
+    #slickModal="slick-carousel"
+    [config]="slideConfig"
+    (init)="slickInit($event)"
+    (breakpoint)="breakpoint($event)"
+    (afterChange)="afterChange($event)"
+    (beforeChange)="beforeChange($event)"
+  >
+    <div ngxSlickItem class="slide">
+      <div class="p-2 slick-slide">
+        <app-coin-card-loader [theme]="theme"></app-coin-card-loader>
+      </div>
+    </div>
+    <div ngxSlickItem class="slide">
+      <div class="p-2 slick-slide">
+        <app-coin-card-loader [theme]="theme"></app-coin-card-loader>
+      </div>
+    </div>
+    <div ngxSlickItem class="slide">
+      <div class="p-2 slick-slide">
+        <app-coin-card-loader [theme]="theme"></app-coin-card-loader>
+      </div>
+    </div>
+    <div ngxSlickItem class="slide">
+      <div class="p-2 slick-slide">
+        <app-coin-card-loader [theme]="theme"></app-coin-card-loader>
+      </div>
+    </div>
+    <div ngxSlickItem class="slide">
+      <div class="p-2 slick-slide">
+        <app-coin-card-loader [theme]="theme"></app-coin-card-loader>
+      </div>
+    </div>
+    <div ngxSlickItem class="slide">
+      <div class="p-2 slick-slide">
+        <app-coin-card-loader [theme]="theme"></app-coin-card-loader>
+      </div>
+    </div>
+    <div ngxSlickItem class="slide">
+      <div class="p-2 slick-slide">
+        <app-coin-card-loader [theme]="theme"></app-coin-card-loader>
+      </div>
+    </div>
+  </ngx-slick-carousel>
+</ng-template>

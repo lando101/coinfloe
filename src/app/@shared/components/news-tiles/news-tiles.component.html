@@ -1,7 +1,146 @@
-<div class="text-left {{ theme }}">
-  <h5 class="font-weight-bold">Trending NewsSource1</h5>
+<!-- <div class="text-left {{ theme }}">
+  <h5 class="font-weight-bold">Trending News</h5>
   <div>
-    {{ news[0]?.title }}
+    {{ allNewsS2[0]?.title }}
   </div>
   <div fxLayout="row"></div>
+</div> -->
+<div *ngIf="allNewsS2 === 'asdfasdf'; else loader" class="{{ theme }} theme-container">
+  <div class="text-left news-wrapper">
+    <h5 class="font-weight-bold">Trending News</h5>
+
+    <div fxLayout="row" class="h-100">
+      <div fxLayout="column" fxFlex="37" class="col-brdr">
+        <div class="card h-100 w-100 border-0 rounded-0 bg-transparent" style="width: 18rem">
+          <div fxLayout="column" class="card-body d-flex justify-content-between">
+            <div>
+              <div fxLayout="column mb-3">
+                <h6 class="card-subtitle text-muted mb-2">{{ allNewsS2[0].source_name }}</h6>
+                <h5 class="card-title mb-1 title-text">
+                  <a href="{{ allNewsS2[0].news_url }}" target="_blank">{{ allNewsS2[0].title }}</a>
+                </h5>
+                <small class="font-weight-bold mb-2 text-faint">{{ allNewsS2[0].date }}</small>
+              </div>
+
+              <p class="card-text large-text-area">
+                {{ allNewsS2[0].text }}
+              </p>
+              <div>
+                <img class="w-100" src="{{ allNewsS2[0].image_url }}" />
+              </div>
+              <div fxLayout="row" fxLayoutGap="10px" class="mt-2">
+                <span *ngFor="let topic of allNewsS2[0].topics" class="badge badge-pill badge-dark text-capitalize">
+                  #{{ topic }}
+                </span>
+              </div>
+            </div>
+            <div class="d-flex">
+              <a href="{{ allNewsS2[0].news_url }}" class="card-link" target="_blank">View Article</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div fxLayout="column" fxFlex="30" class="col-brdr">
+        <div fxFlex="50" class="card w-100 border-0 rounded-0 bg-transparent" style="width: 18rem">
+          <div fxLayout="column" class="card-body d-flex justify-content-between row-brdr">
+            <div fxLayout="column mb-3">
+              <h6 class="card-subtitle text-muted mb-2">{{ allNewsS2[1].source_name }}</h6>
+              <h5 class="card-title mb-1 title-text">
+                <a href="{{ allNewsS2[1].news_url }}" target="_blank">{{ allNewsS2[1].title }}</a>
+              </h5>
+              <small class="font-weight-bold mb-2 text-faint">{{ allNewsS2[1].date }}</small>
+              <p class="card-text small-text-area mb-1">
+                {{ allNewsS2[1].text }}
+              </p>
+              <div fxLayout="row" fxLayoutGap="10px">
+                <span *ngFor="let topic of allNewsS2[1].topics" class="badge badge-pill badge-dark text-capitalize">
+                  #{{ topic }}
+                </span>
+              </div>
+            </div>
+
+            <div class="d-flex">
+              <a href="{{ allNewsS2[1].news_url }}" class="card-link" target="_blank">View Article</a>
+            </div>
+          </div>
+        </div>
+        <div fxFlex="50" class="card w-100 border-0 rounded-0 bg-transparent" style="width: 18rem">
+          <div fxLayout="column" class="card-body d-flex justify-content-between">
+            <div fxLayout="column mb-3">
+              <h6 class="card-subtitle text-muted mb-2">{{ allNewsS2[2].source_name }}</h6>
+              <h5 class="card-title mb-1 title-text">
+                <a href="{{ allNewsS2[2].news_url }}" target="_blank">{{ allNewsS2[2].title }}</a>
+              </h5>
+              <small class="font-weight-bold mb-2 text-faint">{{ allNewsS2[2].date }}</small>
+              <p class="card-text small-text-area mb-1">
+                {{ allNewsS2[2].text }}
+              </p>
+              <div fxLayout="row" fxLayoutGap="10px">
+                <span *ngFor="let topic of allNewsS2[2].topics" class="badge badge-pill badge-dark text-capitalize">
+                  #{{ topic }}
+                </span>
+              </div>
+            </div>
+
+            <div class="d-flex">
+              <a href="{{ allNewsS2[2].news_url }}" class="card-link" target="_blank">View Article</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div fxLayout="column" fxFlex="33">
+        <div class="card h-100 w-100 border-0 rounded-0 bg-transparent" style="width: 18rem">
+          <div fxLayout="column" class="card-body d-flex justify-content-between">
+            <div>
+              <div fxLayout="column mb-3">
+                <h6 class="card-subtitle text-muted mb-2">{{ allNewsS2[3].source_name }}</h6>
+                <h5 class="card-title mb-1 title-text">
+                  <a href="{{ allNewsS2[3].news_url }}" target="_blank">{{ allNewsS2[3].title }}</a>
+                </h5>
+                <small class="font-weight-bold mb-2 text-faint">{{ allNewsS2[3].date }}</small>
+              </div>
+              <p class="card-text large-text-area">
+                {{ allNewsS2[3].text }}
+              </p>
+              <div>
+                <img class="w-100" src="{{ allNewsS2[3].image_url }}" />
+              </div>
+              <div fxLayout="row" fxLayoutGap="10px" class="mt-2">
+                <span *ngFor="let topic of allNewsS2[3].topics" class="badge badge-pill badge-dark text-capitalize">
+                  #{{ topic }}
+                </span>
+              </div>
+            </div>
+            <div class="d-flex">
+              <a href="{{ allNewsS2[3].news_url }}" class="card-link" target="_blank">View Article</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
+<ng-template #loader>
+  <div class="{{ theme }} theme-container text-left w-100">
+    <div class="news-wrapper w-100">
+      <h5 class="font-weight-bold">Trending News</h5>
+      <div class="w-100 h-100" fxLayout="row">
+        <div fxLayout="column" fxFlex="35" class="col-brdr">
+          <app-news-loader-tall></app-news-loader-tall>
+        </div>
+        <div fxLayout="column" fxFlex="30" class="col-brdr">
+          <div fxLayout="row" fxFlex="50" class="row-brdr">
+            <app-news-loader-short></app-news-loader-short>
+          </div>
+          <div fxLayout="row" fxFlex="50">
+            <app-news-loader-short></app-news-loader-short>
+          </div>
+        </div>
+        <div fxLayout="column" fxFlex="35">
+          <app-news-loader-tall></app-news-loader-tall>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
