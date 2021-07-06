@@ -8,6 +8,7 @@
   $font: $primary-font-color;
   $font-2: $secondary-font-color;
   $bg-color: $white-background;
+  $bg-color-darker: $primary-background-darker;
   $border: $header-border;
   $text-shadow: $primary-text-shadow;
   @if $light-theme != true {
@@ -15,13 +16,15 @@
     $font: $dark-primary-font-color;
     $font-2: $secondary-font-color;
     $bg-color: $dark-secondary-background;
+    $bg-color-darker: $dark-primary-background-darker;
     $border: $dark-header-border;
     $text-shadow: $dark-primary-text-shadow;
   }
   // background-color: $bg-color !important;
   // border-bottom: 1px solid $border;
+  color: darken($font, 10%);
   .footer-body {
-    background: #f1f1f1;
+    background: $bg-color-darker;
     padding: 25px;
     // height: 400px;
     margin: 0;
