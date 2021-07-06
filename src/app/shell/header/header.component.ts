@@ -35,11 +35,7 @@ export class HeaderComponent implements OnInit {
     this.themeService.themeTypeBS.subscribe((data) => {
       if (data) {
         this.theme = data;
-        // console.log(data);
-        // console.log('THEME');
       }
-
-      // this.themeService.getThemeCookie('theme');
     });
 
     this.cryptoService.btcBlockChainObs.subscribe((data) => {
