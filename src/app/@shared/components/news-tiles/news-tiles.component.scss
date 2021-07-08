@@ -1,17 +1,28 @@
 @import "../../../../styles/index";
 
 @mixin theme-mixin($light-theme: true) {
+  $bg-color: $white-background;
   $border-color: $primary-border-light;
   $primary-font: $primary-font-color;
+  $shadow: $card-shadow;
   @if $light-theme != true {
-    $border-color: $primary-border-light;
+    $bg-color: $dark-secondary-background;
+    $border-color: $dark-primary-border;
     $primary-font: $dark-primary-font-color;
+    $shadow: $dark-card-shadow;
   }
   .news-wrapper {
     height: 650px;
     flex: 1 1 0%;
     display: flex;
     flex-direction: column;
+    color: $primary-font;
+    .news-inner-wrapper {
+      background: $bg-color;
+      border-radius: 15px;
+      box-shadow: 0px 1px 3px 0px $shadow !important;
+      padding: 10px;
+    }
     .card-title {
       a {
         color: $primary-font;
@@ -56,5 +67,5 @@
 }
 
 .dark.theme-container {
-  @include theme-mixin($light-theme: true);
+  @include theme-mixin($light-theme: false);
 }

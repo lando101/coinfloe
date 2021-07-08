@@ -8,6 +8,7 @@ import { SharedModule } from '@shared';
 import { MaterialModule } from '@app/material.module';
 import { ChartsRoutingModule } from './charts-routing.module';
 import { ChartsComponent } from './charts.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [ChartsComponent],
@@ -19,6 +20,7 @@ import { ChartsComponent } from './charts.component';
     MaterialModule,
     Angulartics2Module,
     ChartsRoutingModule,
+    FontAwesomeModule,
   ],
 })
 export class ChartsModule {}

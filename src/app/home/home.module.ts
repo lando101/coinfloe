@@ -10,7 +10,9 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { MarketCapComponent } from './components/market-cap/market-cap.component';
 import { NgPipesModule } from 'ngx-pipes';
+import { AppModule } from '@app/app.module';
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 @NgModule({
   imports: [
     CommonModule,
@@ -21,7 +23,10 @@ import { NgPipesModule } from 'ngx-pipes';
     Angulartics2Module,
     HomeRoutingModule,
     NgPipesModule,
+    FontAwesomeModule,
   ],
   declarations: [HomeComponent, MarketCapComponent],
 })
-export class HomeModule {}
+export class HomeModule {
+  constructor() {}
+}

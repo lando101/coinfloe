@@ -9,7 +9,7 @@ import { env } from './.env';
 export const environment = {
   production: true,
   version: env.npm_package_version,
-  serverUrl: 'https://min-api.cryptocompare.com',
+  serverUrl: 'https://bd9lv27sr1.execute-api.us-east-1.amazonaws.com/dev',
   defaultLanguage: 'en-US',
   supportedLanguages: ['en-US'],
 };

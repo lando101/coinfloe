@@ -6,6 +6,9 @@ import { CryptoDataServiceService, CryptoQuery } from '@app/services/crypto-data
 import { ThemeService } from '@app/services/theme.service';
 import { GroupByPipe, KeysPipe, OrderByPipe, PairsPipe, FlattenPipe } from 'ngx-pipes';
 import { BottomSheetService } from '@app/services/bottom-sheet.service';
+import { GlobalData } from 'src/models/crypto-global-data.model';
+import { GlobalMetrics } from 'src/models/global-metric.model';
+import { TradingSignals } from 'src/models/coin-trading-signals.model';
 
 @Component({
   selector: 'app-home',
@@ -22,6 +25,9 @@ export class HomeComponent implements OnInit {
   topCoins: Coin[] = [];
   bottomSheet: boolean;
   selectedCoin: Coin = {};
+  globalData: GlobalData;
+  globalMetrics: GlobalMetrics;
+  tradingSignals: TradingSignals;
 
   theme: string = '';
 
@@ -61,6 +67,23 @@ export class HomeComponent implements OnInit {
       if (data) {
         this.theme = data;
       }
+    });
+
+    // coin market cap data
+    this.cryptoService.getGlobalCrypto().subscribe((data: GlobalData) => {
+      this.globalData = data;
+    });
+
+    // coin market cap data
+    this.cryptoService.getGlobalMetrics().subscribe((data: GlobalMetrics) => {
+      this.globalMetrics = data;
+    });
+
+    this.cryptoService.getTradingSignals().subscribe((data: TradingSignals) => {
+      this.tradingSignals = data;
+      // console.log('BTC TRADING SIGNALS');
+      // console.log(data);
+      // console.log('BTC TRADING SIGNALS');
     });
   }
 

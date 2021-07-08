@@ -1,6 +1,11 @@
 <div class="container">
   <div fxFlexFill fxLayout="column" fxLayoutGap="20px">
-    <app-market-cap [theme]="theme"></app-market-cap>
+    <app-market-cap
+      [theme]="theme"
+      [globalData]="globalData"
+      [globalMetrics]="globalMetrics"
+      [tradingSignals]="tradingSignals"
+    ></app-market-cap>
     <app-news-tiles [theme]="theme"></app-news-tiles>
     <div class="text-left w-100">
       <h5 class="font-weight-bold mb-3">Top Gainers</h5>

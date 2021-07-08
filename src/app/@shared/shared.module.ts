@@ -27,6 +27,10 @@ import { CoinCardLoaderComponent } from './components/loaders/coin-card-loader/c
 import { NewsLoaderTallComponent } from './components/loaders/news-loader-tall/news-loader-tall.component';
 import { NewsLoaderShortComponent } from './components/loaders/news-loader-short/news-loader-short.component';
 import { CryptoInfoComponent } from './components/crypto-info/crypto-info.component';
+
+import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faSquare, faCheckSquare } from '@fortawesome/free-solid-svg-icons';
+import { faEthereum, faGithub, faMedium, faStackOverflow } from '@fortawesome/free-brands-svg-icons';
 @NgModule({
   imports: [
     FlexLayoutModule,

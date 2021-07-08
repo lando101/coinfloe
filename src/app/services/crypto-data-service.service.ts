@@ -4,11 +4,13 @@ import { catchError, map } from 'rxjs/operators';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { BlockChainInfo, Coin } from 'src/models/coins.model';
 import { NewsSource1 } from 'src/models/news.model';
+import { GlobalData } from 'src/models/crypto-global-data.model';
 
 const routes = {
   // allCryptos: (c: CryptoQuery) => `/data/top/mktcapfull?limit=${c.limit}&tsym=${c.fiat}&api_key=${c.api_key}`,
   allCryptos: (c: CryptoQuery) => `/crypto/top-100-cryptos`,
   blockChainInfo: (c: CryptoQuery) => `/crypto/blockchain/${c.symbol}`,
+  tradingSignals: (c: CryptoQuery) => `/crypto/trading_signals/${c.symbol}`,
   cryptoDailyPrice: (c: CryptoQuery) => `/crypto/daily_historical/${c.symbol}`,
   cryptoHourlyPrice: (c: CryptoQuery) => `/crypto/hourly_historical/${c.symbol}`,
   cryptoMinutePrice: (c: CryptoQuery) => `/crypto/minute_historical/${c.symbol}`,
@@ -16,6 +18,8 @@ const routes = {
   popularNews: (c: CryptoQuery) => `/crypto/popular-news`,
   cryptoNews: (c: CryptoQuery) => `/crypto/news/${c.symbol}`,
   cryptoAbout: (c: CryptoQuery) => `/crypto/info/${c.symbol}`,
+  cryptoGlobal: (c: CryptoQuery) => `/crypto/info/quotes/latest/${c.fiat}`,
+  globalMetrics: () => `/crypto/global-metrics`,
   // `https://min-api.cryptocompare.com/data/top/mktcapfull?limit=10&tsym=USD&api_key=${this.API_KEY}`;
 };
 
@@ -72,6 +76,31 @@ export class CryptoDataServiceService {
     }
   }
 
+  // get global crypto data :: coin market cap
+  public getGlobalCrypto(): Observable<any> {
+    const params: CryptoQuery = {
+      fiat: 'USD',
+    };
+    return this._httpClient.get(routes.cryptoGlobal(params)).pipe(
+      map((body: any) => {
+        const data: GlobalData = body.data.data;
+        return data;
+      }),
+      catchError(() => of('Error, couldnt get global data'))
+    );
+  }
+
+  // get global metrics :: coin gecko
+  public getGlobalMetrics(): Observable<any> {
+    return this._httpClient.get(routes.globalMetrics()).pipe(
+      map((body: any) => {
+        const data: any = body.data.data;
+        return data;
+      }),
+      catchError(() => of('Error, couldnt get global metrics'))
+    );
+  }
+
   // get coin block chain info
   public getCryptoBlockChainData(params?: CryptoQuery) {
     if (params) {
@@ -88,6 +117,25 @@ export class CryptoDataServiceService {
           this.setCryptoBlockChainData(body.data.Data, true);
           return body.Data;
         })
+      );
+    }
+  }
+
+  // get coin trading signals
+  public getTradingSignals(params?: CryptoQuery): Observable<any> {
+    if (params) {
+      return this._httpClient.get(routes.tradingSignals(params)).pipe(
+        map((data: any) => {
+          return data.data.Data;
+        }),
+        catchError(() => of('Error, couldnt get global metrics'))
+      );
+    } else {
+      return this._httpClient.get(routes.tradingSignals(this.defaultQuery)).pipe(
+        map((data: any) => {
+          return data.data.Data;
+        }),
+        catchError(() => of('Error, couldnt get global metrics'))
       );
     }
   }
