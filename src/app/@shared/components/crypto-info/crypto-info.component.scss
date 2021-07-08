@@ -1,0 +1,40 @@
+@import "../../../../styles/index";
+
+@mixin theme-mixin($light-theme: true) {
+  $bg-color: $primary-background;
+  $border: $primary-border-light;
+  @if $light-theme != true {
+    $bg-color: $dark-primary-background;
+    $border: $dark-primary-border-dark;
+  }
+
+  background-color: $bg-color;
+  height: auto;
+  border-radius: 10px;
+  padding: 20px 30px;
+  border: 1px solid $border;
+  p {
+    font-size: 0.87rem;
+    line-height: 1.75;
+  }
+  i {
+    font-size: 0.85rem;
+  }
+  label {
+    font-size: 0.95rem;
+  }
+  .about-item {
+    border-bottom: 1px solid $border;
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}
+
+.dark.theme-container {
+  @include theme-mixin($light-theme: false);
+}
+
+.theme-container {
+  @include theme-mixin($light-theme: true);
+}

@@ -9,6 +9,8 @@ import {
 import { BottomSheetService } from '@app/services/bottom-sheet.service';
 import { ThemeService } from '@app/services/theme.service';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+import { CryptoDataServiceService, CryptoQuery } from '@app/services/crypto-data-service.service';
+import { CoinInfoExpanded } from 'src/models/coin-info.model';
 
 @Component({
   selector: 'app-bottom-sheet-custom',
@@ -33,6 +35,8 @@ export class BottomSheetCustomComponent implements OnInit {
   @Input() visible: boolean;
   @Input() coin: Coin;
   @Output() hideCoinDetails = new EventEmitter<boolean>();
+  params: CryptoQuery = {};
+  coinInfo: CoinInfoExpanded;
 
   public config: PerfectScrollbarConfigInterface = {
     wheelSpeed: 0.25,
@@ -43,11 +47,14 @@ export class BottomSheetCustomComponent implements OnInit {
   prettyImgURL = '';
   theme: string = '';
 
-  constructor(private bottomSheetService: BottomSheetService, private themeService: ThemeService) {}
+  constructor(
+    private bottomSheetService: BottomSheetService,
+    private themeService: ThemeService,
+    private cryptoDataService: CryptoDataServiceService
+  ) {}
 
   ngOnInit(): void {
     // this.bottomSheetService.setState(false);
-
     this.themeService.themeTypeBS.subscribe((data) => {
       if (data) {
         this.theme = data;
@@ -66,10 +73,26 @@ export class BottomSheetCustomComponent implements OnInit {
       ' ',
       '-'
     ).toLowerCase()}-${this.coin?.CoinInfo?.Name.toLowerCase()}-logo.png?v=010`;
+    if (!!this.coin) {
+      this.params = {
+        coin: this.coin.CoinInfo.FullName,
+        symbol: this.coin.CoinInfo.Name,
+        limit: 100,
+        fiat: 'USD',
+      };
+      this.getCoinInfo();
+    }
   }
 
   closeBottomSheet() {
     // this.bottomSheetService.setState(false);
     this.hideCoinDetails.emit(false);
+  }
+
+  // get coin info from coin market cap
+  getCoinInfo() {
+    this.cryptoDataService.getCoinInfo(this.params).subscribe((data: any) => {
+      this.coinInfo = data;
+    });
   }
 }

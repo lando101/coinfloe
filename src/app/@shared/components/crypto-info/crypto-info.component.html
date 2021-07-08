@@ -1,0 +1,51 @@
+<div class="{{ theme }} theme-container">
+  <div>
+    <h5>
+      <b>About {{ coin.CoinInfo.FullName }}</b>
+    </h5>
+  </div>
+  <div>
+    <p class="mb-1">{{ coinInfo.description }}</p>
+    <a href="{{ coinInfo.urls.website[0] }}" target="_blank">
+      Visit {{ coin.CoinInfo.FullName }} project <i class="ml-1 bi bi-box-arrow-up-right"></i>
+    </a>
+    <div fxLayout="column" class="my-3">
+      <div
+        *ngIf="!!coin.CoinInfo.AssetLaunchDate"
+        fxLayout="row"
+        class="p-2 align-items-between justify-content-between about-item"
+      >
+        <label>Launch Date</label>
+        <label>{{ coin.CoinInfo.AssetLaunchDate }}</label>
+      </div>
+      <div
+        *ngIf="!!coin.CoinInfo.Algorithm"
+        fxLayout="row"
+        class="p-2 align-items-between justify-content-between about-item"
+      >
+        <label>Algorithm</label>
+        <label>{{ coin.CoinInfo.Algorithm }}</label>
+      </div>
+      <div
+        *ngIf="!!coin.CoinInfo.ProofType"
+        fxLayout="row"
+        class="p-2 align-items-between justify-content-between about-item"
+      >
+        <label>Proof Type</label>
+        <label>{{ coin.CoinInfo.ProofType }}</label>
+      </div>
+      <div
+        *ngIf="!!coin.CoinInfo.MaxSupply"
+        fxLayout="row"
+        class="p-2 align-items-between justify-content-between about-item"
+      >
+        <label>Max Supply</label>
+        <label *ngIf="coin.CoinInfo.MaxSupply > 0; else unknown">{{ coin.CoinInfo.MaxSupply | number }}</label>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #unknown>
+  <label>Not available </label>
+</ng-template>

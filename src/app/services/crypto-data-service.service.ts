@@ -173,8 +173,8 @@ export class CryptoDataServiceService {
   // get coin info
   getCoinInfo(params: CryptoQuery): Observable<any> {
     return this._httpClient.get(routes.cryptoAbout(params)).pipe(
-      map((data) => {
-        return data;
+      map((data: any) => {
+        return data.data.data[`${params.symbol.toUpperCase()}`];
       })
     );
   }

@@ -1,0 +1,9 @@
+{
+  "editor.inlineSuggest.enabled": true,
+  "autopairs-code.enable": true,
+  "[typescript]": {
+    "editor.autoClosingBrackets": true,
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true
+  }
+}

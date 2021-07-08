@@ -79,15 +79,15 @@
                         <label class="mb-0">About</label>
                       </div>
                     </ng-template>
-
-                    <app-coin-info [coin]="coin"></app-coin-info>
                   </mat-tab>
                 </mat-tab-group>
               </div>
             </perfect-scrollbar>
           </div>
         </div>
-        <div class="p-3" fxLayout="column" fxFlex="30"></div>
+        <div class="p-3" fxLayout="column" fxFlex="30">
+          <app-crypto-info [theme]="theme" [coin]="coin" [coinInfo]="coinInfo"></app-crypto-info>
+        </div>
       </div>
     </div>
   </div>

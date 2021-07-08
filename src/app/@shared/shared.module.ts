@@ -22,11 +22,11 @@ import { TopLosersComponent } from './components/top-losers/top-losers.component
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { CoinCardComponent } from './components/coin-card/coin-card.component';
 import { NewsTilesComponent } from './components/news-tiles/news-tiles.component';
-import { CoinInfoComponent } from './components/coin-info/coin-info.component';
 import { NewsSectionComponent } from './components/news-section/news-section.component';
 import { CoinCardLoaderComponent } from './components/loaders/coin-card-loader/coin-card-loader.component';
 import { NewsLoaderTallComponent } from './components/loaders/news-loader-tall/news-loader-tall.component';
 import { NewsLoaderShortComponent } from './components/loaders/news-loader-short/news-loader-short.component';
+import { CryptoInfoComponent } from './components/crypto-info/crypto-info.component';
 @NgModule({
   imports: [
     FlexLayoutModule,
@@ -54,11 +54,11 @@ import { NewsLoaderShortComponent } from './components/loaders/news-loader-short
     TopLosersComponent,
     CoinCardComponent,
     NewsTilesComponent,
-    CoinInfoComponent,
     NewsSectionComponent,
     CoinCardLoaderComponent,
     NewsLoaderTallComponent,
     NewsLoaderShortComponent,
+    CryptoInfoComponent,
   ],
   exports: [
     LoaderComponent,
@@ -76,10 +76,10 @@ import { NewsLoaderShortComponent } from './components/loaders/news-loader-short
     TopLosersComponent,
     CoinCardComponent,
     NewsTilesComponent,
-    CoinInfoComponent,
     NewsSectionComponent,
     CoinCardLoaderComponent,
     NewsLoaderTallComponent,
+    CryptoInfoComponent,
   ],
   providers: [{ provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } }],
   bootstrap: [CoinsListsComponent],
