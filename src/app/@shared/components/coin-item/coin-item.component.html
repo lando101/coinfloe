@@ -7,8 +7,8 @@
         </div>
       </div>
       <div fxLayout="column" class="text-left">
-        <small class="mb-2">{{ coin?.CoinInfo?.Name }}</small>
-        <label class="mb-0">{{ coin?.CoinInfo?.FullName }}</label>
+        <small class="mb-2 font-weight-bold text-faint">{{ coin?.CoinInfo?.Name }}</small>
+        <label class="mb-0 coin-name">{{ coin?.CoinInfo?.FullName }}</label>
       </div>
     </div>
     <div fxLayout="row" fxFlex.lt-sm="0" fxFlex="50" ngClass.lt-md="d-none"></div>
@@ -17,7 +17,7 @@
         <app-high-low-progress [coin]="coin"></app-high-low-progress>
       </div>
       <div fxFlex="auto" fxLayout="column" class="text-right">
-        <label>{{ coin?.RAW?.USD?.PRICE | currency }}</label>
+        <label class="font-weight-bold">{{ coin?.RAW?.USD?.PRICE | currency }}</label>
         <small
           class="d-flex justify-content-end font-weight-bold"
           [ngClass]="{

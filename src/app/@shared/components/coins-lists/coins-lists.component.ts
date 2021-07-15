@@ -2,6 +2,8 @@ import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@
 import { Coin, USD } from 'src/models/coins.model';
 import { CoinDetailsComponent } from '../coin-details/coin-details.component';
 import { GroupByPipe, KeysPipe, OrderByPipe, PairsPipe, FlattenPipe } from 'ngx-pipes';
+import { BottomSheetCustomComponent } from '../bottom-sheet-custom/bottom-sheet-custom.component';
+import { BottomSheetService } from '@app/services/bottom-sheet.service';
 
 export interface loaders {
   number: number;
@@ -17,7 +19,6 @@ export class CoinsListsComponent implements OnInit {
   @Input() Coins: Coin[];
   @Input() count: number;
   @Input() theme: string;
-  @Input() showBottomSheet: boolean;
   @Output() showCoinDetails = new EventEmitter<boolean>();
   @Output() coin = new EventEmitter<Coin>();
   localCoins: Coin[] = [];
@@ -56,7 +57,7 @@ export class CoinsListsComponent implements OnInit {
     { number: 9 },
     { number: 10 },
   ];
-  constructor(private orderByPipe: OrderByPipe) {}
+  constructor(private orderByPipe: OrderByPipe, private bottomSheetService: BottomSheetService) {}
 
   ngOnInit(): void {}
 
@@ -110,8 +111,6 @@ export class CoinsListsComponent implements OnInit {
   }
 
   openBottomSheet(coin: Coin) {
-    console.log('SHOW BOTTOM SHEET');
-    this.showCoinDetails.emit(true);
-    this.coin.emit(coin);
+    this.bottomSheetService.setState(true, coin);
   }
 }

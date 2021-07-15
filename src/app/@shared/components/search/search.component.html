@@ -31,7 +31,7 @@
       <perfect-scrollbar #perfectscroll class="ps" [config]="config">
         <div *ngIf="searchResult?.length > 0; else noresults" class="p-3">
           <div *ngFor="let result of searchResult">
-            <button class="w-100 m-0 text-left py-2 search-result-button">
+            <button class="w-100 m-0 text-left py-2 search-result-button" (click)="openBottomSheet(result.item)">
               <div class="d-flex align-items-center justify-content-between">
                 <div class="d-flex align-items-center">
                   <div class="img-container mr-2">
@@ -60,11 +60,22 @@
       </perfect-scrollbar>
     </ng-template>
     <ng-template #noresults>
-      <div *ngIf="search.value">
+      <div *ngIf="search.value.length > 0; else empty">
         <div class="w-100 text-center p-5">
           <label class="poppins-font-style"
             ><b>No coins matched "{{ searchTerm }}".</b></label
           >
+        </div>
+      </div>
+    </ng-template>
+
+    <ng-template #empty>
+      <div>
+        <div fxLayout="column" class="w-100 text-center py-5 px-2">
+          <label class="poppins-font-style">
+            <b>Search coin symbols or names.</b>
+          </label>
+          <small class="font-weight-bold">Try "ADA" or "Cardano"</small>
         </div>
       </div>
     </ng-template>

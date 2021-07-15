@@ -45,7 +45,7 @@ export class TopGainersComponent implements OnInit {
     slidesToShow: 4,
     slidesToScroll: 2,
     dots: true,
-    infinite: true,
+    infinite: false,
     // autoplay: true,
     // autoplaySpeed: 7000,
   };

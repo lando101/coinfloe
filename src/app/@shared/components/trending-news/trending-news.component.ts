@@ -16,7 +16,7 @@ export class TrendingNewsComponent implements OnInit {
     slidesToShow: 3,
     slidesToScroll: 3,
     dots: true,
-    infinite: true,
+    infinite: false,
     autoplay: true,
     autoplaySpeed: 14000,
   };

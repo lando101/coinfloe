@@ -27,8 +27,12 @@
     </mat-sidenav>
     <mat-sidenav-content class="overflow-hidden" (click)="closeSidenav()">
       <!-- <perfect-scrollbar #perfectscroll class="ps" [config]="config"> -->
-      <router-outlet></router-outlet>
-      <app-footer></app-footer>
+      <div class="scroll-bar-wrap h-100">
+        <div class="scroll-box overflow-auto h-100">
+          <router-outlet></router-outlet>
+          <app-footer></app-footer>
+        </div>
+      </div>
       <!-- </perfect-scrollbar> -->
       <button
         *ngIf="scrollTop"

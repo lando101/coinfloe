@@ -48,6 +48,12 @@
   right: 0px;
 }
 
+/* MAGIC HAPPENS HERE */
+.scroll-bar-wrap:hover .cover-bar {
+  opacity: 0;
+  -webkit-transition: all 0.5s;
+}
+
 @media ($mat-xsmall) {
   .mat-sidenav,
   .mat-drawer-content,
@@ -60,12 +66,32 @@
   $brand: $primary-color;
   $font: $primary-font-color;
   $bg-color: $body-background;
+  $scroll-color: rgba(0, 0, 0, 0.2);
+  $slick-color: $slick-color;
+  $slick-dots: $slick-dots;
   @if $light-theme != true {
     $brand: $primary-color;
     $font: $dark-primary-font-color;
     $bg-color: $dark-body-background;
+    $scroll-color: rgb(212 212 212 / 20%);
+    $slick-color: $dark-slick-color;
+    $slick-dots: $dark-slick-dots;
   }
+
+  color: $font;
   background-color: $bg-color !important;
+
+  ::ng-deep .slick-next::before {
+    color: $slick-color !important;
+  }
+
+  ::ng-deep .slick-prev::before {
+    color: $slick-color !important;
+  }
+
+  ::ng-deep .slick-dots li button::before {
+    color: $slick-dots !important;
+  }
 
   .scrollToTopButton {
     position: absolute;
@@ -80,6 +106,22 @@
     border-left: 1px solid #80808014;
     border-right: none;
     background: lighten($bg-color, 3%);
+  }
+
+  .scroll-box::-webkit-scrollbar {
+    width: 0.5em;
+    &:hover {
+      width: 0.6em;
+    }
+  }
+  .scroll-box::-webkit-scrollbar,
+  .scroll-box::-webkit-scrollbar-thumb {
+    overflow: visible;
+    border-radius: 0px;
+    background-color: #5d5d5d33;
+  }
+  .scroll-box::-webkit-scrollbar-thumb {
+    background: $scroll-color;
   }
 }
 

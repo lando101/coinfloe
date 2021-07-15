@@ -8,6 +8,8 @@
     $shadow: $dark-card-shadow;
     $font: $dark-primary-font-color;
   }
+
+  color: $font;
   button {
     // overflow: hidden;
     border-radius: $default-brdr-radius;

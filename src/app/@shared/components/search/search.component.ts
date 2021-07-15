@@ -1,9 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { Coin } from 'src/models/coins.model';
 import Fuse from 'fuse.js';
 import { CryptoDataServiceService } from '@app/services/crypto-data-service.service';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+import { BottomSheetService } from '@app/services/bottom-sheet.service';
 
 export interface CoinSearch {
   name?: string;
@@ -20,8 +21,11 @@ export interface CoinSearch {
 })
 export class SearchComponent implements OnInit {
   @Input() theme: string;
-  coins: CoinSearch[] = [];
+  coins: Coin[] = [];
+  coinsSearch: CoinSearch[] = [];
   searchTerm: string = '';
+  @Output() showCoinDetails = new EventEmitter<boolean>();
+  @Output() coin = new EventEmitter<Coin>();
   public config: PerfectScrollbarConfigInterface = {
     wheelSpeed: 0.25,
     // suppressScrollY: false,
@@ -47,23 +51,28 @@ export class SearchComponent implements OnInit {
   searchResult: any[];
   fuse = new Fuse(this.list, this.options);
 
-  constructor(private coinService: CryptoDataServiceService) {}
+  constructor(private coinService: CryptoDataServiceService, private bottomSheetService: BottomSheetService) {}
 
   ngOnInit(): void {
     this.coinService.coinsObs.subscribe((data) => {
       if (data) {
+        this.coins = data;
         data.forEach((element: Coin) => {
-          this.coins.push({
+          console.log('SEARCH');
+          console.log(element);
+          console.log('SEARCH');
+
+          this.coinsSearch.push({
             name: element.CoinInfo.FullName,
             symbol: element.CoinInfo.Name,
-            price: element.DISPLAY.USD.PRICE,
-            change: element.RAW.USD.CHANGEPCT24HOUR / 100,
+            price: element?.DISPLAY?.USD?.PRICE || 'NA',
+            change: element?.RAW?.USD?.CHANGEPCT24HOUR / 100 || null,
             img: element.CoinInfo.ImageUrl,
           });
         });
 
         // console.log(this.coins);
-        this.list = this.coins;
+        this.list = this.coinsSearch;
         // console.log(this.list);
         this.fuse.setCollection(this.list);
 
@@ -78,5 +87,13 @@ export class SearchComponent implements OnInit {
     this.searchTerm = pattern;
     console.log(this.fuse.search(pattern));
     this.searchResult = this.fuse.search(pattern, { limit: 10 });
+  }
+
+  openBottomSheet(coin: CoinSearch) {
+    const match = this.coins.find((x) => x.CoinInfo.Name === coin.symbol);
+
+    // this.showCoinDetails.emit(true);
+    // this.coin.emit(coin);
+    this.bottomSheetService.setState(true, match);
   }
 }

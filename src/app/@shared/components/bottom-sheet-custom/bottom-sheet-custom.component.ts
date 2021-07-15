@@ -32,8 +32,10 @@ import { CoinInfoExpanded } from 'src/models/coin-info.model';
   ],
 })
 export class BottomSheetCustomComponent implements OnInit {
-  @Input() visible: boolean;
-  @Input() coin: Coin;
+  // @Input() visible: boolean;
+  // @Input() coin: Coin;
+  visible: boolean;
+  coin: Coin;
   @Output() hideCoinDetails = new EventEmitter<boolean>();
   params: CryptoQuery = {};
   coinInfo: CoinInfoExpanded;
@@ -62,12 +64,41 @@ export class BottomSheetCustomComponent implements OnInit {
         this.theme = 'light';
       }
     });
+    this.bottomSheetService.bottomSheetShow.subscribe((data: boolean) => {
+      this.visible = data;
+    });
+    this.bottomSheetService.coin.subscribe((data: Coin) => {
+      this.coin = data;
+      if (!!this.coin) {
+        console.log('BOTTOM SHEET COIN');
+        console.log(this.coin);
+        console.log('BOTTOM SHEET COIN');
+        this.load();
+      }
+    });
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
     //Add '${implements OnChanges}' to the class.
-    this.bottomSheetService.setState(this.visible);
+    // this.bottomSheetService.setState(this.visible);
+    // this.imgURL = `https://www.cryptocompare.com${this.coin?.CoinInfo.ImageUrl}`;
+    // this.prettyImgURL = `https://cryptologos.cc/logos/${this.coin?.CoinInfo?.FullName.replace(
+    //   ' ',
+    //   '-'
+    // ).toLowerCase()}-${this.coin?.CoinInfo?.Name.toLowerCase()}-logo.png?v=010`;
+    // if (!!this.coin) {
+    //   this.params = {
+    //     coin: this.coin.CoinInfo.FullName,
+    //     symbol: this.coin.CoinInfo.Name,
+    //     limit: 100,
+    //     fiat: 'USD',
+    //   };
+    //   this.getCoinInfo();
+    // }
+  }
+
+  load() {
     this.imgURL = `https://www.cryptocompare.com${this.coin?.CoinInfo.ImageUrl}`;
     this.prettyImgURL = `https://cryptologos.cc/logos/${this.coin?.CoinInfo?.FullName.replace(
       ' ',
@@ -86,7 +117,8 @@ export class BottomSheetCustomComponent implements OnInit {
 
   closeBottomSheet() {
     // this.bottomSheetService.setState(false);
-    this.hideCoinDetails.emit(false);
+    this.bottomSheetService.setState(false, null);
+    // this.hideCoinDetails.emit(false);
   }
 
   // get coin info from coin market cap

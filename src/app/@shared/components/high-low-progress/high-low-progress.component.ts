@@ -17,9 +17,9 @@ export class HighLowProgressComponent implements OnInit {
   ngOnInit(): void {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log('coin changes');
-    console.log(changes);
-    console.log('coin changes');
+    // console.log('coin changes');
+    // console.log(changes);
+    // console.log('coin changes');
     if (!!changes.coin.currentValue) {
       this.coin = changes.coin.currentValue;
       this.setValues(this.coin);
@@ -27,9 +27,14 @@ export class HighLowProgressComponent implements OnInit {
   }
 
   setValues(coin: Coin) {
+    const value = this.coin.RAW.USD.PRICE;
+    const min = this.coin.RAW.USD.LOW24HOUR;
+    const max = this.coin.RAW.USD.HIGH24HOUR;
+
     this.high = this.coin.RAW.USD.HIGH24HOUR;
     this.low = this.coin.RAW.USD.LOW24HOUR;
-    this.progress = (this.coin.RAW.USD.PRICE / this.coin.RAW.USD.HIGH24HOUR) * 100;
-    console.log(`High: ${this.high}, Low: ${this.low}, Progress: ${this.progress}`);
+    this.progress = ((value - min) * 100) / (max - min);
+    // this.progress = (this.coin.RAW.USD.PRICE / this.coin.RAW.USD.HIGH24HOUR) * 100;
+    // console.log(`High: ${this.high}, Low: ${this.low}, Progress: ${this.progress}`);
   }
 }
