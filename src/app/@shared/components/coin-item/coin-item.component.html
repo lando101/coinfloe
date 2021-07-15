@@ -1,6 +1,6 @@
 <div class="card {{ theme }} border-0">
-  <div class="card-body d-flex justify-content-between" fxFlexFill fxLayout="row">
-    <div fxLayout="row">
+  <div class="card-body d-flex justify-content-between p-3" fxFlexFill fxLayout="row" fxLayoutGap="20px">
+    <div fxLayout="row" fxFlex="50">
       <div fxLayout="column" class="justify-content-center align-items-center">
         <div class="img-container mr-3">
           <img src="{{ prettyImgURL }}" (error)="prettyImgURL = imgURL" />
@@ -11,20 +11,25 @@
         <label class="mb-0">{{ coin?.CoinInfo?.FullName }}</label>
       </div>
     </div>
-
-    <div fxLayout="column" class="text-right">
-      <label>{{ coin?.RAW?.USD?.PRICE | currency }}</label>
-      <small
-        class="d-flex justify-content-end"
-        [ngClass]="{
-          'text-positive': coin?.RAW?.USD?.CHANGEPCT24HOUR > 0,
-          'text-negative': coin?.RAW?.USD?.CHANGEPCT24HOUR < 0
-        }"
-      >
-        <i *ngIf="coin?.RAW?.USD?.CHANGEPCT24HOUR > 0" class="bi bi-arrow-up-short"></i>
-        <i *ngIf="coin?.RAW?.USD?.CHANGEPCT24HOUR < 0" class="bi bi-arrow-down-short"></i>
-        {{ coin?.RAW?.USD?.CHANGEPCT24HOUR / 100 | percent: '0.1-2' }}
-      </small>
+    <div fxLayout="row" fxFlex.lt-sm="0" fxFlex="50" ngClass.lt-md="d-none"></div>
+    <div fxLayout="row" fxFlex="30" fxFlex.lt-sm="50" fxLayoutGap="20px">
+      <div fxFlex="75" fxLayout="column" class="w-100">
+        <app-high-low-progress [coin]="coin"></app-high-low-progress>
+      </div>
+      <div fxFlex="auto" fxLayout="column" class="text-right">
+        <label>{{ coin?.RAW?.USD?.PRICE | currency }}</label>
+        <small
+          class="d-flex justify-content-end font-weight-bold"
+          [ngClass]="{
+            'text-positive': coin?.RAW?.USD?.CHANGEPCT24HOUR > 0,
+            'text-negative': coin?.RAW?.USD?.CHANGEPCT24HOUR < 0
+          }"
+        >
+          <i *ngIf="coin?.RAW?.USD?.CHANGEPCT24HOUR > 0" class="bi bi-arrow-up-short"></i>
+          <i *ngIf="coin?.RAW?.USD?.CHANGEPCT24HOUR < 0" class="bi bi-arrow-down-short"></i>
+          {{ coin?.RAW?.USD?.CHANGEPCT24HOUR / 100 | percent: '0.1-2' }}
+        </small>
+      </div>
     </div>
   </div>
 </div>

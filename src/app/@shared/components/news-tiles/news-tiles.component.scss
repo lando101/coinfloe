@@ -60,6 +60,9 @@
       border-bottom: 1px solid $border-color;
     }
   }
+  ::ng-deep .slick-slide {
+    width: 100%;
+  }
 }
 
 .theme-container {

@@ -6,7 +6,7 @@ $primary-color: #6b42ff;
 $primary-background-darker: #f0f0f0;
 $primary-background-lighter: #fbfbfb;
 $primary-background: #f7f7f7;
-$body-background: #f9f9f9;
+$body-background: #f7f7f7;
 $header-translucent-background: #ffffff78;
 $alt-btn-background: #ededed;
 $white-background: white;
@@ -17,6 +17,9 @@ $text-color: #747474;
 $primary-font-color: #151515;
 $secondary-font-color: #4b4e53;
 $alternate-text-color: white;
+$postive: #2cdc9b;
+$negative: #f9647f;
+$neutral: #fdd975;
 
 // BORDERS
 $primary-border: #d9d9d9;
@@ -36,3 +39,6 @@ $secondary-text-shadow: #d6d6d6;
 $card-shadow: #c3c3c33b;
 
 //=========================================================
+
+// DIMENSIONS
+$default-brdr-radius: 20px;

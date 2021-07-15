@@ -15,6 +15,7 @@ import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { SharedModule } from '@app/@shared';
 import { FooterComponent } from './footer/footer.component';
+import { AngularTiltModule } from 'angular-tilt';
 // import { NgxBootstrapModule } from '@app/ngx-bootstrap.module';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -32,6 +33,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     I18nModule,
     RouterModule,
     SharedModule,
+    AngularTiltModule,
   ],
   declarations: [HeaderComponent, ShellComponent, FooterComponent],
   providers: [

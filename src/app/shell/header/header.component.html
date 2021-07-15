@@ -52,10 +52,24 @@
       <div fxFlex="50" class="justify-content-center">
         <div class="collapse navbar-collapse" class="d-flex justify-content-center h-100" id="navbarNav">
           <ul class="navbar-nav" fxLayout="row" fxLayoutGap="20px">
-            <button mat-button routerLink="/home" routerLinkActive="active" matTooltip="Home">
+            <button
+              aTilt
+              [tiltSettings]="tileSettings"
+              mat-button
+              routerLink="/home"
+              routerLinkActive="active"
+              matTooltip="Home"
+            >
               <i [ngClass]="{ 'bi bi-house-fill': router.url === '/home', 'bi bi-house': router.url != '/home' }"></i>
             </button>
-            <button mat-button routerLinkActive="active" routerLink="/charts" matTooltip="Charts">
+            <button
+              aTilt
+              [tiltSettings]="tileSettings"
+              mat-button
+              routerLinkActive="active"
+              routerLink="/charts"
+              matTooltip="Charts"
+            >
               <i
                 [ngClass]="{
                   'bi bi-bar-chart-line-fill': router.url === '/charts',
@@ -79,7 +93,14 @@
                 }"
               ></i>
             </button> -->
-            <button mat-button routerLinkActive="active" routerLink="/news" matTooltip="News">
+            <button
+              aTilt
+              [tiltSettings]="tileSettings"
+              mat-button
+              routerLinkActive="active"
+              routerLink="/news"
+              matTooltip="News"
+            >
               <!-- <i
                 [ngClass]="{
                   'bi bi-newspaper': router.url === '/news',
@@ -95,13 +116,13 @@
         <!-- <app-language-selector icon="true"></app-language-selector> -->
         <app-search [theme]="theme"></app-search>
         <div fxHide.lt-lg fxLayout="row">
-          <button mat-icon-button (click)="setTheme()">
+          <button aTilt [tiltSettings]="tileSettings" mat-icon-button (click)="setTheme()">
             <i class="bi bi-sun"></i>
           </button>
-          <button mat-icon-button (click)="toggleSideNav(false)">
+          <button aTilt [tiltSettings]="tileSettings" mat-icon-button (click)="toggleSideNav(false)">
             <i class="bi bi-bell"></i>
           </button>
-          <button mat-icon-button (click)="toggleSideNav(true)">
+          <button aTilt [tiltSettings]="tileSettings" mat-icon-button (click)="toggleSideNav(true)">
             <i class="bi bi-person-circle"></i>
           </button>
           <!-- <mat-menu #userMenu="matMenu">

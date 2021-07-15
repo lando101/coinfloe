@@ -10,7 +10,7 @@
 
   background-color: $bg-color;
   height: auto;
-  border-radius: 10px;
+  border-radius: $default-brdr-radius;
   padding: 20px 30px;
   border: 1px solid $border;
   p {

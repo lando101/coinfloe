@@ -21,9 +21,9 @@
         <fa-icon [icon]="['fab', 'bitcoin']" class="btc-icon"></fa-icon>
         <small class="text-faint ml-2 font-weight-bold">BTC Dominance</small>
       </div>
-      <h4>
+      <h5>
         <b>{{ globalData.btc_dominance | number: '1.0-2' }}%</b>
-      </h4>
+      </h5>
       <!-- <label class="text-faint">BTC Dominance</label> -->
     </div>
     <div fxLayout="column" class="p-3 justify-content-between align-items-start stat-card">
@@ -31,9 +31,9 @@
         <fa-icon [icon]="['fab', 'ethereum']" class="eth-icon"></fa-icon>
         <small class="text-faint ml-2 font-weight-bold">ETH Dominance</small>
       </div>
-      <h4>
+      <h5>
         <b>{{ globalData.eth_dominance | number: '1.0-2' }}%</b>
-      </h4>
+      </h5>
       <!-- <label class="text-faint">BTC Dominance</label> -->
     </div>
     <div fxLayout="column" class="p-3 justify-content-between align-items-start stat-card">
@@ -50,9 +50,9 @@
         ></fa-icon>
         <small class="text-faint ml-2 font-weight-bold">BTC Sentiment</small>
       </div>
-      <h4 class="text-capitalize">
+      <h5 class="text-capitalize">
         <b>{{ tradingSignals.inOutVar.sentiment }}</b>
-      </h4>
+      </h5>
       <!-- <label class="text-faint">BTC Dominance</label> -->
     </div>
     <div fxLayout="column" class="p-3 justify-content-between align-items-start stat-card">
@@ -60,9 +60,9 @@
         <fa-icon [icon]="['fas', 'laptop-code']" class="code-icon"></fa-icon>
         <small class="text-faint ml-2 font-weight-bold">Active Projects</small>
       </div>
-      <h4>
+      <h5>
         <b>{{ globalData.active_cryptocurrencies | number }}</b>
-      </h4>
+      </h5>
       <!-- <label class="text-faint">BTC Dominance</label> -->
     </div>
   </div>

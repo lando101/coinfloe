@@ -13,7 +13,7 @@
     <div ngxSlickItem *ngFor="let coin of coins?.slice(0, 10)" class="slide">
       <!-- <img src="{{ slide.img }}" alt="" width="100%" /> -->
       <div class="p-2 slick-slide">
-        <button class="p-0" mat-button (click)="openBottomSheet(coin)">
+        <button class="p-0" aTilt [tiltSettings]="tileSettings" (click)="openBottomSheet(coin)">
           <app-coin-card [coin]="coin" [theme]="theme"></app-coin-card>
         </button>
       </div>

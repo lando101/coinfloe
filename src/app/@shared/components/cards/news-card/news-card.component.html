@@ -1,0 +1,24 @@
+<div *ngIf="!!article" class="{{ theme }} theme-container">
+  <a
+    href="{{ article.news_url }}"
+    target="_blank"
+    aTilt
+    [tiltSettings]="tileSettings"
+    fxLayout="column"
+    class="card w-100 border-0"
+  >
+    <div fxFlex="50" class="img-container">
+      <img class="card-img-top w-100 h-100" src="{{ article.image_url }}" alt="{{ article.title }} image" />
+    </div>
+    <div fxFlex="50" class="card-body justify-content-between" fxLayout="column">
+      <div>
+        <label class="text-faint">{{ article.source_name }}</label>
+        <h5 class="card-title">{{ article.title }}</h5>
+        <p class="card-text">
+          {{ article.text }}
+        </p>
+      </div>
+      <!-- <a href="{{article.news_url}}" target="_blank" class="font-weight-bold btn btn-primary">Read</a> -->
+    </div>
+  </a>
+</div>

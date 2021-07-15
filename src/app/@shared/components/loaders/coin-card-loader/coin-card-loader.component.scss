@@ -14,7 +14,7 @@
   // }
   .card {
     overflow: hidden;
-    border-radius: 10px;
+    border-radius: $default-brdr-radius;
     height: 169.333px;
     width: 265px !important;
     background-color: $bg-color !important;

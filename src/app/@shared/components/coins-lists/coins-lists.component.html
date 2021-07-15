@@ -6,7 +6,7 @@
     fxLayoutGap="20px"
   >
     <div *ngFor="let coin of localCoins.slice(0, count)">
-      <button mat-flat-button (click)="openBottomSheet(coin)" class="p-0 w-100 rounded-2">
+      <button aTilt [tiltSettings]="tileSettings" (click)="openBottomSheet(coin)" class="p-0 w-100 rounded-2">
         <app-coin-item [coin]="coin" [theme]="theme"></app-coin-item>
       </button>
     </div>

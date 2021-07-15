@@ -1,0 +1,21 @@
+<div *ngIf="!!progress" fxLayout="column">
+  <div fxLayout="row" class="justify-content-between mb-1">
+    <div fxLayout="column" class="align-items-start">
+      <!-- <small>Low</small> -->
+      <label class="mb-0">{{ low | currency }}</label>
+    </div>
+    <div fxLayout="column" class="align-items-end">
+      <!-- <small>High</small> -->
+      <label class="mb-0">{{ high | currency }}</label>
+    </div>
+  </div>
+  <div
+    [ngClass]="{ positive: progress >= 90, neutral: progress < 90 && progress >= 50, negative: progress < 50 }"
+    class="positive progress-theme"
+  >
+    <mat-progress-bar mode="determinate" value="{{ progress }}"></mat-progress-bar>
+  </div>
+  <div class="w-100 text-right">
+    <label class="progress-desc text-faint">{{ progress / 100 | percent }} of 24h high</label>
+  </div>
+</div>

@@ -1,0 +1,67 @@
+@import "../../../../../styles/index";
+
+h5 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+  text-align: left;
+  -webkit-line-clamp: 2;
+}
+p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+  text-align: left;
+  -webkit-line-clamp: 4;
+}
+
+.img-container {
+  margin: 0;
+  border-radius: 0;
+  overflow: hidden;
+}
+
+.card {
+  height: 500px;
+  background-color: transparent !important;
+}
+
+@mixin theme-mixin($light-theme: true) {
+  $bg-color: $white-background;
+  $shadow: $card-shadow;
+  $font: $primary-font-color;
+  @if $light-theme != true {
+    $bg-color: $dark-secondary-background;
+    $shadow: $dark-card-shadow;
+    $font: $dark-primary-font-color;
+  }
+  .card {
+    height: 455px;
+    overflow: hidden;
+    border-radius: $default-brdr-radius;
+    width: 100% !important;
+    background-color: $bg-color !important;
+    box-shadow: 0px 1px 3px 0px $shadow !important;
+    // transition: 0.2s ease-in-out;
+    color: $font;
+    &:hover {
+      box-shadow: 0px 3px 3px 1px $shadow !important;
+      // background-color: lighten($bg-color, 3%) !important;
+    }
+  }
+  ::ng-deep .slick-slide {
+    width: 100%;
+  }
+}
+
+.dark.theme-container {
+  @include theme-mixin($light-theme: false);
+}
+
+.theme-container {
+  @include theme-mixin($light-theme: true);
+}

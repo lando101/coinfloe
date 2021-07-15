@@ -20,7 +20,7 @@ import { LoaderCircleComponent } from './components/loader-circle/loader-circle.
 import { TopGainersComponent } from './components/top-gainers/top-gainers.component';
 import { TopLosersComponent } from './components/top-losers/top-losers.component';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
-import { CoinCardComponent } from './components/coin-card/coin-card.component';
+import { CoinCardComponent } from './components/cards/coin-card/coin-card.component';
 import { NewsTilesComponent } from './components/news-tiles/news-tiles.component';
 import { NewsSectionComponent } from './components/news-section/news-section.component';
 import { CoinCardLoaderComponent } from './components/loaders/coin-card-loader/coin-card-loader.component';
@@ -31,6 +31,10 @@ import { CryptoInfoComponent } from './components/crypto-info/crypto-info.compon
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faSquare, faCheckSquare } from '@fortawesome/free-solid-svg-icons';
 import { faEthereum, faGithub, faMedium, faStackOverflow } from '@fortawesome/free-brands-svg-icons';
+import { TrendingNewsComponent } from './components/trending-news/trending-news.component';
+import { NewsCardComponent } from './components/cards/news-card/news-card.component';
+import { AngularTiltModule } from 'angular-tilt';
+import { HighLowProgressComponent } from './components/high-low-progress/high-low-progress.component';
 @NgModule({
   imports: [
     FlexLayoutModule,
@@ -40,6 +44,7 @@ import { faEthereum, faGithub, faMedium, faStackOverflow } from '@fortawesome/fr
     PerfectScrollbarModule,
     NgxSkeletonLoaderModule,
     SlickCarouselModule,
+    AngularTiltModule,
   ],
   declarations: [
     LoaderComponent,
@@ -63,6 +68,9 @@ import { faEthereum, faGithub, faMedium, faStackOverflow } from '@fortawesome/fr
     NewsLoaderTallComponent,
     NewsLoaderShortComponent,
     CryptoInfoComponent,
+    TrendingNewsComponent,
+    NewsCardComponent,
+    HighLowProgressComponent,
   ],
   exports: [
     LoaderComponent,
@@ -84,6 +92,9 @@ import { faEthereum, faGithub, faMedium, faStackOverflow } from '@fortawesome/fr
     CoinCardLoaderComponent,
     NewsLoaderTallComponent,
     CryptoInfoComponent,
+    TrendingNewsComponent,
+    NewsCardComponent,
+    HighLowProgressComponent,
   ],
   providers: [{ provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } }],
   bootstrap: [CoinsListsComponent],

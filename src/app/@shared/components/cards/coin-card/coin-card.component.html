@@ -16,9 +16,19 @@
 
       <!-- <h6 class="card-subtitle mb-2 text-muted">{{ coin?.RAW?.USD?.CHANGEPCT24HOUR / 100 | percent }}</h6> -->
       <div fxLayout="column" class="mt-3 text-left" fxLayoutGap="10px">
-        <div fxLayout="row" class="align-items-end" fxLayoutGap="5px">
+        <div fxLayout="row" class="align-items-baseline" fxLayoutGap="5px">
           <h5 class="font-weight-bold mb-0">{{ coin?.RAW?.USD?.PRICE | currency }}</h5>
-          <small class="mb-1">{{ coin?.RAW?.USD?.CHANGEPCT24HOUR / 100 | percent }}</small>
+          <small
+            class="d-flex justify-content-end font-weight-bold"
+            [ngClass]="{
+              'text-positive': coin?.RAW?.USD?.CHANGEPCT24HOUR > 0,
+              'text-negative': coin?.RAW?.USD?.CHANGEPCT24HOUR < 0
+            }"
+          >
+            <i *ngIf="coin?.RAW?.USD?.CHANGEPCT24HOUR > 0" class="bi bi-arrow-up-short"></i>
+            <i *ngIf="coin?.RAW?.USD?.CHANGEPCT24HOUR < 0" class="bi bi-arrow-down-short"></i>
+            {{ coin?.RAW?.USD?.CHANGEPCT24HOUR / 100 | percent: '0.1-2' }}
+          </small>
         </div>
         <div fxLayout="row">
           <div fxFlex="50" fxLayout="column">
