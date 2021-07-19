@@ -1,5 +1,21 @@
 @import "../../../../styles/index";
 
-.profile-container {
-  min-width: 350px;
+@mixin theme-mixin($light-theme: true) {
+  $font: $primary-font-color;
+  @if $light-theme != true {
+    $font: $dark-primary-font-color;
+  }
+
+  color: $font;
+  .profile-container {
+    min-width: 350px;
+  }
+}
+
+.theme-container {
+  @include theme-mixin($light-theme: true);
+}
+
+.dark.theme-container {
+  @include theme-mixin($light-theme: false);
 }

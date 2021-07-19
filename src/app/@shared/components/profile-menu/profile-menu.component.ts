@@ -15,6 +15,8 @@ export class ProfileMenuComponent implements OnInit {
   @Input() username: string;
   @Input() title: string;
   @Input() user: User;
+  @Input() theme: string;
+
   @Output() logout = new EventEmitter<boolean>(false);
   tileSettings = {
     reverse: true, // reverse the tilt direction
