@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MediaChange, MediaObserver } from '@angular/flex-layout';
 import { MatSidenav } from '@angular/material/sidenav';
-import { filter, finalize } from 'rxjs/operators';
+import { filter, finalize, map } from 'rxjs/operators';
 import { Coin } from 'src/models/coins.model';
 
 import { UntilDestroy, untilDestroyed } from '@core';
@@ -20,6 +20,8 @@ import {
 import { Title } from '@angular/platform-browser';
 import { AuthenticationService, CredentialsService } from '@app/auth';
 import { Router } from '@angular/router';
+import { User } from 'src/models/user.model';
+import { of } from 'rxjs';
 
 @UntilDestroy()
 @Component({
@@ -45,6 +47,7 @@ export class ShellComponent implements OnInit {
   showProfile: boolean = null;
   user_name = '';
   title_display = '';
+  userProfile: User = null;
 
   public config: PerfectScrollbarConfigInterface = {
     wheelSpeed: 0.25,
@@ -102,6 +105,7 @@ export class ShellComponent implements OnInit {
 
     this.username();
     this.title();
+    this.user();
   }
 
   ngAfterViewInit(): void {
@@ -137,6 +141,14 @@ export class ShellComponent implements OnInit {
     this.user_name = credentials ? credentials.username : null;
     console.log(credentials);
     return credentials ? credentials.username : null;
+  }
+
+  user() {
+    this.credentialsService.user$.subscribe((data: User[]) => {
+      if (data) {
+        this.userProfile = data[0];
+      }
+    });
   }
 
   title(): string {

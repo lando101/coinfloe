@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of, from } from 'rxjs';
+import { map, mergeMap } from 'rxjs/operators';
 
 import { Credentials, CredentialsService } from './credentials.service';
-
+import { AngularFireAuth } from '@angular/fire/auth';
+import { User } from 'src/models/user.model';
 export interface LoginContext {
   username: string;
   password: string;
@@ -17,21 +19,36 @@ export interface LoginContext {
   providedIn: 'root',
 })
 export class AuthenticationService {
-  constructor(private credentialsService: CredentialsService) {}
+  constructor(public afAuth: AngularFireAuth, private credentialsService: CredentialsService) {}
 
   /**
    * Authenticates the user.
    * @param context The login parameters.
    * @return The user credentials.
    */
-  login(context: LoginContext): Observable<Credentials> {
+  login(context: LoginContext, method: string): Observable<Credentials> {
     // Replace by proper authentication call
     const data = {
-      username: context.username,
-      token: '123456',
+      username: '',
+      token: '',
     };
-    this.credentialsService.setCredentials(data, context.remember);
-    return of(data);
+    // if (method === 'email') {
+    return from(this.afAuth.signInWithEmailAndPassword(context.username, context.password)).pipe(
+      map((result: any) => {
+        console.log('EMAIL LOGIN');
+        console.log(result);
+        console.log('EMAIL LOGIN');
+        const uid = result.user.uid;
+        const cred = {
+          username: result.user.email,
+          token: result.user.refreshToken,
+          uid: result.user.uid,
+        };
+        this.credentialsService.setCredentials(cred, context.remember);
+        return cred;
+      })
+    );
+    // }
   }
 
   /**
@@ -41,6 +58,7 @@ export class AuthenticationService {
   logout(): Observable<boolean> {
     // Customize credentials invalidation here
     this.credentialsService.setCredentials();
+    this.afAuth.signOut();
     return of(true);
   }
 }

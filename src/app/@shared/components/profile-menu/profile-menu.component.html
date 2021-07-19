@@ -1,9 +1,33 @@
-<perfect-scrollbar #perfectscroll class="ps" [config]="config">
-  <mat-list>
+<div class="my-3 profile-container">
+  <div fxFill>
+    <div fxLayout="column" class="align-items-center">
+      <ngx-avatar size="80" name="{{ user?.username }}"></ngx-avatar>
+      <h4>@{{ user?.username }}</h4>
+      <p class="text-faint font-weight-bold">{{ user?.email }}</p>
+    </div>
+  </div>
+  <!-- <mat-list>
     <mat-list-item>
       <span translate>Logged in as</span>&nbsp;<b>{{ username }}</b>
     </mat-list-item>
+    <mat-list-item>
+      {{user?.uid}}
+    </mat-list-item>
     <mat-divider></mat-divider>
-  </mat-list>
-  <button mat-menu-item (click)="logOut()" translate>Logout</button>
-</perfect-scrollbar>
+  </mat-list> -->
+  <div fxLayout="row" class="justify-content-center">
+    <button
+      aTilt
+      [tiltSettings]="tileSettings"
+      class="btn btn-primary font-weight-bold"
+      mat-flat-button
+      (click)="logOut()"
+      translate
+    >
+      <span fxLayout="row" fxLayoutGap="5px" class="align-items-center">
+        <i class="bi bi-door-open mr-2"></i>
+        Logout
+      </span>
+    </button>
+  </div>
+</div>

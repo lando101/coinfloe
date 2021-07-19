@@ -58,10 +58,6 @@ export class SearchComponent implements OnInit {
       if (data) {
         this.coins = data;
         data.forEach((element: Coin) => {
-          console.log('SEARCH');
-          console.log(element);
-          console.log('SEARCH');
-
           this.coinsSearch.push({
             name: element.CoinInfo.FullName,
             symbol: element.CoinInfo.Name,

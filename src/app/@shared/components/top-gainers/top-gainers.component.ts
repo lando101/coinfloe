@@ -59,7 +59,7 @@ export class TopGainersComponent implements OnInit {
   }
 
   slickInit(e: any) {
-    console.log('slick initialized');
+    // console.log('slick initialized');
   }
 
   breakpoint(e: any) {

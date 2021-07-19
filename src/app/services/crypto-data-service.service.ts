@@ -229,8 +229,8 @@ export class CryptoDataServiceService {
 
   // set observerable array
   setCryptoData(coins: Coin[]) {
-    console.log('COINS SERVICE');
-    console.log(coins);
+    // console.log('COINS SERVICE');
+    // console.log(coins);
     this.coinsObs.next(coins);
   }
 

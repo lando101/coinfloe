@@ -93,6 +93,12 @@
       color: $font !important;
     }
   }
+  .inner-container-fullscreen {
+    width: 100vw !important;
+    height: calc(100vh - 86px) !important;
+    border-top-right-radius: 0 !important;
+    border-top-left-radius: 0 !important;
+  }
 }
 
 .dark.bottom-sheet-wrapper {

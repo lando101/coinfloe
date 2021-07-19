@@ -32,9 +32,10 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {}
 
-  login() {
+  login(signInMethod: string) {
+    const method: string = signInMethod;
     this.isLoading = true;
-    const login$ = this.authenticationService.login(this.loginForm.value);
+    const login$ = this.authenticationService.login(this.loginForm.value, method);
     login$
       .pipe(
         finalize(() => {

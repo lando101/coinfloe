@@ -105,9 +105,9 @@ export class CoinsListsComponent implements OnInit {
 
     // this.localCoins = tempArray.slice(0, tempArray.length - 1).reverse();
     this.localCoins = tempArray.reverse();
-    console.log('LOCAL COINS');
-    console.log(this.localCoins);
-    console.log('LOCAL COINS');
+    // console.log('LOCAL COINS');
+    // console.log(this.localCoins);
+    // console.log('LOCAL COINS');
   }
 
   openBottomSheet(coin: Coin) {

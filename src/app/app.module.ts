@@ -8,6 +8,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { Angulartics2Module } from 'angulartics2';
 import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 import { environment } from '@env/environment';
 import { CoreModule } from '@core';
@@ -20,6 +22,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { CookieModule } from 'ngx-cookie';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: 'AIzaSyAeKsUc-gOCa5HV9wAzlAbBY06UQYistE0',
+  authDomain: 'cryptoliov2.firebaseapp.com',
+  projectId: 'cryptoliov2',
+  storageBucket: 'cryptoliov2.appspot.com',
+  messagingSenderId: '813369098889',
+  appId: '1:813369098889:web:abc26ee0cfccd0f3157c58',
+  measurementId: 'G-DW23V1VWZE',
+};
 @NgModule({
   imports: [
     BrowserModule,
@@ -36,6 +48,8 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
     AuthModule,
     CookieModule.forRoot(),
     Angulartics2Module.forRoot(),
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireAuthModule,
     AppRoutingModule, // must be imported as the last module as it contains the fallback route
   ],
   declarations: [AppComponent],

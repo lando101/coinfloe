@@ -67,8 +67,8 @@ export class NewsTilesComponent implements OnInit {
       next: (data) => {
         console.log('NEWS TILE');
         this.allNewsS2 = data.data.data;
-        console.log(this.allNewsS2);
-        console.log('NEWS TILE');
+        // console.log(this.allNewsS2);
+        // console.log('NEWS TILE');
       },
       error: (error) => {
         console.log(error);

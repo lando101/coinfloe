@@ -21,6 +21,7 @@
         *ngIf="showProfile"
         [username]="user_name"
         [title]="title_display"
+        [user]="userProfile"
         (logout)="logout()"
       ></app-profile-menu>
       <app-notifications-menu *ngIf="!showProfile"></app-notifications-menu>

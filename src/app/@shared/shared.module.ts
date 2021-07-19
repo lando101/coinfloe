@@ -35,6 +35,8 @@ import { TrendingNewsComponent } from './components/trending-news/trending-news.
 import { NewsCardComponent } from './components/cards/news-card/news-card.component';
 import { AngularTiltModule } from 'angular-tilt';
 import { HighLowProgressComponent } from './components/high-low-progress/high-low-progress.component';
+import { AvatarModule } from 'ngx-avatar';
+
 @NgModule({
   imports: [
     FlexLayoutModule,
@@ -45,6 +47,7 @@ import { HighLowProgressComponent } from './components/high-low-progress/high-lo
     NgxSkeletonLoaderModule,
     SlickCarouselModule,
     AngularTiltModule,
+    AvatarModule,
   ],
   declarations: [
     LoaderComponent,

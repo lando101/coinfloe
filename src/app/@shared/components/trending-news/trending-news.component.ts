@@ -22,7 +22,7 @@ export class TrendingNewsComponent implements OnInit {
   };
 
   slickInit(e: any) {
-    console.log('slick initialized');
+    // console.log('slick initialized');
   }
 
   breakpoint(e: any) {
@@ -44,8 +44,8 @@ export class TrendingNewsComponent implements OnInit {
       next: (data) => {
         console.log('NEWS TILE');
         this.allNewsS2 = data.data.data;
-        console.log(this.allNewsS2);
-        console.log('NEWS TILE');
+        // console.log(this.allNewsS2);
+        // console.log('NEWS TILE');
       },
       error: (error) => {
         console.log(error);
