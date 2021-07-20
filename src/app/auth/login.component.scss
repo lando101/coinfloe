@@ -1,5 +1,5 @@
 @import "src/theme/theme-variables";
-
+@import "../../styles/index";
 :host {
   display: flex;
   flex: 1;
@@ -25,4 +25,42 @@
 
 .login-error {
   color: mat-color($app-warn);
+}
+
+.branding-container {
+  position: relative;
+  background-image: linear-gradient(136deg, #6b42ff, #9980f9);
+  .brand-inner-container {
+    backdrop-filter: blur(12px) brightness(0.95) contrast(1.2);
+    border-top: 1px solid rgba(228, 228, 228, 0.22);
+    border-bottom: 1px solid rgba(228, 228, 228, 0.22);
+    padding: 66px 0px;
+    h1 {
+      text-shadow: 0 0 14px #4e4e4e6b;
+      font-size: 12rem;
+      font-family: "Righteous", cursive;
+      color: white;
+      z-index: 9;
+    }
+    h5 {
+      color: white;
+      font-size: 2.5em;
+      font-weight: 100;
+      text-shadow: 0 0 14px #4e4e4e6b;
+    }
+  }
+
+  ::ng-deep canvas {
+    position: absolute !important;
+  }
+}
+
+.login-box {
+  // height: 455px;
+  overflow: hidden;
+  border-radius: 20px;
+  width: 100% !important;
+  background-color: #fff !important;
+  box-shadow: 0 1px 3px 0 rgb(195 195 195 / 57%) !important;
+  color: #151515;
 }

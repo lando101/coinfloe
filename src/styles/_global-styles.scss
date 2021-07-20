@@ -20,3 +20,14 @@
   border-color: #6b42ff !important;
   border-radius: 0.85rem !important;
 }
+
+::ng-deep .btn {
+  border-radius: 0.85rem !important;
+  font-weight: bold !important;
+}
+
+::ng-deep .btn-success {
+  color: #fff;
+  background-color: #09c133 !important;
+  border-color: #09c133 !important;
+}

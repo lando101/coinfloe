@@ -9,7 +9,8 @@ import { MaterialModule } from '@app/material.module';
 import { I18nModule } from '@app/i18n';
 import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from './login.component';
-
+import { ParticlesModule } from 'ngx-particle';
+import { NgParticlesModule } from 'ng-particles';
 @NgModule({
   imports: [
     CommonModule,
@@ -20,6 +21,8 @@ import { LoginComponent } from './login.component';
     MaterialModule,
     I18nModule,
     AuthRoutingModule,
+    ParticlesModule,
+    NgParticlesModule,
   ],
   declarations: [LoginComponent],
 })

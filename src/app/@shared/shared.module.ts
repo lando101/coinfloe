@@ -36,6 +36,7 @@ import { NewsCardComponent } from './components/cards/news-card/news-card.compon
 import { AngularTiltModule } from 'angular-tilt';
 import { HighLowProgressComponent } from './components/high-low-progress/high-low-progress.component';
 import { AvatarModule } from 'ngx-avatar';
+import { CreateAccountDialogComponent } from './components/create-account-dialog/create-account-dialog.component';
 
 @NgModule({
   imports: [
@@ -74,6 +75,7 @@ import { AvatarModule } from 'ngx-avatar';
     TrendingNewsComponent,
     NewsCardComponent,
     HighLowProgressComponent,
+    CreateAccountDialogComponent,
   ],
   exports: [
     LoaderComponent,
@@ -98,6 +100,7 @@ import { AvatarModule } from 'ngx-avatar';
     TrendingNewsComponent,
     NewsCardComponent,
     HighLowProgressComponent,
+    CreateAccountDialogComponent,
   ],
   providers: [{ provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } }],
   bootstrap: [CoinsListsComponent],
