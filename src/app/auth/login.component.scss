@@ -29,7 +29,8 @@
 
 .branding-container {
   position: relative;
-  background-image: linear-gradient(136deg, #6b42ff, #9980f9);
+  // background-image: linear-gradient(136deg, #6b42ff, #9980f9);
+  background-image: radial-gradient(#9980f9, #6b42ff);
   .brand-inner-container {
     backdrop-filter: blur(12px) brightness(0.95) contrast(1.2);
     border-top: 1px solid rgba(228, 228, 228, 0.22);
@@ -63,4 +64,11 @@
   background-color: #fff !important;
   box-shadow: 0 1px 3px 0 rgb(195 195 195 / 57%) !important;
   color: #151515;
+  .divider-text {
+    z-index: 1;
+  }
+  img {
+    height: 20px;
+    width: 20px;
+  }
 }

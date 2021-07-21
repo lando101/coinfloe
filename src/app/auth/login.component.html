@@ -37,26 +37,46 @@
         <app-language-selector></app-language-selector>
       </div>
     </div>
-    <div class="login-container" fxLayout="row" fxLayoutAlign="center">
+    <div [@fadeOutUp] *ngIf="showLogin" class="login-container" fxLayout="row" fxLayoutAlign="center">
       <mat-card fxFlex="100%" class="login-box m-5 pb-5">
+        <h3 class="font-weight-bold text-center">Login</h3>
+        <div class="my-4 d-flex">
+          <button class="btn btn-light border w-100">
+            <span fxLayout="row" fxLayoutAlign="center center">
+              <img
+                class="mr-2"
+                src="https://firebasestorage.googleapis.com/v0/b/cryptoliov2.appspot.com/o/5847f9cbcef1014c0b5e48c8.png?alt=media&token=efab8e71-2902-4c23-8769-bbbd3507da53"
+                alt=""
+              />
+              Log in with Google
+            </span>
+          </button>
+        </div>
+        <div class="d-flex align-items-center justify-content-center position-relative">
+          <mat-divider></mat-divider>
+          <span class="bg-white px-3 divider-text"><strong class="text-faint">OR</strong></span>
+          <mat-divider></mat-divider>
+        </div>
         <form (ngSubmit)="login('email')" [formGroup]="loginForm" novalidate>
           <div class="login-error" [hidden]="!error || isLoading" translate>Username or password incorrect.</div>
           <br />
           <div class="login-fields" fxLayout="column">
-            <mat-form-field [hideRequiredMarker]="true">
+            <mat-form-field [hideRequiredMarker]="true" appearance="outline">
+              <mat-label>Email</mat-label>
               <input
                 type="text"
                 matInput
                 formControlName="username"
                 autocomplete="username"
-                [placeholder]="'Username' | translate"
+                [placeholder]="'Email' | translate"
                 required
               />
               <mat-error *ngIf="loginForm.controls.username.invalid && loginForm.controls.username.touched">
-                <span translate>Username is required</span>
+                <span translate>Email is required</span>
               </mat-error>
             </mat-form-field>
-            <mat-form-field [hideRequiredMarker]="true">
+            <mat-form-field [hideRequiredMarker]="true" appearance="outline">
+              <mat-label>Password</mat-label>
               <input
                 type="password"
                 matInput
@@ -81,11 +101,158 @@
               <app-loader class="inline-loader" [isLoading]="isLoading"></app-loader>
               <span translate>Login</span>
             </button>
-            <div>
-              <button class="btn btn-success w-100" mat-flat-button>Join Coinfloe</button>
-            </div>
           </div>
         </form>
+        <div class="mt-3">
+          <button class="btn btn-success w-100" mat-flat-button (click)="toggleLogin(0)">Join Coinfloe</button>
+        </div>
+      </mat-card>
+    </div>
+
+    <div [@bounceIn] *ngIf="showCreate" class="login-container" fxLayout="row" fxLayoutAlign="center">
+      <mat-card fxFlex="100%" class="login-box m-5 pb-5">
+        <h3 class="font-weight-bold text-center">Create Account</h3>
+        <div class="my-4 d-flex">
+          <button class="btn btn-light border w-100">
+            <span fxLayout="row" fxLayoutAlign="center center">
+              <img
+                class="mr-2"
+                src="https://firebasestorage.googleapis.com/v0/b/cryptoliov2.appspot.com/o/5847f9cbcef1014c0b5e48c8.png?alt=media&token=efab8e71-2902-4c23-8769-bbbd3507da53"
+                alt=""
+              />
+              Create account with Google
+            </span>
+          </button>
+        </div>
+        <div class="d-flex align-items-center justify-content-center position-relative">
+          <mat-divider></mat-divider>
+          <span class="bg-white px-3 divider-text"><strong class="text-faint">OR</strong></span>
+          <mat-divider></mat-divider>
+        </div>
+        <form (ngSubmit)="login('email')" [formGroup]="createAccountForm" novalidate>
+          <div class="login-error" [hidden]="!error || isLoading" translate>Username or password incorrect.</div>
+          <br />
+          <div class="login-fields" fxLayout="column">
+            <mat-form-field [hideRequiredMarker]="true" appearance="outline">
+              <mat-label>Username</mat-label>
+              <input
+                type="text"
+                matInput
+                formControlName="newUsername"
+                autocomplete="newUsername"
+                [placeholder]="'Username' | translate"
+                required
+              />
+              <mat-error
+                *ngIf="
+                  createAccountForm.controls.newUsername.invalid &&
+                  createAccountForm.controls.newUsername.touched &&
+                  !createAccountForm.get('newUsername').hasError('minlength') &&
+                  !createAccountForm.get('newUsername').hasError('maxlength')
+                "
+              >
+                <span translate>Username is required</span>
+              </mat-error>
+              <mat-error *ngIf="createAccountForm.controls.newUsername.hasError('minlength')">
+                <span translate>Username is too short - min 3 characters</span>
+              </mat-error>
+              <mat-error *ngIf="createAccountForm.controls.newUsername.hasError('maxlength')">
+                <span translate>Username is too long - max 25 characters</span>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field [hideRequiredMarker]="true" appearance="outline">
+              <mat-label>Email</mat-label>
+              <input
+                type="email"
+                [email]="true"
+                matInput
+                cannotContainerSpaces
+                formControlName="email"
+                autocomplete="email"
+                [placeholder]="'Email' | translate"
+                required
+              />
+              <mat-error
+                *ngIf="
+                  createAccountForm.controls.email.invalid &&
+                  createAccountForm.controls.email.touched &&
+                  !createAccountForm.get('email').hasError('minlength') &&
+                  !createAccountForm.get('email').hasError('maxlength')
+                "
+              >
+                <span translate>Email is required</span>
+              </mat-error>
+              <mat-error *ngIf="createAccountForm.controls.email.hasError('minlength')">
+                <span translate>Email is too short - min 8 characters</span>
+              </mat-error>
+              <mat-error *ngIf="createAccountForm.controls.email.hasError('maxlength')">
+                <span translate>Email is too long - max 64 characters</span>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field [hideRequiredMarker]="true" appearance="outline">
+              <mat-label>Password</mat-label>
+              <input
+                type="password"
+                matInput
+                formControlName="newPassword"
+                autocomplete="new-password"
+                [NgPasswordValidator]="options"
+                [placeholder]="'Password' | translate"
+                required
+              />
+              <mat-error
+                *ngIf="createAccountForm.controls.newPassword.invalid && createAccountForm.controls.newPassword.touched"
+              >
+                <span translate>Password is required</span>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field [hideRequiredMarker]="true" appearance="outline">
+              <mat-label>Re-enter Password</mat-label>
+              <input
+                type="password"
+                matInput
+                [errorStateMatcher]="errorMatcher"
+                formControlName="passwordVerify"
+                autocomplete="new-password"
+                [placeholder]="'Re-enter password' | translate"
+                required
+              />
+              <mat-error *ngIf="createAccountForm.hasError('passwordsDoNotMatch')">
+                <span translate>Passwords do not match</span>
+              </mat-error>
+              <mat-error
+                *ngIf="
+                  createAccountForm.controls.passwordVerify.invalid && createAccountForm.controls.passwordVerify.touched
+                "
+              >
+                <span translate>Password is required</span>
+              </mat-error>
+            </mat-form-field>
+            <br />
+
+            <div class="state">
+              Do passwords match?
+              <strong>{{ !createAccountForm.hasError('passwordsDoNotMatch') }}</strong>
+            </div>
+
+            <!-- <button
+              class="btn btn-primary"
+              mat-flat-button
+              color="primary"
+              type="submit"
+              [disabled]="loginForm.invalid || isLoading"
+            >
+              <app-loader class="inline-loader" [isLoading]="isLoading"></app-loader>
+              <span translate>Login</span>
+            </button> -->
+          </div>
+        </form>
+        <div class="mt-3">
+          <button class="btn btn-success w-100" mat-flat-button>Create Coinfloe Account</button>
+        </div>
+        <div class="mt-3">
+          <button class="btn btn-light w-100" mat-flat-button (click)="toggleLogin(1)">Cancel</button>
+        </div>
       </mat-card>
     </div>
   </div>

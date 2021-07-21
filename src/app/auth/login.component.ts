@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl, FormGroupDirective, NgForm } from '@angular/forms';
 import { finalize } from 'rxjs/operators';
 
 import { environment } from '@env/environment';
@@ -9,29 +9,71 @@ import { AuthenticationService } from './authentication.service';
 import { Container, Main } from 'tsparticles';
 
 import { trigger, transition, useAnimation } from '@angular/animations';
-import { bounce, fadeIn, fadeInUp, flipInX, flipInY, zoomIn } from 'ng-animate';
+import {
+  bounce,
+  bounceIn,
+  fadeIn,
+  fadeInUp,
+  fadeOutDown,
+  fadeOutUp,
+  flip,
+  flipInX,
+  flipInY,
+  flipOutX,
+  zoomIn,
+} from 'ng-animate';
+import { ErrorStateMatcher } from '@angular/material/core';
 
-const log = new Logger('Login');
-
+/** Error when the parent is invalid */
+class CrossFieldErrorMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    return form.control.get('newPassword').value !== form.control.get('passwordVerify').value && control.dirty;
+  }
+}
 @UntilDestroy()
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
   animations: [
-    trigger('flipInX', [
+    trigger('fadeOutUp', [
       transition(':enter', [
-        useAnimation(flipInX, {
+        useAnimation(bounceIn, {
           params: {
-            timing: 0.75,
-            a: '20px',
-            b: '0px',
+            timing: 0.95,
+          },
+        }),
+      ]),
+      transition(':leave', [
+        useAnimation(fadeOutUp, {
+          params: {
+            timing: 0.18,
+            a: '0px',
+            b: '-100px',
+          },
+        }),
+      ]),
+    ]),
+    trigger('bounceIn', [
+      transition(':leave', [
+        useAnimation(fadeOutDown, {
+          params: {
+            timing: 0.18,
+            a: '0px',
+            b: '100px',
+          },
+        }),
+      ]),
+      transition(':enter', [
+        useAnimation(bounceIn, {
+          params: {
+            timing: 0.95,
           },
         }),
       ]),
     ]),
     trigger('fadeIn', [
-      transition(':enter', [
+      transition(':leave', [
         useAnimation(fadeIn, {
           params: {
             timing: 0.3,
@@ -43,8 +85,36 @@ const log = new Logger('Login');
 })
 export class LoginComponent implements OnInit {
   showBrand: boolean;
+  showLogin = true;
+  showCreate: boolean;
+
+  version: string | null = environment.version;
+  error: string | undefined;
+  loginForm!: FormGroup;
+  createAccountForm!: FormGroup;
+  errorMatcher = new CrossFieldErrorMatcher();
+  model = {
+    password: '',
+    confirmPassword: '',
+  };
+  isLoading = false;
+
+  myStyle: object = {};
+  myParams: object = {};
+  width = 100;
+  height = 100;
   id = 'tsparticles';
 
+  options = {
+    placement: 'left',
+    password: {
+      type: 'range',
+      min: 8,
+      max: 16,
+    },
+    shadow: true,
+    offset: 15,
+  };
   /* Starting from 1.19.0 you can use a remote url (AJAX request) to a JSON with the configuration */
   particlesUrl = 'http://foo.bar/particles.json';
 
@@ -644,25 +714,6 @@ export class LoginComponent implements OnInit {
     },
   };
 
-  particlesLoaded(container: Container): void {
-    console.log(container);
-  }
-
-  particlesInit(main: Main): void {
-    console.log(main);
-
-    // Starting from 1.19.0 you can add custom presets or shape here, using the current tsParticles instance (main)
-  }
-
-  version: string | null = environment.version;
-  error: string | undefined;
-  loginForm!: FormGroup;
-  isLoading = false;
-
-  myStyle: object = {};
-  myParams: object = {};
-  width: number = 100;
-  height: number = 100;
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -670,6 +721,7 @@ export class LoginComponent implements OnInit {
     private authenticationService: AuthenticationService
   ) {
     this.createForm();
+    this.createNewAccountForm();
   }
 
   ngOnInit() {
@@ -701,7 +753,15 @@ export class LoginComponent implements OnInit {
       },
     };
   }
+  particlesLoaded(container: Container): void {
+    console.log(container);
+  }
 
+  particlesInit(main: Main): void {
+    console.log(main);
+
+    // Starting from 1.19.0 you can add custom presets or shape here, using the current tsParticles instance (main)
+  }
   login(signInMethod: string) {
     const method: string = signInMethod;
     this.isLoading = true;
@@ -716,21 +776,59 @@ export class LoginComponent implements OnInit {
       )
       .subscribe(
         (credentials) => {
-          log.debug(`${credentials.username} successfully logged in`);
+          // log.debug(`${credentials.username} successfully logged in`);
           this.router.navigate([this.route.snapshot.queryParams.redirect || '/'], { replaceUrl: true });
         },
         (error) => {
-          log.debug(`Login error: ${error}`);
+          // log.debug(`Login error: ${error}`);
           this.error = error;
         }
       );
   }
-
+  toggleLogin(type: number) {
+    if (type === 0) {
+      this.showLogin = false;
+      setTimeout(() => {
+        this.showCreate = true;
+      }, 500);
+    } else if (type === 1) {
+      this.showCreate = false;
+      setTimeout(() => {
+        this.showLogin = true;
+      }, 500);
+    }
+  }
   private createForm() {
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required],
       remember: true,
     });
+  }
+
+  private createNewAccountForm() {
+    this.createAccountForm = this.formBuilder.group(
+      {
+        newUsername: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(25)]],
+        email: ['', [Validators.required, Validators.minLength(7), Validators.maxLength(64)]],
+        newPassword: [
+          '',
+          [
+            Validators.required,
+            Validators.maxLength(this.options.password.max),
+            Validators.minLength(this.options.password.min),
+          ],
+        ],
+        passwordVerify: ['', Validators.required],
+      },
+      {
+        validator: this.passwordValidator,
+      }
+    );
+  }
+  private passwordValidator(form: FormGroup) {
+    const condition = form.get('newPassword').value !== form.get('passwordVerify').value;
+
+    return condition ? { passwordsDoNotMatch: true } : null;
   }
 }
