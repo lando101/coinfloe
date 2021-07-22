@@ -27,6 +27,10 @@
   color: mat-color($app-warn);
 }
 
+.login-wrapper {
+  height: 100vh !important;
+}
+
 .branding-container {
   position: relative;
   // background-image: linear-gradient(136deg, #6b42ff, #9980f9);

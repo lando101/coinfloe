@@ -63,15 +63,15 @@ export class TopGainersComponent implements OnInit {
   }
 
   breakpoint(e: any) {
-    console.log('breakpoint');
+    // console.log('breakpoint');
   }
 
   afterChange(e: any) {
-    console.log('afterChange');
+    // console.log('afterChange');
   }
 
   beforeChange(e: any) {
-    console.log('beforeChange');
+    // console.log('beforeChange');
   }
   constructor() {}
 

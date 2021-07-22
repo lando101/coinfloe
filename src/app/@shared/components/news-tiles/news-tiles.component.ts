@@ -37,19 +37,19 @@ export class NewsTilesComponent implements OnInit {
   }
 
   slickInit(e: any) {
-    console.log('slick initialized');
+    // console.log('slick initialized');
   }
 
   breakpoint(e: any) {
-    console.log('breakpoint');
+    // console.log('breakpoint');
   }
 
   afterChange(e: any) {
-    console.log('afterChange');
+    // console.log('afterChange');
   }
 
   beforeChange(e: any) {
-    console.log('beforeChange');
+    // console.log('beforeChange');
   }
   constructor(private cryptoDataService: CryptoDataServiceService, private newService: NewsService) {}
 
@@ -65,7 +65,7 @@ export class NewsTilesComponent implements OnInit {
     });
     this.newService.getAllNews2().subscribe({
       next: (data) => {
-        console.log('NEWS TILE');
+        // console.log('NEWS TILE');
         this.allNewsS2 = data.data.data;
         // console.log(this.allNewsS2);
         // console.log('NEWS TILE');

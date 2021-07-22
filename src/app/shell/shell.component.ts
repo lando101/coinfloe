@@ -92,11 +92,11 @@ export class ShellComponent implements OnInit {
     });
 
     this.cryptoService.getCryptoData().subscribe((data) => {
-      console.log(data);
+      // console.log(data);
     });
 
     this.cryptoService.getCryptoBlockChainData().subscribe((data) => {
-      console.log(data);
+      // console.log(data);
     });
 
     // this.cryptoService.getAllNews();
@@ -139,7 +139,7 @@ export class ShellComponent implements OnInit {
   username(): string | null {
     const credentials = this.credentialsService.credentials;
     this.user_name = credentials ? credentials.username : null;
-    console.log(credentials);
+    // console.log(credentials);
     return credentials ? credentials.username : null;
   }
 

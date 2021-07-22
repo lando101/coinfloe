@@ -60,7 +60,7 @@ export class HomeComponent implements OnInit {
 
     this.bottomSheetService.bottomSheetShow.subscribe((data) => {
       this.bottomSheet = data;
-      console.log(this.bottomSheet);
+      // console.log(this.bottomSheet);
     });
 
     this.themeService.themeTypeBS.subscribe((data) => {
@@ -109,16 +109,16 @@ export class HomeComponent implements OnInit {
       tempArray.push(match);
     });
     this.topGainerCoins = tempArray;
-    console.log(this.topGainerCoins);
+    // console.log(this.topGainerCoins);
   }
 
   setSelectedCoin(event: any) {
     this.selectedCoin = event;
-    console.log(event);
+    // console.log(event);
   }
 
   displayCoin(event: any) {
-    console.log('Show state: ' + event);
+    // console.log('Show state: ' + event);
     this.bottomSheet = !this.bottomSheet;
   }
 }

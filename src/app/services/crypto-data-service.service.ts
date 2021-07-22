@@ -113,7 +113,7 @@ export class CryptoDataServiceService {
     } else {
       return this._httpClient.get(routes.blockChainInfo(this.defaultQuery)).pipe(
         map((body: any) => {
-          console.log(body);
+          // console.log(body);
           this.setCryptoBlockChainData(body.data.Data, true);
           return body.Data;
         })
@@ -156,7 +156,7 @@ export class CryptoDataServiceService {
     this._httpClient.get(routes.cryptoHourlyPrice(params)).subscribe({
       next: (data: any) => {
         this.coinHourlyPriceObs.next(data.data.Data);
-        console.log(data);
+        // console.log(data);
       },
       error: (error) => {},
     });
@@ -208,9 +208,9 @@ export class CryptoDataServiceService {
     let news: NewsSource1[] = [];
     this._httpClient.get(routes.cryptoNews(params)).subscribe({
       next: (data: any) => {
-        console.log('ALL NEWS!!!!!!!!!!!!!!!!!!!!!!!');
+        // console.log('ALL NEWS!!!!!!!!!!!!!!!!!!!!!!!');
         this.cryptoNewsObs.next(data.data);
-        console.log('ALL NEWS!!!!!!!!!!!!!!!!!!!!!!!');
+        // console.log('ALL NEWS!!!!!!!!!!!!!!!!!!!!!!!');
       },
       error: (error) => {
         console.log(error);

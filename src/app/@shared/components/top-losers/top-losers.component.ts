@@ -62,22 +62,22 @@ export class TopLosersComponent implements OnInit {
   }
 
   breakpoint(e: any) {
-    console.log('breakpoint');
+    // console.log('breakpoint');
   }
 
   afterChange(e: any) {
-    console.log('afterChange');
+    // console.log('afterChange');
   }
 
   beforeChange(e: any) {
-    console.log('beforeChange');
+    // console.log('beforeChange');
   }
   constructor() {}
 
   ngOnInit(): void {}
 
   openBottomSheet(coin: Coin) {
-    console.log('SHOW BOTTOM SHEET');
+    // console.log('SHOW BOTTOM SHEET');
     this.showCoinDetails.emit(true);
     this.coin.emit(coin);
   }

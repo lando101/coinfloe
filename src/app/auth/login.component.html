@@ -1,4 +1,4 @@
-<div fxFill fxLayout="row">
+<div fxFill class="login-wrapper" fxLayout="row">
   <div fxFlex="65" fxFlex.lt-lg="55" fxHide.lt-md fxLayoutAlign="center center" class="branding-container">
     <!-- <div class="w-100"> -->
     <!-- <particles [params]="myParams" [style]="myStyle" [width]="width" [height]="height"></particles> -->
@@ -28,7 +28,7 @@
     [ngClass.lt-md]="'branding-container'"
     fxLayoutAlign="center center"
     fxLayoutGap="1.5rem"
-    class="mat-typography"
+    class="mat-typography overflow-auto"
   >
     <div fxHide.gt-sm>
       <h1 fxLayoutAlign="center" translate>APP_NAME</h1>
@@ -41,7 +41,7 @@
       <mat-card fxFlex="100%" class="login-box m-5 pb-5">
         <!-- <h3 class="font-weight-bold text-center">Login</h3> -->
         <div class="my-4 d-flex">
-          <button class="btn btn-light border w-100">
+          <button class="btn btn-light border w-100" (click)="login('google')">
             <span fxLayout="row" fxLayoutAlign="center center">
               <img
                 class="mr-2"
@@ -131,7 +131,7 @@
           <span class="bg-white px-3 divider-text"><strong class="text-faint">OR</strong></span>
           <mat-divider></mat-divider>
         </div>
-        <form (ngSubmit)="login('email')" [formGroup]="createAccountForm" novalidate>
+        <form (ngSubmit)="create('email')" [formGroup]="createAccountForm" novalidate>
           <div class="login-error" [hidden]="!error || isLoading" translate>Username or password incorrect.</div>
           <br />
           <div class="login-fields" fxLayout="column">
@@ -248,10 +248,11 @@
               <span translate>Login</span>
             </button> -->
           </div>
+          <div class="mt-3">
+            <button type="submit" class="btn btn-success w-100" mat-flat-button>Create Coinfloe Account</button>
+          </div>
         </form>
-        <div class="mt-3">
-          <button class="btn btn-success w-100" mat-flat-button>Create Coinfloe Account</button>
-        </div>
+
         <div class="mt-3">
           <button class="btn btn-light w-100" mat-flat-button (click)="toggleLogin(1)">Cancel</button>
         </div>

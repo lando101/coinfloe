@@ -26,15 +26,15 @@ export class TrendingNewsComponent implements OnInit {
   }
 
   breakpoint(e: any) {
-    console.log('breakpoint');
+    // console.log('breakpoint');
   }
 
   afterChange(e: any) {
-    console.log('afterChange');
+    // console.log('afterChange');
   }
 
   beforeChange(e: any) {
-    console.log('beforeChange');
+    // console.log('beforeChange');
   }
 
   constructor(private cryptoDataService: CryptoDataServiceService, private newService: NewsService) {}
@@ -42,7 +42,7 @@ export class TrendingNewsComponent implements OnInit {
   ngOnInit(): void {
     this.newService.getAllNews2().subscribe({
       next: (data) => {
-        console.log('NEWS TILE');
+        // console.log('NEWS TILE');
         this.allNewsS2 = data.data.data;
         // console.log(this.allNewsS2);
         // console.log('NEWS TILE');

@@ -787,21 +787,67 @@ export class LoginComponent implements OnInit {
     const method: string = signInMethod;
     this.isLoading = true;
     const login$ = this.authenticationService.login(this.loginForm.value, method);
-    login$
+
+    if (method === 'email') {
+      login$
+        .pipe(
+          finalize(() => {
+            this.loginForm.markAsPristine();
+            this.isLoading = false;
+          }),
+          untilDestroyed(this)
+        )
+        .subscribe(
+          (credentials) => {
+            // log.debug(`${credentials.username} successfully logged in`);
+            this.router.navigate([this.route.snapshot.queryParams.redirect || '/'], { replaceUrl: true });
+          },
+          (error) => {
+            // log.debug(`Login error: ${error}`);
+            this.error = error;
+          }
+        );
+    } else if (method === 'google') {
+      login$
+        .pipe(
+          finalize(() => {
+            this.loginForm.markAsPristine();
+            this.isLoading = false;
+          }),
+          untilDestroyed(this)
+        )
+        .subscribe(
+          (credentials) => {
+            // log.debug(`${credentials.username} successfully logged in`);
+            this.router.navigate([this.route.snapshot.queryParams.redirect || '/'], { replaceUrl: true });
+          },
+          (error) => {
+            // log.debug(`Login error: ${error}`);
+            this.error = error;
+          }
+        );
+    }
+  }
+  create(createMethod: string) {
+    const method: string = createMethod;
+    this.isLoading = true;
+    const create$ = this.authenticationService.createAccount(this.createAccountForm.value, method);
+
+    create$
       .pipe(
         finalize(() => {
-          this.loginForm.markAsPristine();
+          this.createAccountForm.markAsPristine();
           this.isLoading = false;
         }),
         untilDestroyed(this)
       )
       .subscribe(
-        (credentials) => {
-          // log.debug(`${credentials.username} successfully logged in`);
-          this.router.navigate([this.route.snapshot.queryParams.redirect || '/'], { replaceUrl: true });
+        (data: any) => {
+          console.log('FB Result login component');
+          console.log(data);
+          console.log('FB Result login component');
         },
         (error) => {
-          // log.debug(`Login error: ${error}`);
           this.error = error;
         }
       );

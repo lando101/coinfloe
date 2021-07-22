@@ -11,8 +11,8 @@ export interface Credentials {
   token: string;
 }
 
-const credentialsKey = 'credentials';
-const userKey = 'user';
+const credentialsKey = 'cf_credentials';
+const userKey = 'cf_user';
 /**
  * Provides storage for authentication credentials.
  * The Credentials interface should be replaced with proper implementation.
@@ -29,9 +29,8 @@ export class CredentialsService {
 
     if (savedCredentials) {
       this._credentials = JSON.parse(savedCredentials);
-      if (!this._user) {
-        this.getUser(this._credentials.uid);
-      }
+      console.log('THERE ARE SAVED CREDENTIALS');
+      this.getUser(this._credentials.uid);
     }
     // if (!!savedUser) {
     //   this._user = JSON.parse(savedUser);
@@ -70,25 +69,28 @@ export class CredentialsService {
     if (credentials) {
       const storage = remember ? localStorage : sessionStorage;
       storage.setItem(credentialsKey, JSON.stringify(credentials));
+      console.log('there are credentials');
       this.getUser(credentials.uid);
+      console.log('there are credentials');
     } else {
+      console.log('clearing storage');
+      this._user = undefined;
       sessionStorage.removeItem(credentialsKey);
       localStorage.removeItem(credentialsKey);
+      console.log('clearing storage');
     }
   }
 
   getUser(uid: string) {
-    if (this._user === null) {
-      const result = this.afs
-        .collection('users', (ref) => ref.where('uid', '==', uid))
-        .valueChanges()
-        .subscribe((data: any) => {
-          this._user = data;
-          this.user$.next(this._user);
-          // console.log('USER');
-          // console.log(this._user);
-          // console.log('USER');
-        });
-    }
+    const result = this.afs
+      .collection('users', (ref) => ref.where('uid', '==', uid))
+      .valueChanges()
+      .subscribe((data: any) => {
+        this._user = data;
+        this.user$.next(this._user);
+        // console.log('USER');
+        // console.log(this._user);
+        // console.log('USER');
+      });
   }
 }
