@@ -38,18 +38,32 @@ class CrossFieldErrorMatcher implements ErrorStateMatcher {
   animations: [
     trigger('fadeOutUp', [
       transition(':enter', [
-        useAnimation(bounceIn, {
+        // useAnimation(bounceIn, {
+        //   params: {
+        //     timing: 0.95,
+        //   },
+        // }),
+        useAnimation(fadeInUp, {
           params: {
-            timing: 0.95,
+            timing: 0.15,
+            a: '20px',
+            b: '0px',
           },
         }),
       ]),
       transition(':leave', [
-        useAnimation(fadeOutUp, {
+        // useAnimation(fadeOutUp, {
+        //   params: {
+        //     timing: 0.15,
+        //     a: '0px',
+        //     b: '-100px',
+        //   },
+        // }),
+        useAnimation(fadeOutDown, {
           params: {
-            timing: 0.18,
+            timing: 0.15,
             a: '0px',
-            b: '-100px',
+            b: '60px',
           },
         }),
       ]),
@@ -58,16 +72,23 @@ class CrossFieldErrorMatcher implements ErrorStateMatcher {
       transition(':leave', [
         useAnimation(fadeOutDown, {
           params: {
-            timing: 0.18,
+            timing: 0.15,
             a: '0px',
-            b: '100px',
+            b: '60px',
           },
         }),
       ]),
       transition(':enter', [
-        useAnimation(bounceIn, {
+        // useAnimation(bounceIn, {
+        //   params: {
+        //     timing: 0.95,
+        //   },
+        // }),
+        useAnimation(fadeInUp, {
           params: {
-            timing: 0.95,
+            timing: 0.15,
+            a: '20px',
+            b: '0px',
           },
         }),
       ]),
@@ -787,15 +808,19 @@ export class LoginComponent implements OnInit {
   }
   toggleLogin(type: number) {
     if (type === 0) {
+      // show new account
       this.showLogin = false;
       setTimeout(() => {
         this.showCreate = true;
-      }, 500);
+      }, 390);
+      // 165
     } else if (type === 1) {
+      // show login
       this.showCreate = false;
       setTimeout(() => {
         this.showLogin = true;
-      }, 500);
+      }, 390);
+      // 165
     }
   }
   private createForm() {
