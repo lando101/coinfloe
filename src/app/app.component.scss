@@ -2,3 +2,15 @@
   display: flex;
   flex: 1;
 }
+::ng-deep .ngx-bar {
+  height: 4px !important;
+  background-color: #6b42ff !important;
+}
+
+// ::ng-deep .mat-progress-bar-background{
+
+// }
+
+// ::ng-deep .mat-progress-bar-fill::after{
+//   background-color: #6b42ff !important;
+// }

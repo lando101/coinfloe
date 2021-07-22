@@ -39,6 +39,8 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
     "@fortawesome/free-brands-svg-icons": "^5.15.3",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
+    "@ngx-loading-bar/core": "^5.1.2",
+    "@ngx-loading-bar/router": "^5.1.2",
     "@ngx-translate/core": "^13.0.0",
     "angular-animations": "^0.11.0",
     "angular-tilt": "^1.2.0",

@@ -21,7 +21,8 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { CookieModule } from 'ngx-cookie';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
-
+import { LoadingBarModule } from '@ngx-loading-bar/core';
+import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: 'AIzaSyAeKsUc-gOCa5HV9wAzlAbBY06UQYistE0',
@@ -50,6 +51,8 @@ const firebaseConfig = {
     Angulartics2Module.forRoot(),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
+    LoadingBarModule,
+    LoadingBarRouterModule,
     AppRoutingModule, // must be imported as the last module as it contains the fallback route
   ],
   declarations: [AppComponent],

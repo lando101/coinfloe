@@ -9,6 +9,7 @@ import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
 import { environment } from '@env/environment';
 import { Logger, UntilDestroy, untilDestroyed } from '@core';
 import { I18nService } from '@app/i18n';
+import { LoadingBarService } from '@ngx-loading-bar/core';
 
 const log = new Logger('App');
 
@@ -24,6 +25,7 @@ export class AppComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private titleService: Title,
     private translateService: TranslateService,
+    public loader: LoadingBarService,
     // do not remove the analytics injection, even if the call in ngOnInit() is removed
     // this injection initializes page tracking through the router
     private angulartics2GoogleAnalytics: Angulartics2GoogleAnalytics,
