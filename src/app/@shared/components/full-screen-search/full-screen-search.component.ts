@@ -30,8 +30,8 @@ import { trigger, transition, useAnimation } from '@angular/animations';
       transition(':enter', [
         useAnimation(fadeInUp, {
           params: {
-            timing: 0.15,
-            a: '20px',
+            timing: 0.12,
+            a: '10px',
             b: '0px',
           },
         }),
@@ -39,9 +39,9 @@ import { trigger, transition, useAnimation } from '@angular/animations';
       transition(':leave', [
         useAnimation(fadeOutDown, {
           params: {
-            timing: 0.15,
+            timing: 0.1,
             a: '0px',
-            b: '60px',
+            b: '20px',
           },
         }),
       ]),
