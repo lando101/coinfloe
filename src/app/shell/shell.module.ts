@@ -35,6 +35,7 @@ import { AngularTiltModule } from 'angular-tilt';
     SharedModule,
     AngularTiltModule,
   ],
+  exports: [],
   declarations: [HeaderComponent, ShellComponent, FooterComponent],
   providers: [
     // {

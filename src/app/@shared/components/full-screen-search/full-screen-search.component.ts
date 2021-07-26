@@ -1,28 +1,21 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-
-import { Coin } from 'src/models/coins.model';
+import { Coin, USD } from 'src/models/coins.model';
 import Fuse from 'fuse.js';
 import { CryptoDataServiceService } from '@app/services/crypto-data-service.service';
-import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
+import { CoinSearch } from '../search/search.component';
 import { BottomSheetService } from '@app/services/bottom-sheet.service';
-import { MatBottomSheet } from '@angular/material/bottom-sheet';
-import { FullScreenSearchComponent } from '../full-screen-search/full-screen-search.component';
-
-export interface CoinSearch {
-  name?: string;
-  symbol?: string;
-  price?: any;
-  change?: number;
-  img?: string;
-}
+import { GroupByPipe, KeysPipe, OrderByPipe, PairsPipe, FlattenPipe } from 'ngx-pipes';
 
 @Component({
-  selector: 'app-search',
-  templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss'],
+  selector: 'app-full-screen-search',
+  templateUrl: './full-screen-search.component.html',
+  styleUrls: ['./full-screen-search.component.scss'],
+  providers: [OrderByPipe],
 })
-export class SearchComponent implements OnInit {
+export class FullScreenSearchComponent implements OnInit {
   @Input() theme: string;
+  topGainerCoins: Coin[] = [];
   coins: Coin[] = [];
   coinsSearch: CoinSearch[] = [];
   searchTerm: string = '';
@@ -50,10 +43,6 @@ export class SearchComponent implements OnInit {
     gyroscopeMinAngleY: -45, // This is the bottom limit of the device angle on Y axis, meaning that a device rotated at this angle would tilt the element as if the mouse was on the top border of the element;
     gyroscopeMaxAngleY: 45, // This is the top limit of the device angle on Y axis, meaning that a device rotated at this angle would tilt the element as if the mouse was on the bottom border of the element;
   };
-  public config: PerfectScrollbarConfigInterface = {
-    wheelSpeed: 0.25,
-    // suppressScrollY: false,
-  };
   options = {
     // isCaseSensitive: false,
     includeScore: true,
@@ -74,17 +63,18 @@ export class SearchComponent implements OnInit {
   list: CoinSearch[] = [{}];
   searchResult: any[];
   fuse = new Fuse(this.list, this.options);
-
   constructor(
+    private _bottomSheetRef: MatBottomSheetRef<FullScreenSearchComponent>,
     private coinService: CryptoDataServiceService,
     private bottomSheetService: BottomSheetService,
-    private _bottomSheet: MatBottomSheet
+    private orderByPipe: OrderByPipe
   ) {}
 
   ngOnInit(): void {
     this.coinService.coinsObs.subscribe((data) => {
       if (data) {
         this.coins = data;
+        this.orderPCTGains24h(this.coins);
         data.forEach((element: Coin) => {
           this.coinsSearch.push({
             name: element.CoinInfo.FullName,
@@ -113,8 +103,25 @@ export class SearchComponent implements OnInit {
     this.searchResult = this.fuse.search(pattern, { limit: 10 });
   }
 
-  openSearchSheet(): void {
-    this._bottomSheet.open(FullScreenSearchComponent);
+  // order raw USD information by PCT gain
+  orderPCTGains24h(coins: Coin[]) {
+    let tempArray: USD[] = [];
+    coins.forEach((coin) => {
+      tempArray.push(coin?.RAW?.USD);
+    });
+    tempArray = this.orderByPipe.transform(tempArray, 'CHANGEPCT24HOUR');
+
+    this.findMatch(tempArray);
+  }
+
+  // find match with USD data and Coin data
+  findMatch(coinUSD: USD[]) {
+    let tempArray: Coin[] = [];
+    coinUSD.forEach((coin) => {
+      let match: Coin = this.coins.find((x) => x?.CoinInfo?.Name.toLowerCase() === coin?.FROMSYMBOL?.toLowerCase());
+      tempArray.push(match);
+    });
+    this.topGainerCoins = tempArray;
   }
 
   openBottomSheet(coin: CoinSearch) {
@@ -123,5 +130,9 @@ export class SearchComponent implements OnInit {
     // this.showCoinDetails.emit(true);
     // this.coin.emit(coin);
     this.bottomSheetService.setState(true, match);
+  }
+
+  dimiss(): void {
+    this._bottomSheetRef.dismiss();
   }
 }

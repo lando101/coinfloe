@@ -38,9 +38,10 @@
   <div fxFlexFill fxLayout="column">
     <div fxFlexFill fxLayout="row" class="px-3 mb-2">
       <div fxFlex="25">
-        <a class="coinfloe-brand" href="#" translate>APP_NAME</a>
+        <a fxHide.lt-md class="coinfloe-brand" href="#" translate>APP_NAME</a>
+        <a fxHide.gt-sm class="coinfloe-brand" href="#" translate>[C]</a>
       </div>
-      <button
+      <!-- <button
         class="navbar-toggler"
         type="button"
         data-toggle="collapse"
@@ -48,7 +49,7 @@
         aria-controls="navbarNav"
         aria-expanded="false"
         aria-label="Toggle navigation"
-      ></button>
+      ></button> -->
       <div fxFlex="50" class="justify-content-center">
         <div class="collapse navbar-collapse" class="d-flex justify-content-center h-100" id="navbarNav">
           <ul class="navbar-nav" fxLayout="row" fxLayoutGap="20px">

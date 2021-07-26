@@ -19,6 +19,33 @@ export class TrendingNewsComponent implements OnInit {
     infinite: false,
     autoplay: true,
     autoplaySpeed: 14000,
+    responsive: [
+      {
+        breakpoint: 992,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+      // You can unslick at a given breakpoint now by adding:
+      // settings: "unslick"
+      // instead of a settings object
+    ],
   };
 
   slickInit(e: any) {
@@ -26,7 +53,8 @@ export class TrendingNewsComponent implements OnInit {
   }
 
   breakpoint(e: any) {
-    // console.log('breakpoint');
+    console.log('breakpoint');
+    console.log(e);
   }
 
   afterChange(e: any) {

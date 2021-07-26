@@ -1,0 +1,46 @@
+<div class="fs-search-container">
+  <div class="card border-0 bg-transparent">
+    <div class="card-header d-flex justify-content-between bg-transparent border-0 align-items-center">
+      <h3 class="card-title mb-0">
+        <i class="bi bi-search"></i>
+        Search Coins
+      </h3>
+      <button mat-icon-button (click)="dimiss()" aria-label="close search">
+        <svg
+          _ngcontent-jue-c346=""
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          viewBox="0 0 16 16"
+          class="bi bi-x-lg"
+        >
+          <path
+            _ngcontent-jue-c346=""
+            d="M1.293 1.293a1 1 0 0 1 1.414 0L8 6.586l5.293-5.293a1 1 0 1 1 1.414 1.414L9.414 8l5.293 5.293a1 1 0 0 1-1.414 1.414L8 9.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L6.586 8 1.293 2.707a1 1 0 0 1 0-1.414z"
+            class="ng-tns-c346-3"
+          ></path>
+        </svg>
+      </button>
+    </div>
+    <div class="card-body">
+      <div>
+        <mat-form-field class="w-100" appearance="fill">
+          <mat-label> Search coins... </mat-label>
+          <input matInput type="text" [(ngModel)]="searchTerm" />
+          <button *ngIf="searchTerm" matSuffix mat-icon-button aria-label="Clear" (click)="searchTerm = ''">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+      <div class="text-left w-100 top-coins-container">
+        <h5 class="font-weight-bold mb-3">Top Gainers</h5>
+        <app-top-gainers [theme]="theme" [coins]="topGainerCoins"></app-top-gainers>
+      </div>
+      <div class="text-left w-100 top-coins-container">
+        <h5 class="font-weight-bold mb-3">Top Coins</h5>
+        <app-coins-lists [Coins]="coins" [theme]="theme" [count]="5"></app-coins-lists>
+      </div>
+    </div>
+  </div>
+</div>

@@ -2,9 +2,13 @@
 
 @mixin theme-mixin($light-theme: true) {
   $brightness: 0.96;
+  $font: $primary-font-color;
+  $text-shadow: $primary-text-shadow;
 
   @if $light-theme != true {
     $brightness: 0.8;
+    $font: $dark-primary-font-color;
+    $text-shadow: $primary-text-shadow;
   }
   ::ng-deep .popover-body {
     max-height: 60vh;
@@ -80,6 +84,19 @@
       //     }
       //   }
       // }
+    }
+  }
+  button {
+    border-radius: 0.5rem;
+    opacity: 0.7;
+    color: $font;
+    i {
+      font-size: 20px;
+    }
+    &.active {
+      color: $primary-color !important;
+      opacity: 1;
+      text-shadow: 0 0 11px $text-shadow;
     }
   }
 }

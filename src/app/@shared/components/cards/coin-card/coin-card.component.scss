@@ -15,6 +15,12 @@
 
 .card {
   background-color: transparent;
+  .card-title {
+    text-overflow: ellipsis;
+    width: 124px;
+    white-space: nowrap;
+    overflow: hidden;
+  }
 }
 
 // button {

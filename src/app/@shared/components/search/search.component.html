@@ -1,5 +1,5 @@
 <div class="{{ theme }} theme-container">
-  <div class="input-group search-bar m-0 mr-4">
+  <div fxHide.lt-md class="input-group search-bar m-0 mr-4">
     <div class="input-group-prepend">
       <span class="input-group-text border-0 icon-container" id="basic-addon1">
         <svg
@@ -79,5 +79,10 @@
         </div>
       </div>
     </ng-template>
+  </div>
+  <div fxHide.gt-sm>
+    <button aTilt [tiltSettings]="tileSettings" mat-icon-button (click)="openSearchSheet()">
+      <i class="bi bi-search"></i>
+    </button>
   </div>
 </div>

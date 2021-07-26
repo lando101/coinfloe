@@ -40,7 +40,47 @@ export class TopLosersComponent implements OnInit {
     { img: 'http://placehold.it/350x150/333333' },
     { img: 'http://placehold.it/350x150/666666' },
   ];
-  slideConfig = { slidesToShow: 4, slidesToScroll: 2, dots: true, infinite: false };
+  slideConfig = {
+    slidesToShow: 5,
+    slidesToScroll: 2,
+    dots: true,
+    infinite: false,
+    responsive: [
+      {
+        breakpoint: 1199,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 2,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 992,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 2,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+      // You can unslick at a given breakpoint now by adding:
+      // settings: "unslick"
+      // instead of a settings object
+    ],
+  };
 
   ngOnChanges(changes: SimpleChanges): void {
     //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.

@@ -24,6 +24,26 @@ export class NewsTilesComponent implements OnInit {
     slidesToScroll: 2,
     dots: true,
     infinite: true,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
     // autoplay: true,
     // autoplaySpeed: 7000,
   };
@@ -41,7 +61,7 @@ export class NewsTilesComponent implements OnInit {
   }
 
   breakpoint(e: any) {
-    // console.log('breakpoint');
+    console.log('breakpoint');
   }
 
   afterChange(e: any) {

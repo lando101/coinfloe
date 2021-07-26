@@ -31,3 +31,8 @@
   background-color: #09c133 !important;
   border-color: #09c133 !important;
 }
+
+::ng-deep .mat-bottom-sheet-container {
+  max-height: none !important;
+  padding: 0px !important;
+}

@@ -1,6 +1,6 @@
 <div *ngIf="!!globalData && !!globalMetrics && !!tradingSignals" class="{{ theme }} theme-container text-left my-4">
   <div fxLayout="row">
-    <h3 class="d-flex">
+    <h3 class="d-flex flex-wrap">
       Today's market cap is <b class="mx-2">${{ globalData.quote.USD.total_market_cap | number: '1.0-2' }}</b>
       <small
         class="font-weight-bold d-flex align-items-center"

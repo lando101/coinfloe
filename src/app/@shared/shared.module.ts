@@ -37,6 +37,8 @@ import { AngularTiltModule } from 'angular-tilt';
 import { HighLowProgressComponent } from './components/high-low-progress/high-low-progress.component';
 import { AvatarModule } from 'ngx-avatar';
 import { CreateAccountDialogComponent } from './components/create-account-dialog/create-account-dialog.component';
+import { FullScreenSearchComponent } from './components/full-screen-search/full-screen-search.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -49,6 +51,7 @@ import { CreateAccountDialogComponent } from './components/create-account-dialog
     SlickCarouselModule,
     AngularTiltModule,
     AvatarModule,
+    FormsModule,
   ],
   declarations: [
     LoaderComponent,
@@ -76,6 +79,7 @@ import { CreateAccountDialogComponent } from './components/create-account-dialog
     NewsCardComponent,
     HighLowProgressComponent,
     CreateAccountDialogComponent,
+    FullScreenSearchComponent,
   ],
   exports: [
     LoaderComponent,
@@ -101,6 +105,7 @@ import { CreateAccountDialogComponent } from './components/create-account-dialog
     NewsCardComponent,
     HighLowProgressComponent,
     CreateAccountDialogComponent,
+    FullScreenSearchComponent,
   ],
   providers: [{ provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } }],
   bootstrap: [CoinsListsComponent],

@@ -93,11 +93,8 @@ export class HomeComponent implements OnInit {
     coins.forEach((coin) => {
       tempArray.push(coin?.RAW?.USD);
     });
-    // console.log('TOP GAINERS');
     tempArray = this.orderByPipe.transform(tempArray, 'CHANGEPCT24HOUR');
 
-    // console.log(tempArray);
-    // console.log('TOP GAINERS');
     this.findMatch(tempArray);
   }
 
@@ -109,7 +106,6 @@ export class HomeComponent implements OnInit {
       tempArray.push(match);
     });
     this.topGainerCoins = tempArray;
-    // console.log(this.topGainerCoins);
   }
 
   setSelectedCoin(event: any) {
