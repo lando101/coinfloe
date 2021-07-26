@@ -5,7 +5,37 @@
   flex: 1;
   background-color: #f5f5f5;
 }
+h1 {
+  text-shadow: 0 0 14px #4e4e4e6b;
+  font-family: "Righteous", cursive;
+  color: white;
+  z-index: 9;
+}
+.large-brand {
+  font-size: 12rem;
+}
+.small-brand {
+  font-size: 7.5rem;
+}
+.xs-brand {
+  font-size: 4.5rem;
+}
 
+h5 {
+  color: white;
+  font-weight: 100;
+  text-shadow: 0 0 14px #4e4e4e6b;
+  font-family: "Manrope", sans-serif;
+}
+.large-subtext {
+  font-size: 2.5rem;
+}
+.small-subtext {
+  font-size: 1.8rem;
+}
+.xs-subtext {
+  font-size: 1.35rem;
+}
 .inline-loader {
   display: inline-block;
 }
@@ -40,21 +70,7 @@
     border-top: 1px solid rgba(228, 228, 228, 0.22);
     border-bottom: 1px solid rgba(228, 228, 228, 0.22);
     padding: 66px 0px;
-    h1 {
-      text-shadow: 0 0 14px #4e4e4e6b;
-      font-size: 12rem;
-      font-family: "Righteous", cursive;
-      color: white;
-      z-index: 9;
-    }
-    h5 {
-      color: white;
-      font-size: 2.5em;
-      font-weight: 100;
-      text-shadow: 0 0 14px #4e4e4e6b;
-    }
   }
-
   ::ng-deep canvas {
     position: absolute !important;
   }
