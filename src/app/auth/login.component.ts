@@ -38,11 +38,6 @@ class CrossFieldErrorMatcher implements ErrorStateMatcher {
   animations: [
     trigger('fadeOutUp', [
       transition(':enter', [
-        // useAnimation(bounceIn, {
-        //   params: {
-        //     timing: 0.95,
-        //   },
-        // }),
         useAnimation(fadeInUp, {
           params: {
             timing: 0.15,
@@ -52,13 +47,6 @@ class CrossFieldErrorMatcher implements ErrorStateMatcher {
         }),
       ]),
       transition(':leave', [
-        // useAnimation(fadeOutUp, {
-        //   params: {
-        //     timing: 0.15,
-        //     a: '0px',
-        //     b: '-100px',
-        //   },
-        // }),
         useAnimation(fadeOutDown, {
           params: {
             timing: 0.15,
@@ -79,11 +67,6 @@ class CrossFieldErrorMatcher implements ErrorStateMatcher {
         }),
       ]),
       transition(':enter', [
-        // useAnimation(bounceIn, {
-        //   params: {
-        //     timing: 0.95,
-        //   },
-        // }),
         useAnimation(fadeInUp, {
           params: {
             timing: 0.15,

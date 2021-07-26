@@ -6,12 +6,47 @@ import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { CoinSearch } from '../search/search.component';
 import { BottomSheetService } from '@app/services/bottom-sheet.service';
 import { GroupByPipe, KeysPipe, OrderByPipe, PairsPipe, FlattenPipe } from 'ngx-pipes';
-
+import {
+  bounce,
+  bounceIn,
+  fadeIn,
+  fadeInUp,
+  fadeOutDown,
+  fadeOutUp,
+  flip,
+  flipInX,
+  flipInY,
+  flipOutX,
+  zoomIn,
+} from 'ng-animate';
+import { trigger, transition, useAnimation } from '@angular/animations';
 @Component({
   selector: 'app-full-screen-search',
   templateUrl: './full-screen-search.component.html',
   styleUrls: ['./full-screen-search.component.scss'],
   providers: [OrderByPipe],
+  animations: [
+    trigger('fadeOutUp', [
+      transition(':enter', [
+        useAnimation(fadeInUp, {
+          params: {
+            timing: 0.15,
+            a: '20px',
+            b: '0px',
+          },
+        }),
+      ]),
+      transition(':leave', [
+        useAnimation(fadeOutDown, {
+          params: {
+            timing: 0.15,
+            a: '0px',
+            b: '60px',
+          },
+        }),
+      ]),
+    ]),
+  ],
 })
 export class FullScreenSearchComponent implements OnInit {
   @Input() theme: string;

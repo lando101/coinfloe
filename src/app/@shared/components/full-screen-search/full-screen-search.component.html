@@ -33,13 +33,15 @@
           </button>
         </mat-form-field>
       </div>
-      <div class="text-left w-100 top-coins-container">
-        <h5 class="font-weight-bold mb-3">Top Gainers</h5>
-        <app-top-gainers [theme]="theme" [coins]="topGainerCoins"></app-top-gainers>
-      </div>
-      <div class="text-left w-100 top-coins-container">
-        <h5 class="font-weight-bold mb-3">Top Coins</h5>
-        <app-coins-lists [Coins]="coins" [theme]="theme" [count]="5"></app-coins-lists>
+      <div *ngIf="!searchTerm" [@fadeOutUp]>
+        <div class="text-left w-100 top-coins-container">
+          <h5 class="font-weight-bold mb-3">Top Gainers</h5>
+          <app-top-gainers [theme]="theme" [coins]="topGainerCoins"></app-top-gainers>
+        </div>
+        <div class="text-left w-100 top-coins-container">
+          <h5 class="font-weight-bold mb-3">Top Coins</h5>
+          <app-coins-lists [Coins]="coins" [theme]="theme" [count]="5"></app-coins-lists>
+        </div>
       </div>
     </div>
   </div>
