@@ -39,6 +39,7 @@ import { AvatarModule } from 'ngx-avatar';
 import { CreateAccountDialogComponent } from './components/create-account-dialog/create-account-dialog.component';
 import { FullScreenSearchComponent } from './components/full-screen-search/full-screen-search.component';
 import { FormsModule } from '@angular/forms';
+import { MomentModule } from 'ngx-moment';
 
 @NgModule({
   imports: [
@@ -52,6 +53,12 @@ import { FormsModule } from '@angular/forms';
     AngularTiltModule,
     AvatarModule,
     FormsModule,
+    MomentModule,
+    MomentModule.forRoot({
+      relativeTimeThresholdOptions: {
+        m: 59,
+      },
+    }),
   ],
   declarations: [
     LoaderComponent,

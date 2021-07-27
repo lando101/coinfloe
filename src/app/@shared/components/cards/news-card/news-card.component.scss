@@ -1,6 +1,6 @@
 @import "../../../../../styles/index";
 
-h5 {
+h6 {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -16,7 +16,8 @@ p {
   -webkit-box-orient: vertical;
   white-space: normal;
   text-align: left;
-  -webkit-line-clamp: 4;
+  font-size: 0.85rem;
+  -webkit-line-clamp: 3;
 }
 
 .img-container {
@@ -40,10 +41,10 @@ p {
     $font: $dark-primary-font-color;
   }
   .card {
-    height: 455px;
+    height: 355px;
     overflow: hidden;
     border-radius: $default-brdr-radius;
-    width: 100% !important;
+    width: 16rem !important;
     background-color: $bg-color !important;
     box-shadow: 0px 1px 3px 0px $shadow !important;
     text-decoration: none !important;
@@ -52,6 +53,14 @@ p {
     &:hover {
       box-shadow: 0px 3px 3px 1px $shadow !important;
       // background-color: lighten($bg-color, 3%) !important;
+    }
+    .card-body {
+      padding: 0.75rem 1.05rem;
+      .time-ago-text {
+        position: absolute;
+        bottom: 15px;
+        font-weight: bold;
+      }
     }
   }
   ::ng-deep .slick-slide {

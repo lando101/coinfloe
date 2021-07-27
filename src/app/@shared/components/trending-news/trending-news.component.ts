@@ -13,13 +13,21 @@ export class TrendingNewsComponent implements OnInit {
   allNewsS2: NewsSource2[];
 
   slideConfig = {
-    slidesToShow: 3,
+    slidesToShow: 4,
     slidesToScroll: 3,
     dots: true,
     infinite: false,
-    autoplay: true,
+    autoplay: false,
     autoplaySpeed: 14000,
     responsive: [
+      {
+        breakpoint: 1199,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 2,
+          dots: true,
+        },
+      },
       {
         breakpoint: 992,
         settings: {

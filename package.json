@@ -59,6 +59,7 @@
     "ngx-avatar": "^4.1.0",
     "ngx-bootstrap": "^6.2.0",
     "ngx-cookie": "^5.0.2",
+    "ngx-moment": "^5.0.0",
     "ngx-particle": "^1.5.0",
     "ngx-perfect-scrollbar": "^10.1.0",
     "ngx-pipes": "^2.7.5",
