@@ -17,13 +17,21 @@ export class ChartsComponent implements OnInit {
   theme: string = '';
   bottomSheet: boolean;
   selectedCoin: Coin = {};
+  isLoading: boolean;
   constructor(private cryptoService: CryptoDataServiceService, private themeService: ThemeService) {}
 
   ngOnInit(): void {
-    this.cryptoService.coinsObs.subscribe((data) => {
-      // console.log('HOME');
-      // console.log(data);
-      this.coins = data;
+    // this.cryptoService.coinsObs.subscribe((data) => {
+    //   // console.log('HOME');
+    //   // console.log(data);
+    //   this.coins = data;
+    // });
+    this.cryptoService.getCryptoData().subscribe((data: any) => {
+      this.isLoading = true;
+      if (data) {
+        this.coins = data;
+        this.isLoading = false;
+      }
     });
 
     this.themeService.themeTypeBS.subscribe((data) => {

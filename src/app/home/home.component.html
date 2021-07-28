@@ -9,7 +9,10 @@
     <!-- <app-news-tiles [theme]="theme"></app-news-tiles> -->
     <app-trending-news [theme]="theme"></app-trending-news>
     <div class="text-left w-100">
-      <h5 class="font-weight-bold mb-3">Top Gainers</h5>
+      <div class="mb-3">
+        <h5 class="font-weight-bold mb-0">Top Gainers</h5>
+        <small class="font-weight-bold text-faint">Coins with the highest percentage gains</small>
+      </div>
       <app-top-gainers
         (coin)="setSelectedCoin($event)"
         (showCoinDetails)="displayCoin($event)"
@@ -18,7 +21,10 @@
       ></app-top-gainers>
     </div>
     <div class="w-100 text-left">
-      <h5 class="font-weight-bold mb-3">Top Losers</h5>
+      <div class="mb-3">
+        <h5 class="font-weight-bold mb-0">Top Losers</h5>
+        <small class="font-weight-bold text-faint">Coins with the highest percentage losses</small>
+      </div>
       <app-top-losers
         (coin)="setSelectedCoin($event)"
         (showCoinDetails)="displayCoin($event)"
@@ -27,8 +33,12 @@
       ></app-top-losers>
     </div>
     <div class="text-left">
-      <h5 class="font-weight-bold mb-3">Top Coins</h5>
+      <div class="mb-3">
+        <h5 class="font-weight-bold mb-0">Top Coins</h5>
+        <small class="font-weight-bold text-faint">Top 10 coins based on market cap</small>
+      </div>
       <app-coins-lists
+        [loading]="isLoading"
         [Coins]="coins"
         [theme]="theme"
         [count]="10"

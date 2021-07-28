@@ -120,11 +120,13 @@ export class TopGainersComponent implements OnInit {
       let tempArray: Coin[] = this.coins;
       this.coins = [];
       tempArray.forEach((coin, index) => {
-        if (coin) {
-          this.coins.push(tempArray[tempArray.length - (index + 1)]);
+        // removing coins without proper data
+        if (!!coin?.RAW?.USD?.MKTCAP) {
+          this.coins.push(coin);
         }
       });
-      this.coins.splice(0, 1); // removing empty coin
+      this.coins.reverse();
+      // this.coins.splice(0, 1); // removing empty coin
     }
   }
 

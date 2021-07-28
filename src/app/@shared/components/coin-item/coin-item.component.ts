@@ -23,6 +23,11 @@ export class CoinItemComponent implements OnInit {
     ).toLowerCase()}-${this.coin?.CoinInfo?.Name.toLowerCase()}-logo.png?v=010`;
   }
 
+  ngAfterViewInit(): void {
+    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    //Add 'implements AfterViewInit' to the class.
+  }
+
   // openBottomSheet(): void {
   //   this._bottomSheet.open(CoinDetailsComponent);
   // }

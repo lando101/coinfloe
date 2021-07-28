@@ -1,8 +1,10 @@
 <div class="text-left {{ theme }} theme-container w-100">
-  <h5 class="font-weight-bold">Trending News</h5>
-
+  <div class="mb-2">
+    <h5 class="font-weight-bold mb-0">Trending News</h5>
+    <small class="font-weight-bold text-faint">Hottest news over the past day</small>
+  </div>
   <ngx-slick-carousel
-    *ngIf="allNewsS2?.length > 1; else loading"
+    *ngIf="allNewsS2?.length > 0; else loading"
     class="carousel"
     #slickModal="slick-carousel"
     [config]="slideConfig"
@@ -33,37 +35,37 @@
   >
     <div ngxSlickItem class="slide">
       <div class="p-2 slick-slide">
-        <app-coin-card-loader [theme]="theme"></app-coin-card-loader>
+        <app-news-card-loader [theme]="theme"></app-news-card-loader>
       </div>
     </div>
     <div ngxSlickItem class="slide">
       <div class="p-2 slick-slide">
-        <app-coin-card-loader [theme]="theme"></app-coin-card-loader>
+        <app-news-card-loader [theme]="theme"></app-news-card-loader>
       </div>
     </div>
     <div ngxSlickItem class="slide">
       <div class="p-2 slick-slide">
-        <app-coin-card-loader [theme]="theme"></app-coin-card-loader>
+        <app-news-card-loader [theme]="theme"></app-news-card-loader>
       </div>
     </div>
     <div ngxSlickItem class="slide">
       <div class="p-2 slick-slide">
-        <app-coin-card-loader [theme]="theme"></app-coin-card-loader>
+        <app-news-card-loader [theme]="theme"></app-news-card-loader>
       </div>
     </div>
     <div ngxSlickItem class="slide">
       <div class="p-2 slick-slide">
-        <app-coin-card-loader [theme]="theme"></app-coin-card-loader>
+        <app-news-card-loader [theme]="theme"></app-news-card-loader>
       </div>
     </div>
     <div ngxSlickItem class="slide">
       <div class="p-2 slick-slide">
-        <app-coin-card-loader [theme]="theme"></app-coin-card-loader>
+        <app-news-card-loader [theme]="theme"></app-news-card-loader>
       </div>
     </div>
     <div ngxSlickItem class="slide">
       <div class="p-2 slick-slide">
-        <app-coin-card-loader [theme]="theme"></app-coin-card-loader>
+        <app-news-card-loader [theme]="theme"></app-news-card-loader>
       </div>
     </div>
   </ngx-slick-carousel>

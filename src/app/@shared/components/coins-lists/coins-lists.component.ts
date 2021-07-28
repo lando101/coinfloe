@@ -22,6 +22,7 @@ export class CoinsListsComponent implements OnInit {
   @Output() showCoinDetails = new EventEmitter<boolean>();
   @Output() coin = new EventEmitter<Coin>();
   localCoins: Coin[] = [];
+  @Input() loading: boolean;
   splice = 10;
   tileSettings = {
     reverse: true, // reverse the tilt direction
@@ -78,19 +79,27 @@ export class CoinsListsComponent implements OnInit {
 
   orderByMarkCap(coins: Coin[]) {
     let tempArray: USD[] = [];
+    let tempCoins: Coin[] = [];
 
     coins.forEach((coin) => {
-      tempArray.push(coin?.RAW?.USD);
+      // tempArray.push(coin?.RAW?.USD);
+      if (!!coin?.RAW?.USD?.MKTCAP) {
+        tempCoins.push(coin);
+      }
     });
 
     tempArray = this.orderByPipe.transform(tempArray, 'MKTCAP');
-    this.findMatch(tempArray);
+    this.localCoins = this.orderByPipe.transform(tempCoins, 'RAW.USD.MKTCAP').reverse();
+    // this.findMatch(tempArray);
+
     // console.log('ORDERED BY MARKET CAP');
     // console.log(tempArray);
     // console.log('ORDERED BY MARKET CAP');
   }
 
+  // converting back into coin model
   findMatch(coinUSD: USD[]) {
+    this.loading = true;
     let tempArray: Coin[] = [];
     coinUSD.forEach((coin) => {
       let match: Coin = this.Coins.find((x) => x?.CoinInfo?.Name.toLowerCase() === coin?.FROMSYMBOL?.toLowerCase());
@@ -98,16 +107,7 @@ export class CoinsListsComponent implements OnInit {
         tempArray.push(match);
       }
     });
-    // console.log('ORDERED BY MARKET CAP');
-
-    // console.log(tempArray);
-    // console.log('ORDERED BY MARKET CAP');
-
-    // this.localCoins = tempArray.slice(0, tempArray.length - 1).reverse();
     this.localCoins = tempArray.reverse();
-    // console.log('LOCAL COINS');
-    // console.log(this.localCoins);
-    // console.log('LOCAL COINS');
   }
 
   openBottomSheet(coin: Coin) {

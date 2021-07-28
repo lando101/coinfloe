@@ -1,6 +1,6 @@
 <div fxLayout="column" fxLayoutGap="20px">
   <div
-    *ngIf="localCoins?.length > 0; else loader"
+    *ngIf="localCoins?.length > 0 && !loading; else loader"
     class="{{ theme }} theme-container"
     fxLayout="column"
     fxLayoutGap="20px"

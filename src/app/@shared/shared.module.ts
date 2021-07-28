@@ -40,6 +40,9 @@ import { CreateAccountDialogComponent } from './components/create-account-dialog
 import { FullScreenSearchComponent } from './components/full-screen-search/full-screen-search.component';
 import { FormsModule } from '@angular/forms';
 import { MomentModule } from 'ngx-moment';
+import { NewsListComponent } from './components/news-list/news-list.component';
+import { NewsListItemComponent } from './components/cards/news-list-item/news-list-item.component';
+import { NewsCardLoaderComponent } from './components/loaders/news-card-loader/news-card-loader.component';
 
 @NgModule({
   imports: [
@@ -87,6 +90,9 @@ import { MomentModule } from 'ngx-moment';
     HighLowProgressComponent,
     CreateAccountDialogComponent,
     FullScreenSearchComponent,
+    NewsListComponent,
+    NewsListItemComponent,
+    NewsCardLoaderComponent,
   ],
   exports: [
     LoaderComponent,
@@ -113,6 +119,9 @@ import { MomentModule } from 'ngx-moment';
     HighLowProgressComponent,
     CreateAccountDialogComponent,
     FullScreenSearchComponent,
+    NewsListComponent,
+    NewsListItemComponent,
+    NewsCardLoaderComponent,
   ],
   providers: [{ provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } }],
   bootstrap: [CoinsListsComponent],
