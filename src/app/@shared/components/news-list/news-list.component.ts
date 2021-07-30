@@ -27,11 +27,19 @@ export class NewsListComponent implements OnInit {
     //     console.log('error getting news');
     //   },
     // });
+    this.getGeneralNews();
+  }
+
+  getGeneralNews() {
     this.newsService._generalNews.subscribe((data) => {
       console.log('NEWS LIST');
       console.log(data);
       console.log('NEWS LIST');
       this.news = data;
     });
+
+    // this.newsService._generalNews.subscribe().toPromise().then((data: any) => {
+    //   this.news = data;
+    // });
   }
 }

@@ -1,9 +1,29 @@
 {
-  "editor.inlineSuggest.enabled": true,
-  "autopairs-code.enable": true,
+  "workbench.iconTheme": "material-icon-theme",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.autoClosingBrackets": true,
     "editor.formatOnSave": true,
     "editor.formatOnPaste": true
-  }
+  },
+  "editor.inlineSuggest.enabled": true,
+  "autopairs-code.enable": true,
+  "github.copilot.autocomplete.enable": true,
+  "eslint.alwaysShowStatus": true,
+  "eslint.format.enable": true,
+  "emmet.triggerExpansionOnTab": true,
+  "editor.tabCompletion": "on",
+  "javascript.format.insertSpaceAfterOpeningAndBeforeClosingJsxExpressionBraces": true,
+  "emmet.showSuggestionsAsSnippets": true,
+  "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis": true,
+  "editor.autoClosingBrackets": "always",
+  "editor.autoClosingQuotes": "always",
+  "ngschematics.componentTypes": []
 }

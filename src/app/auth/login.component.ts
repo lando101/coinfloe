@@ -6,7 +6,7 @@ import { finalize } from 'rxjs/operators';
 import { environment } from '@env/environment';
 import { Logger, UntilDestroy, untilDestroyed } from '@core';
 import { AuthenticationService } from './authentication.service';
-import { Container, Main } from 'tsparticles';
+import { Container, ISourceOptions, Main } from 'tsparticles';
 
 import { trigger, transition, useAnimation } from '@angular/animations';
 import {
@@ -109,7 +109,7 @@ export class LoginComponent implements OnInit {
   height = 100;
   id = 'tsparticles';
 
-  options = {
+  options: any = {
     placement: 'left',
     password: {
       type: 'range',
@@ -123,7 +123,7 @@ export class LoginComponent implements OnInit {
   particlesUrl = 'http://foo.bar/particles.json';
 
   /* or the classic JavaScript object */
-  particlesOptions = {
+  particlesOptions: any = {
     autoPlay: true,
     background: {
       color: {

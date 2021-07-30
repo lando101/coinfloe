@@ -32,6 +32,27 @@
   border-color: #09c133 !important;
 }
 
+::ng-deep .badge {
+  font-weight: 800 !important;
+  border-radius: 6px !important;
+  padding: 0.25rem 0.4rem !important;
+}
+
+::ng-deep .badge-success {
+  color: #00801d !important;
+  background-color: #45ff7029 !important;
+}
+
+::ng-deep .badge-danger {
+  color: #ce030f !important;
+  background-color: #ffbfcb4d !important;
+}
+
+::ng-deep .badge-info {
+  color: #008398 !important;
+  background-color: #17a2b821 !important;
+}
+
 ::ng-deep .mat-bottom-sheet-container {
   max-height: none !important;
   padding: 0px !important;
