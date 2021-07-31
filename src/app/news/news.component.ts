@@ -9,6 +9,7 @@ import { ThemeService } from '@app/services/theme.service';
 })
 export class NewsComponent implements OnInit {
   theme: string;
+  searchText: string;
   constructor(private themeService: ThemeService, private newsService: NewsService) {}
 
   ngOnInit(): void {

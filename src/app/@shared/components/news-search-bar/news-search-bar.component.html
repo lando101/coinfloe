@@ -1,0 +1,33 @@
+<!-- <mat-form-field class="example-form-field" appearance="outline">
+  <mat-label>Clearable input</mat-label>
+  <input matInput type="text" [(ngModel)]="searchText" (keyup)="extractKeyWords(searchText)">
+  <button *ngIf="searchText" matSuffix mat-icon-button aria-label="Clear" (click)="resetSearch()">
+    <mat-icon>close</mat-icon>
+  </button>
+</mat-form-field> -->
+<div class="w-100 align-items-center" fxLayout="column">
+  <div [ngClass.gt-md]="'w-50'">
+    <div class="w-100" fxLayout="row" fxFill fxLayoutAlign="center center">
+      <input
+        class="w-100 search-box search-transition"
+        [(ngModel)]="searchText"
+        (keyup)="extractKeyWords(searchText)"
+        placeholder="Search news..."
+      />
+      <button *ngIf="searchText" mat-icon-button (click)="resetSearch()">
+        <i class="bi bi-x"></i>
+      </button>
+    </div>
+  </div>
+  <div *ngIf="keywordsFound.length > 0" [ngClass.gt-md]="'w-50'">
+    <small class="font-weight-bold">Keywords found:</small>
+    <div class="d-flex my-2" fxLayoutGap="10px">
+      <!-- <small *ngFor="let keyword of keywordsFound">"{{keyword}}"</small> -->
+      <mat-chip-list class="keyword-chip" cdkDropList cdkDropListOrientation="horizontal">
+        <mat-chip class="keyword-box" *ngFor="let keyword of keywordsFound">
+          {{ keyword }}
+        </mat-chip>
+      </mat-chip-list>
+    </div>
+  </div>
+</div>

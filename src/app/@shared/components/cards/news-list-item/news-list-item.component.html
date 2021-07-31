@@ -19,7 +19,7 @@
             {{ article.date | amTimeAgo }}
           </small>
           <small
-            class="badge d-flex align-items-center"
+            class="{{ theme }} badge d-flex align-items-center"
             [ngClass]="{
               'badge-success': article.sentiment.toLowerCase() === 'positive',
               'badge-danger': article.sentiment.toLowerCase() === 'negative',

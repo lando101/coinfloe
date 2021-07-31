@@ -50,6 +50,7 @@
     "firebase": "^8.7.1",
     "fuse.js": "^6.4.6",
     "jquery": "^3.6.0",
+    "keyword-extractor": "0.0.20",
     "lightweight-charts": "^3.3.0",
     "material-design-icons-iconfont": "^6.1.0",
     "moment": "^2.29.1",

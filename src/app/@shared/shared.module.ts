@@ -43,6 +43,7 @@ import { MomentModule } from 'ngx-moment';
 import { NewsListComponent } from './components/news-list/news-list.component';
 import { NewsListItemComponent } from './components/cards/news-list-item/news-list-item.component';
 import { NewsCardLoaderComponent } from './components/loaders/news-card-loader/news-card-loader.component';
+import { NewsSearchBarComponent } from './components/news-search-bar/news-search-bar.component';
 
 @NgModule({
   imports: [
@@ -93,6 +94,7 @@ import { NewsCardLoaderComponent } from './components/loaders/news-card-loader/n
     NewsListComponent,
     NewsListItemComponent,
     NewsCardLoaderComponent,
+    NewsSearchBarComponent,
   ],
   exports: [
     LoaderComponent,
@@ -122,6 +124,7 @@ import { NewsCardLoaderComponent } from './components/loaders/news-card-loader/n
     NewsListComponent,
     NewsListItemComponent,
     NewsCardLoaderComponent,
+    NewsSearchBarComponent,
   ],
   providers: [{ provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } }],
   bootstrap: [CoinsListsComponent],

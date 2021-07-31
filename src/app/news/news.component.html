@@ -1,4 +1,7 @@
 <div class="container news-wrapper">
-  <app-trending-news [theme]="theme"></app-trending-news>
-  <app-news-list [theme]="theme"></app-news-list>
+  <app-news-search-bar (searchString)="searchText = $event"></app-news-search-bar>
+  <div class="transition-smooth" [ngClass]="{ 'blur-bg': searchText }">
+    <app-trending-news [theme]="theme"></app-trending-news>
+    <app-news-list [theme]="theme"></app-news-list>
+  </div>
 </div>

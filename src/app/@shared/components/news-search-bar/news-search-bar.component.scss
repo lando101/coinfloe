@@ -1,0 +1,28 @@
+@import "../../../../styles/index";
+
+.keyword-box {
+  text-transform: capitalize;
+}
+
+.search-transition {
+  transition: 0.18s ease-in-out;
+}
+.search-box {
+  border-radius: 13px;
+  overflow: visible;
+  -webkit-backdrop-filter: brightness(0.96);
+  backdrop-filter: brightness(0.96);
+  width: auto;
+  display: flex;
+  flex-wrap: nowrap;
+  transition: 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
+  height: 40px;
+  border: 1px solid #efefef;
+  padding: 0px 20px;
+  &:hover {
+    box-shadow: 0px 1px 3px 0px #c3c3c33b !important;
+  }
+  &:focus {
+    box-shadow: 0px 1px 3px 0px #c3c3c33b !important;
+  }
+}

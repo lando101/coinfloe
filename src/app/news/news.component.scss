@@ -18,6 +18,14 @@
   }
 }
 
+.transition-smooth {
+  transition: ease-in-out 0.22s;
+}
+.blur-bg {
+  opacity: 0.2;
+  filter: blur(8px) brightness(0.9) grayscale(0.3);
+}
+
 .theme-container {
   @include theme-mixin($light-theme: true);
 }

@@ -43,9 +43,19 @@
   background-color: #45ff7029 !important;
 }
 
+::ng-deep .dark.badge-success {
+  color: #00d070 !important;
+  background-color: #14622629 !important;
+}
+
 ::ng-deep .badge-danger {
   color: #ce030f !important;
   background-color: #ffbfcb4d !important;
+}
+
+::ng-deep .dark.badge-danger {
+  color: #f53c47 !important;
+  background-color: #833e4b4d !important;
 }
 
 ::ng-deep .badge-info {
