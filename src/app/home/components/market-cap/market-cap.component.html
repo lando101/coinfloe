@@ -1,6 +1,6 @@
 <div *ngIf="!!globalData && !!globalMetrics && !!tradingSignals" class="{{ theme }} theme-container text-left mt-4">
   <div fxLayout="row">
-    <h3 class="d-flex flex-wrap">
+    <h4 class="d-flex flex-wrap font-weight-normal">
       Today's market cap is <b class="mx-2">${{ globalData.quote.USD.total_market_cap | number: '1.0-2' }}</b>
       <small
         class="font-weight-bold d-flex align-items-center"
@@ -13,7 +13,7 @@
         <i *ngIf="globalMetrics.market_cap_change_percentage_24h_usd < 0" class="bi bi-arrow-down-short"></i>
         {{ globalMetrics.market_cap_change_percentage_24h_usd | number: '1.0-2' }}%
       </small>
-    </h3>
+    </h4>
   </div>
   <div class="mt-1" fxLayout="row wrap" fxLayoutGap="25px">
     <div fxLayout="column" class="p-3 justify-content-between align-items-start stat-card">

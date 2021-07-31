@@ -1,7 +1,17 @@
-<div class="container news-wrapper">
-  <app-news-search-bar (searchString)="searchText = $event"></app-news-search-bar>
-  <div class="transition-smooth" [ngClass]="{ 'blur-bg': searchText }">
-    <app-trending-news [theme]="theme"></app-trending-news>
-    <app-news-list [theme]="theme"></app-news-list>
+<div class="container news-wrapper position-relative">
+  <div [ngClass]="{ 'search-go-still': searchText }" class="container">
+    <div class="position-absolute search-bar-wrapper w-100" [ngStyle]="{ 'z-index': 2 }">
+      <app-news-search-bar (searchString)="searchText = $event"></app-news-search-bar>
+    </div>
+
+    <div class="w-100 search-results" *ngIf="searchText">
+      <div class="w-100">"hello"</div>
+    </div>
+  </div>
+  <div class="transition-smooth news-articles-wrapper" [ngClass]="{ 'blur-bg': searchText }">
+    <div class="w-100">
+      <app-trending-news [theme]="theme"></app-trending-news>
+      <app-news-list [start]="12" [end]="50" [use_api]="true" [theme]="theme"></app-news-list>
+    </div>
   </div>
 </div>

@@ -3,6 +3,12 @@
 .news-wrapper {
   min-height: 100vh;
   padding: 1em;
+  .search-bar-wrapper {
+    top: 30px;
+  }
+  .news-articles-wrapper {
+    margin-top: 75px;
+  }
 }
 
 @mixin theme-mixin($light-theme: true) {
@@ -19,11 +25,29 @@
 }
 
 .transition-smooth {
-  transition: ease-in-out 0.22s;
+  transition: ease-in-out 0.18s;
 }
 .blur-bg {
   opacity: 0.2;
   filter: blur(8px) brightness(0.9) grayscale(0.3);
+  transform: scale(0.96) translateY(-1.6%);
+}
+
+.search-results {
+  position: fixed;
+  left: 0;
+  top: -10px;
+  width: 100vw !important;
+  height: 100vh;
+  /* height: 800px; */
+  z-index: 1;
+  background: transparent;
+}
+
+.search-go-still {
+  margin-top: -15px;
+  position: fixed;
+  z-index: 2;
 }
 
 .theme-container {
