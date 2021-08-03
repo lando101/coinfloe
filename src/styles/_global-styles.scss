@@ -1,3 +1,5 @@
+@import "./light-variables";
+
 ::ng-deep .text-positive {
   color: #00c77e !important;
 }
@@ -66,4 +68,13 @@
 ::ng-deep .mat-bottom-sheet-container {
   max-height: none !important;
   padding: 0px !important;
+}
+
+::ng-deep .mat-chip.mat-standard-chip.mat-chip-selected.mat-primary {
+  background-color: $primary-color !important;
+  color: white;
+}
+
+::ng-deep .mat-standard-chip {
+  font-weight: bold !important;
 }

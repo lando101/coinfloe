@@ -32,8 +32,10 @@ export class NewsListComponent implements OnInit {
     //     console.log('error getting news');
     //   },
     // });
-    if (this.use_api == null || true) {
+    if (this.use_api == null || this.use_api === true) {
       this.getGeneralNews();
+    } else {
+      this.news = this.newsFromParent;
     }
   }
 

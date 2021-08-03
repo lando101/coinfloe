@@ -34,6 +34,14 @@
 }
 
 .search-results {
+  height: calc(100vh - 265px);
+  overflow: auto;
+  overflow-x: hidden;
+  position: absolute;
+  top: 125px;
+}
+
+.search-overlay {
   position: fixed;
   left: 0;
   top: -10px;

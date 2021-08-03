@@ -27,6 +27,7 @@
           class="w-100 search-box search-transition"
           [(ngModel)]="searchText"
           (keyup)="extractKeyWords(searchText)"
+          (keyup.enter)="search()"
           placeholder="Search news..."
         />
         <div class="clear-icon">

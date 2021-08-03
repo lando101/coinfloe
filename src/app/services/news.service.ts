@@ -7,13 +7,20 @@ import { NewsSource2 } from 'src/models/news.model';
 import { async } from 'rxjs/internal/scheduler/async';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-const routes = {
-  allNewsSource2: () => '/news/all-news',
-};
+interface NewsParams {
+  keywords: string;
+  topic?: string;
+  category?: string;
+}
 
 export interface NewsQuery {
   symbol?: string;
 }
+
+const routes = {
+  allNewsSource2: () => '/news/all-news',
+  searchNews: (c: NewsParams) => `/news/search/${c.keywords}`,
+};
 
 @Injectable({
   providedIn: 'root',
@@ -35,24 +42,28 @@ export class NewsService {
         this._generalNews.next(null);
       },
     });
-    // result.pipe(
-    //   map((data: any) => {
-    //     this._generalNews.next(data); // doing this to limit api calls
-    //   })
-    // );
     return result;
   }
 
-  // get news(): NewsSource2[] | null {
-  //   let newsResults: NewsSource2[] = [];
-  //   this._httpClient.get(routes.allNewsSource2()).subscribe({
-  //     next: (data: any) => {
-  //       // console.log('NEW NEWS SERVICE');
-  //       // console.log(data.data.data);
-  //       newsResults = data.data.data;
-  //       return newsResults;
-  //       // console.log('NEW NEWS SERVICE');
-  //     },
-  //   });
-  // }
+  // finds news based on keywords
+  getNewsSearch(searchString: string) {
+    const params: NewsParams = {
+      keywords: searchString,
+    };
+
+    let promise = new Promise((resolve, reject) => {
+      this._httpClient
+        .get(routes.searchNews(params))
+        .toPromise()
+        .then((data: any) => {
+          const result: NewsSource2 = data.data.data;
+          resolve(result);
+        })
+        .catch(() => {
+          reject('ERROR GETTING NEWS');
+        });
+    });
+
+    return promise;
+  }
 }

@@ -34,13 +34,14 @@
 // Force style down to child components
 // See https://angular.io/guide/component-styles#deep
 :host ::ng-deep .mat-drawer-backdrop {
-  top: 89px;
+  top: 88px;
   bottom: 0;
   left: 0;
   right: 0;
   height: auto;
   position: absolute;
   z-index: 0;
+  background: linear-gradient(317deg, #a2a2a21a, transparent);
 }
 
 .mat-sidenav {
@@ -108,19 +109,19 @@
     background: lighten($bg-color, 3%);
   }
 
-  .scroll-box::-webkit-scrollbar {
+  ::ng-deep .scroll-box::-webkit-scrollbar {
     width: 0.5em;
     &:hover {
       width: 0.6em;
     }
   }
-  .scroll-box::-webkit-scrollbar,
+  ::ng-deep .scroll-box::-webkit-scrollbar,
   .scroll-box::-webkit-scrollbar-thumb {
     overflow: visible;
     border-radius: 0px;
     background-color: #5d5d5d33;
   }
-  .scroll-box::-webkit-scrollbar-thumb {
+  ::ng-deep .scroll-box::-webkit-scrollbar-thumb {
     background: $scroll-color;
   }
 }
