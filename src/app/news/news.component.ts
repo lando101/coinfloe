@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NewsService } from '@app/services/news.service';
 import { ThemeService } from '@app/services/theme.service';
+import { UserService } from '@app/services/user.service';
 import { NewsSource2 } from 'src/models/news.model';
 interface ChipOption {
   label: string;
@@ -18,6 +19,7 @@ export class NewsComponent implements OnInit {
   theme: string;
   searchText: string;
   searchResults: NewsSource2[] = null;
+  topicResults: NewsSource2[] = null;
   selectedChip: ChipOption = { label: 'All', active: true, desc: '', type: null, url: null };
   chips: ChipOption[] = [
     { label: 'All', active: true, desc: '', type: null, url: null },
@@ -37,12 +39,13 @@ export class NewsComponent implements OnInit {
     { label: 'Whales', active: false, desc: 'Latest news about crypto whales', type: 'topic', url: 'Whales' },
   ];
 
-  constructor(private themeService: ThemeService, private newsService: NewsService) {}
+  constructor(private themeService: ThemeService, private newsService: NewsService, private userService: UserService) {}
 
   ngOnInit(): void {
     this.themeService.themeTypeBS.subscribe((data: string) => {
       this.theme = data;
     });
+    this.userService.updateUser(null);
   }
 
   ngOnDestroy(): void {
@@ -58,11 +61,32 @@ export class NewsComponent implements OnInit {
     this.searchResults = results || null;
   }
 
+  // triggers getting news based on chip type & topic
   chipSelection(chip: ChipOption) {
     this.selectedChip = chip;
+    this.topicResults = null; // reset news for child
     if (chip.type === 'topic') {
+      // use topic api
+      this.newsService
+        .getTopicNews(chip.url)
+        .then((data: NewsSource2[]) => {
+          this.topicResults = data;
+        })
+        .catch(() => {
+          this.topicResults = [];
+        });
     } else if (chip.type === 'coin') {
+      // use coin news api
+      this.newsService
+        .getCoinNews(chip.url)
+        .then((data: NewsSource2[]) => {
+          this.topicResults = data;
+        })
+        .catch(() => {
+          this.topicResults = [];
+        });
     } else {
+      // use generic api
     }
   }
 }

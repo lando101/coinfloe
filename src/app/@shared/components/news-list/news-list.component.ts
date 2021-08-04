@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { NewsService } from '@app/services/news.service';
 import { NewsSource2 } from 'src/models/news.model';
 
@@ -35,8 +35,12 @@ export class NewsListComponent implements OnInit {
     if (this.use_api == null || this.use_api === true) {
       this.getGeneralNews();
     } else {
-      this.news = this.newsFromParent;
+      this.newsFromParent = null;
     }
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.news = this.newsFromParent;
   }
 
   getGeneralNews() {

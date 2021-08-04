@@ -147,15 +147,17 @@ export class AuthenticationService {
     }
   }
 
-  // adds user to firebase users collection
+  // adds user to firebase users collection :: after auth account created
   createUserDB(context: CreateContext, result: any, google: boolean) {
+    // console.log(result);
     if (!google) {
-      this.afs.collection('users').add({
+      this.afs.collection('users').doc(result.user.uid.toString()).set({
         // add new user to db
         active: true,
         created: new Date(),
         email: context.email,
         email_verified: result.user.emailVerified,
+        recent_search: [],
         favorite_articles: [],
         favorite_coins: [],
         followers_count: 0,
@@ -174,6 +176,7 @@ export class AuthenticationService {
         created: new Date(),
         email: result.user.email,
         email_verified: result.user.emailVerified,
+        recent_search: [],
         favorite_articles: [],
         favorite_coins: [],
         followers_count: 0,

@@ -8,9 +8,10 @@ import { async } from 'rxjs/internal/scheduler/async';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 interface NewsParams {
-  keywords: string;
+  keywords?: string;
   topic?: string;
   category?: string;
+  symbol?: string;
 }
 
 export interface NewsQuery {
@@ -20,6 +21,8 @@ export interface NewsQuery {
 const routes = {
   allNewsSource2: () => '/news/all-news',
   searchNews: (c: NewsParams) => `/news/search/${c.keywords}`,
+  coinNews: (c: NewsParams) => `/news/${c.symbol}`,
+  topicNews: (c: NewsParams) => `/news/topic/${c.topic}`,
 };
 
 @Injectable({
@@ -61,6 +64,49 @@ export class NewsService {
         })
         .catch(() => {
           reject('ERROR GETTING NEWS');
+        });
+    });
+
+    return promise;
+  }
+
+  // get coin specific news
+  getCoinNews(coinSymbol: string) {
+    const params: NewsParams = {
+      symbol: coinSymbol,
+    };
+    const promise = new Promise((resolve, reject) => {
+      this._httpClient
+        .get(routes.coinNews(params))
+        .toPromise()
+        .then((result: any) => {
+          const news: NewsSource2[] = result.data.data;
+          console.log(news);
+          resolve(news);
+        })
+        .catch(() => {
+          reject('error -- could not get coin news');
+        });
+    });
+    return promise;
+  }
+
+  // get topic specific news
+  getTopicNews(topic: string) {
+    const params = {
+      topic: topic,
+    };
+
+    const promise = new Promise((resolve, reject) => {
+      this._httpClient
+        .get(routes.topicNews(params))
+        .toPromise()
+        .then((result: any) => {
+          const news: NewsSource2 = result.data.data;
+          resolve(news);
+        })
+        .catch(() => {
+          reject('error -- could not get topic news');
         });
     });
 

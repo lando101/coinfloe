@@ -81,11 +81,13 @@ export class CredentialsService {
     }
   }
 
+  // subscribing to changes of the user in firebase :: changes will update in real time
   getUser(uid: string) {
     const result = this.afs
       .collection('users', (ref) => ref.where('uid', '==', uid))
       .valueChanges()
       .subscribe((data: any) => {
+        console.log(data);
         this._user = data;
         this.user$.next(this._user);
         // console.log('USER');
