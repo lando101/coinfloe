@@ -31,7 +31,7 @@ export class NewsSearchBarComponent implements OnInit {
   constructor(private newsService: NewsService) {}
 
   ngOnInit(): void {
-    this.extractKeyWords('');
+    this.extractKeyWords('').catch();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -51,7 +51,7 @@ export class NewsSearchBarComponent implements OnInit {
       this.keywordsFound = keywordExtractor.default.extract(text, this.keywordParams);
       if (!text) {
         this.resetSearch();
-        reject('There is no search text');
+        // reject('There is no search text');
       } else {
         this.searchString.emit(this.searchText);
         resolve(this.searchText);
@@ -80,10 +80,12 @@ export class NewsSearchBarComponent implements OnInit {
 
   // when user select an existing search from their history
   search_recent(search: string) {
-    this.extractKeyWords(search).then(() => {
-      this.searchText = search;
-      this.search();
-    });
+    this.extractKeyWords(search)
+      .then(() => {
+        this.searchText = search;
+        this.search();
+      })
+      .catch(() => this.resetSearch());
   }
 
   resetSearch() {

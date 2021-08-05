@@ -68,16 +68,33 @@ export class NewsComponent implements OnInit {
     if (!!results && !!this.user) {
       this.searchResults = results.results;
       let userSearches: string[] = this.user.recent_search;
-      userSearches.push(results.search_string);
 
-      this.userService.updateUser(this.user.uid, 'recent_search', userSearches);
+      const searchDuplicate = userSearches.findIndex((x) => results.search_string === x);
+      if (searchDuplicate) {
+        // already searched term :: removing first instance and adding new
+        userSearches = userSearches.filter((x) => x !== results.search_string);
+        userSearches.push(results.search_string);
+        this.userService.updateUser(this.user.uid, 'recent_search', userSearches);
+      } else {
+        userSearches.push(results.search_string);
+        this.userService.updateUser(this.user.uid, 'recent_search', userSearches);
+      }
     } else {
       this.searchResults = null;
     }
   }
 
+  // set variable to trigger action in news search bar component
   search_recent(search: string) {
     this.activeRecentSearch = search;
+  }
+
+  // delete a recent search
+  removeRecentSearch(search: string) {
+    let userSearches: string[] = this.user.recent_search;
+    userSearches = userSearches.filter((x) => x !== search);
+    this.user.recent_search = userSearches; // anticipating DB successfully deleting search
+    this.userService.updateUser(this.user.uid, 'recent_search', userSearches);
   }
 
   // triggers getting news based on chip type & topic
