@@ -5,6 +5,8 @@ import { ThemeService } from '@app/services/theme.service';
 import { UserService } from '@app/services/user.service';
 import { NewsSource2 } from 'src/models/news.model';
 import { User } from 'src/models/user.model';
+import { trigger, transition, useAnimation } from '@angular/animations';
+import { fadeInUp, fadeOutDown, fadeOutLeft, fadeOutRight } from 'ng-animate';
 interface ChipOption {
   label: string;
   desc: string;
@@ -16,6 +18,39 @@ interface ChipOption {
   selector: 'app-news',
   templateUrl: './news.component.html',
   styleUrls: ['./news.component.scss'],
+  animations: [
+    trigger('fadeOutUp', [
+      transition(':enter', [
+        useAnimation(fadeInUp, {
+          params: {
+            timing: 0.15,
+            a: '20px',
+            b: '0px',
+          },
+        }),
+      ]),
+      transition(':leave', [
+        useAnimation(fadeOutDown, {
+          params: {
+            timing: 0.15,
+            a: '0px',
+            b: '20px',
+          },
+        }),
+      ]),
+    ]),
+    trigger('fadeOutRight', [
+      transition(':leave', [
+        useAnimation(fadeOutRight, {
+          params: {
+            timing: 0.18,
+            a: '0px',
+            b: '30px',
+          },
+        }),
+      ]),
+    ]),
+  ],
 })
 export class NewsComponent implements OnInit {
   user: User;

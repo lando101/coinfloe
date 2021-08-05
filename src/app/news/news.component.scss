@@ -13,14 +13,52 @@
 
 @mixin theme-mixin($light-theme: true) {
   $bg-color: $white-background;
+  $primary-bg-color: $primary-background;
   $border-color: $primary-border-light;
   $primary-font: $primary-font-color;
   $shadow: $card-shadow;
   @if $light-theme != true {
     $bg-color: $dark-secondary-background;
+    $primary-bg-color: $dark-body-background;
     $border-color: $dark-primary-border;
     $primary-font: $dark-primary-font-color;
     $shadow: $dark-card-shadow;
+  }
+  ::ng-deep .mat-tab-header {
+    position: sticky !important;
+    top: 0px;
+    z-index: 2;
+    border-bottom: none !important;
+    backdrop-filter: blur(25px);
+    background-image: linear-gradient(90deg, $primary-bg-color, transparent, $primary-bg-color);
+    span {
+      color: $primary-font;
+    }
+  }
+
+  .tab-icon {
+    margin-right: 10px;
+    padding: 7px;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+    height: 30px;
+    width: 30px;
+    i {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  .video {
+    background: #ff2323;
+    color: white;
+  }
+  .article {
+    background: #1d2840;
+    color: white;
   }
 }
 
