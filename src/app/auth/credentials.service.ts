@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { User } from 'src/models/user.model';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { debounce, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs/operators';
+import { UserService } from '@app/services/user.service';
 
 export interface Credentials {
   // Customize received credentials here
@@ -83,16 +84,33 @@ export class CredentialsService {
 
   // subscribing to changes of the user in firebase :: changes will update in real time
   getUser(uid: string) {
+    // const result = this.afs
+    //   .collection('users')
+    //   .doc(uid)
+    //   .valueChanges()
+    //   .subscribe((data: any) => {
+    //     console.log('GETTING USERR INFO');
+    //     console.log(this.afs.doc(`users/${uid}`));
+    //     console.log('GETTING USERR INFO');
+    //     this._user = data;
+    //     this.user$.next(this._user);
+    //     // console.log('USER');
+    //     // console.log(this._user);
+    //     // console.log('USER');
+    //   });
+
     const result = this.afs
-      .collection('users', (ref) => ref.where('uid', '==', uid))
+      .collection('users')
+      .doc(uid)
       .valueChanges()
-      .subscribe((data: any) => {
+      .pipe(debounceTime(500))
+      .subscribe((data) => {
+        console.log('GETTING USERR INFO');
         console.log(data);
+        console.log('GETTING USERR INFO');
+
         this._user = data;
         this.user$.next(this._user);
-        // console.log('USER');
-        // console.log(this._user);
-        // console.log('USER');
       });
   }
 }

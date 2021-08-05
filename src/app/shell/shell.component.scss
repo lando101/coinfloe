@@ -34,7 +34,7 @@
 // Force style down to child components
 // See https://angular.io/guide/component-styles#deep
 :host ::ng-deep .mat-drawer-backdrop {
-  top: 88px;
+  top: 88px !important;
   bottom: 0;
   left: 0;
   right: 0;

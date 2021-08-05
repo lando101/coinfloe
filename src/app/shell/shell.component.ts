@@ -144,9 +144,9 @@ export class ShellComponent implements OnInit {
   }
 
   user() {
-    this.credentialsService.user$.subscribe((data: User[]) => {
+    this.credentialsService.user$.subscribe((data: User) => {
       if (data) {
-        this.userProfile = data[0];
+        this.userProfile = data;
       }
     });
   }

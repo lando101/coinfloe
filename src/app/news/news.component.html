@@ -2,10 +2,11 @@
   <div [ngClass]="{ 'search-go-still': searchText }" class="container">
     <div class="position-absolute search-bar-wrapper w-100" [ngStyle]="{ 'z-index': 2 }">
       <app-news-search-bar
+        [recent_search]="activeRecentSearch"
         (searchResults)="updateNewsResults($event)"
         (searchString)="searchText = $event"
       ></app-news-search-bar>
-      <div class="scroll-box w-100 search-results" *ngIf="!!searchResults && searchText">
+      <div class="scroll-box w-100 search-results" *ngIf="!!searchResults && searchText; else recents">
         <div class="container">
           <app-news-list
             [title]="'Search results'"
@@ -18,8 +19,45 @@
           ></app-news-list>
         </div>
       </div>
+      <ng-template #recents>
+        <div *ngIf="searchText && !!user" class="w-100 search-results">
+          <div class="container d-flex justify-content-center">
+            <div [ngClass.gt-md]="'w-50'" [ngClass.lt-lg]="'w-75'">
+              <h5 class="font-weight-bold"><i class="bi bi-clock-history mr-2"></i>Recent Searches</h5>
+              <div *ngFor="let search of user.recent_search.reverse()">
+                <div fxLayout="row" fxLayoutAlign="space-between center" class="w-100">
+                  <button (click)="search_recent(search)" mat-flat-button class="w-100 p-2 bg-transparent">
+                    <div fxLayout="row" class="align-items-center">
+                      <svg
+                        _ngcontent-aqr-c355=""
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="14"
+                        height="14"
+                        fill="currentColor"
+                        viewBox="0 0 16 16"
+                        class="bi bi-search mr-2"
+                      >
+                        <path
+                          _ngcontent-aqr-c355=""
+                          d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
+                        ></path>
+                      </svg>
+                      <span>{{ search }}</span>
+                    </div>
+                  </button>
+                  <button mat-icon-button>
+                    <i _ngcontent-aqr-c370="" class="bi bi-x"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
     </div>
+    <!-- overlay -->
     <div class="w-100 search-overlay" *ngIf="searchText"></div>
+    <!-- overlay -->
   </div>
   <div class="transition-smooth news-articles-wrapper" [ngClass]="{ 'blur-bg': searchText }">
     <div class="w-100">

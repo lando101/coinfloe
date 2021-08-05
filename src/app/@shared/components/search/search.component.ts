@@ -23,11 +23,12 @@ export interface CoinSearch {
 })
 export class SearchComponent implements OnInit {
   @Input() theme: string;
+  @Output() showCoinDetails = new EventEmitter<boolean>();
+  @Output() coin = new EventEmitter<Coin>();
   coins: Coin[] = [];
   coinsSearch: CoinSearch[] = [];
   searchTerm: string = '';
-  @Output() showCoinDetails = new EventEmitter<boolean>();
-  @Output() coin = new EventEmitter<Coin>();
+
   tileSettings = {
     reverse: true, // reverse the tilt direction
     max: 6, // max tilt rotation (degrees)

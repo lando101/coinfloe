@@ -9,6 +9,7 @@ export interface User {
   phone?: string | number;
   created?: string | Date;
   signed_in?: string | Date;
+  recent_search?: string[];
   favorite_coins?: Coin[];
   favorite_articles?: NewsSource2[];
   followers_count?: number;

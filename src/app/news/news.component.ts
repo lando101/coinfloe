@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { NewsSourceSearch } from '@app/@shared/components/news-search-bar/news-search-bar.component';
 import { NewsService } from '@app/services/news.service';
 import { ThemeService } from '@app/services/theme.service';
 import { UserService } from '@app/services/user.service';
 import { NewsSource2 } from 'src/models/news.model';
+import { User } from 'src/models/user.model';
 interface ChipOption {
   label: string;
   desc: string;
@@ -16,8 +18,10 @@ interface ChipOption {
   styleUrls: ['./news.component.scss'],
 })
 export class NewsComponent implements OnInit {
+  user: User;
   theme: string;
   searchText: string;
+  activeRecentSearch: string;
   searchResults: NewsSource2[] = null;
   topicResults: NewsSource2[] = null;
   selectedChip: ChipOption = { label: 'All', active: true, desc: '', type: null, url: null };
@@ -45,7 +49,10 @@ export class NewsComponent implements OnInit {
     this.themeService.themeTypeBS.subscribe((data: string) => {
       this.theme = data;
     });
-    this.userService.updateUser(null);
+    this.userService.user$.subscribe({
+      next: (user: User) => (this.user = user),
+      error: () => (this.user = null),
+    });
   }
 
   ngOnDestroy(): void {
@@ -53,12 +60,24 @@ export class NewsComponent implements OnInit {
     //Add 'implements OnDestroy' to the class.
   }
 
-  // receiving from news search component
-  updateNewsResults(results: NewsSource2[]) {
+  // receiving from news search component :: output method
+  updateNewsResults(results: NewsSourceSearch) {
     console.log('GOT RESULTS');
     console.log(results);
     console.log('GOT RESULTS');
-    this.searchResults = results || null;
+    if (!!results && !!this.user) {
+      this.searchResults = results.results;
+      let userSearches: string[] = this.user.recent_search;
+      userSearches.push(results.search_string);
+
+      this.userService.updateUser(this.user.uid, 'recent_search', userSearches);
+    } else {
+      this.searchResults = null;
+    }
+  }
+
+  search_recent(search: string) {
+    this.activeRecentSearch = search;
   }
 
   // triggers getting news based on chip type & topic

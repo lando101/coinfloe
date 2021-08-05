@@ -1,17 +1,25 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { NewsService } from '@app/services/news.service';
+import { UserService } from '@app/services/user.service';
 import * as keywordExtractor from 'keyword-extractor';
 import { NewsSource2 } from 'src/models/news.model';
+import { User } from 'src/models/user.model';
 
+export interface NewsSourceSearch {
+  results: NewsSource2[];
+  search_string: string;
+}
 @Component({
   selector: 'app-news-search-bar',
   templateUrl: './news-search-bar.component.html',
   styleUrls: ['./news-search-bar.component.scss'],
 })
 export class NewsSearchBarComponent implements OnInit {
+  @Input() recent_search: string;
   @Output() searchString = new EventEmitter<string>();
-  @Output() searchResults = new EventEmitter<NewsSource2[]>();
+  @Output() searchResults = new EventEmitter<NewsSourceSearch>();
+  user: User = null;
   searchText: string;
   keywordsFound: string[] = [];
   keywordParams: any = {
@@ -26,15 +34,31 @@ export class NewsSearchBarComponent implements OnInit {
     this.extractKeyWords('');
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes);
+    const search = changes.recent_search.currentValue;
+    const lastSearch = changes.recent_search.previousValue;
+    if (!!search) {
+      if (search !== lastSearch) {
+        this.search_recent(search);
+      }
+    }
+  }
+
   extractKeyWords(text: string) {
     // console.log(keywordExtractor.default.extract('Landon Messmer went to the store and got a bight to eat'));
-    this.keywordsFound = keywordExtractor.default.extract(text, this.keywordParams);
-    if (!text) {
-      this.resetSearch();
-    } else {
-      this.searchString.emit(this.searchText);
-      // this.search();
-    }
+    const promise = new Promise((resolve, reject) => {
+      this.keywordsFound = keywordExtractor.default.extract(text, this.keywordParams);
+      if (!text) {
+        this.resetSearch();
+        reject('There is no search text');
+      } else {
+        this.searchString.emit(this.searchText);
+        resolve(this.searchText);
+        // this.search();
+      }
+    });
+    return promise;
   }
 
   search() {
@@ -43,10 +67,22 @@ export class NewsSearchBarComponent implements OnInit {
     console.log(`Search String: ${keywords_string}`);
     this.searchResults.emit(null);
     this.newsService.getNewsSearch(keywords_string).then((data: NewsSource2[]) => {
+      const result: NewsSourceSearch = {
+        results: data,
+        search_string: this.searchText,
+      };
       // console.log('NEWS RESULTS');
       // console.log(data);
       // console.log('NEWS RESULTS');
-      this.searchResults.emit(data);
+      this.searchResults.emit(result);
+    });
+  }
+
+  // when user select an existing search from their history
+  search_recent(search: string) {
+    this.extractKeyWords(search).then(() => {
+      this.searchText = search;
+      this.search();
     });
   }
 
