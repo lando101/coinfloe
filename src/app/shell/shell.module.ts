@@ -16,7 +16,10 @@ import { HeaderComponent } from './header/header.component';
 import { SharedModule } from '@app/@shared';
 import { FooterComponent } from './footer/footer.component';
 import { AngularTiltModule } from 'angular-tilt';
-// import { NgxBootstrapModule } from '@app/ngx-bootstrap.module';
+import { SideNavComponent } from './side-nav/side-nav.component';
+import { EventsWidgetComponent } from './events-widget/events-widget.component';
+import { FavoritesCoinsWidgetComponent } from './favorites-coins-widget/favorites-coins-widget.component';
+import { CoinRatingWidgetComponent } from './coin-rating-widget/coin-rating-widget.component';
 
 // const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 //   suppressScrollX: true,
@@ -36,7 +39,15 @@ import { AngularTiltModule } from 'angular-tilt';
     AngularTiltModule,
   ],
   exports: [],
-  declarations: [HeaderComponent, ShellComponent, FooterComponent],
+  declarations: [
+    HeaderComponent,
+    ShellComponent,
+    FooterComponent,
+    SideNavComponent,
+    EventsWidgetComponent,
+    FavoritesCoinsWidgetComponent,
+    CoinRatingWidgetComponent,
+  ],
   providers: [
     // {
     //   provide: PERFECT_SCROLLBAR_CONFIG,

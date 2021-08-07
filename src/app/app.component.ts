@@ -10,6 +10,8 @@ import { environment } from '@env/environment';
 import { Logger, UntilDestroy, untilDestroyed } from '@core';
 import { I18nService } from '@app/i18n';
 import { LoadingBarService } from '@ngx-loading-bar/core';
+import { trigger, transition, useAnimation } from '@angular/animations';
+import { rotateCubeToLeft, rotateCubeToRight } from 'ngx-router-animations';
 
 const log = new Logger('App');
 
@@ -18,6 +20,12 @@ const log = new Logger('App');
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
+  animations: [
+    trigger('rotateCubeToLeft', [
+      transition('charts => news', useAnimation(rotateCubeToLeft)),
+      transition('news => charts', useAnimation(rotateCubeToRight)),
+    ]),
+  ],
 })
 export class AppComponent implements OnInit, OnDestroy {
   constructor(
@@ -69,7 +77,9 @@ export class AppComponent implements OnInit, OnDestroy {
         }
       });
   }
-
+  public getState(outlet: any) {
+    return outlet.activatedRouteData.state;
+  }
   ngOnDestroy() {
     this.i18nService.destroy();
   }

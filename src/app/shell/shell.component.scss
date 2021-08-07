@@ -26,6 +26,10 @@
   }
 }
 
+.mat-drawer {
+  border: none !important;
+}
+
 .mat-drawer-container {
   position: unset;
 }
@@ -34,7 +38,7 @@
 // Force style down to child components
 // See https://angular.io/guide/component-styles#deep
 :host ::ng-deep .mat-drawer-backdrop {
-  top: 88px !important;
+  top: 0px !important;
   bottom: 0;
   left: 0;
   right: 0;
@@ -44,10 +48,10 @@
   // background: linear-gradient(317deg, #a2a2a21a, transparent);
 }
 
-.mat-sidenav {
-  top: 89px;
-  right: 0px;
-}
+// .mat-sidenav {
+//   top: 89px;
+//   right: 0px;
+// }
 
 /* MAGIC HAPPENS HERE */
 .scroll-bar-wrap:hover .cover-bar {
@@ -80,8 +84,9 @@
   }
 
   color: $font;
-  background-color: $bg-color !important;
-
+  .mat-drawer-content {
+    background-color: $bg-color !important;
+  }
   ::ng-deep .slick-next::before {
     color: $slick-color !important;
   }

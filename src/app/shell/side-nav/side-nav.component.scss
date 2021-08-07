@@ -1,30 +1,11 @@
 @import "src/theme/theme-variables";
 @import "../../../styles/index";
-.navbar {
-  position: sticky;
-  top: 0px;
-  // top: 0;
-  // left: 0;
-  // right: 0;
-  z-index: 1;
-  width: 100%;
-}
-
-// .brand {
-//   color: mat-color($app-primary, "default-contrast");
-//   text-decoration: none;
-//   padding-right: 1rem;
-// }
-
-.menu-button {
-  margin-right: 1rem;
-}
 
 @mixin theme-mixin($light-theme: true) {
   $brand: $primary-color;
   $font: $primary-font-color;
   $font-2: $secondary-font-color;
-  $bg-color: $primary-background-lighter;
+  $bg-color: $white-background;
   $border: $header-border;
   $text-shadow: $primary-text-shadow;
   @if $light-theme != true {
@@ -35,9 +16,8 @@
     $border: $dark-header-border;
     $text-shadow: $dark-primary-text-shadow;
   }
-
   background-color: $bg-color !important;
-  padding-top: 22px;
+  // border-bottom: 1px solid $border;
   color: $font;
   .coinfloe-brand {
     font-family: "Righteous", cursive;
@@ -49,6 +29,12 @@
       text-decoration: none !important;
     }
   }
+  .tab-rotate {
+    transform: rotate(-90deg);
+    span {
+      transform: rotate(90deg);
+    }
+  }
   .info-banner {
     border-top: 1px solid $border;
   }
@@ -58,6 +44,9 @@
     color: $font;
     i {
       font-size: 25px;
+    }
+    .button-label {
+      font-size: 1.15rem;
     }
     &.active {
       color: $primary-color !important;

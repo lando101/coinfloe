@@ -22,6 +22,9 @@ import { AuthenticationService, CredentialsService } from '@app/auth';
 import { Router } from '@angular/router';
 import { User } from 'src/models/user.model';
 import { of } from 'rxjs';
+import { trigger, transition, useAnimation } from '@angular/animations';
+import { rotateCubeToLeft, rotateCubeToRight } from 'ngx-router-animations';
+import { fadeInDown, fadeInUp } from 'ng-animate';
 
 @UntilDestroy()
 @Component({
@@ -29,12 +32,28 @@ import { of } from 'rxjs';
   templateUrl: './shell.component.html',
   styleUrls: ['./shell.component.scss'],
   animations: [
-    fadeInUpOnEnterAnimation({
-      duration: 300,
-    }),
-    fadeOutDownOnLeaveAnimation({
-      duration: 300,
-    }),
+    trigger('rotateCubeToLeft', [
+      transition(
+        'charts => news',
+        useAnimation(fadeInUp, {
+          params: {
+            timing: 0.18,
+            a: '20px',
+            b: '0px',
+          },
+        })
+      ),
+      transition(
+        'news => charts',
+        useAnimation(fadeInDown, {
+          params: {
+            timing: 0.18,
+            a: '-20px',
+            b: '0px',
+          },
+        })
+      ),
+    ]),
   ],
 })
 export class ShellComponent implements OnInit {
@@ -172,6 +191,9 @@ export class ShellComponent implements OnInit {
   closeSidenav() {
     this.showProfile = null;
     this.sidenav.close();
+  }
+  public getState(outlet: any) {
+    return outlet.activatedRouteData.state;
   }
   // getCryptosList() {
   //   this.isLoading = true;

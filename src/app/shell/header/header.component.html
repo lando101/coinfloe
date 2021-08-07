@@ -37,10 +37,10 @@
 <nav class="navbar navbar-expand-lg navbar-light {{ theme }} theme-container px-0 pb-0">
   <div fxFlexFill fxLayout="column">
     <div fxFlexFill fxLayout="row" class="px-3 mb-2">
-      <div fxFlex="25">
+      <!-- <div fxFlex="25">
         <a fxHide.lt-md class="coinfloe-brand" href="#" translate>APP_NAME</a>
         <a fxHide.gt-sm class="coinfloe-brand" href="#" translate>[C]</a>
-      </div>
+      </div> -->
       <!-- <button
         class="navbar-toggler"
         type="button"
@@ -50,7 +50,7 @@
         aria-expanded="false"
         aria-label="Toggle navigation"
       ></button> -->
-      <div fxFlex="50" class="justify-content-center">
+      <!-- <div fxFlex="50" class="justify-content-center">
         <div class="collapse navbar-collapse" class="d-flex justify-content-center h-100" id="navbarNav">
           <ul class="navbar-nav" fxLayout="row" fxLayoutGap="20px">
             <button
@@ -78,22 +78,6 @@
                 }"
               ></i>
             </button>
-            <!-- <button mat-button routerLinkActive="active" routerLink="/groups" matTooltip="Groups">
-              <i
-                [ngClass]="{
-                  'bi bi-people-fill': router.url === '/groups',
-                  'bi bi-people': router.url != '/groups'
-                }"
-              ></i>
-            </button>
-            <button mat-button routerLinkActive="active" routerLink="/explore" matTooltip="Explore">
-              <i
-                [ngClass]="{
-                  'bi bi-compass-fill': router.url === '/explore',
-                  'bi bi-compass': router.url != '/explore'
-                }"
-              ></i>
-            </button> -->
             <button
               aTilt
               [tiltSettings]="tileSettings"
@@ -102,18 +86,12 @@
               routerLink="/news"
               matTooltip="News"
             >
-              <!-- <i
-                [ngClass]="{
-                  'bi bi-newspaper': router.url === '/news',
-                  'bi bi-newspaper': router.url != '/news'
-                }"
-              ></i> -->
               <i class="bi bi-newspaper"></i>
             </button>
           </ul>
         </div>
-      </div>
-      <div fxFlex="25" class="justify-content-end d-flex align-items-center">
+      </div> -->
+      <div fxFlex="100" class="justify-content-between d-flex align-items-center">
         <!-- <app-language-selector icon="true"></app-language-selector> -->
         <app-search [theme]="theme"></app-search>
         <div fxHide.lt-lg fxLayout="row">
@@ -136,7 +114,6 @@
             <button mat-menu-item (click)="logout()" translate>Logout</button>
           </mat-menu> -->
         </div>
-
         <div fxHide.gt-md>
           <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Theme, notifications and profile menu">
             <mat-icon><i class="bi bi-list"></i></mat-icon>
@@ -158,7 +135,7 @@
         </div>
       </div>
     </div>
-    <div fxFlexFill fxLayout="row" class="px-3 py-2 info-banner">
+    <!-- <div fxFlexFill fxLayout="row" class="px-3 py-2 info-banner">
       <div class="container">
         <div class="d-flex justify-content-between align-items-center w-100">
           <small class="d-flex align-items-center">
@@ -186,6 +163,6 @@
           </small>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </nav>

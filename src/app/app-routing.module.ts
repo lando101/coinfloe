@@ -4,11 +4,19 @@ import { Shell } from '@app/shell/shell.service';
 
 const routes: Routes = [
   Shell.childRoutes([
-    { path: 'charts', loadChildren: () => import('./charts/charts.module').then((m) => m.ChartsModule) },
+    {
+      path: 'charts',
+      loadChildren: () => import('./charts/charts.module').then((m) => m.ChartsModule),
+      data: { state: 'charts' },
+    },
     { path: 'about', loadChildren: () => import('./about/about.module').then((m) => m.AboutModule) },
     { path: 'groups', loadChildren: () => import('./groups/groups.module').then((m) => m.GroupsModule) },
     { path: 'explore', loadChildren: () => import('./explore/explore.module').then((m) => m.ExploreModule) },
-    { path: 'news', loadChildren: () => import('./news/news.module').then((m) => m.NewsModule) },
+    {
+      path: 'news',
+      loadChildren: () => import('./news/news.module').then((m) => m.NewsModule),
+      data: { state: 'news' },
+    },
   ]),
   // { path: 'news', loadChildren: () => import('./news/news.module').then(m => m.NewsModule) },
   // Fallback when no prior route is matched

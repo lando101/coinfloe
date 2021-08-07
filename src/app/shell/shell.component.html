@@ -1,38 +1,31 @@
 <div fxFlex>
-  <app-header [sidenav]="sidenav" (sideNavToggle)="openSidenav($event)"></app-header>
-  <mat-sidenav-container fxFill class="{{ theme }} theme-container">
-    <!-- <mat-sidenav #sidenav mode="over" ngClass.gt-sm="has-border">
-      <nav>
-        <mat-list>
-          <mat-divider></mat-divider>
-          <a mat-list-item routerLink="/home" routerLinkActive="active" (click)="sidenav.close()">
-            <span translate>Home</span>
-          </a>
-          <mat-divider></mat-divider>
-          <a mat-list-item routerLink="/about" routerLinkActive="active" (click)="sidenav.close()">
-            <span translate>About</span>
-          </a>
-          <mat-divider></mat-divider>
-        </mat-list>
-      </nav>
-    </mat-sidenav> -->
-    <mat-sidenav position="end" #sidenav mode="side">
-      <app-profile-menu
-        *ngIf="showProfile"
-        [username]="user_name"
-        [title]="title_display"
-        [user]="userProfile"
-        [theme]="theme"
-        (logout)="logout()"
-      ></app-profile-menu>
-      <app-notifications-menu *ngIf="!showProfile"></app-notifications-menu>
-    </mat-sidenav>
-    <mat-sidenav-content class="overflow-hidden" (click)="closeSidenav()">
-      <!-- <perfect-scrollbar #perfectscroll class="ps" [config]="config"> -->
+  <mat-drawer-container class="{{ theme }} theme-container">
+    <mat-drawer #drawer mode="side" opened>
+      <app-side-nav></app-side-nav>
+    </mat-drawer>
+    <mat-drawer-content>
       <div class="scroll-bar-wrap h-100">
         <div class="scroll-box overflow-auto h-100">
-          <router-outlet></router-outlet>
-          <app-footer></app-footer>
+          <app-header [sidenav]="sidenav" (sideNavToggle)="openSidenav($event)"></app-header>
+          <div fxLayout="row">
+            <div fxFlex="75">
+              <!-- <div class="router-wrapper"
+              [@rotateCubeToLeft]="getState(o)">
+              </div> -->
+              <router-outlet #o="outlet"></router-outlet>
+
+              <app-footer></app-footer>
+            </div>
+            <div fxFlex="25" class="position-relative">
+              <div class="w-100">
+                <div>
+                  <app-coin-rating-widget></app-coin-rating-widget>
+                  <app-events-widget></app-events-widget>
+                  <app-favorites-coins-widget></app-favorites-coins-widget>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <!-- </perfect-scrollbar> -->
@@ -49,6 +42,42 @@
         <i class="bi bi-arrow-up"></i>
         <!-- <mat-icon>delete</mat-icon> -->
       </button>
+    </mat-drawer-content>
+  </mat-drawer-container>
+
+  <!-- <mat-sidenav-container [hasBackdrop]="false" fxFill class="{{ theme }} theme-container">
+    <mat-sidenav position="end" #sidenav mode="side">
+      <app-profile-menu
+        *ngIf="showProfile"
+        [username]="user_name"
+        [title]="title_display"
+        [user]="userProfile"
+        [theme]="theme"
+        (logout)="logout()"
+      ></app-profile-menu>
+      <app-notifications-menu *ngIf="!showProfile"></app-notifications-menu>
+    </mat-sidenav>
+    <mat-sidenav-content class="overflow-hidden" (click)="closeSidenav()">
+      <div class="scroll-bar-wrap h-100">
+        <div class="scroll-box overflow-auto h-100">
+          <router-outlet></router-outlet>
+          <app-footer></app-footer>
+        </div>
+      </div>
+      <button
+        *ngIf="scrollTop"
+        (click)="backToTop()"
+        [@fadeInUpOnEnter]
+        [@fadeOutDownOnLeave]
+        mat-fab
+        color="primary"
+        class="scrollToTopButton"
+        aria-label="Back to top of page"
+      >
+        <i class="bi bi-arrow-up"></i>
+      </button>
     </mat-sidenav-content>
-  </mat-sidenav-container>
+    <mat-sidenav opened="true" [position]="'start'" mode="push"></mat-sidenav>
+
+  </mat-sidenav-container> -->
 </div>

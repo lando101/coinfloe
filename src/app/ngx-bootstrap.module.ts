@@ -7,10 +7,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { PopoverModule } from 'ngx-bootstrap/popover';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-
+import { TabsModule } from 'ngx-bootstrap/tabs';
 @NgModule({
   declarations: [],
-  imports: [PopoverModule.forRoot()],
-  exports: [PopoverModule],
+  imports: [PopoverModule.forRoot(), TabsModule.forRoot()],
+  exports: [PopoverModule, TabsModule],
 })
 export class NgxBootstrapModule {}
