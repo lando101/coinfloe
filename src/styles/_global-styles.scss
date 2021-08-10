@@ -65,6 +65,11 @@
   background-color: #17a2b821 !important;
 }
 
+::ng-deep .badge-light {
+  color: #212529;
+  background-color: #ececec !important;
+}
+
 ::ng-deep .mat-bottom-sheet-container {
   max-height: none !important;
   padding: 0px !important;

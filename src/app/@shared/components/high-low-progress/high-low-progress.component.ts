@@ -8,6 +8,7 @@ import { Coin } from 'src/models/coins.model';
 })
 export class HighLowProgressComponent implements OnInit {
   @Input() coin: Coin;
+  @Input() showPrice = true;
   high: number;
   low: number;
   progress: number;

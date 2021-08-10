@@ -1,1 +1,16 @@
-<p>favorites-coins-widget works!</p>
+<div class="px-4 py-2" fxLayout="column" fxLayoutGap="15px">
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <h5 class="font-weight-bold d-flex align-items-center mb-0">
+      <i class="heart-icon bi bi-heart-fill mr-2"></i>
+      Favorite Coins
+    </h5>
+    <div>
+      <span class="badge badge-dark">{{ favoriteCoins?.length || 0 }} Favorites</span>
+    </div>
+  </div>
+  <div *ngIf="!!favoriteCoins" fxLayout="column" fxLayoutGap="15px">
+    <div *ngFor="let favorite of favoriteCoins">
+      <app-favorite-coin-item [coin]="favorite"></app-favorite-coin-item>
+    </div>
+  </div>
+</div>

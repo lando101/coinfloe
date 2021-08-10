@@ -20,6 +20,7 @@ import { SideNavComponent } from './side-nav/side-nav.component';
 import { EventsWidgetComponent } from './events-widget/events-widget.component';
 import { FavoritesCoinsWidgetComponent } from './favorites-coins-widget/favorites-coins-widget.component';
 import { CoinRatingWidgetComponent } from './coin-rating-widget/coin-rating-widget.component';
+import { FavoriteCoinItemComponent } from './cards/favorite-coin-item/favorite-coin-item.component';
 
 // const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 //   suppressScrollX: true,
@@ -47,6 +48,7 @@ import { CoinRatingWidgetComponent } from './coin-rating-widget/coin-rating-widg
     EventsWidgetComponent,
     FavoritesCoinsWidgetComponent,
     CoinRatingWidgetComponent,
+    FavoriteCoinItemComponent,
   ],
   providers: [
     // {

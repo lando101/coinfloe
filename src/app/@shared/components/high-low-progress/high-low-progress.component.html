@@ -1,5 +1,5 @@
 <div *ngIf="!!progress" fxLayout="column">
-  <div fxLayout="row" class="justify-content-between mb-1">
+  <div *ngIf="showPrice" fxLayout="row" class="justify-content-between mb-1">
     <div fxLayout="column" class="align-items-start">
       <!-- <small>Low</small> -->
       <label class="mb-0">{{ low | currency }}</label>

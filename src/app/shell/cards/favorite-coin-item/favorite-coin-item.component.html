@@ -1,0 +1,56 @@
+<div *ngIf="!!coin" fxLayout="row" class="theme-container" fxLayoutAlign="space-between center">
+  <button aTilt [tiltSettings]="tileSettings" fxFlex="auto" mat-flat-button class="px-3 py-2 favorite-item-container">
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <div fxLayout="row" fxLayoutAlign="center center">
+        <div fxFlex="40px">
+          <div class="img-container">
+            <img src="{{ prettyImgURL }}" (error)="prettyImgURL = imgURL" />
+          </div>
+        </div>
+        <div>
+          <app-high-low-progress></app-high-low-progress>
+        </div>
+        <div fxLayout="column" class="text-left">
+          <label class="font-weight-bold">{{ coin.CoinInfo.FullName || 'Unknown' }}</label>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <small class="font-weight-bold text-faint">{{ coin.CoinInfo.Name || 'NA' }}</small>
+            <div class="badge badge-light d-flex justify-content-center align-items-center">
+              <small class="font-weight-bold">#1</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div fxLayout="row">
+        <div fxLayout="column" class="text-right">
+          <label class="font-weight-bold price-label">{{ coin.RAW.USD.PRICE || 0 | currency }}</label>
+          <small
+            class="d-flex justify-content-end font-weight-bold"
+            [ngClass]="{
+              'text-positive': coin?.RAW?.USD?.CHANGEPCT24HOUR > 0,
+              'text-negative': coin?.RAW?.USD?.CHANGEPCT24HOUR < 0
+            }"
+          >
+            <i *ngIf="coin?.RAW?.USD?.CHANGEPCT24HOUR > 0" class="bi bi-arrow-up-short"></i>
+            <i *ngIf="coin?.RAW?.USD?.CHANGEPCT24HOUR < 0" class="bi bi-arrow-down-short"></i>
+            {{ coin?.RAW?.USD?.CHANGEPCT24HOUR / 100 | percent: '0.1-2' }}
+          </small>
+        </div>
+      </div>
+    </div>
+  </button>
+  <div fxFlex="25px">
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>
+        <mat-icon>dialpad</mat-icon>
+        <span>Remove</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>notifications_off</mat-icon>
+        <span>View</span>
+      </button>
+    </mat-menu>
+  </div>
+</div>

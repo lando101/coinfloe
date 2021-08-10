@@ -34,7 +34,7 @@ export interface CryptoQuery {
   providedIn: 'root',
 })
 export class CryptoDataServiceService {
-  coinsObs: BehaviorSubject<any> = new BehaviorSubject<any>(''); // subscribe for crypto data
+  coinsObs: BehaviorSubject<any> = new BehaviorSubject<any>(null); // subscribe for crypto data
   btcBlockChainObs: BehaviorSubject<any> = new BehaviorSubject<any>(''); // subscribe for block chain data (default query)
   coinBlockChainObs: BehaviorSubject<any> = new BehaviorSubject<any>(''); // subscribe for block chain data
   coinDailyPriceObs: BehaviorSubject<any> = new BehaviorSubject<any>(''); // subscribe for price data
