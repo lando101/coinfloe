@@ -17,6 +17,8 @@ import { SidenavService } from '@app/services/sidenav.service';
 export class HeaderComponent implements OnInit {
   @Input() sidenav!: MatSidenav;
   @Output() sideNavToggle = new EventEmitter<boolean>(true);
+  @Output() leftNavToggle = new EventEmitter<boolean>();
+  navOpen = true;
   tileSettings = {
     reverse: true, // reverse the tilt direction
     max: 6, // max tilt rotation (degrees)
@@ -94,5 +96,10 @@ export class HeaderComponent implements OnInit {
 
   toggleSideNav(profile: boolean) {
     this.sideNavToggle.emit(profile);
+  }
+
+  toggleLeftNav() {
+    this.leftNavToggle.emit(null);
+    this.navOpen = !this.navOpen;
   }
 }

@@ -1,12 +1,17 @@
 <div fxFlex>
-  <mat-drawer-container class="{{ theme }} theme-container">
-    <mat-drawer #drawer mode="side" opened>
+  <mat-drawer-container class="{{ theme }} theme-container" autosize>
+    <mat-drawer #drawer mode="side" [opened]="menuOpen">
       <app-side-nav></app-side-nav>
     </mat-drawer>
     <mat-drawer-content>
       <div class="scroll-bar-wrap h-100">
         <div class="scroll-box overflow-auto h-100">
-          <app-header [sidenav]="sidenav" (sideNavToggle)="openSidenav($event)"></app-header>
+          <!-- <button (click)="drawer.toggle()">SHOW</button> -->
+          <app-header
+            [sidenav]="sidenav"
+            (leftNavToggle)="drawer.toggle()"
+            (sideNavToggle)="openSidenav($event)"
+          ></app-header>
           <div fxLayout="row">
             <div fxFlex="75">
               <!-- <div class="router-wrapper"
@@ -16,11 +21,11 @@
 
               <app-footer></app-footer>
             </div>
-            <div fxFlex="25" class="position-relative">
+            <div fxFlex="25" class="widgets-container">
               <div class="w-100">
                 <div>
-                  <app-coin-rating-widget></app-coin-rating-widget>
-                  <app-events-widget></app-events-widget>
+                  <!-- <app-coin-rating-widget></app-coin-rating-widget>
+                  <app-events-widget></app-events-widget> -->
                   <app-favorites-coins-widget [user]="userProfile"></app-favorites-coins-widget>
                 </div>
               </div>

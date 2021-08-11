@@ -1,4 +1,5 @@
-<div fxLayout="column" fxLayoutGap="25px" fxFill class="{{ theme }} theme-container p-4 pr-5">
+<!-- <button (click)="show = !show">SHOW</button> -->
+<div *ngIf="show" fxLayout="column" fxLayoutGap="25px" fxFill class="{{ theme }} nav-expanded theme-container p-4">
   <a fxHide.lt-md class="coinfloe-brand px-3" href="#" translate>APP_NAME</a>
   <a fxHide.gt-sm class="coinfloe-brand" href="#" translate>[C]</a>
 

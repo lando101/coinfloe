@@ -15,6 +15,7 @@ interface Links {
 })
 export class SideNavComponent implements OnInit {
   theme: string = '';
+  show = true;
   activeLink: Links = null;
   links: Links[] = [
     {

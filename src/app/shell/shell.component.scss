@@ -48,11 +48,6 @@
   // background: linear-gradient(317deg, #a2a2a21a, transparent);
 }
 
-// .mat-sidenav {
-//   top: 89px;
-//   right: 0px;
-// }
-
 /* MAGIC HAPPENS HERE */
 .scroll-bar-wrap:hover .cover-bar {
   opacity: 0;
@@ -71,16 +66,20 @@
   $brand: $primary-color;
   $font: $primary-font-color;
   $bg-color: $body-background;
+  $bg-color-light: $primary-background-lighter;
   $scroll-color: rgba(0, 0, 0, 0.2);
   $slick-color: $slick-color;
   $slick-dots: $slick-dots;
+  $border: $header-border;
   @if $light-theme != true {
     $brand: $primary-color;
     $font: $dark-primary-font-color;
     $bg-color: $dark-body-background;
+    $bg-color-light: $dark-secondary-background;
     $scroll-color: rgb(212 212 212 / 20%);
     $slick-color: $dark-slick-color;
     $slick-dots: $dark-slick-dots;
+    $border: $dark-header-border;
   }
 
   color: $font;
@@ -128,6 +127,14 @@
   }
   ::ng-deep .scroll-box::-webkit-scrollbar-thumb {
     background: $scroll-color;
+  }
+  .widgets-container {
+    height: calc(100vh - 75px);
+    position: sticky !important;
+    top: 75px;
+    padding: 30px 25px;
+    border-left: 1px solid $border;
+    background-color: $bg-color-light;
   }
 }
 

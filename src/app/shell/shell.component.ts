@@ -59,6 +59,7 @@ import { fadeInDown, fadeInUp } from 'ng-animate';
 export class ShellComponent implements OnInit {
   @ViewChild('perfectscroll') perfectScroll: PerfectScrollbarComponent;
   @ViewChild('sidenav', { static: false }) sidenav!: MatSidenav;
+  menuOpen = true;
   isLoading: boolean;
   coins: Coin[] = [];
   theme: string = '';

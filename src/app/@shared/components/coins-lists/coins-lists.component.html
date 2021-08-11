@@ -9,7 +9,12 @@
       <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start center">
         <div matTooltip="Add {{ coin.CoinInfo.Name }} to favorites ">
           <button (click)="toggleFavorite(coin)" class="fav-button">
-            <i [ngClass]="{ 'heart-icon bi bi-heart-fill': coin.FAVORITE, 'bi bi-heart': !coin.FAVORITE }"></i>
+            <i
+              [ngClass]="{
+                'heart-icon bi bi-heart-fill': coin.FAVORITE,
+                'text-very-faint bi bi-heart': !coin.FAVORITE
+              }"
+            ></i>
           </button>
         </div>
         <button

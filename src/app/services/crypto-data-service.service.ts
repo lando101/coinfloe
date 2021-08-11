@@ -60,7 +60,10 @@ export class CryptoDataServiceService {
     if (params) {
       return this._httpClient.get(routes.allCryptos(params)).pipe(
         map((body: any) => {
-          this.setCryptoData(body.data.Data);
+          if (this.coinsArray !== body.data.Data) {
+            this.setCryptoData(body.data.Data);
+            this.coinsArray = body.data.Data;
+          }
           return body.data.Data;
         }),
         catchError(() => of('Error, couldnt get cryptos'))
@@ -68,7 +71,10 @@ export class CryptoDataServiceService {
     } else {
       return this._httpClient.get(routes.allCryptos(this.defaultQuery)).pipe(
         map((body: any) => {
-          this.setCryptoData(body.data.Data);
+          if (this.coinsArray !== body.data.Data) {
+            this.setCryptoData(body.data.Data);
+            this.coinsArray = body.data.Data;
+          }
           return body.data.Data;
         }),
         catchError(() => of('Error, couldnt get cryptos'))

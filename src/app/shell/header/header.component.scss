@@ -37,7 +37,9 @@
   }
 
   background-color: $bg-color !important;
-  padding-top: 22px;
+  border-bottom: 1px solid $border;
+  // padding-top: 22px;
+  height: 75px;
   color: $font;
   .coinfloe-brand {
     font-family: "Righteous", cursive;
@@ -67,6 +69,54 @@
   }
   .brand-text {
     color: $font-2;
+  }
+  // hamburger
+  // nav-icon-8
+  .nav-icon-8 {
+    width: 25px;
+    height: 20px;
+    // margin: 10px 10px;
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+  }
+  .nav-icon-8 span {
+    background-color: $font;
+    position: absolute;
+    border-radius: 2px;
+    transition: 0.3s cubic-bezier(0.8, 0.5, 0.2, 1.4);
+    width: 100%;
+    height: 2px;
+  }
+  .nav-icon-8 span:nth-child(1) {
+    top: 0px;
+    left: 0px;
+  }
+  .nav-icon-8 span:nth-child(2) {
+    top: 9px;
+    left: 0px;
+  }
+  .nav-icon-8 span:nth-child(3) {
+    bottom: 0px;
+    left: 0px;
+  }
+  .nav-icon-8:not(.open):hover span:nth-child(1) {
+    transform: scaleX(0.8);
+  }
+  .nav-icon-8:not(.open):hover span:nth-child(2) {
+    transform: scaleX(0.5);
+  }
+  .nav-icon-8:not(.open):hover span:nth-child(3) {
+    transform: scaleX(0.8);
+  }
+  .nav-icon-8.open span:nth-child(1) {
+    top: 9px;
+  }
+  .nav-icon-8.open span:nth-child(2) {
+    top: 9px;
+  }
+  .nav-icon-8.open span:nth-child(3) {
+    top: 9px;
   }
 }
 
