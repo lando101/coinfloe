@@ -10,7 +10,7 @@
   </div>
   <div *ngIf="!!favoriteCoins" fxLayout="column" fxLayoutGap="15px">
     <div *ngFor="let favorite of favoriteCoins">
-      <app-favorite-coin-item [coin]="favorite"></app-favorite-coin-item>
+      <app-favorite-coin-item (removeFavOutput)="removeFavorite($event)" [coin]="favorite"></app-favorite-coin-item>
     </div>
   </div>
 </div>

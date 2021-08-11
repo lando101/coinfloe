@@ -10,7 +10,7 @@ export interface User {
   created?: string | Date;
   signed_in?: string | Date;
   recent_search?: string[];
-  favorite_coins?: Coin[];
+  favorite_coins?: string[];
   favorite_articles?: NewsSource2[];
   followers_count?: number;
   followers?: any;

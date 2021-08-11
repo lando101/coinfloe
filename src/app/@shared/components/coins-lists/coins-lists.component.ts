@@ -4,7 +4,7 @@ import { CoinDetailsComponent } from '../coin-details/coin-details.component';
 import { GroupByPipe, KeysPipe, OrderByPipe, PairsPipe, FlattenPipe } from 'ngx-pipes';
 import { BottomSheetCustomComponent } from '../bottom-sheet-custom/bottom-sheet-custom.component';
 import { BottomSheetService } from '@app/services/bottom-sheet.service';
-
+import { User } from 'src/models/user.model';
 export interface loaders {
   number: number;
 }
@@ -19,10 +19,15 @@ export class CoinsListsComponent implements OnInit {
   @Input() Coins: Coin[];
   @Input() count: number;
   @Input() theme: string;
+  @Input() user: User;
+  @Input() loading: boolean;
+
   @Output() showCoinDetails = new EventEmitter<boolean>();
   @Output() coin = new EventEmitter<Coin>();
+  @Output() addFavOutput = new EventEmitter<Coin>();
+  @Output() removeFavOutput = new EventEmitter<Coin>();
+
   localCoins: Coin[] = [];
-  @Input() loading: boolean;
   splice = 10;
   tileSettings = {
     reverse: true, // reverse the tilt direction
@@ -68,6 +73,10 @@ export class CoinsListsComponent implements OnInit {
     // console.log('COINS');
     // console.log(this.Coins);
     if (this.Coins) {
+      console.log('COIN LIST');
+      console.log(this.Coins);
+      console.log(changes);
+      console.log('COIN LIST');
       this.orderByMarkCap(this.Coins);
       // this.localCoins = this.Coins;
     }
@@ -112,5 +121,22 @@ export class CoinsListsComponent implements OnInit {
 
   openBottomSheet(coin: Coin) {
     this.bottomSheetService.setState(true, coin);
+  }
+
+  toggleFavorite(coin: Coin) {
+    if (coin.FAVORITE) {
+      this.removeFavorite(coin);
+    } else {
+      this.addFavorite(coin);
+    }
+  }
+
+  addFavorite(coin: Coin) {
+    coin.FAVORITE = true; // assuming db will successfully handle event
+    this.addFavOutput.emit(coin);
+  }
+  removeFavorite(coin: Coin) {
+    coin.FAVORITE = false; // assuming db will successfully handle event
+    this.removeFavOutput.emit(coin);
   }
 }

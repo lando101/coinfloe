@@ -9,6 +9,8 @@ import { BottomSheetService } from '@app/services/bottom-sheet.service';
 import { GlobalData } from 'src/models/crypto-global-data.model';
 import { GlobalMetrics } from 'src/models/global-metric.model';
 import { TradingSignals } from 'src/models/coin-trading-signals.model';
+import { User } from 'src/models/user.model';
+import { UserService } from '@app/services/user.service';
 
 @Component({
   selector: 'app-home',
@@ -28,6 +30,7 @@ export class HomeComponent implements OnInit {
   globalData: GlobalData;
   globalMetrics: GlobalMetrics;
   tradingSignals: TradingSignals;
+  user: User;
 
   theme: string = '';
 
@@ -42,7 +45,8 @@ export class HomeComponent implements OnInit {
     private themeService: ThemeService,
     private orderByPipe: OrderByPipe,
     private flattenPipe: FlattenPipe,
-    private bottomSheetService: BottomSheetService
+    private bottomSheetService: BottomSheetService,
+    private userService: UserService
   ) {}
 
   ngOnInit() {
@@ -57,13 +61,13 @@ export class HomeComponent implements OnInit {
     //     this.selectedCoin = this.coins[0];
     //   }
     // });
-
-    this.cryptoService.getCryptoData().subscribe((data: any) => {
-      this.isLoading = true;
-
-      this.coins = data;
-      this.orderPCTGains24h(this.coins);
-      this.selectedCoin = this.coins[0];
+    this.userService.user$.subscribe((user: User) => {
+      if (user) {
+        this.user = user;
+        this.getCoins(true);
+      } else {
+        this.getCoins(false);
+      }
     });
 
     this.bottomSheetService.bottomSheetShow.subscribe((data) => {
@@ -92,6 +96,41 @@ export class HomeComponent implements OnInit {
       // console.log('BTC TRADING SIGNALS');
       // console.log(data);
       // console.log('BTC TRADING SIGNALS');
+    });
+  }
+
+  getCoins(isUser?: boolean) {
+    this.cryptoService.getCryptoData().subscribe((coins: Coin[]) => {
+      this.isLoading = true;
+      let tempCoins: Coin[] = [];
+      if (isUser && this.coins !== coins) {
+        // going to link user fav with coin to show if favorited or not
+        const promise = new Promise((resolve, reject) => {
+          coins.forEach((coin) => {
+            const match = this.user.favorite_coins.find(
+              (fav) => coin.CoinInfo.Name.toLowerCase() === fav.toLowerCase()
+            );
+            console.log(coin);
+            if (match) {
+              coin.FAVORITE = true;
+            } else {
+              coin.FAVORITE = false;
+            }
+            tempCoins.push(coin);
+          });
+          resolve('');
+        }).then(() => {
+          this.coins = tempCoins;
+          this.orderPCTGains24h(this.coins);
+          this.selectedCoin = this.coins[0];
+        });
+
+        return promise;
+      } else {
+        this.coins = coins;
+        this.orderPCTGains24h(this.coins);
+        this.selectedCoin = this.coins[0];
+      }
     });
   }
 
@@ -126,5 +165,13 @@ export class HomeComponent implements OnInit {
   displayCoin(event: any) {
     // console.log('Show state: ' + event);
     this.bottomSheet = !this.bottomSheet;
+  }
+
+  addFavorite(coin: Coin) {
+    this.userService.addFavorite(coin);
+  }
+
+  removeFavorite(coin: Coin) {
+    this.userService.removeFavorite(coin);
   }
 }

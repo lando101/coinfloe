@@ -6,9 +6,21 @@
     fxLayoutGap="20px"
   >
     <div *ngFor="let coin of localCoins.slice(0, count)">
-      <button aTilt [tiltSettings]="tileSettings" (click)="openBottomSheet(coin)" class="p-0 w-100 rounded-2">
-        <app-coin-item [coin]="coin" [theme]="theme"></app-coin-item>
-      </button>
+      <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start center">
+        <div matTooltip="Add {{ coin.CoinInfo.Name }} to favorites ">
+          <button (click)="toggleFavorite(coin)" class="fav-button">
+            <i [ngClass]="{ 'heart-icon bi bi-heart-fill': coin.FAVORITE, 'bi bi-heart': !coin.FAVORITE }"></i>
+          </button>
+        </div>
+        <button
+          aTilt
+          [tiltSettings]="tileSettings"
+          (click)="openBottomSheet(coin)"
+          class="coin-button p-0 w-100 rounded-2"
+        >
+          <app-coin-item [coin]="coin" [theme]="theme"></app-coin-item>
+        </button>
+      </div>
     </div>
   </div>
 </div>

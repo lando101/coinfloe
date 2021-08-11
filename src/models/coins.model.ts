@@ -2,6 +2,7 @@ export interface Coin {
   CoinInfo?: CoinInfo;
   RAW?: RAW;
   DISPLAY?: DISPLAY;
+  FAVORITE?: boolean;
 }
 export interface CoinInfo {
   Id: string;

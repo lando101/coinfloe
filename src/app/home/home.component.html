@@ -50,9 +50,12 @@
         [loading]="isLoading"
         [Coins]="coins"
         [theme]="theme"
+        [user]="user"
         [count]="10"
         (coin)="setSelectedCoin($event)"
         (showCoinDetails)="displayCoin($event)"
+        (addFavOutput)="addFavorite($event)"
+        (removeFavOutput)="removeFavorite($event)"
       ></app-coins-lists>
     </div>
   </div>

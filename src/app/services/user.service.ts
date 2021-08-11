@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { CredentialsService } from '@app/auth';
 import { User } from 'src/models/user.model';
+import { Coin } from 'src/models/coins.model';
 
 @Injectable({
   providedIn: 'root',
@@ -51,24 +52,23 @@ export class UserService {
         .update({ [property]: value });
     }
 
-    // console.log(this.credentialService.user$);
-    // console.log('USER SERVICE');
-
-    // this.afs
-    //   .collection('users', (ref) => ref.where('uid', '==', 'sk3NDltuOwZuEt7ABQxlFgA2WP22'))
-    //   .get()
-    //   .toPromise()
-    //   .then((data: any) => {
-    //     console.log('USER SERVICE');
-    //     console.log(data);
-    //     console.log('USER SERVICE');
-    //   })
-    //   .catch(() => {
-    //     console.log('error');
-    //   });
-
     const result = this.afs.collection('users').doc('TwhkBxiN7vO3Ekndhf9qgIb9OfJ3');
 
     return uid;
+  };
+
+  // remove coin favorite
+  removeFavorite = (coin: Coin) => {
+    let tempFavs = this.user.favorite_coins;
+
+    tempFavs = tempFavs.filter((fav) => fav.toLowerCase() !== coin.CoinInfo.Name.toLowerCase());
+    this.updateUser(this.user.uid, 'favorite_coins', tempFavs);
+  };
+
+  // add coin favorite
+  addFavorite = (coin: Coin) => {
+    const tempFavs = this.user.favorite_coins;
+    tempFavs.push(coin.CoinInfo.Name.toUpperCase());
+    this.updateUser(this.user.uid, 'favorite_coins', tempFavs);
   };
 }

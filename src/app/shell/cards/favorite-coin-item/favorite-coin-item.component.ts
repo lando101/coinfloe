@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Coin } from 'src/models/coins.model';
 
 @Component({
@@ -8,6 +8,8 @@ import { Coin } from 'src/models/coins.model';
 })
 export class FavoriteCoinItemComponent implements OnInit {
   @Input() coin: Coin;
+  @Output() removeFavOutput = new EventEmitter<Coin>();
+  @Output() addFavOutput = new EventEmitter<Coin>();
   imgURL = '';
   prettyImgURL = '';
   tileSettings = {
@@ -48,5 +50,9 @@ export class FavoriteCoinItemComponent implements OnInit {
       ' ',
       '-'
     ).toLowerCase()}-${this.coin?.CoinInfo?.Name.toLowerCase()}-logo.png?v=010`;
+  }
+
+  removeFav(coin: Coin) {
+    this.removeFavOutput.emit(coin);
   }
 }
