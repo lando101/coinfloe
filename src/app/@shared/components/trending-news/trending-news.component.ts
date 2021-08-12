@@ -13,7 +13,7 @@ export class TrendingNewsComponent implements OnInit {
   allNewsS2: NewsSource2[];
 
   slideConfig = {
-    slidesToShow: 4,
+    slidesToShow: 5,
     slidesToScroll: 3,
     dots: true,
     infinite: false,
@@ -21,7 +21,15 @@ export class TrendingNewsComponent implements OnInit {
     autoplaySpeed: 14000,
     responsive: [
       {
-        breakpoint: 1199,
+        breakpoint: 2250,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 2,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 1860,
         settings: {
           slidesToShow: 3,
           slidesToScroll: 2,

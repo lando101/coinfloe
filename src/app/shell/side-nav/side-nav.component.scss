@@ -5,6 +5,10 @@
   width: 286px !important;
 }
 
+.nav-mini {
+  width: 86px !important;
+}
+
 @mixin theme-mixin($light-theme: true) {
   $brand: $primary-color;
   $font: $primary-font-color;

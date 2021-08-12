@@ -1,7 +1,23 @@
-<div fxFlex>
-  <mat-drawer-container class="{{ theme }} theme-container" autosize>
-    <mat-drawer #drawer mode="side" [opened]="menuOpen">
+<div fxFlex class="{{ theme }} theme-container">
+  <mat-drawer-container autosize [hasBackdrop]="false">
+    <mat-drawer #drawer [mode]="'side'" [opened]="menuOpen">
       <app-side-nav></app-side-nav>
+    </mat-drawer>
+    <mat-drawer #drawer2 [position]="'end'" [mode]="'over'" [opened]="true">
+      <div class="w-100 py-3 px-1" fxLayout="row" fxLayoutAlign="end center">
+        <button class="rounded" mat-flat-button>
+          <span class="d-flex font-weight-bold py-1" (click)="closeSidenav()">Close</span>
+        </button>
+      </div>
+      <app-profile-menu
+        [@fade]
+        *ngIf="showProfile"
+        [username]="user_name"
+        [title]="title_display"
+        [user]="userProfile"
+        [theme]="theme"
+        (logout)="logout()"
+      ></app-profile-menu>
     </mat-drawer>
     <mat-drawer-content>
       <div class="scroll-bar-wrap h-100">
@@ -13,7 +29,7 @@
             (sideNavToggle)="openSidenav($event)"
           ></app-header>
           <div fxLayout="row">
-            <div fxFlex="75">
+            <div fxFlex.lt-lg="100" fxFlex.gt-md="75">
               <!-- <div class="router-wrapper"
               [@rotateCubeToLeft]="getState(o)">
               </div> -->
@@ -21,7 +37,7 @@
 
               <app-footer></app-footer>
             </div>
-            <div fxFlex="25" class="widgets-container">
+            <div fxFlex.gt-md="25" fxHide.lt-lg class="widgets-container">
               <div class="w-100">
                 <div>
                   <!-- <app-coin-rating-widget></app-coin-rating-widget>
@@ -85,4 +101,5 @@
     <mat-sidenav opened="true" [position]="'start'" mode="push"></mat-sidenav>
 
   </mat-sidenav-container> -->
+  <div [@fade] class="backdrop position-fixed w-100 h-100" *ngIf="backDrop" (click)="closeSidenav()"></div>
 </div>

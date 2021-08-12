@@ -41,13 +41,21 @@ export class TopLosersComponent implements OnInit {
     { img: 'http://placehold.it/350x150/666666' },
   ];
   slideConfig = {
-    slidesToShow: 5,
+    slidesToShow: 6,
     slidesToScroll: 2,
     dots: true,
     infinite: false,
     responsive: [
       {
-        breakpoint: 1199,
+        breakpoint: 2250,
+        settings: {
+          slidesToShow: 5,
+          slidesToScroll: 2,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 1860,
         settings: {
           slidesToShow: 4,
           slidesToScroll: 2,
@@ -55,7 +63,7 @@ export class TopLosersComponent implements OnInit {
         },
       },
       {
-        breakpoint: 992,
+        breakpoint: 1490,
         settings: {
           slidesToShow: 3,
           slidesToScroll: 2,
@@ -63,16 +71,16 @@ export class TopLosersComponent implements OnInit {
         },
       },
       {
-        breakpoint: 768,
+        breakpoint: 1280,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 4,
           slidesToScroll: 2,
         },
       },
       {
-        breakpoint: 480,
+        breakpoint: 1042,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 3,
           slidesToScroll: 1,
         },
       },
@@ -80,6 +88,8 @@ export class TopLosersComponent implements OnInit {
       // settings: "unslick"
       // instead of a settings object
     ],
+    // autoplay: true,
+    // autoplaySpeed: 7000,
   };
 
   ngOnChanges(changes: SimpleChanges): void {

@@ -1,22 +1,6 @@
 <!-- <button (click)="show = !show">SHOW</button> -->
-<div *ngIf="show" fxLayout="column" fxLayoutGap="25px" fxFill class="{{ theme }} nav-expanded theme-container p-4">
+<div fxHide.lt-xl fxLayout="column" fxLayoutGap="25px" fxFill class="{{ theme }} nav-expanded theme-container p-4">
   <a fxHide.lt-md class="coinfloe-brand px-3" href="#" translate>APP_NAME</a>
-  <a fxHide.gt-sm class="coinfloe-brand" href="#" translate>[C]</a>
-
-  <!-- <div class="position-relative">
-    <nav mat-tab-nav-bar>
-      <a
-        mat-tab-link
-        routerLinkActive="active"
-        routerLink="{{ link.route }}"
-        *ngFor="let link of links"
-        (click)="activeLink = link"
-        [active]="activeLink == link"
-      >
-        <span>{{ link.name }}</span>
-      </a>
-    </nav>
-  </div> -->
   <nav class="nav" fxLayout="column" fxLayoutGap="5px">
     <div class="px-3">
       <label class="text-faint font-weight-bold mb-1">MENU</label>
@@ -39,6 +23,34 @@
               <span class="ml-2 mb-0 button-label"
                 ><b>{{ link.name }}</b></span
               >
+            </span>
+          </button>
+        </div>
+      </li>
+    </div>
+  </nav>
+</div>
+<div fxLayout="column" fxLayoutGap="25px" fxFill class="{{ theme }} nav-mini theme-container p-4" fxHide.gt-lg>
+  <a class="coinfloe-brand" href="#" translate>[C]</a>
+  <nav class="nav" fxLayout="column" fxLayoutGap="5px">
+    <div>
+      <label class="text-faint font-weight-bold mb-1">MENU</label>
+    </div>
+    <div fxLayout="column" fxLayoutGap="15px" class="align-items-center">
+      <li *ngFor="let link of links" class="nav-item">
+        <div matTooltip="{{ link.name.toUpperCase() }}">
+          <button
+            class="w-100 p-2"
+            (click)="activeLink = link"
+            routerLinkActive="active"
+            routerLink="{{ link.route }}"
+            mat-icon-button
+          >
+            <span class="d-flex justify-content-start align-items-center text-capitalize">
+              <i *ngIf="router.url !== link.route; else active" class="{{ link.icon_class }}"></i>
+              <ng-template #active>
+                <i class="{{ link.active_icon_class }}"></i>
+              </ng-template>
             </span>
           </button>
         </div>

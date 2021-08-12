@@ -1,5 +1,5 @@
-<div class="container news-wrapper position-relative {{ theme }} theme-container">
-  <div [ngClass]="{ 'search-go-still': searchText }" class="container">
+<div [ngClass.gt-lg]="'px-5'" class="mx-5" class="news-wrapper position-relative {{ theme }} theme-container">
+  <div [ngClass]="{ 'search-go-still': searchText }" class="container position-relative">
     <div class="position-absolute search-bar-wrapper w-100" [ngStyle]="{ 'z-index': 2 }">
       <app-news-search-bar
         [recent_search]="activeRecentSearch"
@@ -59,7 +59,7 @@
     <div class="w-100 search-overlay" *ngIf="searchText"></div>
     <!-- overlay -->
   </div>
-  <div class="transition-smooth news-articles-wrapper" [ngClass]="{ 'blur-bg': searchText }">
+  <div class="transition-smooth news-articles-wrapper" [ngClass]="{ 'transform-bg': searchText }">
     <div class="w-100">
       <mat-tab-group class="{{ theme }}" mat-align-tabs="start">
         <mat-tab label="Articles">

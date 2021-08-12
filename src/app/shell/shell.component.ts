@@ -24,7 +24,7 @@ import { User } from 'src/models/user.model';
 import { of } from 'rxjs';
 import { trigger, transition, useAnimation } from '@angular/animations';
 import { rotateCubeToLeft, rotateCubeToRight } from 'ngx-router-animations';
-import { fadeInDown, fadeInUp } from 'ng-animate';
+import { fadeIn, fadeInDown, fadeInUp, fadeOut } from 'ng-animate';
 
 @UntilDestroy()
 @Component({
@@ -32,6 +32,22 @@ import { fadeInDown, fadeInUp } from 'ng-animate';
   templateUrl: './shell.component.html',
   styleUrls: ['./shell.component.scss'],
   animations: [
+    trigger('fade', [
+      transition(':enter', [
+        useAnimation(fadeIn, {
+          params: {
+            timing: 0.11,
+          },
+        }),
+      ]),
+      transition(':leave', [
+        useAnimation(fadeOut, {
+          params: {
+            timing: 0.11,
+          },
+        }),
+      ]),
+    ]),
     trigger('rotateCubeToLeft', [
       transition(
         'charts => news',
@@ -58,13 +74,15 @@ import { fadeInDown, fadeInUp } from 'ng-animate';
 })
 export class ShellComponent implements OnInit {
   @ViewChild('perfectscroll') perfectScroll: PerfectScrollbarComponent;
-  @ViewChild('sidenav', { static: false }) sidenav!: MatSidenav;
+  @ViewChild('drawer2', { static: false }) sidenav!: MatSidenav;
   menuOpen = true;
-  isLoading: boolean;
-  coins: Coin[] = [];
+  backDrop = false;
   theme: string = '';
-  scrollTop = false;
+  isLoading: boolean;
   showProfile: boolean = null;
+
+  coins: Coin[] = [];
+  scrollTop = false;
   user_name = '';
   title_display = '';
   userProfile: User = null;
@@ -180,19 +198,27 @@ export class ShellComponent implements OnInit {
     this.authenticationService.logout().subscribe(() => this.router.navigate(['/login'], { replaceUrl: true }));
   }
 
+  // opens right drawer
   openSidenav(profile?: boolean) {
     if (this.showProfile != profile || this.showProfile === null) {
       this.showProfile = profile;
+      this.backDrop = true;
       this.sidenav.open();
     } else {
       this.closeSidenav();
     }
   }
-
+  // closes right drawer
   closeSidenav() {
     this.showProfile = null;
+    this.backDrop = false;
     this.sidenav.close();
   }
+
+  get isMobile(): boolean {
+    return this.media.isActive('sm') || this.media.isActive('md');
+  }
+
   public getState(outlet: any) {
     return outlet.activatedRouteData.state;
   }

@@ -51,6 +51,9 @@ export class SideNavComponent implements OnInit {
     });
   }
 
+  shrinkNav() {
+    this.show = !this.show;
+  }
   ngOnInit(): void {
     this.activeLink = this.links[0];
   }

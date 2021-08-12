@@ -26,7 +26,7 @@
   }
   ::ng-deep .mat-tab-header {
     position: sticky !important;
-    top: 0px;
+    top: 75px;
     z-index: 2;
     border-bottom: none !important;
     backdrop-filter: blur(25px);
@@ -34,6 +34,10 @@
     span {
       color: $primary-font;
     }
+  }
+
+  ::ng-deep .mat-tab-body-wrapper {
+    z-index: 0;
   }
 
   .tab-icon {
@@ -65,9 +69,9 @@
 .transition-smooth {
   transition: ease-in-out 0.18s;
 }
-.blur-bg {
+.transform-bg {
   opacity: 0.2;
-  filter: blur(8px) brightness(0.9) grayscale(0.3);
+  // filter: blur(8px) brightness(0.9) grayscale(0.3);
   transform: scale(0.96) translateY(-1.6%);
 }
 
@@ -82,16 +86,16 @@
 .search-overlay {
   position: fixed;
   left: 0;
-  top: -10px;
+  top: 75px;
   width: 100vw !important;
-  height: 100vh;
-  /* height: 800px; */
+  height: calc(100vh - 75px);
   z-index: 1;
+  backdrop-filter: blur(8px) grayscale(0.3);
   background: transparent;
 }
 
 .search-go-still {
-  margin-top: -15px;
+  margin-top: 0px;
   position: fixed;
   z-index: 2;
 }

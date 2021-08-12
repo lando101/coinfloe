@@ -18,7 +18,7 @@
       <div fxFlex="100" class="justify-content-between d-flex align-items-center">
         <!-- <app-language-selector icon="true"></app-language-selector> -->
         <app-search [theme]="theme"></app-search>
-        <div fxHide.lt-lg fxLayout="row">
+        <div fxLayout="row">
           <button aTilt [tiltSettings]="tileSettings" mat-icon-button (click)="setTheme()">
             <i class="bi bi-sun"></i>
           </button>
@@ -38,7 +38,7 @@
             <button mat-menu-item (click)="logout()" translate>Logout</button>
           </mat-menu> -->
         </div>
-        <div fxHide.gt-md>
+        <!-- <div fxHide.gt-md>
           <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Theme, notifications and profile menu">
             <mat-icon><i class="bi bi-list"></i></mat-icon>
           </button>
@@ -56,7 +56,7 @@
               <span>Profile</span>
             </button>
           </mat-menu>
-        </div>
+        </div> -->
       </div>
     </div>
     <!-- <div fxFlexFill fxLayout="row" class="px-3 py-2 info-banner">
