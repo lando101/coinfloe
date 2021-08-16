@@ -30,10 +30,6 @@
   border: none !important;
 }
 
-.mat-drawer-container {
-  position: unset;
-}
-
 .mat-drawer-content,
 // Force style down to child components
 // See https://angular.io/guide/component-styles#deep
@@ -80,8 +76,14 @@
     $slick-dots: $dark-slick-dots;
     $border: $dark-header-border;
   }
+  background-color: $bg-color !important;
 
-  color: $font;
+  .mat-drawer-container {
+    background-color: $bg-color !important;
+    color: $font;
+    position: unset;
+  }
+
   .mat-drawer-content {
     background-color: $bg-color !important;
   }
@@ -110,6 +112,10 @@
     border-left: 1px solid #80808014;
     border-right: none;
     background: lighten($bg-color, 3%);
+  }
+
+  .mat-drawer.mat-drawer-side {
+    z-index: 1;
   }
 
   ::ng-deep .scroll-box::-webkit-scrollbar {

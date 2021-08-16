@@ -106,3 +106,14 @@
 .mat-tab-nav-bar.mat-primary .mat-ink-bar {
   background-color: #c1c1c1 !important;
 }
+
+::ng-deep .dark.mat-menu-panel {
+  background-color: #16161b !important;
+  button {
+    color: #dcdcdc !important;
+  }
+}
+
+::ng-deep .mat-menu-panel {
+  background-color: white !important;
+}

@@ -4,5 +4,7 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "~bootstrap-icons/font/bootstrap-icons.css";
 @import "./global-styles";
-$fa-font-path: "~font-awesome/fonts";
 @import "~font-awesome/scss/font-awesome";
+@import "../assets/fonts/fonts.scss";
+
+$fa-font-path: "~font-awesome/fonts";

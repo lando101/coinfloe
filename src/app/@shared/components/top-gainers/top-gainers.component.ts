@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
+import { BottomSheetService } from '@app/services/bottom-sheet.service';
 import { Coin } from 'src/models/coins.model';
 
 @Component({
@@ -92,6 +93,7 @@ export class TopGainersComponent implements OnInit {
     // autoplay: true,
     // autoplaySpeed: 7000,
   };
+  constructor(private bottomSheetService: BottomSheetService) {}
 
   addSlide() {
     this.slides.push({ img: 'http://placehold.it/350x150/777777' });
@@ -116,7 +118,6 @@ export class TopGainersComponent implements OnInit {
   beforeChange(e: any) {
     // console.log('beforeChange');
   }
-  constructor() {}
 
   ngOnInit(): void {}
 
@@ -138,9 +139,13 @@ export class TopGainersComponent implements OnInit {
     }
   }
 
+  // openBottomSheet(coin: Coin) {
+  //   // console.log('SHOW BOTTOM SHEET');
+  //   this.showCoinDetails.emit(true);
+  //   this.coin.emit(coin);
+  // }
+
   openBottomSheet(coin: Coin) {
-    // console.log('SHOW BOTTOM SHEET');
-    this.showCoinDetails.emit(true);
-    this.coin.emit(coin);
+    this.bottomSheetService.setState(true, coin);
   }
 }

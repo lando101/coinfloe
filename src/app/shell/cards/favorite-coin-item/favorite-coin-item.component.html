@@ -1,5 +1,12 @@
-<div *ngIf="!!coin" fxLayout="row" class="theme-container" fxLayoutAlign="space-between center">
-  <button aTilt [tiltSettings]="tileSettings" fxFlex="auto" mat-flat-button class="px-3 py-2 favorite-item-container">
+<div *ngIf="!!coin" fxLayout="row" class="{{ theme }} theme-container" fxLayoutAlign="space-between center">
+  <button
+    (click)="openBottomSheet(coin)"
+    aTilt
+    [tiltSettings]="tileSettings"
+    fxFlex="auto"
+    mat-flat-button
+    class="px-3 py-2 favorite-item-container"
+  >
     <div fxLayout="row" fxLayoutAlign="space-between center">
       <div fxLayout="row" fxLayoutAlign="center center">
         <div fxFlex="40px">
@@ -39,17 +46,21 @@
     </div>
   </button>
   <div fxFlex="25px">
-    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-      <mat-icon>more_vert</mat-icon>
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="">
+      <mat-icon class="more-icon">more_vert</mat-icon>
     </button>
-    <mat-menu #menu="matMenu">
+    <mat-menu class="{{ theme }}" #menu="matMenu">
       <button (click)="removeFav(coin)" mat-menu-item>
-        <mat-icon>dialpad</mat-icon>
-        <span>Remove</span>
+        <div fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="start center">
+          <i class="bi bi-heart"></i>
+          <b>Remove</b>
+        </div>
       </button>
-      <button mat-menu-item>
-        <mat-icon>notifications_off</mat-icon>
-        <span>View</span>
+      <button (click)="openBottomSheet(coin)" mat-menu-item>
+        <div fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="start center">
+          <i class="bi bi-binoculars"></i>
+          <b>View</b>
+        </div>
       </button>
     </mat-menu>
   </div>

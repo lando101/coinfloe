@@ -11,6 +11,7 @@ import { User } from 'src/models/user.model';
 })
 export class FavoritesCoinsWidgetComponent implements OnInit {
   @Input() user: User;
+  @Input() theme: string;
   favorites: string[] = ['BTC', 'XRP'];
   favoriteCoins: Coin[] = [];
   coins: Coin[] = [];

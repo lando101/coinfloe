@@ -61,13 +61,17 @@ export class HomeComponent implements OnInit {
     //     this.selectedCoin = this.coins[0];
     //   }
     // });
-    this.userService.user$.subscribe((user: User) => {
-      if (user) {
-        this.user = user;
-        this.getCoins(true);
-      } else {
-        this.getCoins(false);
-      }
+    this.getCoins().then((coins: Coin[]) => {
+      this.userService.user$.subscribe((user: User) => {
+        if (user) {
+          this.user = user;
+          // alert('THERE IS A USER');
+          if (coins.length > 1) {
+            this.findFavorites(coins);
+            // alert('THERE IS A USER AND FINDING FAVS');
+          }
+        }
+      });
     });
 
     this.bottomSheetService.bottomSheetShow.subscribe((data) => {
@@ -99,39 +103,45 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  getCoins(isUser?: boolean) {
-    this.cryptoService.getCryptoData().subscribe((coins: Coin[]) => {
-      this.isLoading = true;
-      let tempCoins: Coin[] = [];
-      if (isUser && this.coins !== coins) {
-        // going to link user fav with coin to show if favorited or not
-        const promise = new Promise((resolve, reject) => {
-          coins.forEach((coin) => {
-            const match = this.user.favorite_coins.find(
-              (fav) => coin.CoinInfo.Name.toLowerCase() === fav.toLowerCase()
-            );
-            console.log(coin);
-            if (match) {
-              coin.FAVORITE = true;
-            } else {
-              coin.FAVORITE = false;
-            }
-            tempCoins.push(coin);
-          });
-          resolve('');
-        }).then(() => {
-          this.coins = tempCoins;
+  getCoins() {
+    const promise = new Promise((resolve, reject) => {
+      this.cryptoService.getCryptoData().subscribe((coins: Coin[]) => {
+        this.isLoading = true;
+        if (coins) {
+          this.coins = coins;
           this.orderPCTGains24h(this.coins);
           this.selectedCoin = this.coins[0];
-        });
-
-        return promise;
-      } else {
-        this.coins = coins;
-        this.orderPCTGains24h(this.coins);
-        this.selectedCoin = this.coins[0];
-      }
+          resolve(coins);
+        } else {
+          reject('No coins');
+        }
+      });
     });
+    return promise;
+  }
+
+  findFavorites(coins: Coin[]) {
+    let tempCoins: Coin[] = [];
+
+    const promise = new Promise((resolve, reject) => {
+      coins.forEach((coin) => {
+        const match = this.user.favorite_coins.find((fav) => coin.CoinInfo.Name.toLowerCase() === fav.toLowerCase());
+        console.log(coin);
+        if (match) {
+          coin.FAVORITE = true;
+        } else {
+          coin.FAVORITE = false;
+        }
+        tempCoins.push(coin);
+      });
+      resolve('');
+    }).then(() => {
+      this.coins = tempCoins;
+      this.orderPCTGains24h(this.coins);
+      this.selectedCoin = this.coins[0];
+    });
+
+    return promise;
   }
 
   // order raw USD information by PCT gain

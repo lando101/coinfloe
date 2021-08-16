@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
+import { BottomSheetService } from '@app/services/bottom-sheet.service';
 import { Coin } from 'src/models/coins.model';
 
 @Component({
@@ -8,6 +9,7 @@ import { Coin } from 'src/models/coins.model';
 })
 export class FavoriteCoinItemComponent implements OnInit {
   @Input() coin: Coin;
+  @Input() theme: string;
   @Output() removeFavOutput = new EventEmitter<Coin>();
   @Output() addFavOutput = new EventEmitter<Coin>();
   imgURL = '';
@@ -34,7 +36,7 @@ export class FavoriteCoinItemComponent implements OnInit {
     gyroscopeMinAngleY: -45, // This is the bottom limit of the device angle on Y axis, meaning that a device rotated at this angle would tilt the element as if the mouse was on the top border of the element;
     gyroscopeMaxAngleY: 45, // This is the top limit of the device angle on Y axis, meaning that a device rotated at this angle would tilt the element as if the mouse was on the bottom border of the element;
   };
-  constructor() {}
+  constructor(private bottomSheetService: BottomSheetService) {}
 
   ngOnInit(): void {}
 
@@ -54,5 +56,9 @@ export class FavoriteCoinItemComponent implements OnInit {
 
   removeFav(coin: Coin) {
     this.removeFavOutput.emit(coin);
+  }
+
+  openBottomSheet(coin: Coin) {
+    this.bottomSheetService.setState(true, coin);
   }
 }

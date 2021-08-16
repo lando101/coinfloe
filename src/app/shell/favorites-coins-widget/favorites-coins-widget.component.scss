@@ -3,3 +3,25 @@
 .heart-icon {
   color: #dc3545;
 }
+
+@mixin theme-mixin($light-theme: true) {
+  $bg-color: $white-background;
+  $shadow: $card-shadow;
+  $font: $primary-font-color;
+  @if $light-theme != true {
+    $bg-color: $dark-primary-background-darker;
+    $shadow: $dark-card-shadow;
+    $font: $dark-primary-font-color;
+  }
+  h5 {
+    color: $font;
+  }
+}
+
+.theme-container {
+  @include theme-mixin($light-theme: true);
+}
+
+.dark.theme-container {
+  @include theme-mixin($light-theme: false);
+}

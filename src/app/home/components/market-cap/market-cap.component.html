@@ -16,7 +16,7 @@
     </h4>
   </div>
   <div class="mt-1" fxLayout="row wrap" fxLayoutGap="25px">
-    <div fxLayout="column" class="p-3 justify-content-between align-items-start stat-card">
+    <div fxLayout="column" class="py-3 pr-3 pl-0 justify-content-between align-items-start stat-card">
       <div class="d-flex align-items-center mb-1">
         <fa-icon [icon]="['fab', 'bitcoin']" class="btc-icon"></fa-icon>
         <small class="text-faint ml-2 font-weight-bold">BTC Dominance</small>
@@ -26,7 +26,7 @@
       </h5>
       <!-- <label class="text-faint">BTC Dominance</label> -->
     </div>
-    <div fxLayout="column" class="p-3 justify-content-between align-items-start stat-card">
+    <div fxLayout="column" class="py-3 pr-3 pl-0 justify-content-between align-items-start stat-card">
       <div class="d-flex align-items-center mb-1">
         <fa-icon [icon]="['fab', 'ethereum']" class="eth-icon"></fa-icon>
         <small class="text-faint ml-2 font-weight-bold">ETH Dominance</small>
@@ -36,7 +36,7 @@
       </h5>
       <!-- <label class="text-faint">BTC Dominance</label> -->
     </div>
-    <div fxLayout="column" class="p-3 justify-content-between align-items-start stat-card">
+    <div fxLayout="column" class="py-3 pr-3 pl-0 justify-content-between align-items-start stat-card">
       <div class="d-flex align-items-center mb-1">
         <fa-icon
           *ngIf="tradingSignals.inOutVar.sentiment === 'bullish'"
@@ -48,6 +48,11 @@
           [icon]="['fas', 'sad-tear']"
           class="sad-icon"
         ></fa-icon>
+        <fa-icon
+          *ngIf="tradingSignals.inOutVar.sentiment === 'neutral'"
+          [icon]="['fas', 'sad-tear']"
+          class="sad-icon"
+        ></fa-icon>
         <small class="text-faint ml-2 font-weight-bold">BTC Sentiment</small>
       </div>
       <h5 class="text-capitalize">
@@ -55,7 +60,7 @@
       </h5>
       <!-- <label class="text-faint">BTC Dominance</label> -->
     </div>
-    <div fxLayout="column" class="p-3 justify-content-between align-items-start stat-card">
+    <div fxLayout="column" class="py-3 pr-3 pl-0 justify-content-between align-items-start stat-card">
       <div class="d-flex align-items-center mb-1">
         <fa-icon [icon]="['fas', 'laptop-code']" class="code-icon"></fa-icon>
         <small class="text-faint ml-2 font-weight-bold">Active Projects</small>

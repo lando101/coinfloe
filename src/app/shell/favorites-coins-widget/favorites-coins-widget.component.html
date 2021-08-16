@@ -1,4 +1,4 @@
-<div class="px-4 py-2" fxLayout="column" fxLayoutGap="15px">
+<div class="{{ theme }} theme-container px-4 py-2 " fxLayout="column" fxLayoutGap="15px">
   <div fxLayout="row" fxLayoutAlign="space-between center">
     <h5 class="font-weight-bold d-flex align-items-center mb-0">
       <i class="heart-icon bi bi-heart-fill mr-2"></i>
@@ -10,7 +10,11 @@
   </div>
   <div *ngIf="!!favoriteCoins" fxLayout="column" fxLayoutGap="15px">
     <div *ngFor="let favorite of favoriteCoins">
-      <app-favorite-coin-item (removeFavOutput)="removeFavorite($event)" [coin]="favorite"></app-favorite-coin-item>
+      <app-favorite-coin-item
+        [theme]="theme"
+        (removeFavOutput)="removeFavorite($event)"
+        [coin]="favorite"
+      ></app-favorite-coin-item>
     </div>
   </div>
 </div>

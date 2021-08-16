@@ -15,9 +15,21 @@ body {
   margin: 0;
   height: 100%;
   // font-family: "Roboto", sans-serif;
-  font-family: "Manrope", sans-serif;
+  // font-family: "Manrope", sans-serif;
+  font-family: "Quicksand", sans-serif;
   overflow: hidden;
   font-size: 0.95rem;
+  h1,
+  h2,
+  h3,
+  p,
+  li {
+    opacity: 1;
+    visibility: visible; /* Old IE */
+    -webkit-transition: opacity 0.24s ease-in-out;
+    -moz-transition: opacity 0.24s ease-in-out;
+    transition: opacity 0.24s ease-in-out;
+  }
   label {
     font-weight: 600;
     opacity: 0.92;
