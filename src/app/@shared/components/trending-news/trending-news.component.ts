@@ -84,16 +84,19 @@ export class TrendingNewsComponent implements OnInit {
   constructor(private cryptoDataService: CryptoDataServiceService, private newService: NewsService) {}
 
   ngOnInit(): void {
-    this.newService.getAllNews2().subscribe({
-      next: (data) => {
-        // console.log('NEWS TILE');
-        this.allNewsS2 = data.data.data;
-        // console.log(this.allNewsS2);
-        // console.log('NEWS TILE');
-      },
-      error: (error) => {
-        console.log(error);
-      },
-    });
+    setTimeout(() => {
+      // doing this for better page load performance
+      this.newService.getAllNews2().subscribe({
+        next: (data) => {
+          // console.log('NEWS TILE');
+          this.allNewsS2 = data.data.data;
+          // console.log(this.allNewsS2);
+          // console.log('NEWS TILE');
+        },
+        error: (error) => {
+          console.log(error);
+        },
+      });
+    }, 500);
   }
 }

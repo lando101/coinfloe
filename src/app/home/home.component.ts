@@ -61,18 +61,21 @@ export class HomeComponent implements OnInit {
     //     this.selectedCoin = this.coins[0];
     //   }
     // });
-    this.getCoins().then((coins: Coin[]) => {
-      this.userService.user$.subscribe((user: User) => {
-        if (user) {
-          this.user = user;
-          // alert('THERE IS A USER');
-          if (coins.length > 1) {
-            this.findFavorites(coins);
-            // alert('THERE IS A USER AND FINDING FAVS');
+    setTimeout(() => {
+      this.getCoins().then((coins: Coin[]) => {
+        // doing this for better page load performance
+        this.userService.user$.subscribe((user: User) => {
+          if (user) {
+            this.user = user;
+            // alert('THERE IS A USER');
+            if (coins.length > 1) {
+              this.findFavorites(coins);
+              // alert('THERE IS A USER AND FINDING FAVS');
+            }
           }
-        }
+        });
       });
-    });
+    }, 500);
 
     this.bottomSheetService.bottomSheetShow.subscribe((data) => {
       this.bottomSheet = data;

@@ -21,7 +21,7 @@ import { EventsWidgetComponent } from './events-widget/events-widget.component';
 import { FavoritesCoinsWidgetComponent } from './favorites-coins-widget/favorites-coins-widget.component';
 import { CoinRatingWidgetComponent } from './coin-rating-widget/coin-rating-widget.component';
 import { FavoriteCoinItemComponent } from './cards/favorite-coin-item/favorite-coin-item.component';
-
+import { NgTickerModule } from 'ng-ticker';
 // const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 //   suppressScrollX: true,
 // };
@@ -38,6 +38,7 @@ import { FavoriteCoinItemComponent } from './cards/favorite-coin-item/favorite-c
     RouterModule,
     SharedModule,
     AngularTiltModule,
+    NgTickerModule,
   ],
   exports: [],
   declarations: [

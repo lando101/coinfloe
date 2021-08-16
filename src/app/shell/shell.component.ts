@@ -36,14 +36,14 @@ import { fadeIn, fadeInDown, fadeInUp, fadeOut } from 'ng-animate';
       transition(':enter', [
         useAnimation(fadeIn, {
           params: {
-            timing: 0.11,
+            timing: 1,
           },
         }),
       ]),
       transition(':leave', [
         useAnimation(fadeOut, {
           params: {
-            timing: 0.11,
+            timing: 1,
           },
         }),
       ]),
@@ -80,6 +80,8 @@ export class ShellComponent implements OnInit {
   theme: string = '';
   isLoading: boolean;
   showProfile: boolean = null;
+  marqueePlay = true;
+  marqueeInit = false;
 
   coins: Coin[] = [];
   scrollTop = false;
@@ -140,6 +142,9 @@ export class ShellComponent implements OnInit {
     // this.cryptoService.getAllNews();
 
     // this.themeService.setThemeCookie();
+    setTimeout(() => {
+      this.marqueeInit = true;
+    }, 3800);
 
     this.username();
     this.title();
@@ -149,8 +154,11 @@ export class ShellComponent implements OnInit {
   ngAfterViewInit(): void {
     this.bottomSheetService.bottomSheetShow.subscribe((data) => {
       if (data === true) {
-        this.config.wheelSpeed = 0;
+        this.marqueePlay = false;
+        // this.config.wheelSpeed = 0;
       } else {
+        this.marqueePlay = true;
+
         this.config.wheelSpeed = 0.25;
       }
     });
@@ -222,21 +230,4 @@ export class ShellComponent implements OnInit {
   public getState(outlet: any) {
     return outlet.activatedRouteData.state;
   }
-  // getCryptosList() {
-  //   this.isLoading = true;
-  //   this.cryptoService
-  //     .getCryptoData(this.defaultQuery)
-  //     .pipe(
-  //       finalize(() => {
-  //         this.isLoading = false;
-  //       })
-  //     )
-  //     .subscribe((data) => {
-  //       // console.log(data);
-  //       data.forEach((element: Coin) => {
-  //         this.coins.push(element);
-  //       });
-  //       console.log(this.coins);
-  //     });
-  // }
 }
