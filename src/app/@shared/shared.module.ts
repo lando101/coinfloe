@@ -44,6 +44,8 @@ import { NewsListComponent } from './components/news-list/news-list.component';
 import { NewsListItemComponent } from './components/cards/news-list-item/news-list-item.component';
 import { NewsCardLoaderComponent } from './components/loaders/news-card-loader/news-card-loader.component';
 import { NewsSearchBarComponent } from './components/news-search-bar/news-search-bar.component';
+import { CoinMarqueeItemComponent } from './components/cards/coin-marquee-item/coin-marquee-item.component';
+import { CoinTableComponent } from './components/coin-table/coin-table.component';
 
 @NgModule({
   imports: [
@@ -95,6 +97,8 @@ import { NewsSearchBarComponent } from './components/news-search-bar/news-search
     NewsListItemComponent,
     NewsCardLoaderComponent,
     NewsSearchBarComponent,
+    CoinMarqueeItemComponent,
+    CoinTableComponent,
   ],
   exports: [
     LoaderComponent,
@@ -125,6 +129,8 @@ import { NewsSearchBarComponent } from './components/news-search-bar/news-search
     NewsListItemComponent,
     NewsCardLoaderComponent,
     NewsSearchBarComponent,
+    CoinMarqueeItemComponent,
+    CoinTableComponent,
   ],
   providers: [{ provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } }],
   bootstrap: [CoinsListsComponent],

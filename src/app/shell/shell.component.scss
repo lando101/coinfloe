@@ -1,5 +1,6 @@
 @import "src/theme/theme-variables";
 @import "../../styles/index";
+// @import url("https://fonts.googleapis.com/css2?family=DotGothic16&display=swap");
 :host {
   display: flex;
   flex: 1;
@@ -66,6 +67,7 @@
   $slick-color: $slick-color;
   $slick-dots: $slick-dots;
   $border: $header-border;
+  $shadow: $ticker-shadow;
   @if $light-theme != true {
     $brand: $primary-color;
     $font: $dark-primary-font-color;
@@ -75,7 +77,9 @@
     $slick-color: $dark-slick-color;
     $slick-dots: $dark-slick-dots;
     $border: $dark-header-border;
+    $shadow: $dark-primary-shadow;
   }
+
   background-color: $bg-color !important;
 
   .mat-drawer-container {
@@ -150,14 +154,16 @@
     box-shadow: -2px 0px 7px 0px #1d1d1d0f !important;
   }
   .ticker-container {
-    background: #f9f9f9;
-    color: #151515;
-    padding: 4px 0px;
+    background: $bg-color-light;
+    color: $font;
+    // padding: 4px 0px;
+    height: 40px;
     position: sticky;
     top: 75px;
     z-index: 1;
-    box-shadow: 0px 2px 5px #cecece33;
-    border-bottom: 1px solid #e4e4e4;
+    box-shadow: 0px 2px 5px $shadow;
+    border-bottom: 1px solid $border;
+    // font-family: "DotGothic16", sans-serif;
     button {
       width: 25px;
       height: 25px;

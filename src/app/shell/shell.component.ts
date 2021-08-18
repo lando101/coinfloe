@@ -131,8 +131,14 @@ export class ShellComponent implements OnInit {
       }
     });
 
-    this.cryptoService.getCryptoData().subscribe((data) => {
+    this.cryptoService.coinsObs.subscribe((data) => {
       // console.log(data);
+      if (data) {
+        this.coins = data;
+        console.log('SHELL');
+        console.log(data);
+        console.log('SHELL');
+      }
     });
 
     this.cryptoService.getCryptoBlockChainData().subscribe((data) => {

@@ -1,0 +1,10 @@
+@import "../../../../styles/index";
+
+th.mat-header-cell,
+td.mat-cell,
+td.mat-footer-cell {
+  padding: 0;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  padding: 0px 15px;
+}

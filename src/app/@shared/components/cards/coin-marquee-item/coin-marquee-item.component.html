@@ -1,0 +1,25 @@
+<div class="{{ theme }} theme-container px-3" fxLayout="row" fxLayoutAlign="between center" fxLayoutGap="30px">
+  <div fxLayoutGap="7px" fxLayout="row" fxLayoutAlign="center center">
+    <div class="img-container">
+      <img class="w-100 h-100" src="{{ prettyImgURL }}" (error)="prettyImgURL = imgURL" />
+    </div>
+    <div fxLayout="column">
+      <label>{{ coin.CoinInfo.FullName }}</label>
+      <small class="text-faint">{{ coin.CoinInfo.Name }}</small>
+    </div>
+  </div>
+  <div fxLayout="column">
+    <label class="text-right">{{ coin.RAW.USD.PRICE | currency }}</label>
+    <small
+      class="d-flex justify-content-end font-weight-bold"
+      [ngClass]="{
+        'text-positive': coin?.RAW?.USD?.CHANGEPCT24HOUR > 0,
+        'text-negative': coin?.RAW?.USD?.CHANGEPCT24HOUR < 0
+      }"
+    >
+      <i *ngIf="coin?.RAW?.USD?.CHANGEPCT24HOUR > 0" class="bi bi-arrow-up-short"></i>
+      <i *ngIf="coin?.RAW?.USD?.CHANGEPCT24HOUR < 0" class="bi bi-arrow-down-short"></i>
+      {{ coin?.RAW?.USD?.CHANGEPCT24HOUR / 100 | percent: '0.1-2' }}
+    </small>
+  </div>
+</div>

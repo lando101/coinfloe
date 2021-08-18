@@ -1,0 +1,35 @@
+@import "../../../../../styles/index";
+
+@mixin theme-mixin($light-theme: true) {
+  $bg-color: transparent;
+  $border: $header-border;
+  @if $light-theme != true {
+    $bg-color: transparent;
+    $border: $dark-header-border;
+  }
+
+  height: 30px;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  border-right: 1px solid $border;
+  label {
+    font-size: 0.85rem;
+    margin-bottom: 0px;
+  }
+  .img-container {
+    height: 19px;
+    width: 19px;
+  }
+  small {
+    font-weight: bold;
+  }
+}
+
+.theme-container {
+  @include theme-mixin($light-theme: true);
+}
+
+.dark.theme-container {
+  @include theme-mixin($light-theme: false);
+}
