@@ -124,7 +124,7 @@ export class TopGainersComponent implements OnInit {
   ngOnChanges(changes: SimpleChanges): void {
     //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
     //Add '${implements OnChanges}' to the class.
-    if (this.coins.length > 0) {
+    if (changes.coins?.currentValue?.length > 0) {
       // this.coins = this.coins.reverse();
       let tempArray: Coin[] = this.coins;
       this.coins = [];
