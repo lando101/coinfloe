@@ -117,3 +117,12 @@
 ::ng-deep .mat-menu-panel {
   background-color: white !important;
 }
+
+::ng-deep .mat-paginator-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8px;
+  flex-wrap: wrap-reverse;
+  width: 100%;
+}

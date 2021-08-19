@@ -7,6 +7,8 @@ import { MatSort } from '@angular/material/sort';
 export interface CoinTableData {
   name: string;
   symbol: string;
+  imgUrl?: string;
+  prettyImg?: string;
   price: number;
   returnPct24h: number;
   return24h: number;
@@ -14,6 +16,8 @@ export interface CoinTableData {
   mrktcap: number;
   supply: number;
   rating: string;
+  high?: number;
+  low?: number;
 }
 
 @Component({
@@ -31,6 +35,7 @@ export class CoinTableComponent implements OnChanges {
     'marketcap',
     'supply',
     'rating',
+    'range',
   ];
   dataSource: MatTableDataSource<CoinTableData>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -54,13 +59,20 @@ export class CoinTableComponent implements OnChanges {
           this.coinData.push({
             name: data.CoinInfo.FullName,
             symbol: data.CoinInfo.Name,
+            imgUrl: `https://www.cryptocompare.com${data.CoinInfo.ImageUrl}`,
+            prettyImg: `https://cryptologos.cc/logos/${data.CoinInfo?.FullName.replace(
+              ' ',
+              '-'
+            ).toLowerCase()}-${data.CoinInfo?.Name.toLowerCase()}-logo.png?v=010`,
             price: data.RAW.USD.PRICE,
             returnPct24h: data.RAW.USD.CHANGEPCT24HOUR,
             return24h: data.RAW.USD.CHANGE24HOUR,
             volume24h: data.RAW.USD.TOTALVOLUME24H,
             mrktcap: data.RAW.USD.MKTCAP,
             supply: data.RAW.USD.SUPPLY,
-            rating: data.CoinInfo.Rating.Weiss.Rating || 'NA',
+            rating: data.CoinInfo.Rating.Weiss.TechnologyAdoptionRating || '-',
+            high: data.RAW.USD.HIGH24HOUR,
+            low: data.RAW.USD.LOW24HOUR,
           });
         }
       });

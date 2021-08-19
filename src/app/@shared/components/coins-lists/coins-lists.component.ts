@@ -97,8 +97,8 @@ export class CoinsListsComponent implements OnInit {
       }
     });
 
-    tempArray = this.orderByPipe.transform(tempArray, 'MKTCAP');
-    this.localCoins = this.orderByPipe.transform(tempCoins, 'RAW.USD.MKTCAP').reverse();
+    // tempArray = this.orderByPipe.transform(tempArray, 'MKTCAP');
+    this.localCoins = tempCoins;
     // this.findMatch(tempArray);
 
     // console.log('ORDERED BY MARKET CAP');

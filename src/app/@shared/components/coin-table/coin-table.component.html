@@ -7,19 +7,46 @@
     <!-- Position Column -->
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Coin</th>
-      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+      <td mat-cell *matCellDef="let element">
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+          <div class="img-container">
+            <img
+              class="w-100 h-100"
+              src="{{ element.imgUrl }}"
+              (error)="element.imgUrl = element.prettyImg"
+              alt="{{ element.name }} logo img"
+            />
+          </div>
+          <div fxLayout="column" fxLayoutGap="5px">
+            <span class="coin-name">{{ element.name }}</span>
+            <small class="font-weight-bold text-faint">{{ element.symbol }}</small>
+          </div>
+        </div>
+      </td>
     </ng-container>
 
     <!-- Name Column -->
     <ng-container matColumnDef="price">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Price</th>
-      <td mat-cell *matCellDef="let element">{{ element.price }}</td>
+      <td mat-cell *matCellDef="let element">{{ element.price | currency }}</td>
     </ng-container>
 
     <!-- Weight Column -->
     <ng-container matColumnDef="24h">
       <th mat-header-cell *matHeaderCellDef>24h %</th>
-      <td mat-cell *matCellDef="let element">{{ element.returnPct24h / 100 | percent: '0.1-2' }}</td>
+      <td mat-cell *matCellDef="let element">
+        <span
+          class="d-flex justify-content-start"
+          [ngClass]="{
+            'text-positive': element.returnPct24h > 0,
+            'text-negative': element.returnPct24h < 0
+          }"
+        >
+          <i *ngIf="element.returnPct24h > 0" class="bi bi-arrow-up-short"></i>
+          <i *ngIf="element.returnPct24h < 0" class="bi bi-arrow-down-short"></i>
+          {{ element.returnPct24h / 100 | percent: '0.1-2' }}
+        </span>
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="amountChange24h">
@@ -39,16 +66,30 @@
 
     <ng-container matColumnDef="supply">
       <th mat-header-cell *matHeaderCellDef>Supply</th>
-      <td mat-cell *matCellDef="let element">{{ element.supply | number }}</td>
+      <td mat-cell *matCellDef="let element">
+        {{ element.supply | number }}
+        <small class="font-weight-bold text-faint">{{ element.symbol }}</small>
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="rating">
       <th mat-header-cell *matHeaderCellDef>Rating</th>
       <td mat-cell *matCellDef="let element">{{ element.rating }}</td>
     </ng-container>
+
+    <ng-container matColumnDef="range">
+      <th mat-header-cell *matHeaderCellDef>24h Range</th>
+      <td mat-cell *matCellDef="let element">
+        <app-high-low-progress
+          [showPercent]="false"
+          [price]="element.price"
+          [low24h]="element.low"
+          [high24h]="element.high"
+        ></app-high-low-progress>
+      </td>
+    </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-
     <tr class="mat-row" *matNoDataRow>
       <td class="mat-cell" colspan="4">No data matching the filter "{{ input.value }}"</td>
     </tr>
