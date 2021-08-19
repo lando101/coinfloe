@@ -1,5 +1,5 @@
-<div class="text-left {{ theme }} theme-container w-100">
-  <!-- <h5 class="font-weight-bold">Top Gainers</h5> -->
+<div class="text-start {{ theme }} theme-container w-100">
+  <!-- <h5 class="fw-bold">Top Gainers</h5> -->
   <ngx-slick-carousel
     *ngIf="coins?.length > 1; else loading"
     class="carousel"
@@ -10,7 +10,7 @@
     (afterChange)="afterChange($event)"
     (beforeChange)="beforeChange($event)"
   >
-    <div ngxSlickItem *ngFor="let coin of coins?.slice(0, 10)" class="slide">
+    <div  ngxSlickItem *ngFor="let coin of coins?.slice(0, 10)" class="slide">
       <div class="p-2 slick-slide">
         <button aTilt [tiltSettings]="tileSettings" class="p-0" (click)="openBottomSheet(coin)">
           <app-coin-card [coin]="coin" [theme]="theme"></app-coin-card>
@@ -30,11 +30,6 @@
     (afterChange)="afterChange($event)"
     (beforeChange)="beforeChange($event)"
   >
-    <div ngxSlickItem class="slide">
-      <div class="p-2 slick-slide">
-        <app-coin-card-loader [theme]="theme"></app-coin-card-loader>
-      </div>
-    </div>
     <div ngxSlickItem class="slide">
       <div class="p-2 slick-slide">
         <app-coin-card-loader [theme]="theme"></app-coin-card-loader>

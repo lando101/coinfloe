@@ -3,7 +3,7 @@
   <a fxHide.lt-md class="coinfloe-brand px-3" href="#" translate>APP_NAME</a>
   <nav class="nav" fxLayout="column" fxLayoutGap="5px">
     <div class="px-3">
-      <label class="text-faint font-weight-bold mb-1">MENU</label>
+      <label class="text-faint fw-bold mb-1">MENU</label>
     </div>
     <div fxLayout="column" fxLayoutGap="10px">
       <li *ngFor="let link of links" class="nav-item">
@@ -20,7 +20,7 @@
               <ng-template #active>
                 <i class="{{ link.active_icon_class }}"></i>
               </ng-template>
-              <span class="ml-2 mb-0 button-label"
+              <span class="ms-2 mb-0 button-label"
                 ><b>{{ link.name }}</b></span
               >
             </span>
@@ -34,7 +34,7 @@
   <a class="coinfloe-brand" href="#" translate>[C]</a>
   <nav class="nav" fxLayout="column" fxLayoutGap="5px">
     <div>
-      <label class="text-faint font-weight-bold mb-1">MENU</label>
+      <label class="text-faint fw-bold mb-1">MENU</label>
     </div>
     <div fxLayout="column" fxLayoutGap="15px" class="align-items-center">
       <li *ngFor="let link of links" class="nav-item">

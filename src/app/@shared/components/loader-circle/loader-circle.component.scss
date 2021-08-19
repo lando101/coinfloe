@@ -1,13 +1,14 @@
 @import "../../../../styles/index";
 
 .box {
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
   height: 200px;
-  width: 33.3%;
+  width: auto;
   float: left;
   position: relative;
-  /*margin:0 -4px -5px -2px;*/
-  transition: all 0.2s ease;
+  transition: all .2s ease;
+  align-items: center;
 }
 
 .loader1 {
@@ -20,14 +21,16 @@
   top: 28%;
   top: -webkit-calc(50% - 43px);
   top: calc(50% - 43px);
-  left: 35%;
-  left: -webkit-calc(50% - 43px);
-  left: calc(50% - 43px);
+  left: 0px;
 
   -webkit-transform-origin: 50% 50%;
   transform-origin: 50% 50%;
   -webkit-animation: loader1 1s linear infinite;
   animation: loader1 1s linear infinite;
+}
+
+.loader-text{
+  margin-top: 70px;
 }
 
 .loader1:after {

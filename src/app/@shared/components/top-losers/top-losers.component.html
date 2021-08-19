@@ -1,5 +1,5 @@
-<div class="text-left {{ theme }} theme-container">
-  <!-- <h5 class="font-weight-bold">Top Losers</h5> -->
+<div class="text-start {{ theme }} theme-container">
+  <!-- <h5 class="fw-bold">Top Losers</h5> -->
   <ngx-slick-carousel
     *ngIf="coins?.length > 1; else loading"
     class="carousel"
@@ -31,11 +31,6 @@
     (afterChange)="afterChange($event)"
     (beforeChange)="beforeChange($event)"
   >
-    <div ngxSlickItem class="slide">
-      <div class="p-2 slick-slide">
-        <app-coin-card-loader [theme]="theme"></app-coin-card-loader>
-      </div>
-    </div>
     <div ngxSlickItem class="slide">
       <div class="p-2 slick-slide">
         <app-coin-card-loader [theme]="theme"></app-coin-card-loader>

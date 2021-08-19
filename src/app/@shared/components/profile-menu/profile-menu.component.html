@@ -4,7 +4,7 @@
       <div fxLayout="column" class="align-items-center">
         <ngx-avatar size="80" name="{{ user?.username }}"></ngx-avatar>
         <h4>@{{ user?.username }}</h4>
-        <p class="text-faint font-weight-bold">{{ user?.email }}</p>
+        <p class="text-faint fw-bold">{{ user?.email }}</p>
       </div>
     </div>
     <!-- <mat-list>
@@ -20,13 +20,13 @@
       <button
         aTilt
         [tiltSettings]="tileSettings"
-        class="btn btn-primary font-weight-bold"
+        class="btn btn-primary fw-bold"
         mat-flat-button
         (click)="logOut()"
         translate
       >
         <span fxLayout="row" fxLayoutGap="5px" class="align-items-center">
-          <i class="bi bi-door-open mr-2"></i>
+          <i class="bi bi-door-open me-2"></i>
           Logout
         </span>
       </button>

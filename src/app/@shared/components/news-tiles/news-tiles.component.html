@@ -1,13 +1,13 @@
-<!-- <div class="text-left {{ theme }}">
-  <h5 class="font-weight-bold">Trending News</h5>
+<!-- <div class="text-start {{ theme }}">
+  <h5 class="fw-bold">Trending News</h5>
   <div>
     {{ allNewsS2[0]?.title }}
   </div>
   <div fxLayout="row"></div>
 </div> -->
 <div *ngIf="allNewsS2; else loader" class="{{ theme }} theme-container">
-  <div class="text-left news-wrapper">
-    <h5 class="font-weight-bold">Trending News</h5>
+  <div class="text-start news-wrapper">
+    <h5 class="fw-bold">Trending News</h5>
 
     <div fxLayout="row" class="h-100 news-inner-wrapper">
       <div fxLayout="column" fxFlex="37" class="col-brdr">
@@ -19,7 +19,7 @@
                 <h5 class="card-title mb-1 title-text">
                   <a href="{{ allNewsS2[0].news_url }}" target="_blank">{{ allNewsS2[0].title }}</a>
                 </h5>
-                <small class="font-weight-bold mb-2 text-faint">{{ allNewsS2[0].date }}</small>
+                <small class="fw-bold mb-2 text-faint">{{ allNewsS2[0].date }}</small>
               </div>
 
               <p class="card-text large-text-area">
@@ -48,7 +48,7 @@
               <h5 class="card-title mb-1 title-text">
                 <a href="{{ allNewsS2[1].news_url }}" target="_blank">{{ allNewsS2[1].title }}</a>
               </h5>
-              <small class="font-weight-bold mb-2 text-faint">{{ allNewsS2[1].date }}</small>
+              <small class="fw-bold mb-2 text-faint">{{ allNewsS2[1].date }}</small>
               <p class="card-text small-text-area mb-1">
                 {{ allNewsS2[1].text }}
               </p>
@@ -71,7 +71,7 @@
               <h5 class="card-title mb-1 title-text">
                 <a href="{{ allNewsS2[2].news_url }}" target="_blank">{{ allNewsS2[2].title }}</a>
               </h5>
-              <small class="font-weight-bold mb-2 text-faint">{{ allNewsS2[2].date }}</small>
+              <small class="fw-bold mb-2 text-faint">{{ allNewsS2[2].date }}</small>
               <p class="card-text small-text-area mb-1">
                 {{ allNewsS2[2].text }}
               </p>
@@ -97,7 +97,7 @@
                 <h5 class="card-title mb-1 title-text">
                   <a href="{{ allNewsS2[3].news_url }}" target="_blank">{{ allNewsS2[3].title }}</a>
                 </h5>
-                <small class="font-weight-bold mb-2 text-faint">{{ allNewsS2[3].date }}</small>
+                <small class="fw-bold mb-2 text-faint">{{ allNewsS2[3].date }}</small>
               </div>
               <p class="card-text large-text-area">
                 {{ allNewsS2[3].text }}
@@ -122,9 +122,9 @@
 </div>
 
 <ng-template #loader>
-  <div class="{{ theme }} theme-container text-left w-100">
+  <div class="{{ theme }} theme-container text-start w-100">
     <div class="news-wrapper w-100">
-      <h5 class="font-weight-bold">Trending News</h5>
+      <h5 class="fw-bold">Trending News</h5>
       <div class="w-100 h-100" fxLayout="row">
         <div fxLayout="column" fxFlex="35" class="col-brdr">
           <app-news-loader-tall></app-news-loader-tall>

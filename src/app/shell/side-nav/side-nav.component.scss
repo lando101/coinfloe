@@ -33,6 +33,7 @@
     font-size: 2rem;
     color: $brand;
     text-shadow: 0 0 11px $text-shadow;
+    text-decoration: none;
     &:hover {
       color: lighten($brand, 5%) !important;
       text-decoration: none !important;

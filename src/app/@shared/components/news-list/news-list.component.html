@@ -1,6 +1,6 @@
-<div class="text-left">
-  <h5 class="font-weight-bold mb-0 text-capitalize">{{ title || 'Recent News' }}</h5>
-  <small class="font-weight-bold text-faint">{{ description || "Today's most recent news" }}</small>
+<div class="text-start">
+  <h5 class="fw-bold mb-0 text-capitalize">{{ title || 'Recent News' }}</h5>
+  <small class="fw-bold text-faint">{{ description || "Today's most recent news" }}</small>
 </div>
 <div fxLayout="column" fxLayoutGap="5px" class="my-3">
   <div *ngFor="let article of news | slice: start:end">

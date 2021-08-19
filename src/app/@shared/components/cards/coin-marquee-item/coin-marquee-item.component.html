@@ -11,7 +11,7 @@
   <div fxLayout="column">
     <label class="text-right">{{ coin.RAW.USD.PRICE | currency }}</label>
     <small
-      class="d-flex justify-content-end font-weight-bold"
+      class="d-flex justify-content-end fw-bold"
       [ngClass]="{
         'text-positive': coin?.RAW?.USD?.CHANGEPCT24HOUR > 0,
         'text-negative': coin?.RAW?.USD?.CHANGEPCT24HOUR < 0

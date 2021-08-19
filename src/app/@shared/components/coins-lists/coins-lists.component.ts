@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Coin, USD } from 'src/models/coins.model';
 import { CoinDetailsComponent } from '../coin-details/coin-details.component';
 import { GroupByPipe, KeysPipe, OrderByPipe, PairsPipe, FlattenPipe } from 'ngx-pipes';
@@ -15,7 +15,7 @@ export interface loaders {
   styleUrls: ['./coins-lists.component.scss'],
   providers: [OrderByPipe, FlattenPipe],
 })
-export class CoinsListsComponent implements OnInit {
+export class CoinsListsComponent implements OnChanges {
   @Input() Coins: Coin[];
   @Input() count: number;
   @Input() theme: string;

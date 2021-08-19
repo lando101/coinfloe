@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import { CryptoDataServiceService } from '@app/services/crypto-data-service.service';
 import { NewsService } from '@app/services/news.service';
 import { NewsSource2 } from 'src/models/news.model';
@@ -8,7 +8,7 @@ import { NewsSource2 } from 'src/models/news.model';
   templateUrl: './trending-news.component.html',
   styleUrls: ['./trending-news.component.scss'],
 })
-export class TrendingNewsComponent implements OnInit {
+export class TrendingNewsComponent implements AfterViewInit {
   @Input() theme: string;
   allNewsS2: NewsSource2[];
 
@@ -83,7 +83,7 @@ export class TrendingNewsComponent implements OnInit {
 
   constructor(private cryptoDataService: CryptoDataServiceService, private newService: NewsService) {}
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     setTimeout(() => {
       // doing this for better page load performance
       this.newService.getAllNews2().subscribe({

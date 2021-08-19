@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
+import { AfterContentInit, Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { BottomSheetService } from '@app/services/bottom-sheet.service';
 import { Coin } from 'src/models/coins.model';
 
@@ -7,7 +7,7 @@ import { Coin } from 'src/models/coins.model';
   templateUrl: './top-losers.component.html',
   styleUrls: ['./top-losers.component.scss'],
 })
-export class TopLosersComponent implements OnInit {
+export class TopLosersComponent implements AfterContentInit {
   @Input() theme: string;
   @Input() coins: Coin[];
   @Input() showBottomSheet: boolean;
@@ -43,7 +43,7 @@ export class TopLosersComponent implements OnInit {
   ];
   slideConfig = {
     slidesToShow: 6,
-    slidesToScroll: 2,
+    slidesToScroll: 6,
     dots: true,
     infinite: false,
     responsive: [
@@ -51,7 +51,7 @@ export class TopLosersComponent implements OnInit {
         breakpoint: 2250,
         settings: {
           slidesToShow: 5,
-          slidesToScroll: 2,
+          slidesToScroll: 5,
           dots: true,
         },
       },
@@ -59,7 +59,7 @@ export class TopLosersComponent implements OnInit {
         breakpoint: 1860,
         settings: {
           slidesToShow: 4,
-          slidesToScroll: 2,
+          slidesToScroll: 4,
           dots: true,
         },
       },
@@ -67,7 +67,7 @@ export class TopLosersComponent implements OnInit {
         breakpoint: 1490,
         settings: {
           slidesToShow: 3,
-          slidesToScroll: 2,
+          slidesToScroll: 3,
           dots: true,
         },
       },
@@ -82,7 +82,7 @@ export class TopLosersComponent implements OnInit {
         breakpoint: 1042,
         settings: {
           slidesToShow: 3,
-          slidesToScroll: 1,
+          slidesToScroll: 3,
         },
       },
       // You can unslick at a given breakpoint now by adding:
@@ -119,7 +119,7 @@ export class TopLosersComponent implements OnInit {
     // console.log('beforeChange');
   }
 
-  ngOnInit(): void {}
+  ngAfterContentInit(): void {}
 
   // openBottomSheet(coin: Coin) {
   //   // console.log('SHOW BOTTOM SHEET');

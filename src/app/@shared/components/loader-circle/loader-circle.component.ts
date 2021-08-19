@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-loader-circle',
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./loader-circle.component.scss'],
 })
 export class LoaderCircleComponent implements OnInit {
+  @Input() text: string;
   constructor() {}
 
   ngOnInit(): void {}

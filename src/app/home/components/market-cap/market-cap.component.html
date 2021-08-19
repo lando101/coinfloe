@@ -1,9 +1,9 @@
-<div *ngIf="!!globalData && !!globalMetrics && !!tradingSignals" class="{{ theme }} theme-container text-left mt-4">
+<div *ngIf="!!globalData && !!globalMetrics && !!tradingSignals" class="{{ theme }} theme-container text-start mt-4">
   <div fxLayout="row">
-    <h4 class="d-flex flex-wrap font-weight-normal">
+    <h4 class="d-flex flex-wrap fw-normal">
       Today's market cap is <b class="mx-2">${{ globalData.quote.USD.total_market_cap | number: '1.0-2' }}</b>
       <small
-        class="font-weight-bold d-flex align-items-center"
+        class="fw-bold d-flex align-items-center"
         [ngClass]="{
           'text-positive': globalMetrics.market_cap_change_percentage_24h_usd > 0,
           'text-negative': globalMetrics.market_cap_change_percentage_24h_usd < 0
@@ -16,27 +16,27 @@
     </h4>
   </div>
   <div class="mt-1" fxLayout="row wrap" fxLayoutGap="25px">
-    <div fxLayout="column" class="py-3 pr-3 pl-0 justify-content-between align-items-start stat-card">
+    <div fxLayout="column" class="py-3 pe-3 ps-0 justify-content-between align-items-start stat-card">
       <div class="d-flex align-items-center mb-1">
         <fa-icon [icon]="['fab', 'bitcoin']" class="btc-icon"></fa-icon>
-        <small class="text-faint ml-2 font-weight-bold">BTC Dominance</small>
+        <small class="text-faint ms-2 fw-bold">BTC Dominance</small>
       </div>
       <h5>
         <b>{{ globalData.btc_dominance | number: '1.0-2' }}%</b>
       </h5>
       <!-- <label class="text-faint">BTC Dominance</label> -->
     </div>
-    <div fxLayout="column" class="py-3 pr-3 pl-0 justify-content-between align-items-start stat-card">
+    <div fxLayout="column" class="py-3 pe-3 ps-0 justify-content-between align-items-start stat-card">
       <div class="d-flex align-items-center mb-1">
         <fa-icon [icon]="['fab', 'ethereum']" class="eth-icon"></fa-icon>
-        <small class="text-faint ml-2 font-weight-bold">ETH Dominance</small>
+        <small class="text-faint ms-2 fw-bold">ETH Dominance</small>
       </div>
       <h5>
         <b>{{ globalData.eth_dominance | number: '1.0-2' }}%</b>
       </h5>
       <!-- <label class="text-faint">BTC Dominance</label> -->
     </div>
-    <div fxLayout="column" class="py-3 pr-3 pl-0 justify-content-between align-items-start stat-card">
+    <div fxLayout="column" class="py-3 pe-3 ps-0 justify-content-between align-items-start stat-card">
       <div class="d-flex align-items-center mb-1">
         <fa-icon
           *ngIf="tradingSignals.inOutVar.sentiment === 'bullish'"
@@ -53,17 +53,17 @@
           [icon]="['fas', 'sad-tear']"
           class="sad-icon"
         ></fa-icon>
-        <small class="text-faint ml-2 font-weight-bold">BTC Sentiment</small>
+        <small class="text-faint ms-2 fw-bold">BTC Sentiment</small>
       </div>
       <h5 class="text-capitalize">
         <b>{{ tradingSignals.inOutVar.sentiment }}</b>
       </h5>
       <!-- <label class="text-faint">BTC Dominance</label> -->
     </div>
-    <div fxLayout="column" class="py-3 pr-3 pl-0 justify-content-between align-items-start stat-card">
+    <div fxLayout="column" class="py-3 pe-3 ps-0 justify-content-between align-items-start stat-card">
       <div class="d-flex align-items-center mb-1">
         <fa-icon [icon]="['fas', 'laptop-code']" class="code-icon"></fa-icon>
-        <small class="text-faint ml-2 font-weight-bold">Active Projects</small>
+        <small class="text-faint ms-2 fw-bold">Active Projects</small>
       </div>
       <h5>
         <b>{{ globalData.active_cryptocurrencies | number }}</b>

@@ -1,3 +1,4 @@
+import { AfterContentInit } from '@angular/core';
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { BottomSheetService } from '@app/services/bottom-sheet.service';
 import { Coin } from 'src/models/coins.model';
@@ -7,13 +8,15 @@ import { Coin } from 'src/models/coins.model';
   templateUrl: './top-gainers.component.html',
   styleUrls: ['./top-gainers.component.scss'],
 })
-export class TopGainersComponent implements OnInit {
+export class TopGainersComponent implements AfterContentInit {
   @Input() theme: string;
   @Input() coins: Coin[];
 
   @Input() showBottomSheet: boolean;
   @Output() showCoinDetails = new EventEmitter<boolean>();
   @Output() coin = new EventEmitter<Coin>();
+
+  init = false;
   tileSettings = {
     reverse: true, // reverse the tilt direction
     max: 6, // max tilt rotation (degrees)
@@ -44,7 +47,7 @@ export class TopGainersComponent implements OnInit {
   ];
   slideConfig = {
     slidesToShow: 6,
-    slidesToScroll: 2,
+    slidesToScroll: 6,
     dots: true,
     infinite: false,
     responsive: [
@@ -52,7 +55,7 @@ export class TopGainersComponent implements OnInit {
         breakpoint: 2250,
         settings: {
           slidesToShow: 5,
-          slidesToScroll: 2,
+          slidesToScroll: 5,
           dots: true,
         },
       },
@@ -60,7 +63,7 @@ export class TopGainersComponent implements OnInit {
         breakpoint: 1860,
         settings: {
           slidesToShow: 4,
-          slidesToScroll: 2,
+          slidesToScroll: 4,
           dots: true,
         },
       },
@@ -68,7 +71,7 @@ export class TopGainersComponent implements OnInit {
         breakpoint: 1490,
         settings: {
           slidesToShow: 3,
-          slidesToScroll: 2,
+          slidesToScroll: 3,
           dots: true,
         },
       },
@@ -76,14 +79,14 @@ export class TopGainersComponent implements OnInit {
         breakpoint: 1280,
         settings: {
           slidesToShow: 4,
-          slidesToScroll: 2,
+          slidesToScroll: 4,
         },
       },
       {
         breakpoint: 1042,
         settings: {
           slidesToShow: 3,
-          slidesToScroll: 1,
+          slidesToScroll: 3,
         },
       },
       // You can unslick at a given breakpoint now by adding:
@@ -119,7 +122,7 @@ export class TopGainersComponent implements OnInit {
     // console.log('beforeChange');
   }
 
-  ngOnInit(): void {}
+  ngAfterContentInit(): void {}
 
   ngOnChanges(changes: SimpleChanges): void {
     //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.

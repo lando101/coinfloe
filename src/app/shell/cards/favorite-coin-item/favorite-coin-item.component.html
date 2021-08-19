@@ -17,21 +17,21 @@
         <div>
           <app-high-low-progress></app-high-low-progress>
         </div>
-        <div fxLayout="column" class="text-left">
-          <label class="font-weight-bold">{{ coin.CoinInfo.FullName || 'Unknown' }}</label>
+        <div fxLayout="column" class="text-start">
+          <label class="fw-bold">{{ coin.CoinInfo.FullName || 'Unknown' }}</label>
           <div fxLayout="row" fxLayoutGap="10px">
-            <small class="font-weight-bold text-faint">{{ coin.CoinInfo.Name || 'NA' }}</small>
+            <small class="fw-bold text-faint">{{ coin.CoinInfo.Name || 'NA' }}</small>
             <div class="badge badge-light d-flex justify-content-center align-items-center">
-              <small class="font-weight-bold">#1</small>
+              <small class="fw-bold">#1</small>
             </div>
           </div>
         </div>
       </div>
       <div fxLayout="row">
         <div fxLayout="column" class="text-right">
-          <label class="font-weight-bold price-label">{{ coin.RAW.USD.PRICE || 0 | currency }}</label>
+          <label class="fw-bold price-label">{{ coin.RAW.USD.PRICE || 0 | currency }}</label>
           <small
-            class="d-flex justify-content-end font-weight-bold"
+            class="d-flex justify-content-end fw-bold"
             [ngClass]="{
               'text-positive': coin?.RAW?.USD?.CHANGEPCT24HOUR > 0,
               'text-negative': coin?.RAW?.USD?.CHANGEPCT24HOUR < 0

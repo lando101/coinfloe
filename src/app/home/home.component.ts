@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterContentInit, AfterViewInit, Component, OnInit } from '@angular/core';
 import { filter, finalize } from 'rxjs/operators';
 
 import { Coin, USD } from 'src/models/coins.model';
@@ -18,7 +18,7 @@ import { UserService } from '@app/services/user.service';
   styleUrls: ['./home.component.scss'],
   providers: [OrderByPipe, FlattenPipe],
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements AfterViewInit {
   quote: string | undefined;
   isLoading = false;
   coins: Coin[] = [];
@@ -48,8 +48,7 @@ export class HomeComponent implements OnInit {
     private bottomSheetService: BottomSheetService,
     private userService: UserService
   ) {}
-
-  ngOnInit() {
+  ngAfterViewInit() {
     this.isLoading = true;
     // this.getCryptosList();
     // this.cryptoService.coinsObs.subscribe((data) => {
@@ -75,7 +74,7 @@ export class HomeComponent implements OnInit {
           }
         });
       });
-    }, 500);
+    }, 250);
 
     this.bottomSheetService.bottomSheetShow.subscribe((data) => {
       this.bottomSheet = data;
@@ -105,6 +104,7 @@ export class HomeComponent implements OnInit {
       // console.log('BTC TRADING SIGNALS');
     });
   }
+  ngOnInit() {}
 
   getCoins() {
     const promise = new Promise((resolve, reject) => {

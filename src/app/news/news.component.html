@@ -23,7 +23,7 @@
         <div [@fadeOutUp] *ngIf="searchText && !!user" class="w-100 search-results">
           <div class="container d-flex justify-content-center">
             <div [ngClass.gt-md]="'w-50'" [ngClass.lt-lg]="'w-75'">
-              <h5 class="font-weight-bold"><i class="bi bi-clock-history mr-2"></i>Recent Searches</h5>
+              <h5 class="fw-bold"><i class="bi bi-clock-history me-2"></i>Recent Searches</h5>
               <div [@fadeOutRight] *ngFor="let search of user.recent_search.reverse()">
                 <div fxLayout="row" fxLayoutAlign="space-between center" class="w-100">
                   <button (click)="search_recent(search)" mat-flat-button class="w-100 p-2 bg-transparent">
@@ -35,7 +35,7 @@
                         height="14"
                         fill="currentColor"
                         viewBox="0 0 16 16"
-                        class="bi bi-search mr-2"
+                        class="bi bi-search me-2"
                       >
                         <path
                           _ngcontent-aqr-c355=""
@@ -64,7 +64,7 @@
       <mat-tab-group class="{{ theme }}" mat-align-tabs="start">
         <mat-tab label="Articles">
           <ng-template mat-tab-label>
-            <h5 class="font-weight-bold mb-0" fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center center">
+            <h5 class="fw-bold mb-0" fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center center">
               <div class="tab-icon article">
                 <i class="bi bi-book"></i>
               </div>
@@ -73,7 +73,7 @@
           </ng-template>
           <div class="my-4">
             <div fxLayout="column" fxLayoutGap="5px" class="mb-4">
-              <small class="font-weight-bold">Quick topics</small>
+              <small class="fw-bold">Quick topics</small>
               <mat-chip-list #chipList [selectable]="true" aria-label="topic selection">
                 <mat-chip
                   [selected]="selectedChip.label === chip.label"
@@ -104,7 +104,7 @@
         </mat-tab>
         <mat-tab label="Videos">
           <ng-template mat-tab-label>
-            <h5 class="font-weight-bold mb-0" fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center center">
+            <h5 class="fw-bold mb-0" fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center center">
               <div class="tab-icon video">
                 <i class="bi bi-play-btn"></i>
               </div>

@@ -1,4 +1,4 @@
-<div [ngClass.gt-lg]="'px-5'" class="mx-5">
+<div [ngClass.gt-lg]="'px-5'" class="mx-5 py-4">
   <div fxFlexFill fxLayout="column" fxLayoutGap="20px">
     <app-market-cap
       [theme]="theme"
@@ -17,10 +17,10 @@
       [use_api]="true"
       [theme]="theme"
     ></app-news-list>
-    <div class="text-left w-100">
+    <div class="text-start w-100">
       <div class="mb-3">
-        <h5 class="font-weight-bold mb-0">Top Gainers</h5>
-        <small class="font-weight-bold text-faint">Coins with the highest percentage gains</small>
+        <h5 class="fw-bold mb-0">Top Gainers</h5>
+        <small class="fw-bold text-faint">Coins with the highest percentage gains</small>
       </div>
       <app-top-gainers
         (coin)="setSelectedCoin($event)"
@@ -29,10 +29,10 @@
         [coins]="topGainerCoins"
       ></app-top-gainers>
     </div>
-    <div class="w-100 text-left">
+    <div class="w-100 text-start">
       <div class="mb-3">
-        <h5 class="font-weight-bold mb-0">Top Losers</h5>
-        <small class="font-weight-bold text-faint">Coins with the highest percentage losses</small>
+        <h5 class="fw-bold mb-0">Top Losers</h5>
+        <small class="fw-bold text-faint">Coins with the highest percentage losses</small>
       </div>
       <app-top-losers
         (coin)="setSelectedCoin($event)"
@@ -41,10 +41,10 @@
         [coins]="topGainerCoins"
       ></app-top-losers>
     </div>
-    <div class="text-left">
+    <div class="text-start">
       <div class="mb-3">
-        <h5 class="font-weight-bold mb-0">Top Coins</h5>
-        <small class="font-weight-bold text-faint">Top 10 coins based on market cap</small>
+        <h5 class="fw-bold mb-0">Top Coins</h5>
+        <small class="fw-bold text-faint">Top 10 coins based on market cap</small>
       </div>
       <app-coins-lists
         [loading]="isLoading"

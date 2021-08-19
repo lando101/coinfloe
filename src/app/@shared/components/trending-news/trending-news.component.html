@@ -1,7 +1,7 @@
-<div class="text-left {{ theme }} theme-container w-100">
+<div class="text-start {{ theme }} theme-container w-100">
   <div class="mb-2">
-    <h5 class="font-weight-bold mb-0">Trending News</h5>
-    <small class="font-weight-bold text-faint">Hottest news over the past day</small>
+    <h5 class="fw-bold mb-0">Trending News</h5>
+    <small class="fw-bold text-faint">Hottest news over the past day</small>
   </div>
   <ngx-slick-carousel
     *ngIf="allNewsS2?.length > 0; else loading"
@@ -13,7 +13,7 @@
     (afterChange)="afterChange($event)"
     (beforeChange)="beforeChange($event)"
   >
-    <div ngxSlickItem *ngFor="let article of allNewsS2?.slice(0, 12)" class="slide">
+    <div ngxSlickItem *ngFor="let article of allNewsS2?.slice(0, 10)" class="slide">
       <div class="p-2 slick-slide">
         <!-- <button class="p-0 border-0"> -->
         <app-news-card [theme]="theme" [article]="article"></app-news-card>
@@ -33,11 +33,6 @@
     (afterChange)="afterChange($event)"
     (beforeChange)="beforeChange($event)"
   >
-    <div ngxSlickItem class="slide">
-      <div class="p-2 slick-slide">
-        <app-news-card-loader [theme]="theme"></app-news-card-loader>
-      </div>
-    </div>
     <div ngxSlickItem class="slide">
       <div class="p-2 slick-slide">
         <app-news-card-loader [theme]="theme"></app-news-card-loader>
