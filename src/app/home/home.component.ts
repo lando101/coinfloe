@@ -181,10 +181,10 @@ export class HomeComponent implements AfterViewInit {
   }
 
   addFavorite(coin: Coin) {
-    this.userService.addFavorite(coin);
+    this.userService.addFavorite(coin.CoinInfo.Name.toUpperCase());
   }
 
   removeFavorite(coin: Coin) {
-    this.userService.removeFavorite(coin);
+    this.userService.removeFavorite(coin.CoinInfo.Name.toUpperCase());
   }
 }

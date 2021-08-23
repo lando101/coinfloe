@@ -17,7 +17,7 @@ export class CoinMarqueeItemComponent implements OnInit {
   ngOnInit(): void {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (!!changes.coin.currentValue) {
+    if (!!changes?.coin?.currentValue) {
       this.imgURL = `https://www.cryptocompare.com${this.coin?.CoinInfo.ImageUrl}`;
       this.prettyImgURL = `https://cryptologos.cc/logos/${this.coin?.CoinInfo?.FullName.replace(
         ' ',

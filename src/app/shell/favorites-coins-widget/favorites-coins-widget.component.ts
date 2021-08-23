@@ -22,7 +22,9 @@ export class FavoritesCoinsWidgetComponent implements OnInit {
       next: (coins: Coin[]) => {
         if (coins) {
           this.coins = coins;
-          this.findFavoritesMatch();
+          // if (this.user?.favorite_coins?.length > 0) {
+          //   this.findFavoritesMatch(this.user.favorite_coins);
+          // }
         }
       },
       error: (error: any) => {
@@ -31,8 +33,10 @@ export class FavoritesCoinsWidgetComponent implements OnInit {
     });
   }
   ngOnChanges(changes: SimpleChanges): void {
-    if (this.user) {
-      this.findFavoritesMatch(this.user.favorite_coins);
+    if (!!changes?.user?.currentValue) {
+      if (this.user?.favorite_coins?.length > 0) {
+        this.findFavoritesMatch(this.user.favorite_coins);
+      }
     }
   }
 
@@ -54,6 +58,6 @@ export class FavoritesCoinsWidgetComponent implements OnInit {
     // let tempFavs = this.user.favorite_coins;
 
     // tempFavs = tempFavs.filter((fav) => fav.toLowerCase() !== coin.CoinInfo.Name.toLowerCase());
-    this.userService.removeFavorite(coin);
+    this.userService.removeFavorite(coin.CoinInfo.Name.toLowerCase());
   }
 }

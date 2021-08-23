@@ -1,9 +1,23 @@
 <mat-form-field appearance="standard">
-  <mat-label>Filter</mat-label>
+  <mat-label>Filter coins</mat-label>
   <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Cardano" #input />
 </mat-form-field>
-<div>
+<div class="{{theme}} theme-container">
   <table class="w-100" *ngIf="show; else loader" mat-table [dataSource]="dataSource" matSort>
+    <!-- Name Column -->
+    <ng-container matColumnDef="favorite">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button (click)="toggleFavorite(element)" class="fav-button">
+          <i
+            [ngClass]="{
+              'heart-icon bi bi-heart-fill': element.favorite === true,
+              'text-very-faint bi bi-heart': element.favorite === false
+            }"
+          ></i>
+        </button>
+      </td>
+    </ng-container>
     <!-- Position Column -->
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Coin</th>
@@ -12,14 +26,14 @@
           <div class="img-container">
             <img
               class="w-100 h-100"
-              src="{{ element.imgUrl }}"
-              (error)="element.imgUrl = element.prettyImg"
+              src="{{ element.prettyImg }}"
+              (error)="element.prettyImg = element.imgUrl"
               alt="{{ element.name }} logo img"
             />
           </div>
           <div fxLayout="column" fxLayoutGap="5px">
             <span class="coin-name">{{ element.name }}</span>
-            <small class="fw-bold text-faint">{{ element.symbol }}</small>
+            <small class="fw-bold text-faint desc-text">{{ element.symbol }}</small>
           </div>
         </div>
       </td>
@@ -51,12 +65,23 @@
 
     <ng-container matColumnDef="amountChange24h">
       <th mat-header-cell *matHeaderCellDef>24h Change</th>
-      <td mat-cell *matCellDef="let element">{{ element.return24h | currency }}</td>
+      <td
+      mat-cell
+      *matCellDef="let element"
+      [ngClass]="{
+        'text-positive': element.return24h > 0,
+        'text-negative': element.return24h < 0
+      }">{{ element.return24h | currency }}</td>
     </ng-container>
 
     <ng-container matColumnDef="volume24h">
       <th mat-header-cell *matHeaderCellDef>24h Volume</th>
-      <td mat-cell *matCellDef="let element">{{ element.volume24h | number }}</td>
+      <td mat-cell *matCellDef="let element">
+        <div fxLayout="column" fxLayoutGap="5px">
+          <span>{{ element.volume24hUSD | currency}}</span>
+          <small class="fw-bold text-faint desc-text">{{ element.volume24h | number }} {{element.symbol}}</small>
+        </div>
+      </td>
     </ng-container>
     <!-- Symbol Column -->
     <ng-container matColumnDef="marketcap">
@@ -68,7 +93,7 @@
       <th mat-header-cell *matHeaderCellDef>Supply</th>
       <td mat-cell *matCellDef="let element">
         {{ element.supply | number }}
-        <small class="fw-bold text-faint">{{ element.symbol }}</small>
+        <small class="fw-bold text-faint desc-text">{{ element.symbol }}</small>
       </td>
     </ng-container>
 
@@ -95,7 +120,7 @@
     </tr>
   </table>
 
-  <mat-paginator [pageSizeOptions]="[50, 100]" showFirstLastButtons aria-label="Select page of periodic elements">
+  <mat-paginator [color] [pageSizeOptions]="[50, 100]" showFirstLastButtons aria-label="Select page of periodic elements">
   </mat-paginator>
 </div>
 

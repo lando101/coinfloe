@@ -1,5 +1,6 @@
 @import "../../../../styles/index";
 
+// table dimension styling
 th.mat-header-cell,
 td.mat-cell,
 td.mat-footer-cell {
@@ -15,47 +16,16 @@ th {
   font-size: 0.95rem !important;
 }
 
-tr.mat-header-row {
-  height: 56px;
-  position: sticky;
-  top: 115px;
-  background: #f3f3f3;
-  z-index: 1;
-}
 
-tr.mat-row,
-tr.mat-footer-row {
-  height: 48px;
-  background: #f9f9f9;
-  transition: 0.09s ease-in-out;
-}
-
-tr.mat-row:hover {
-  background: white;
-}
 
 .mat-table {
   font-family: Quicksand, sans-serif;
   font-weight: 600;
   background-color: transparent;
-  tbody {
-    background-color: #ffffff73 !important;
-  }
 }
 
 .mat-paginator {
   background: transparent;
-}
-
-mat-row,
-mat-header-row,
-mat-footer-row,
-th.mat-header-cell,
-td.mat-cell,
-td.mat-footer-cell {
-  border-bottom-color: rgb(123 123 123 / 12%);
-  border-right-color: rgb(123 123 123 / 12%);
-  border-left-color: rgb(123 123 123 / 12%);
 }
 
 .coin-name {
@@ -65,7 +35,72 @@ td.mat-footer-cell {
   height: 28px;
   width: 28px;
 }
+.fav-button {
+  background-color: transparent !important;
+  font-size: .9rem;
+  border-radius: 100%;
+  .heart-icon {
+    color: #dc3545;
+  }
+}
+
 
 .loader-container{
   height: calc(100vh - 225px);
+}
+
+@mixin theme-mixin ($light-theme: true){
+  $bg-color: $table-bg-color;
+  $header-bg-color: $primary-background;
+  $font: $primary-font-color;
+  $border: $primary-border-light;
+  @if $light-theme != true {
+    $bg-color: $dark-secondary-background;
+    $header-bg-color: $dark-body-background;
+    $font: $dark-primary-font-color;
+    $border: $dark-primary-border-dark;
+  }
+
+  mat-row,
+  mat-header-row,
+  mat-footer-row,
+  th.mat-header-cell,
+  td.mat-cell,
+  td.mat-footer-cell {
+    border-bottom-color: $border;
+    color: $font;
+  }
+
+  tr.mat-row,
+  tr.mat-footer-row {
+    height: 48px;
+    background: $bg-color;
+    transition: 0.09s ease-in-out;
+  }
+
+  tr.mat-row:hover {
+    background: lighten($bg-color, 5%);
+  }
+
+  tr.mat-header-row {
+    height: 56px;
+    position: sticky;
+    top: 115px;
+    background: $header-bg-color;
+    z-index: 1;
+  }
+  ::ng-deep .mat-paginator-container{
+    color: darken($font, 10%) !important;
+    .mat-button-disabled{
+      color: darken($font, 10%) !important;
+      opacity: .4 !important;
+    }
+  }
+}
+
+.theme-container{
+  @include theme-mixin($light-theme: true);
+}
+.dark.theme-container{
+  @include theme-mixin($light-theme: false);
 }

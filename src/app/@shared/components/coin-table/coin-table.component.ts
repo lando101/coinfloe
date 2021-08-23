@@ -1,8 +1,19 @@
-import { Component, Input, OnInit, AfterViewInit, ViewChild, SimpleChanges, OnChanges } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  AfterViewInit,
+  ViewChild,
+  SimpleChanges,
+  OnChanges,
+  EventEmitter,
+  Output,
+} from '@angular/core';
 import { Coin } from 'src/models/coins.model';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
+import { ThemePalette } from '@angular/material/core';
 
 export interface CoinTableData {
   name: string;
@@ -13,11 +24,13 @@ export interface CoinTableData {
   returnPct24h: number;
   return24h: number;
   volume24h: number;
+  volume24hUSD: number;
   mrktcap: number;
   supply: number;
   rating: string;
   high?: number;
   low?: number;
+  favorite?: boolean;
 }
 
 @Component({
@@ -27,6 +40,7 @@ export interface CoinTableData {
 })
 export class CoinTableComponent implements OnChanges {
   displayedColumns: string[] = [
+    'favorite',
     'name',
     'price',
     '24h',
@@ -45,15 +59,23 @@ export class CoinTableComponent implements OnChanges {
   @Input() coins: Coin[];
   @Input() theme: string;
   @Input() count: number;
+  @Output() addFavOutput = new EventEmitter<Coin>();
+  @Output() removeFavOutput = new EventEmitter<Coin>();
 
   coinData: CoinTableData[] = [];
   show = false;
   constructor() {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.show = false;
-    if (changes.coins.currentValue.length > 0) {
+    if (changes?.coins?.currentValue?.length > 0) {
+      if (!changes?.coins?.previousValue) {
+        this.show = false;
+      }
+      this.coinData = [];
       const coins: Coin[] = changes.coins.currentValue;
+      // console.log('TABLE');
+      // console.log(coins);
+      // console.log('TABLE');
       coins.map((data: Coin) => {
         if (!!data.RAW?.USD) {
           this.coinData.push({
@@ -67,15 +89,20 @@ export class CoinTableComponent implements OnChanges {
             price: data.RAW.USD.PRICE,
             returnPct24h: data.RAW.USD.CHANGEPCT24HOUR,
             return24h: data.RAW.USD.CHANGE24HOUR,
+            volume24hUSD: data.RAW.USD.TOTALVOLUME24HTO,
             volume24h: data.RAW.USD.TOTALVOLUME24H,
             mrktcap: data.RAW.USD.MKTCAP,
             supply: data.RAW.USD.SUPPLY,
             rating: data.CoinInfo.Rating.Weiss.TechnologyAdoptionRating || '-',
             high: data.RAW.USD.HIGH24HOUR,
             low: data.RAW.USD.LOW24HOUR,
+            favorite: data.FAVORITE,
           });
         }
       });
+      // console.log('TABLE DATA');
+      // console.log(this.coinData);
+      // console.log('TABLE DATA');
       // console.log(this.coinData);
       this.dataSource = new MatTableDataSource(this.coinData);
       setTimeout(() => {
@@ -94,5 +121,24 @@ export class CoinTableComponent implements OnChanges {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  toggleFavorite(selectedCoin: CoinTableData) {
+    const coin: Coin = this.coins.find((x) => x.CoinInfo.Name === selectedCoin.symbol);
+    selectedCoin.favorite = !selectedCoin.favorite;
+    if (coin.FAVORITE) {
+      this.removeFavorite(coin);
+    } else {
+      this.addFavorite(coin);
+    }
+  }
+
+  addFavorite(coin: Coin) {
+    coin.FAVORITE = true; // assuming db will successfully handle event
+    this.addFavOutput.emit(coin);
+  }
+  removeFavorite(coin: Coin) {
+    coin.FAVORITE = false; // assuming db will successfully handle event
+    this.removeFavOutput.emit(coin);
   }
 }

@@ -16,8 +16,8 @@ export class TrendingNewsComponent implements AfterViewInit {
     slidesToShow: 5,
     slidesToScroll: 3,
     dots: true,
-    infinite: false,
-    autoplay: false,
+    infinite: true,
+    autoplay: true,
     autoplaySpeed: 14000,
     responsive: [
       {

@@ -58,17 +58,17 @@ export class UserService {
   };
 
   // remove coin favorite
-  removeFavorite = (coin: Coin) => {
+  removeFavorite = (coin: string) => {
     let tempFavs = this.user.favorite_coins;
 
-    tempFavs = tempFavs.filter((fav) => fav.toLowerCase() !== coin.CoinInfo.Name.toLowerCase());
+    tempFavs = tempFavs.filter((fav) => fav.toLowerCase() !== coin.toLowerCase());
     this.updateUser(this.user.uid, 'favorite_coins', tempFavs);
   };
 
   // add coin favorite
-  addFavorite = (coin: Coin) => {
+  addFavorite = (coin: string) => {
     const tempFavs = this.user.favorite_coins;
-    tempFavs.push(coin.CoinInfo.Name.toUpperCase());
+    tempFavs.push(coin.toUpperCase());
     this.updateUser(this.user.uid, 'favorite_coins', tempFavs);
   };
 }
