@@ -5,9 +5,9 @@ import { Shell } from '@app/shell/shell.service';
 const routes: Routes = [
   Shell.childRoutes([
     {
-      path: 'charts',
+      path: 'coins',
       loadChildren: () => import('./charts/charts.module').then((m) => m.ChartsModule),
-      data: { state: 'charts' },
+      data: { state: 'coins' },
     },
     { path: 'about', loadChildren: () => import('./about/about.module').then((m) => m.AboutModule) },
     { path: 'groups', loadChildren: () => import('./groups/groups.module').then((m) => m.GroupsModule) },

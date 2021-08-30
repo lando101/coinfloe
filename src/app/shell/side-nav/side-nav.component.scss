@@ -55,6 +55,9 @@
     i {
       font-size: 25px;
     }
+    fa-icon{
+      font-size: 25px;
+    }
     .button-label {
       font-size: 1.15rem;
     }
@@ -62,6 +65,8 @@
       color: $primary-color !important;
       opacity: 1;
       text-shadow: 0 0 11px $text-shadow;
+      display: flex;
+      align-items: center;
     }
   }
   .brand-text {

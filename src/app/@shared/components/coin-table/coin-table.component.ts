@@ -14,6 +14,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { ThemePalette } from '@angular/material/core';
+import { BottomSheetService } from '@app/services/bottom-sheet.service';
 
 export interface CoinTableData {
   name: string;
@@ -40,7 +41,6 @@ export interface CoinTableData {
 })
 export class CoinTableComponent implements OnChanges {
   displayedColumns: string[] = [
-    'favorite',
     'name',
     'price',
     '24h',
@@ -64,7 +64,7 @@ export class CoinTableComponent implements OnChanges {
 
   coinData: CoinTableData[] = [];
   show = false;
-  constructor() {}
+  constructor(private bottomSheetService: BottomSheetService) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes?.coins?.currentValue?.length > 0) {
@@ -140,5 +140,10 @@ export class CoinTableComponent implements OnChanges {
   removeFavorite(coin: Coin) {
     coin.FAVORITE = false; // assuming db will successfully handle event
     this.removeFavOutput.emit(coin);
+  }
+
+  openBottomSheet(coin: CoinTableData) {
+    const viewCoin = this.coins.find((x) => x.CoinInfo.Name === coin.symbol);
+    this.bottomSheetService.setState(true, viewCoin);
   }
 }

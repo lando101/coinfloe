@@ -19,8 +19,17 @@
     ></app-news-list>
     <div class="text-start w-100">
       <div class="mb-3">
-        <h5 class="fw-bold mb-0">Top Gainers</h5>
-        <small class="fw-bold text-faint">Coins with the highest percentage gains</small>
+        <div fxLayout="row" fxLayoutGap="6px">
+          <h5 class="mb-0">
+            <fa-icon [icon]="['fab', 'hotjar']" class="hot"></fa-icon>
+          </h5>
+          <div fxLayout="column">
+            <h5 class="fw-bold mb-0">
+              Top Gainers
+            </h5>
+            <small class="fw-bold text-faint">Coins with the highest percentage gains</small>
+          </div>
+        </div>
       </div>
       <app-top-gainers
         (coin)="setSelectedCoin($event)"
@@ -31,8 +40,17 @@
     </div>
     <div class="w-100 text-start">
       <div class="mb-3">
-        <h5 class="fw-bold mb-0">Top Losers</h5>
-        <small class="fw-bold text-faint">Coins with the highest percentage losses</small>
+        <div fxLayout="row" fxLayoutGap="6px">
+          <h5 class="mb-0">
+            <fa-icon [icon]="['fas', 'icicles']" class="cold"></fa-icon>
+          </h5>
+          <div fxLayout="column">
+            <h5 class="fw-bold mb-0">
+              Top Losers
+            </h5>
+            <small class="fw-bold text-faint">Coins with the highest percentage losses</small>
+          </div>
+        </div>
       </div>
       <app-top-losers
         (coin)="setSelectedCoin($event)"
@@ -43,8 +61,17 @@
     </div>
     <div class="text-start">
       <div class="mb-3">
-        <h5 class="fw-bold mb-0">Top Coins</h5>
-        <small class="fw-bold text-faint">Top 10 coins based on market cap</small>
+        <div fxLayout="row" fxLayoutGap="6px">
+          <h5 class="mb-0">
+            <fa-icon [icon]="['fas', 'award']" class="award"></fa-icon>
+          </h5>
+          <div fxLayout="column">
+            <h5 class="fw-bold mb-0">
+              Top Coins
+            </h5>
+            <small class="fw-bold text-faint">Top 10 coins based on market cap</small>
+          </div>
+        </div>
       </div>
       <app-coins-lists
         [loading]="isLoading"

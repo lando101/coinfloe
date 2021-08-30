@@ -10,6 +10,11 @@ td.mat-footer-cell {
   padding: 15px 15px;
 }
 
+th.mat-header-cell {
+  text-align: left;
+  z-index: 2 !important;
+}
+
 td,
 th {
   font-weight: bold !important;
@@ -46,7 +51,7 @@ th {
 
 
 .loader-container{
-  height: calc(100vh - 225px);
+  height: calc(100vh - 255px);
 }
 
 @mixin theme-mixin ($light-theme: true){
@@ -60,7 +65,8 @@ th {
     $font: $dark-primary-font-color;
     $border: $dark-primary-border-dark;
   }
-
+  overflow: auto;
+  height: calc(100vh - 255px);
   mat-row,
   mat-header-row,
   mat-footer-row,
@@ -76,6 +82,7 @@ th {
     height: 48px;
     background: $bg-color;
     transition: 0.09s ease-in-out;
+    cursor: pointer;
   }
 
   tr.mat-row:hover {
@@ -84,7 +91,7 @@ th {
 
   tr.mat-header-row {
     height: 56px;
-    position: sticky;
+    // position: sticky;
     top: 115px;
     background: $header-bg-color;
     z-index: 1;

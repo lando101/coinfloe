@@ -5,24 +5,20 @@
 <div class="{{theme}} theme-container">
   <table class="w-100" *ngIf="show; else loader" mat-table [dataSource]="dataSource" matSort>
     <!-- Name Column -->
-    <ng-container matColumnDef="favorite">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
-      <td mat-cell *matCellDef="let element">
-        <button mat-icon-button (click)="toggleFavorite(element)" class="fav-button">
-          <i
-            [ngClass]="{
-              'heart-icon bi bi-heart-fill': element.favorite === true,
-              'text-very-faint bi bi-heart': element.favorite === false
-            }"
-          ></i>
-        </button>
-      </td>
-    </ng-container>
+    <div>
     <!-- Position Column -->
-    <ng-container matColumnDef="name">
+    <ng-container matColumnDef="name" sticky>
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Coin</th>
       <td mat-cell *matCellDef="let element">
         <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+          <button mat-icon-button (click)="toggleFavorite(element)" class="fav-button">
+            <i
+              [ngClass]="{
+                'heart-icon bi bi-heart-fill': element.favorite === true,
+                'text-very-faint bi bi-heart': element.favorite === false
+              }"
+            ></i>
+          </button>
           <div class="img-container">
             <img
               class="w-100 h-100"
@@ -90,16 +86,16 @@
     </ng-container>
 
     <ng-container matColumnDef="supply">
-      <th mat-header-cell *matHeaderCellDef>Supply</th>
-      <td mat-cell *matCellDef="let element">
+      <th mat-header-cell fxHide.lt-lg *matHeaderCellDef>Supply</th>
+      <td mat-cell fxHide.lt-lg *matCellDef="let element">
         {{ element.supply | number }}
         <small class="fw-bold text-faint desc-text">{{ element.symbol }}</small>
       </td>
     </ng-container>
 
     <ng-container matColumnDef="rating">
-      <th mat-header-cell *matHeaderCellDef>Rating</th>
-      <td mat-cell *matCellDef="let element">{{ element.rating }}</td>
+      <th mat-header-cell fxHide.lt-lg *matHeaderCellDef>Rating</th>
+      <td mat-cell fxHide.lt-lg *matCellDef="let element">{{ element.rating }}</td>
     </ng-container>
 
     <ng-container matColumnDef="range">
@@ -113,17 +109,17 @@
         ></app-high-low-progress>
       </td>
     </ng-container>
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </div>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row (click)="openBottomSheet(row)" *matRowDef="let row; columns: displayedColumns"></tr>
     <tr class="mat-row" *matNoDataRow>
       <td class="mat-cell" colspan="4">No data matching the filter "{{ input.value }}"</td>
     </tr>
   </table>
-
-  <mat-paginator [color] [pageSizeOptions]="[50, 100]" showFirstLastButtons aria-label="Select page of periodic elements">
-  </mat-paginator>
 </div>
-
+<mat-paginator [color] [pageSizeOptions]="[50, 100]" showFirstLastButtons aria-label="Select page of periodic elements">
+</mat-paginator>
 <ng-template #loader>
   <div class="loader-container" fxLayout="row" fxLayoutAlign="center center">
     <app-loader-circle [text]="'Loading coins...'"></app-loader-circle>

@@ -11,6 +11,9 @@ import { GlobalMetrics } from 'src/models/global-metric.model';
 import { TradingSignals } from 'src/models/coin-trading-signals.model';
 import { User } from 'src/models/user.model';
 import { UserService } from '@app/services/user.service';
+import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
+import { faAward, faIcicles } from '@fortawesome/free-solid-svg-icons';
+import { faHotjar } from '@fortawesome/free-brands-svg-icons';
 
 @Component({
   selector: 'app-home',
@@ -46,8 +49,11 @@ export class HomeComponent implements AfterViewInit {
     private orderByPipe: OrderByPipe,
     private flattenPipe: FlattenPipe,
     private bottomSheetService: BottomSheetService,
-    private userService: UserService
-  ) {}
+    private userService: UserService,
+    private library: FaIconLibrary
+  ) {
+    library.addIcons(faAward, faHotjar, faIcicles);
+  }
   ngAfterViewInit() {
     this.isLoading = true;
     // this.getCryptosList();

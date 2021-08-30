@@ -4,7 +4,7 @@ import { marker } from '@biesbjerg/ngx-translate-extract-marker';
 
 import { ChartsComponent } from './charts.component';
 
-const routes: Routes = [{ path: '', component: ChartsComponent, data: { title: marker('Charts') } }];
+const routes: Routes = [{ path: '', component: ChartsComponent, data: { title: marker('Coins') } }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
