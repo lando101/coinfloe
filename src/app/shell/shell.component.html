@@ -57,7 +57,7 @@
                 </div>
               </div>
               <router-outlet #o="outlet"></router-outlet>
-              <app-footer></app-footer>
+              <app-footer *ngIf="router.url != '/coins'"></app-footer>
             </div>
             <div fxFlex.gt-md="25" fxHide.lt-lg class="widgets-container">
               <div class="w-100">
