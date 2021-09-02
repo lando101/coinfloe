@@ -58,49 +58,72 @@ th {
   $bg-color: $table-bg-color;
   $header-bg-color: $primary-background;
   $font: $primary-font-color;
-  $border: $primary-border-light;
+  $border: darken($primary-border-light,5%);
   @if $light-theme != true {
     $bg-color: $dark-secondary-background;
     $header-bg-color: $dark-body-background;
     $font: $dark-primary-font-color;
-    $border: $dark-primary-border-dark;
+    $border: lighten($dark-primary-border-dark, 45%);
   }
-  overflow: auto;
-  height: calc(100vh - 255px);
-  mat-row,
-  mat-header-row,
-  mat-footer-row,
-  th.mat-header-cell,
-  td.mat-cell,
-  td.mat-footer-cell {
-    border-bottom-color: $border;
-    color: $font;
+  .chip-list-container{
+    border-top: 1px solid $border;
+    overflow: hidden;
+    height: 55.1875px;
+    ::ng-deep .slick-prev {
+      left: 0px !important;
+      padding: 10;
+      z-index: 9;
+      height: 100%;
+      background: linear-gradient(90deg, darken($bg-color, 12%), transparent);
+      width: 58px;
+    }
+    ::ng-deep .slick-disabled {
+      display: none !important;
+    }
   }
+  .table-container{
+    overflow: auto;
+    height: calc(100vh - 255px);
+    border-top: 1px solid $border;
+    mat-row,
+    mat-header-row,
+    mat-footer-row,
+    th.mat-header-cell,
+    td.mat-cell,
+    td.mat-footer-cell {
+      border-bottom-color: $border;
+      color: $font;
+    }
 
-  tr.mat-row,
-  tr.mat-footer-row {
-    height: 48px;
-    background: $bg-color;
-    transition: 0.09s ease-in-out;
-    cursor: pointer;
-  }
+    .sticky-column-header{
+      z-index: 3 !important;
+    }
 
-  tr.mat-row:hover {
-    background: lighten($bg-color, 5%);
-  }
+    tr.mat-row,
+    tr.mat-footer-row {
+      height: 48px;
+      background: $bg-color;
+      transition: 0.09s ease-in-out;
+      cursor: pointer;
+    }
 
-  tr.mat-header-row {
-    height: 56px;
-    // position: sticky;
-    top: 115px;
-    background: $header-bg-color;
-    z-index: 1;
-  }
-  ::ng-deep .mat-paginator-container{
-    color: darken($font, 10%) !important;
-    .mat-button-disabled{
+    tr.mat-row:hover {
+      background: lighten($bg-color, 5%);
+    }
+
+    tr.mat-header-row {
+      height: 56px;
+      // position: sticky;
+      top: 115px;
+      background: $header-bg-color;
+      z-index: 1;
+    }
+    ::ng-deep .mat-paginator-container{
       color: darken($font, 10%) !important;
-      opacity: .4 !important;
+      .mat-button-disabled{
+        color: darken($font, 10%) !important;
+        opacity: .4 !important;
+      }
     }
   }
 }
@@ -110,4 +133,17 @@ th {
 }
 .dark.theme-container{
   @include theme-mixin($light-theme: false);
+}
+
+// slick styling
+// .slick-slide {
+//   float: left;
+//   height: 100%;
+//   min-height: 1px;
+//   display: none;
+//   // width: auto !important;
+// }
+
+.slick-slide {
+  width: auto !important;
 }

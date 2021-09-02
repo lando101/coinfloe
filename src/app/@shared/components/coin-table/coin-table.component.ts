@@ -8,6 +8,7 @@ import {
   OnChanges,
   EventEmitter,
   Output,
+  ElementRef,
 } from '@angular/core';
 import { Coin } from 'src/models/coins.model';
 import { MatPaginator } from '@angular/material/paginator';
@@ -32,6 +33,10 @@ export interface CoinTableData {
   high?: number;
   low?: number;
   favorite?: boolean;
+}
+
+export interface ChipFilters {
+  name: string;
 }
 
 @Component({
@@ -64,10 +69,84 @@ export class CoinTableComponent implements OnChanges {
 
   coinData: CoinTableData[] = [];
   show = false;
+  clientWidth: string;
+  showChips = false;
+  slideConfig = {
+    slidesToShow: 7,
+    slidesToScroll: 1,
+    dots: false,
+    infinite: false,
+    responsive: [
+      {
+        breakpoint: 914,
+        settings: {
+          slidesToShow: 5,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 699,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 590,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        },
+      },
+      // You can unslick at a given breakpoint now by adding:
+      // settings: "unslick"
+      // instead of a settings object
+    ],
+    // autoplay: true,
+    // autoplaySpeed: 7000,
+  };
+
+  chips: ChipFilters[] = [
+    { name: 'Favorites' },
+    { name: 'Market Cap' },
+    { name: 'Price' },
+    { name: '24h %' },
+    { name: '24h Change' },
+    { name: '24h Volume' },
+    { name: 'Weiss Rating' },
+  ];
+
   constructor(private bottomSheetService: BottomSheetService) {}
 
+  addSlide() {
+    // this.slides.push({ img: 'http://placehold.it/350x150/777777' });
+  }
+
+  removeSlide() {
+    // this.slides.length = this.slides.length - 1;
+  }
+
+  slickInit(e: any) {
+    // console.log('slick initialized');
+  }
+
+  breakpoint(e: any) {
+    // console.log('breakpoint');
+  }
+
+  afterChange(e: any) {
+    // console.log('afterChange');
+  }
+
+  beforeChange(e: any) {
+    // console.log('beforeChange');
+  }
   ngOnChanges(changes: SimpleChanges): void {
     if (changes?.coins?.currentValue?.length > 0) {
+      this.getClientWidth();
+      console.log('CONTAINER');
+      console.log('CONTAINER');
+
       if (!changes?.coins?.previousValue) {
         this.show = false;
       }
@@ -111,6 +190,32 @@ export class CoinTableComponent implements OnChanges {
         this.show = true;
       }, 1);
     }
+  }
+
+  // gets client width to determine width of chips carousel
+  getClientWidth() {
+    this.showChips = false;
+
+    const promise = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        const width = document.getElementById('chartContainer').clientWidth - 14;
+        if (width) {
+          this.clientWidth = `${width - 14}px`;
+          resolve(width);
+        } else {
+          this.clientWidth = '0px';
+          reject(width);
+        }
+      }, 2100);
+    })
+      .then(() => {
+        setTimeout(() => {
+          this.showChips = true;
+        }, 100);
+      })
+      .catch(() => {
+        this.showChips = false;
+      });
   }
 
   applyFilter(event: Event) {
