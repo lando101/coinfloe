@@ -1,11 +1,23 @@
-<div class="{{theme}} theme-container" (window:resize)="getClientWidth()">
+<div class="{{theme}} theme-container" (window:resize)="getClientWidth(false)">
   <div class="w-100 px-4 ">
     <mat-form-field appearance="standard">
       <mat-label>Filter coins</mat-label>
       <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Cardano" #input />
     </mat-form-field>
   </div>
-  <div class="chip-list-container">
+  <div class="chip-list-container align-items-center">
+    <mat-chip-list>
+      <owl-carousel-o class="w-100" [options]="customOptions">
+        <ng-template [width]="chip.width" *ngFor="let chip of chips" carouselSlide>
+          <mat-chip
+              class="example-box">
+              {{chip.name}}
+            </mat-chip>
+        </ng-template>
+      </owl-carousel-o>
+    </mat-chip-list>
+  </div>
+  <!-- <div class="chip-list-container">
     <mat-chip-list *ngIf="showChips">
       <ngx-slick-carousel
       class="carousel"
@@ -17,7 +29,6 @@
       (beforeChange)="beforeChange($event)"
       [ngStyle]="{'width': clientWidth}"
       >
-      <!-- <mat-chip-list> -->
         <div ngxSlickItem *ngFor="let chip of chips" class="slide">
           <div class="p-2 slick-slide">
             <mat-chip
@@ -26,11 +37,10 @@
           </mat-chip>
           </div>
         </div>
-      <!-- </mat-chip-list> -->
 
       </ngx-slick-carousel>
     </mat-chip-list>
-  </div>
+  </div> -->
   <div #cryptochart id="chartContainer" class="table-container">
     <table class="w-100" *ngIf="show; else loader" mat-table [dataSource]="dataSource" matSort>
       <!-- Name Column -->

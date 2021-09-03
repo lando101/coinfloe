@@ -16,6 +16,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { ThemePalette } from '@angular/material/core';
 import { BottomSheetService } from '@app/services/bottom-sheet.service';
+import { OwlOptions } from 'ngx-owl-carousel-o';
 
 export interface CoinTableData {
   name: string;
@@ -37,6 +38,7 @@ export interface CoinTableData {
 
 export interface ChipFilters {
   name: string;
+  width?: number;
 }
 
 @Component({
@@ -105,15 +107,43 @@ export class CoinTableComponent implements OnChanges {
     // autoplay: true,
     // autoplaySpeed: 7000,
   };
+  customOptions: OwlOptions = {
+    loop: false,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    dots: false,
+    autoWidth: true,
+    navSpeed: 700,
+    navText: ['<', '>'],
+    responsive: {
+      0: {
+        items: 1,
+        nav: true,
+      },
+      400: {
+        items: 2,
+        nav: true,
+      },
+      740: {
+        items: 3,
+        nav: true,
+      },
+      940: {
+        items: 4,
+      },
+    },
+    nav: false,
+  };
 
   chips: ChipFilters[] = [
-    { name: 'Favorites' },
-    { name: 'Market Cap' },
-    { name: 'Price' },
-    { name: '24h %' },
-    { name: '24h Change' },
-    { name: '24h Volume' },
-    { name: 'Weiss Rating' },
+    { name: 'Favorites', width: 98.8 },
+    { name: 'Market Cap', width: 124.3 },
+    { name: 'Price', width: 65.4 },
+    { name: '24h %', width: 85.75 },
+    { name: '24h Change', width: 125.35 },
+    { name: '24h Volume', width: 125.33 },
+    { name: 'Weiss Rating', width: 132.75 },
   ];
 
   constructor(private bottomSheetService: BottomSheetService) {}
@@ -143,7 +173,7 @@ export class CoinTableComponent implements OnChanges {
   }
   ngOnChanges(changes: SimpleChanges): void {
     if (changes?.coins?.currentValue?.length > 0) {
-      this.getClientWidth();
+      this.getClientWidth(true);
       console.log('CONTAINER');
       console.log('CONTAINER');
 
@@ -193,8 +223,9 @@ export class CoinTableComponent implements OnChanges {
   }
 
   // gets client width to determine width of chips carousel
-  getClientWidth() {
+  getClientWidth(pageLoad: boolean) {
     this.showChips = false;
+    const wait = pageLoad ? 350 : 2100;
 
     const promise = new Promise((resolve, reject) => {
       setTimeout(() => {
@@ -206,7 +237,7 @@ export class CoinTableComponent implements OnChanges {
           this.clientWidth = '0px';
           reject(width);
         }
-      }, 2100);
+      }, wait);
     })
       .then(() => {
         setTimeout(() => {

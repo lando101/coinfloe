@@ -46,6 +46,7 @@ import { NewsCardLoaderComponent } from './components/loaders/news-card-loader/n
 import { NewsSearchBarComponent } from './components/news-search-bar/news-search-bar.component';
 import { CoinMarqueeItemComponent } from './components/cards/coin-marquee-item/coin-marquee-item.component';
 import { CoinTableComponent } from './components/coin-table/coin-table.component';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 @NgModule({
   imports: [
@@ -59,6 +60,7 @@ import { CoinTableComponent } from './components/coin-table/coin-table.component
     AngularTiltModule,
     AvatarModule,
     FormsModule,
+    CarouselModule,
     MomentModule,
     MomentModule.forRoot({
       relativeTimeThresholdOptions: {

@@ -63,6 +63,7 @@
     "ngx-bootstrap": "^7.0.0",
     "ngx-cookie": "^5.0.2",
     "ngx-moment": "^5.0.0",
+    "ngx-owl-carousel-o": "^6.0.0",
     "ngx-particle": "^1.5.0",
     "ngx-perfect-scrollbar": "^10.1.1",
     "ngx-pipes": "^2.7.5",

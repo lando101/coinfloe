@@ -13,6 +13,7 @@ td.mat-footer-cell {
 th.mat-header-cell {
   text-align: left;
   z-index: 2 !important;
+  white-space: nowrap;
 }
 
 td,
@@ -68,7 +69,7 @@ th {
   .chip-list-container{
     border-top: 1px solid $border;
     overflow: hidden;
-    height: 55.1875px;
+    padding: 10px 0px;
     ::ng-deep .slick-prev {
       left: 0px !important;
       padding: 10;
@@ -126,6 +127,58 @@ th {
       }
     }
   }
+  ::ng-deep .owl-next{
+    top: -11px;
+    right: -1px;
+    position: absolute;
+    height: 53px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0px;
+    width: 35px;
+    font-size: 20px;
+    color: $font !important;
+    background: linear-gradient(
+      90deg
+      , transparent, darken($bg-color, 3%), darken($bg-color, 3%), darken($bg-color, 3%)) !important;
+  }
+
+  ::ng-deep .owl-prev{
+    top: -11px;
+    left:-10px;
+    position: absolute;
+    height: 53px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0px;
+    width: 35px;
+    font-size: 20px;
+    color: $font !important;
+    background: linear-gradient(
+      90deg
+      , darken($bg-color, 3%), darken($bg-color, 3%), darken($bg-color, 3%), transparent) !important;
+  }
+
+  ::ng-deep .disabled{
+    display: none;
+  }
+
+  ::ng-deep .owl-carousel.owl-drag .owl-item {
+    padding: 0px 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+  ::ng-deep .owl-carousel {
+    padding: 0px 8px;
+  }
+
+  ::ng-deep .owl-theme .owl-nav {
+   margin: 0px !important
+  }
 }
 
 .theme-container{
@@ -147,3 +200,5 @@ th {
 .slick-slide {
   width: auto !important;
 }
+
+
