@@ -10,8 +10,28 @@
       <owl-carousel-o class="w-100" [options]="customOptions">
         <ng-template [width]="chip.width" *ngFor="let chip of chips" carouselSlide>
           <mat-chip
+              (click)="order(chip)"
+              [selected]="selectedChip === chip"
               class="example-box">
-              {{chip.name}}
+              <span class="d-flex align-items-center justify-content-end">
+                {{chip.name}}
+                <div class="filter-direction-container">
+                  <ng-container *ngIf="chip.direction === 1 || chip.direction === 2; else inactive">
+                    <span *ngIf="chip.direction===1">
+                      <i class="bi bi-arrow-up"></i>
+                    </span>
+                    <span *ngIf="chip.direction===2">
+                      <i class="bi bi-arrow-down"></i>
+                    </span>
+                  </ng-container>
+                  <ng-template #inactive>
+                    <span class="inactive-container">
+                      <i class="bi bi-dash"></i>
+                      <i class="bi bi-arrow-up"></i>
+                    </span>
+                  </ng-template>
+                </div>
+              </span>
             </mat-chip>
         </ng-template>
       </owl-carousel-o>

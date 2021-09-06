@@ -17,6 +17,8 @@ import { MatSort } from '@angular/material/sort';
 import { ThemePalette } from '@angular/material/core';
 import { BottomSheetService } from '@app/services/bottom-sheet.service';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { OrderByPipe } from 'ngx-pipes';
+import { Chip } from '../crypto-chart/crypto-chart.component';
 
 export interface CoinTableData {
   name: string;
@@ -39,12 +41,16 @@ export interface CoinTableData {
 export interface ChipFilters {
   name: string;
   width?: number;
+  direction?: number;
+  active: boolean;
+  key: string;
 }
 
 @Component({
   selector: 'app-coin-table',
   templateUrl: './coin-table.component.html',
   styleUrls: ['./coin-table.component.scss'],
+  providers: [OrderByPipe],
 })
 export class CoinTableComponent implements OnChanges {
   displayedColumns: string[] = [
@@ -70,6 +76,8 @@ export class CoinTableComponent implements OnChanges {
   @Output() removeFavOutput = new EventEmitter<Coin>();
 
   coinData: CoinTableData[] = [];
+  coinFilteredData: CoinTableData[] = [];
+  selectedChip: ChipFilters;
   show = false;
   clientWidth: string;
   showChips = false;
@@ -114,7 +122,7 @@ export class CoinTableComponent implements OnChanges {
     pullDrag: true,
     dots: false,
     autoWidth: true,
-    navSpeed: 700,
+    navSpeed: 260,
     navText: ['<', '>'],
     responsive: {
       0: {
@@ -137,16 +145,16 @@ export class CoinTableComponent implements OnChanges {
   };
 
   chips: ChipFilters[] = [
-    { name: 'Favorites', width: 98.8 },
-    { name: 'Market Cap', width: 124.3 },
-    { name: 'Price', width: 65.4 },
-    { name: '24h %', width: 85.75 },
-    { name: '24h Change', width: 125.35 },
-    { name: '24h Volume', width: 125.33 },
-    { name: 'Weiss Rating', width: 132.75 },
+    { name: 'Favorites', width: 131.8, direction: 0, active: false, key: 'favorite' },
+    { name: 'Market Cap', width: 149.3, direction: 1, active: true, key: 'mrktcap' },
+    { name: 'Price', width: 104.4, direction: 0, active: false, key: 'price' },
+    { name: '24h %', width: 110.75, direction: 0, active: false, key: 'returnPct24h' },
+    { name: '24h Change', width: 150.35, direction: 0, active: false, key: 'return24h' },
+    { name: '24h Volume', width: 150.33, direction: 0, active: false, key: 'volume24hUSD' },
+    { name: 'Weiss Rating', width: 157.75, direction: 0, active: false, key: 'rating' },
   ];
 
-  constructor(private bottomSheetService: BottomSheetService) {}
+  constructor(private bottomSheetService: BottomSheetService, private orderBy: OrderByPipe) {}
 
   addSlide() {
     // this.slides.push({ img: 'http://placehold.it/350x150/777777' });
@@ -173,9 +181,7 @@ export class CoinTableComponent implements OnChanges {
   }
   ngOnChanges(changes: SimpleChanges): void {
     if (changes?.coins?.currentValue?.length > 0) {
-      this.getClientWidth(true);
-      console.log('CONTAINER');
-      console.log('CONTAINER');
+      // this.getClientWidth(true);
 
       if (!changes?.coins?.previousValue) {
         this.show = false;
@@ -209,11 +215,12 @@ export class CoinTableComponent implements OnChanges {
           });
         }
       });
+      this.coinFilteredData = this.coinData;
       // console.log('TABLE DATA');
       // console.log(this.coinData);
       // console.log('TABLE DATA');
       // console.log(this.coinData);
-      this.dataSource = new MatTableDataSource(this.coinData);
+      this.dataSource = new MatTableDataSource(this.coinFilteredData);
       setTimeout(() => {
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
@@ -281,5 +288,48 @@ export class CoinTableComponent implements OnChanges {
   openBottomSheet(coin: CoinTableData) {
     const viewCoin = this.coins.find((x) => x.CoinInfo.Name === coin.symbol);
     this.bottomSheetService.setState(true, viewCoin);
+  }
+
+  order(chip: ChipFilters) {
+    const key = chip.key;
+    const activeChip = this.chips.find((x) => x.active === true);
+
+    if (chip === activeChip) {
+      if (activeChip.direction < 3) {
+        activeChip.direction = activeChip.direction + 1;
+      } else {
+        activeChip.direction = 0;
+      }
+    } else {
+      activeChip.active = false;
+      activeChip.direction = 0;
+      chip.active = true;
+      chip.direction = chip.direction + 1;
+    }
+
+    if (chip.direction === 1) {
+      this.selectedChip = chip;
+
+      this.coinFilteredData = this.orderBy.transform(this.coinData, `-${key}`);
+    } else if (chip.direction === 2) {
+      this.selectedChip = chip;
+
+      this.coinFilteredData = this.orderBy.transform(this.coinData, `${key}`);
+    } else {
+      this.selectedChip = null;
+
+      const marketCapChip = this.chips.find((x) => x.key === 'mrktcap');
+      marketCapChip.active = true;
+      marketCapChip.direction = 1;
+      this.coinFilteredData = this.orderBy.transform(this.coinData, `-mrktcap`);
+    }
+
+    this.dataSource = new MatTableDataSource(this.coinFilteredData);
+    setTimeout(() => {
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+      this.show = true;
+    }, 1);
+    console.log(this.coinFilteredData);
   }
 }
