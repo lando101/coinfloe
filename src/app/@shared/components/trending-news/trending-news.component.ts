@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import { CryptoDataServiceService } from '@app/services/crypto-data-service.service';
 import { NewsService } from '@app/services/news.service';
+import { OwlOptions } from 'ngx-owl-carousel-o';
 import { NewsSource2 } from 'src/models/news.model';
 
 @Component({
@@ -11,6 +12,36 @@ import { NewsSource2 } from 'src/models/news.model';
 export class TrendingNewsComponent implements AfterViewInit {
   @Input() theme: string;
   allNewsS2: NewsSource2[];
+
+  customOptions: OwlOptions = {
+    items: 4,
+    loop: false,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    dots: true,
+    autoWidth: true,
+    navSpeed: 260,
+    navText: ['<', '>'],
+    responsive: {
+      0: {
+        items: 1,
+        nav: true,
+      },
+      400: {
+        items: 2,
+        nav: true,
+      },
+      740: {
+        items: 3,
+        nav: true,
+      },
+      940: {
+        items: 4,
+      },
+    },
+    nav: true,
+  };
 
   slideConfig = {
     slidesToShow: 5,

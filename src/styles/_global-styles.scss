@@ -130,3 +130,76 @@
 .desc-text{
   font-size: .8rem;
 }
+
+::ng-deep .hide-content{
+  animation: hide-content .15s;
+  opacity: 0;
+}
+
+@keyframes hide-content {
+  0%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+  }
+}
+
+
+// owl carousel
+::ng-deep .owl-theme .owl-nav {
+  margin-top: 10px;
+  position: absolute;
+  top: 0px;
+  width: calc(100% + 84px);
+  height: 70%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: -40px;
+  z-index: -1;
+}
+
+::ng-deep .owl-theme .owl-nav .disabled {
+  cursor: default;
+  visibility: hidden;
+}
+
+::ng-deep .owl-theme .owl-dots .owl-dot span {
+  width: 8px !important;
+  height: 8px !important;
+  background: #5f5f5f40 !important;
+}
+
+::ng-deep .owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span {
+  background: #4e4e4e !important;
+}
+
+::ng-deep .owl-next{
+  background-color:  #98989847 !important;
+  font-weight: bold !important;
+  color: #000000 !important;
+  font-size: 1.15rem !important;
+}
+
+::ng-deep .owl-prev{
+  background-color:  #98989847 !important;
+  font-weight: bold !important;
+  color: #000000 !important;
+  font-size: 1.15rem !important;
+}
+
+::ng-deep .owl-carousel .owl-stage {
+ padding: 10px 0px;
+}
+
+//owl carousel -- DARK
+::ng-deep .dark .owl-theme .owl-dots .owl-dot span {
+  width: 8px !important;
+  height: 8px !important;
+  background: #4f4f54!important;
+}
+
+::ng-deep .dark .owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span {
+  background: #bcbcbd !important;
+}

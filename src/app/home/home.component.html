@@ -1,5 +1,5 @@
 <div [ngClass.gt-lg]="'px-5'" class="mx-5 py-4">
-  <div fxFlexFill fxLayout="column" fxLayoutGap="20px">
+  <div [ngClass]="{'hide-content': bottomSheet}" fxFlexFill fxLayout="column" fxLayoutGap="20px">
     <app-market-cap
       [theme]="theme"
       [globalData]="globalData"
@@ -7,8 +7,8 @@
       [tradingSignals]="tradingSignals"
     ></app-market-cap>
     <!-- <app-news-tiles [theme]="theme"></app-news-tiles> -->
-    <app-trending-news fxHide.lt-md [theme]="theme"></app-trending-news>
-    <app-news-list
+    <app-trending-news [theme]="theme"></app-trending-news>
+    <!-- <app-news-list
       fxHide.gt-sm
       [title]="'trending news'"
       [description]="'Hottest news over the last day'"
@@ -16,7 +16,7 @@
       [end]="4"
       [use_api]="true"
       [theme]="theme"
-    ></app-news-list>
+    ></app-news-list> -->
     <div class="text-start w-100">
       <div class="mb-3">
         <div fxLayout="row" fxLayoutGap="6px">

@@ -3,65 +3,35 @@
     <h5 class="fw-bold mb-0">Today's Trending News</h5>
     <small class="fw-bold text-faint">Hottest news over the past day</small>
   </div>
-  <ngx-slick-carousel
-    *ngIf="allNewsS2?.length > 0; else loading"
-    class="carousel"
-    #slickModal="slick-carousel"
-    [config]="slideConfig"
-    (init)="slickInit($event)"
-    (breakpoint)="breakpoint($event)"
-    (afterChange)="afterChange($event)"
-    (beforeChange)="beforeChange($event)"
-  >
-    <div ngxSlickItem *ngFor="let article of allNewsS2?.slice(0, 10)" class="slide">
-      <div class="p-2 slick-slide">
-        <!-- <button class="p-0 border-0"> -->
-        <app-news-card [theme]="theme" [article]="article"></app-news-card>
-        <!-- </button> -->
-      </div>
-    </div>
-  </ngx-slick-carousel>
+  <owl-carousel-o *ngIf="allNewsS2?.length > 0; else loading" class="w-100" [options]="customOptions">
+    <ng-template [width]="280" *ngFor="let article of allNewsS2?.slice(0, 10)" carouselSlide>
+      <app-news-card [theme]="theme" [article]="article"></app-news-card>
+    </ng-template>
+  </owl-carousel-o>
 </div>
 
 <ng-template #loading>
-  <ngx-slick-carousel
-    class="carousel"
-    #slickModal="slick-carousel"
-    [config]="slideConfig"
-    (init)="slickInit($event)"
-    (breakpoint)="breakpoint($event)"
-    (afterChange)="afterChange($event)"
-    (beforeChange)="beforeChange($event)"
-  >
-    <div ngxSlickItem class="slide">
-      <div class="p-2 slick-slide">
-        <app-news-card-loader [theme]="theme"></app-news-card-loader>
-      </div>
-    </div>
-    <div ngxSlickItem class="slide">
-      <div class="p-2 slick-slide">
-        <app-news-card-loader [theme]="theme"></app-news-card-loader>
-      </div>
-    </div>
-    <div ngxSlickItem class="slide">
-      <div class="p-2 slick-slide">
-        <app-news-card-loader [theme]="theme"></app-news-card-loader>
-      </div>
-    </div>
-    <div ngxSlickItem class="slide">
-      <div class="p-2 slick-slide">
-        <app-news-card-loader [theme]="theme"></app-news-card-loader>
-      </div>
-    </div>
-    <div ngxSlickItem class="slide">
-      <div class="p-2 slick-slide">
-        <app-news-card-loader [theme]="theme"></app-news-card-loader>
-      </div>
-    </div>
-    <div ngxSlickItem class="slide">
-      <div class="p-2 slick-slide">
-        <app-news-card-loader [theme]="theme"></app-news-card-loader>
-      </div>
-    </div>
-  </ngx-slick-carousel>
+  <owl-carousel-o class="w-100" [options]="customOptions">
+    <ng-template [width]="280" carouselSlide>
+      <app-news-card-loader [theme]="theme"></app-news-card-loader>
+    </ng-template>
+    <ng-template [width]="280" carouselSlide>
+      <app-news-card-loader [theme]="theme"></app-news-card-loader>
+    </ng-template>
+    <ng-template [width]="280" carouselSlide>
+      <app-news-card-loader [theme]="theme"></app-news-card-loader>
+    </ng-template>
+    <ng-template [width]="280" carouselSlide>
+      <app-news-card-loader [theme]="theme"></app-news-card-loader>
+    </ng-template>
+    <ng-template [width]="280" carouselSlide>
+      <app-news-card-loader [theme]="theme"></app-news-card-loader>
+    </ng-template>
+    <ng-template [width]="280" carouselSlide>
+      <app-news-card-loader [theme]="theme"></app-news-card-loader>
+    </ng-template>
+    <ng-template [width]="280" carouselSlide>
+      <app-news-card-loader [theme]="theme"></app-news-card-loader>
+    </ng-template>
+  </owl-carousel-o>
 </ng-template>

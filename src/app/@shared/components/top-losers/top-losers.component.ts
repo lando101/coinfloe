@@ -1,5 +1,6 @@
 import { AfterContentInit, Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { BottomSheetService } from '@app/services/bottom-sheet.service';
+import { OwlOptions } from 'ngx-owl-carousel-o';
 import { Coin } from 'src/models/coins.model';
 
 @Component({
@@ -41,6 +42,35 @@ export class TopLosersComponent implements AfterContentInit {
     { img: 'http://placehold.it/350x150/333333' },
     { img: 'http://placehold.it/350x150/666666' },
   ];
+  customOptions: OwlOptions = {
+    items: 4,
+    loop: false,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    dots: true,
+    autoWidth: true,
+    navSpeed: 260,
+    navText: ['<', '>'],
+    responsive: {
+      0: {
+        items: 1,
+        nav: true,
+      },
+      400: {
+        items: 2,
+        nav: true,
+      },
+      740: {
+        items: 3,
+        nav: true,
+      },
+      940: {
+        items: 4,
+      },
+    },
+    nav: true,
+  };
   slideConfig = {
     slidesToShow: 6,
     slidesToScroll: 6,

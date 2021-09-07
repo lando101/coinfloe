@@ -1,6 +1,13 @@
 <div class="text-start {{ theme }} theme-container w-100">
   <!-- <h5 class="fw-bold">Top Gainers</h5> -->
-  <ngx-slick-carousel
+  <owl-carousel-o *ngIf="coins?.length > 1; else loading" class="w-100" [options]="customOptions">
+    <ng-template [width]="225" *ngFor="let coin of coins?.slice(0, 12)" carouselSlide>
+      <button aTilt [tiltSettings]="tileSettings" class="p-0" (click)="openBottomSheet(coin)">
+        <app-coin-card [coin]="coin" [theme]="theme"></app-coin-card>
+      </button>
+    </ng-template>
+  </owl-carousel-o>
+  <!-- <ngx-slick-carousel
     *ngIf="coins?.length > 1; else loading"
     class="carousel"
     #slickModal="slick-carousel"
@@ -17,48 +24,31 @@
         </button>
       </div>
     </div>
-  </ngx-slick-carousel>
+  </ngx-slick-carousel> -->
 </div>
 
 <ng-template #loading>
-  <ngx-slick-carousel
-    class="carousel"
-    #slickModal="slick-carousel"
-    [config]="slideConfig"
-    (init)="slickInit($event)"
-    (breakpoint)="breakpoint($event)"
-    (afterChange)="afterChange($event)"
-    (beforeChange)="beforeChange($event)"
-  >
-    <div ngxSlickItem class="slide">
-      <div class="p-2 slick-slide">
-        <app-coin-card-loader [theme]="theme"></app-coin-card-loader>
-      </div>
-    </div>
-    <div ngxSlickItem class="slide">
-      <div class="p-2 slick-slide">
-        <app-coin-card-loader [theme]="theme"></app-coin-card-loader>
-      </div>
-    </div>
-    <div ngxSlickItem class="slide">
-      <div class="p-2 slick-slide">
-        <app-coin-card-loader [theme]="theme"></app-coin-card-loader>
-      </div>
-    </div>
-    <div ngxSlickItem class="slide">
-      <div class="p-2 slick-slide">
-        <app-coin-card-loader [theme]="theme"></app-coin-card-loader>
-      </div>
-    </div>
-    <div ngxSlickItem class="slide">
-      <div class="p-2 slick-slide">
-        <app-coin-card-loader [theme]="theme"></app-coin-card-loader>
-      </div>
-    </div>
-    <div ngxSlickItem class="slide">
-      <div class="p-2 slick-slide">
-        <app-coin-card-loader [theme]="theme"></app-coin-card-loader>
-      </div>
-    </div>
-  </ngx-slick-carousel>
+  <owl-carousel-o class="w-100" [options]="customOptions">
+    <ng-template [width]="225" carouselSlide>
+      <app-coin-card-loader [theme]="theme"></app-coin-card-loader>
+    </ng-template>
+    <ng-template [width]="225" carouselSlide>
+      <app-coin-card-loader [theme]="theme"></app-coin-card-loader>
+    </ng-template>
+    <ng-template [width]="225" carouselSlide>
+      <app-coin-card-loader [theme]="theme"></app-coin-card-loader>
+    </ng-template>
+    <ng-template [width]="225" carouselSlide>
+      <app-coin-card-loader [theme]="theme"></app-coin-card-loader>
+    </ng-template>
+    <ng-template [width]="225" carouselSlide>
+      <app-coin-card-loader [theme]="theme"></app-coin-card-loader>
+    </ng-template>
+    <ng-template [width]="225" carouselSlide>
+      <app-coin-card-loader [theme]="theme"></app-coin-card-loader>
+    </ng-template>
+    <ng-template [width]="225" carouselSlide>
+      <app-coin-card-loader [theme]="theme"></app-coin-card-loader>
+    </ng-template>
+  </owl-carousel-o>
 </ng-template>
