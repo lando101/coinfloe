@@ -61,14 +61,44 @@
   </div>
   <div class="transition-smooth news-articles-wrapper" [ngClass]="{ 'transform-bg': searchText }">
     <div class="w-100">
-      <mat-tab-group class="{{ theme }}" mat-align-tabs="start">
+               <div class="my-4">
+            <div fxLayout="column" fxLayoutGap="5px" class="mb-4">
+              <small class="fw-bold">Quick topics</small>
+              <mat-chip-list #chipList [selectable]="true" aria-label="topic selection">
+                <mat-chip
+                  [selected]="selectedChip.label === chip.label"
+                  *ngFor="let chip of chips"
+                  (click)="chipSelection(chip)"
+                >
+                  <span class="text-capitalize">{{ chip.label }}</span>
+                </mat-chip>
+              </mat-chip-list>
+            </div>
+            <div *ngIf="selectedChip.label === 'All'; else topic">
+              <app-trending-news [theme]="theme"></app-trending-news>
+              <app-news-list [start]="12" [end]="50" [use_api]="true" [theme]="theme"></app-news-list>
+            </div>
+          </div>
+
+          <ng-template #topic>
+            <app-news-list
+              [title]="selectedChip.label + ' News'"
+              [description]="selectedChip.desc"
+              [start]="0"
+              [end]="50"
+              [newsFromParent]="topicResults"
+              [use_api]="false"
+              [theme]="theme"
+            ></app-news-list>
+          </ng-template>
+      <!-- <mat-tab-group class="{{ theme }}" mat-align-tabs="start">
         <mat-tab label="Articles">
           <ng-template mat-tab-label>
             <h5 class="fw-bold mb-0" fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center center">
               <div class="tab-icon article">
                 <i class="bi bi-book"></i>
               </div>
-              <span>Articles</span>
+              <h4 class="mb-0">Articles</h4>
             </h5>
           </ng-template>
           <div class="my-4">
@@ -112,7 +142,7 @@
             </h5>
           </ng-template>
         </mat-tab>
-      </mat-tab-group>
+      </mat-tab-group> -->
     </div>
   </div>
 </div>

@@ -47,6 +47,7 @@ import { NewsSearchBarComponent } from './components/news-search-bar/news-search
 import { CoinMarqueeItemComponent } from './components/cards/coin-marquee-item/coin-marquee-item.component';
 import { CoinTableComponent } from './components/coin-table/coin-table.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { NewsItemLoaderComponent } from './components/loaders/news-item-loader/news-item-loader.component';
 
 @NgModule({
   imports: [
@@ -101,6 +102,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     NewsSearchBarComponent,
     CoinMarqueeItemComponent,
     CoinTableComponent,
+    NewsItemLoaderComponent,
   ],
   exports: [
     LoaderComponent,

@@ -69,7 +69,7 @@ th {
   .chip-list-container{
     border-top: 1px solid $border;
     overflow: hidden;
-    padding: 10px 0px;
+    padding: 5px 0px;
     ::ng-deep .slick-prev {
       left: 0px !important;
       padding: 10;
@@ -231,7 +231,7 @@ th {
   }
 
   ::ng-deep .owl-carousel.owl-drag .owl-item {
-    padding: 0px 7px;
+    padding: 0px 0px;
     display: flex;
     align-items: center;
     justify-content: center;

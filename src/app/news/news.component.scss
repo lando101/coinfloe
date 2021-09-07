@@ -36,6 +36,10 @@
     }
   }
 
+  ::ng-deep .mat-tab-group{
+    font-family: 'Quicksand', sans-serif;
+  }
+
   ::ng-deep .mat-tab-body-wrapper {
     z-index: 0;
   }
@@ -76,7 +80,7 @@
 }
 
 .search-results {
-  height: calc(100vh - 265px);
+  height: calc(100vh - 330px);
   overflow: auto;
   overflow-x: hidden;
   position: absolute;
@@ -90,7 +94,7 @@
   width: 100vw !important;
   height: calc(100vh - 75px);
   z-index: 1;
-  backdrop-filter: blur(8px) grayscale(0.3);
+  backdrop-filter: blur(25px) grayscale(0.3);
   background: transparent;
 }
 

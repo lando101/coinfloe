@@ -37,6 +37,10 @@ body {
   h4 {
     font-weight: bold !important;
   }
+  p{
+    font-weight: 500 !important;
+    font-family: sans-serif !important;
+  }
 }
 
 ::ng-deep .perfect-scrollbar > .ps.ps--active-y > .ps__rail-y {

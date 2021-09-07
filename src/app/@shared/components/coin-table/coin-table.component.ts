@@ -145,13 +145,13 @@ export class CoinTableComponent implements OnChanges {
   };
 
   chips: ChipFilters[] = [
-    { name: 'Favorites', width: 131.8, direction: 0, active: false, key: 'favorite' },
-    { name: 'Market Cap', width: 149.3, direction: 1, active: true, key: 'mrktcap' },
-    { name: 'Price', width: 104.4, direction: 0, active: false, key: 'price' },
-    { name: '24h %', width: 110.75, direction: 0, active: false, key: 'returnPct24h' },
-    { name: '24h Change', width: 150.35, direction: 0, active: false, key: 'return24h' },
-    { name: '24h Volume', width: 150.33, direction: 0, active: false, key: 'volume24hUSD' },
-    { name: 'Weiss Rating', width: 157.75, direction: 0, active: false, key: 'rating' },
+    { name: 'Favorites', width: 117.8, direction: 0, active: false, key: 'favorite' },
+    { name: 'Market Cap', width: 135.3, direction: 1, active: true, key: 'mrktcap' },
+    { name: 'Price', width: 89.4, direction: 0, active: false, key: 'price' },
+    { name: '24h %', width: 99.75, direction: 0, active: false, key: 'returnPct24h' },
+    { name: '24h Change', width: 136.35, direction: 0, active: false, key: 'return24h' },
+    { name: '24h Volume', width: 139.33, direction: 0, active: false, key: 'volume24hUSD' },
+    { name: 'Weiss Rating', width: 143.75, direction: 0, active: false, key: 'rating' },
   ];
 
   constructor(private bottomSheetService: BottomSheetService, private orderBy: OrderByPipe) {}
