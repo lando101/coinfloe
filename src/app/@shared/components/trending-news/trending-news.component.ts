@@ -19,7 +19,7 @@ export class TrendingNewsComponent implements AfterViewInit {
     mouseDrag: true,
     touchDrag: true,
     pullDrag: true,
-    dots: true,
+    dots: false,
     autoWidth: true,
     navSpeed: 260,
     navText: ['<', '>'],
@@ -46,7 +46,7 @@ export class TrendingNewsComponent implements AfterViewInit {
   slideConfig = {
     slidesToShow: 5,
     slidesToScroll: 3,
-    dots: true,
+    dots: false,
     infinite: true,
     autoplay: true,
     autoplaySpeed: 14000,
@@ -56,7 +56,7 @@ export class TrendingNewsComponent implements AfterViewInit {
         settings: {
           slidesToShow: 4,
           slidesToScroll: 2,
-          dots: true,
+          dots: false,
         },
       },
       {
@@ -64,7 +64,7 @@ export class TrendingNewsComponent implements AfterViewInit {
         settings: {
           slidesToShow: 3,
           slidesToScroll: 2,
-          dots: true,
+          dots: false,
         },
       },
       {
@@ -72,7 +72,7 @@ export class TrendingNewsComponent implements AfterViewInit {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          dots: true,
+          dots: false,
         },
       },
       {

@@ -48,7 +48,7 @@ export class TopLosersComponent implements AfterContentInit {
     mouseDrag: true,
     touchDrag: true,
     pullDrag: true,
-    dots: true,
+    dots: false,
     autoWidth: true,
     navSpeed: 260,
     navText: ['<', '>'],
@@ -74,7 +74,7 @@ export class TopLosersComponent implements AfterContentInit {
   slideConfig = {
     slidesToShow: 6,
     slidesToScroll: 6,
-    dots: true,
+    dots: false,
     infinite: false,
     responsive: [
       {
@@ -82,7 +82,7 @@ export class TopLosersComponent implements AfterContentInit {
         settings: {
           slidesToShow: 5,
           slidesToScroll: 5,
-          dots: true,
+          dots: false,
         },
       },
       {
@@ -90,7 +90,7 @@ export class TopLosersComponent implements AfterContentInit {
         settings: {
           slidesToShow: 4,
           slidesToScroll: 4,
-          dots: true,
+          dots: false,
         },
       },
       {
@@ -98,7 +98,7 @@ export class TopLosersComponent implements AfterContentInit {
         settings: {
           slidesToShow: 3,
           slidesToScroll: 3,
-          dots: true,
+          dots: false,
         },
       },
       {

@@ -22,7 +22,7 @@ export class NewsTilesComponent implements OnInit {
   slideConfig = {
     slidesToShow: 4,
     slidesToScroll: 2,
-    dots: true,
+    dots: false,
     infinite: true,
     responsive: [
       {
