@@ -68,11 +68,12 @@ th {
   }
   .chip-list-container{
     border-top: 1px solid $border;
+    border-bottom: 1px solid $border;
     overflow: hidden;
-    padding: 5px 0px;
+    padding: 3px 0px;
     position: sticky;
     top: 114px;
-    background: #f3f3f3;
+    background: $header-bg-color;
     z-index: 9;
     ::ng-deep .slick-prev {
       left: 0px !important;

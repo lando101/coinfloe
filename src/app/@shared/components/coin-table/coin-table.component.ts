@@ -116,12 +116,14 @@ export class CoinTableComponent implements OnChanges {
     { name: 'Market Cap', width: 135.3, direction: 1, active: true, key: 'mrktcap' },
     { name: 'Price', width: 89.4, direction: 0, active: false, key: 'price' },
     { name: '24h %', width: 99.75, direction: 0, active: false, key: 'returnPct24h' },
-    { name: '24h Change', width: 136.35, direction: 0, active: false, key: 'return24h' },
+    { name: '24h Change', width: 138.35, direction: 0, active: false, key: 'return24h' },
     { name: '24h Volume', width: 139.33, direction: 0, active: false, key: 'volume24hUSD' },
-    { name: 'Weiss Rating', width: 143.75, direction: 0, active: false, key: 'rating' },
+    // { name: 'Weiss Rating', width: 143.75, direction: 0, active: false, key: 'rating' },
   ];
 
-  constructor(private bottomSheetService: BottomSheetService, private orderBy: OrderByPipe) {}
+  constructor(private bottomSheetService: BottomSheetService, private orderBy: OrderByPipe) {
+    this.selectedChip = this.chips[1];
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes?.coins?.currentValue?.length > 0) {
@@ -229,7 +231,7 @@ export class CoinTableComponent implements OnChanges {
 
       this.coinFilteredData = this.orderBy.transform(this.coinData, `${key}`);
     } else {
-      this.selectedChip = null;
+      this.selectedChip = this.chips[1];
 
       const marketCapChip = this.chips.find((x) => x.key === 'mrktcap');
       marketCapChip.active = true;
