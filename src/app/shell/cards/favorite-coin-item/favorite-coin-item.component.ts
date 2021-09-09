@@ -13,7 +13,6 @@ export class FavoriteCoinItemComponent implements OnInit {
   @Output() removeFavOutput = new EventEmitter<Coin>();
   @Output() addFavOutput = new EventEmitter<Coin>();
   imgURL = '';
-  prettyImgURL = '';
   tileSettings = {
     reverse: true, // reverse the tilt direction
     max: 6, // max tilt rotation (degrees)
@@ -48,10 +47,6 @@ export class FavoriteCoinItemComponent implements OnInit {
 
   prettifyImg() {
     this.imgURL = `https://www.cryptocompare.com${this.coin?.CoinInfo.ImageUrl}`;
-    this.prettyImgURL = `https://cryptologos.cc/logos/${this.coin?.CoinInfo?.FullName.replace(
-      ' ',
-      '-'
-    ).toLowerCase()}-${this.coin?.CoinInfo?.Name.toLowerCase()}-logo.png?v=010`;
   }
 
   removeFav(coin: Coin) {

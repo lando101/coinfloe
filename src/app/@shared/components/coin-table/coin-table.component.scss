@@ -25,7 +25,7 @@ th {
 
 
 .mat-table {
-  font-family: Quicksand, sans-serif;
+  font-family: "Manrope", sans-serif;
   font-weight: 600;
   background-color: transparent;
 }
@@ -70,6 +70,10 @@ th {
     border-top: 1px solid $border;
     overflow: hidden;
     padding: 5px 0px;
+    position: sticky;
+    top: 114px;
+    background: #f3f3f3;
+    z-index: 9;
     ::ng-deep .slick-prev {
       left: 0px !important;
       padding: 10;
@@ -149,7 +153,6 @@ th {
   }
   .table-container{
     overflow: auto;
-    height: calc(100vh - 313px);
     border-top: 1px solid $border;
     mat-row,
     mat-header-row,
@@ -159,6 +162,10 @@ th {
     td.mat-footer-cell {
       border-bottom-color: $border;
       color: $font;
+    }
+
+    .table-height-calc{
+      height: calc(100vh - 313px);
     }
 
     .sticky-column-header{

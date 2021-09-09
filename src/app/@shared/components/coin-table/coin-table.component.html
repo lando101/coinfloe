@@ -1,11 +1,11 @@
-<div class="{{theme}} theme-container" (window:resize)="getClientWidth(false)">
-  <div class="w-100 px-4 ">
+<div class="{{theme}} theme-container">
+  <div *ngIf="fullView" class="w-100 px-4">
     <mat-form-field appearance="standard">
       <mat-label>Filter coins</mat-label>
       <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Cardano" #input />
     </mat-form-field>
   </div>
-  <div class="chip-list-container align-items-center">
+  <div *ngIf="fullView" class="chip-list-container align-items-center">
     <mat-chip-list>
       <owl-carousel-o class="w-100" [options]="customOptions">
         <ng-template [width]="chip.width" *ngFor="let chip of chips" carouselSlide>
@@ -37,31 +37,7 @@
       </owl-carousel-o>
     </mat-chip-list>
   </div>
-  <!-- <div class="chip-list-container">
-    <mat-chip-list *ngIf="showChips">
-      <ngx-slick-carousel
-      class="carousel"
-      #slickModal="slick-carousel"
-      [config]="slideConfig"
-      (init)="slickInit($event)"
-      (breakpoint)="breakpoint($event)"
-      (afterChange)="afterChange($event)"
-      (beforeChange)="beforeChange($event)"
-      [ngStyle]="{'width': clientWidth}"
-      >
-        <div ngxSlickItem *ngFor="let chip of chips" class="slide">
-          <div class="p-2 slick-slide">
-            <mat-chip
-            class="example-box">
-            {{chip.name}}
-          </mat-chip>
-          </div>
-        </div>
-
-      </ngx-slick-carousel>
-    </mat-chip-list>
-  </div> -->
-  <div #cryptochart id="chartContainer" class="table-container">
+  <div #cryptochart id="chartContainer" class="table-container" [ngClass]="{'table-height-calc': fullView}">
     <table class="w-100" *ngIf="show; else loader" mat-table [dataSource]="dataSource">
       <!-- Name Column -->
       <div>
@@ -83,8 +59,7 @@
             <div class="img-container">
               <img
                 class="w-100 h-100"
-                src="{{ element.prettyImg }}"
-                (error)="element.prettyImg = element.imgUrl"
+                [src]="element.imgUrl"
                 alt="{{ element.name }} logo img"
               />
             </div>
@@ -175,11 +150,11 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
       <tr mat-row (click)="openBottomSheet(row)" *matRowDef="let row; columns: displayedColumns"></tr>
       <tr class="mat-row" *matNoDataRow>
-        <td class="mat-cell" colspan="4">No data matching the filter "{{ input.value }}"</td>
+        <!-- <td class="mat-cell" colspan="4">No data matching the filter "{{ input.value }}"</td> -->
       </tr>
     </table>
   </div>
-  <mat-paginator [color] [pageSizeOptions]="[50, 100]" showFirstLastButtons aria-label="Select page of periodic elements">
+  <mat-paginator *ngIf="fullView" [color] [pageSizeOptions]="[50, 100]" showFirstLastButtons aria-label="Select page of periodic elements">
   </mat-paginator>
 </div>
 

@@ -2,7 +2,7 @@
   <a href="{{ article.news_url }}" target="_blank" class="card w-100 border-0 p-0" aTilt [tiltSettings]="tileSettings">
     <div class="card-body d-flex justify-content-start p-3" fxLayout="row" fxLayoutGap="20px">
       <div fxFlex="160px" class="img-container">
-        <img src="{{ article.image_url }}" alt="{{ article.title }} image" />
+        <img [src]="article.image_url" alt="{{ article.title }} image" />
       </div>
       <div fxLayout="column" class="py-0 ps-0 pe-2 w-100 h-100">
         <div fxFlex="85" fxLayout="column" class="align-items-between">

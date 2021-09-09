@@ -14,15 +14,10 @@ export class CoinCardComponent implements OnInit {
   @Output() coinEmit = new EventEmitter<Coin>();
 
   imgURL = '';
-  prettyImgURL = '';
   constructor(private bottomSheetService: BottomSheetService) {}
 
   ngOnInit(): void {
     this.imgURL = `https://www.cryptocompare.com${this.coin?.CoinInfo.ImageUrl}`;
-    this.prettyImgURL = `https://cryptologos.cc/logos/${this.coin?.CoinInfo?.FullName.replace(
-      ' ',
-      '-'
-    ).toLowerCase()}-${this.coin?.CoinInfo?.Name.toLowerCase()}-logo.png?v=010`;
   }
 
   openBottomSheet(coin: Coin) {

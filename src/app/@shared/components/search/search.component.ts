@@ -86,6 +86,8 @@ export class SearchComponent implements OnInit {
     this.coinService.coinsObs.subscribe((data) => {
       if (data) {
         this.coins = data;
+        this.coinsSearch = [];
+
         data.forEach((element: Coin) => {
           this.coinsSearch.push({
             name: element.CoinInfo.FullName,

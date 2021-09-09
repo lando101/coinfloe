@@ -8,7 +8,7 @@
     class="card w-100 border-0"
   >
     <div fxFlex="50" class="img-container">
-      <img class="card-img-top w-100 h-100" src="{{ article.image_url }}" alt="{{ article.title }} image" />
+      <img class="card-img-top w-100 h-100" [src]="article.image_url" [alt]="article.title + 'image'" />
     </div>
     <div fxFlex="50" class="card-body justify-content-between" fxLayout="column">
       <div>

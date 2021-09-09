@@ -2,8 +2,9 @@
  * Global application theme.
  * Framework overrides and customization goes here.
  */
+//  @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap");
 
-// stylelint-disable-next-line selector-max-universal
+ // stylelint-disable-next-line selector-max-universal
 * {
   box-sizing: border-box;
 }
@@ -16,7 +17,7 @@ body {
   height: 100%;
   // font-family: "Roboto", sans-serif;
   // font-family: "Manrope", sans-serif;
-  font-family: "Quicksand", sans-serif !important;
+  font-family: "Manrope", sans-serif !important;
   overflow: hidden;
   font-size: 0.95rem !important;
   h1,

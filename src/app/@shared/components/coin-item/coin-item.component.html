@@ -3,7 +3,7 @@
     <div fxLayout="row" fxFlex="50">
       <div fxLayout="column" class="justify-content-center align-items-center">
         <div class="img-container me-3">
-          <img src="{{ prettyImgURL }}" (error)="prettyImgURL = imgURL" />
+          <img [src]="imgURL"/>
         </div>
       </div>
       <div fxLayout="column" class="text-start">

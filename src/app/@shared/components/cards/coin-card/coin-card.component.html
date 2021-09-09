@@ -5,7 +5,7 @@
       <div fxLayout="row" class="mb-2">
         <div class="d-flex justify-content-center me-2">
           <div class="img-container">
-            <img src="{{ prettyImgURL }}" (error)="prettyImgURL = imgURL" />
+            <img [src]="imgURL"/>
           </div>
         </div>
         <div fxLayout="column" class="d-flex justify-content-start align-items-start">

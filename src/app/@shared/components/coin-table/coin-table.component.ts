@@ -72,6 +72,7 @@ export class CoinTableComponent implements OnChanges {
   @Input() coins: Coin[];
   @Input() theme: string;
   @Input() count: number;
+  @Input() fullView = true;
   @Output() addFavOutput = new EventEmitter<Coin>();
   @Output() removeFavOutput = new EventEmitter<Coin>();
 
@@ -81,40 +82,6 @@ export class CoinTableComponent implements OnChanges {
   show = false;
   clientWidth: string;
   showChips = false;
-  slideConfig = {
-    slidesToShow: 7,
-    slidesToScroll: 1,
-    dots: false,
-    infinite: false,
-    responsive: [
-      {
-        breakpoint: 914,
-        settings: {
-          slidesToShow: 5,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 699,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 590,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 1,
-        },
-      },
-      // You can unslick at a given breakpoint now by adding:
-      // settings: "unslick"
-      // instead of a settings object
-    ],
-    // autoplay: true,
-    // autoplaySpeed: 7000,
-  };
   customOptions: OwlOptions = {
     loop: false,
     mouseDrag: true,
@@ -156,29 +123,6 @@ export class CoinTableComponent implements OnChanges {
 
   constructor(private bottomSheetService: BottomSheetService, private orderBy: OrderByPipe) {}
 
-  addSlide() {
-    // this.slides.push({ img: 'http://placehold.it/350x150/777777' });
-  }
-
-  removeSlide() {
-    // this.slides.length = this.slides.length - 1;
-  }
-
-  slickInit(e: any) {
-    // console.log('slick initialized');
-  }
-
-  breakpoint(e: any) {
-    // console.log('breakpoint');
-  }
-
-  afterChange(e: any) {
-    // console.log('afterChange');
-  }
-
-  beforeChange(e: any) {
-    // console.log('beforeChange');
-  }
   ngOnChanges(changes: SimpleChanges): void {
     if (changes?.coins?.currentValue?.length > 0) {
       // this.getClientWidth(true);
@@ -187,20 +131,13 @@ export class CoinTableComponent implements OnChanges {
         this.show = false;
       }
       this.coinData = [];
-      const coins: Coin[] = changes.coins.currentValue;
-      // console.log('TABLE');
-      // console.log(coins);
-      // console.log('TABLE');
+      const coins: Coin[] = changes.coins.currentValue.slice(0, this.count || changes?.coins?.currentValue?.length);
       coins.map((data: Coin) => {
         if (!!data.RAW?.USD) {
           this.coinData.push({
             name: data.CoinInfo.FullName,
             symbol: data.CoinInfo.Name,
             imgUrl: `https://www.cryptocompare.com${data.CoinInfo.ImageUrl}`,
-            prettyImg: `https://cryptologos.cc/logos/${data.CoinInfo?.FullName.replace(
-              ' ',
-              '-'
-            ).toLowerCase()}-${data.CoinInfo?.Name.toLowerCase()}-logo.png?v=010`,
             price: data.RAW.USD.PRICE,
             returnPct24h: data.RAW.USD.CHANGEPCT24HOUR,
             return24h: data.RAW.USD.CHANGE24HOUR,
@@ -214,46 +151,22 @@ export class CoinTableComponent implements OnChanges {
             favorite: data.FAVORITE,
           });
         }
+        3;
       });
       this.coinFilteredData = this.coinData;
-      // console.log('TABLE DATA');
-      // console.log(this.coinData);
-      // console.log('TABLE DATA');
-      // console.log(this.coinData);
+
       this.dataSource = new MatTableDataSource(this.coinFilteredData);
-      setTimeout(() => {
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
-        this.show = true;
-      }, 1);
-    }
-  }
-
-  // gets client width to determine width of chips carousel
-  getClientWidth(pageLoad: boolean) {
-    this.showChips = false;
-    const wait = pageLoad ? 350 : 2100;
-
-    const promise = new Promise((resolve, reject) => {
-      setTimeout(() => {
-        const width = document.getElementById('chartContainer').clientWidth - 14;
-        if (width) {
-          this.clientWidth = `${width - 14}px`;
-          resolve(width);
-        } else {
-          this.clientWidth = '0px';
-          reject(width);
-        }
-      }, wait);
-    })
-      .then(() => {
+      if (this.fullView) {
         setTimeout(() => {
-          this.showChips = true;
-        }, 100);
-      })
-      .catch(() => {
-        this.showChips = false;
-      });
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+          this.show = true;
+        }, 1);
+      } else {
+        this.show = true;
+      }
+    }
+    console.log('CHANGE');
   }
 
   applyFilter(event: Event) {

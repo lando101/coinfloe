@@ -11,7 +11,7 @@
       <div fxLayout="row" fxLayoutAlign="center center">
         <div fxFlex="40px">
           <div class="img-container">
-            <img src="{{ prettyImgURL }}" (error)="prettyImgURL = imgURL" />
+            <img [src]="imgURL"/>
           </div>
         </div>
         <div>

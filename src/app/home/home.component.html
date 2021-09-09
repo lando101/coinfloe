@@ -6,17 +6,7 @@
       [globalMetrics]="globalMetrics"
       [tradingSignals]="tradingSignals"
     ></app-market-cap>
-    <!-- <app-news-tiles [theme]="theme"></app-news-tiles> -->
     <app-trending-news [theme]="theme"></app-trending-news>
-    <!-- <app-news-list
-      fxHide.gt-sm
-      [title]="'trending news'"
-      [description]="'Hottest news over the last day'"
-      [start]="0"
-      [end]="4"
-      [use_api]="true"
-      [theme]="theme"
-    ></app-news-list> -->
     <div class="text-start w-100">
       <div class="mb-3">
         <div fxLayout="row" fxLayoutGap="6px">
@@ -72,21 +62,17 @@
             <small class="fw-bold text-faint">Top 10 coins based on market cap</small>
           </div>
         </div>
-      </div>
-      <app-coins-lists
-        [loading]="isLoading"
-        [Coins]="coins"
-        [theme]="theme"
-        [user]="user"
-        [count]="10"
-        (coin)="setSelectedCoin($event)"
-        (showCoinDetails)="displayCoin($event)"
-        (addFavOutput)="addFavorite($event)"
-        (removeFavOutput)="removeFavorite($event)"
-      ></app-coins-lists>
+    </div>
+    <app-coin-table
+    (addFavOutput)="addFavorite($event)"
+    (removeFavOutput)="removeFavorite($event)"
+    [loading]="isLoading"
+    [fullView]="false"
+    [coins]="coins"
+    [theme]="theme"
+    [count]="10"></app-coin-table>
+    <div>
+  </div>
     </div>
   </div>
-</div>
-<div>
-  <app-bottom-sheet-custom></app-bottom-sheet-custom>
 </div>

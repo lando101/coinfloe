@@ -28,7 +28,7 @@
           <div class="crypto-header" fxLayout="column">
             <div class="d-flex justify-content-start align-items-center mb-2">
               <div class="img-container me-2">
-                <img src="{{ prettyImgURL }}" (error)="prettyImgURL = imgURL" />
+                <img [src]="imgURL" (error)="prettyImgURL = imgURL" />
               </div>
               <h2 class="m-0 fw-bold">{{ coin.CoinInfo.FullName }}</h2>
             </div>
