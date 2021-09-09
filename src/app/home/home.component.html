@@ -63,14 +63,17 @@
           </div>
         </div>
     </div>
-    <app-coin-table
-    (addFavOutput)="addFavorite($event)"
-    (removeFavOutput)="removeFavorite($event)"
-    [loading]="isLoading"
-    [fullView]="false"
-    [coins]="coins"
-    [theme]="theme"
-    [count]="10"></app-coin-table>
+    <div [ngClass.gt-lg]="'coin-table-container-lg'" [ngClass]="'coin-table-container-sm'">
+      <app-coin-table
+      (addFavOutput)="addFavorite($event)"
+      (removeFavOutput)="removeFavorite($event)"
+      [loading]="isLoading"
+      [fullView]="false"
+      [coins]="coins"
+      [theme]="theme"
+      [count]="10"></app-coin-table>
+    </div>
+
     <div>
   </div>
     </div>
