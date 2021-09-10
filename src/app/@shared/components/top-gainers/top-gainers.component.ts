@@ -16,6 +16,8 @@ export class TopGainersComponent implements AfterContentInit {
   @Output() showCoinDetails = new EventEmitter<boolean>();
   @Output() coin = new EventEmitter<Coin>();
 
+  isDragging = false;
+  startPosition = 0;
   init = false;
   tileSettings = {
     reverse: true, // reverse the tilt direction
@@ -39,12 +41,7 @@ export class TopGainersComponent implements AfterContentInit {
     gyroscopeMinAngleY: -45, // This is the bottom limit of the device angle on Y axis, meaning that a device rotated at this angle would tilt the element as if the mouse was on the top border of the element;
     gyroscopeMaxAngleY: 45, // This is the top limit of the device angle on Y axis, meaning that a device rotated at this angle would tilt the element as if the mouse was on the bottom border of the element;
   };
-  slides = [
-    { img: 'http://placehold.it/350x150/000000' },
-    { img: 'http://placehold.it/350x150/111111' },
-    { img: 'http://placehold.it/350x150/333333' },
-    { img: 'http://placehold.it/350x150/666666' },
-  ];
+
   customOptions: OwlOptions = {
     items: 4,
     loop: false,
@@ -54,6 +51,7 @@ export class TopGainersComponent implements AfterContentInit {
     dots: false,
     autoWidth: true,
     navSpeed: 260,
+    stagePadding: 30,
     navText: ['<', '>'],
     responsive: {
       0: {
@@ -72,7 +70,7 @@ export class TopGainersComponent implements AfterContentInit {
         items: 4,
       },
     },
-    nav: true,
+    nav: false,
   };
   slideConfig = {
     slidesToShow: 6,
@@ -127,30 +125,6 @@ export class TopGainersComponent implements AfterContentInit {
   };
   constructor(private bottomSheetService: BottomSheetService) {}
 
-  addSlide() {
-    this.slides.push({ img: 'http://placehold.it/350x150/777777' });
-  }
-
-  removeSlide() {
-    this.slides.length = this.slides.length - 1;
-  }
-
-  slickInit(e: any) {
-    // console.log('slick initialized');
-  }
-
-  breakpoint(e: any) {
-    // console.log('breakpoint');
-  }
-
-  afterChange(e: any) {
-    // console.log('afterChange');
-  }
-
-  beforeChange(e: any) {
-    // console.log('beforeChange');
-  }
-
   ngAfterContentInit(): void {}
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -176,6 +150,10 @@ export class TopGainersComponent implements AfterContentInit {
   //   this.showCoinDetails.emit(true);
   //   this.coin.emit(coin);
   // }
+
+  getData(event: any) {
+    console.log(event);
+  }
 
   openBottomSheet(coin: Coin) {
     this.bottomSheetService.setState(true, coin);

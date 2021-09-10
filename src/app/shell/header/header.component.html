@@ -19,74 +19,18 @@
         <!-- <app-language-selector icon="true"></app-language-selector> -->
         <app-search [theme]="theme"></app-search>
         <div fxLayout="row">
-          <button aTilt [tiltSettings]="tileSettings" mat-icon-button (click)="setTheme()">
-            <i class="bi bi-sun"></i>
+          <button matTooltip="Toggle Theme" aTilt [tiltSettings]="tileSettings" mat-icon-button (click)="setTheme()">
+            <i *ngIf="theme==='light'" class="bi bi-sun"></i>
+            <i *ngIf="theme==='dark'" class="bi bi-moon"></i>
           </button>
-          <button aTilt [tiltSettings]="tileSettings" mat-icon-button (click)="toggleSideNav(false)">
+          <button matTooltip="View Theme" aTilt [tiltSettings]="tileSettings" mat-icon-button (click)="toggleSideNav(false)">
             <i class="bi bi-bell"></i>
           </button>
-          <button aTilt [tiltSettings]="tileSettings" mat-icon-button (click)="toggleSideNav(true)">
+          <button matTooltip="View Profile" aTilt [tiltSettings]="tileSettings" mat-icon-button (click)="toggleSideNav(true)">
             <i class="bi bi-person-circle"></i>
           </button>
-          <!-- <mat-menu #userMenu="matMenu">
-            <mat-list>
-              <mat-list-item>
-                <span translate>Logged in as</span>&nbsp;<b>{{ username }}</b>
-              </mat-list-item>
-              <mat-divider></mat-divider>
-            </mat-list>
-            <button mat-menu-item (click)="logout()" translate>Logout</button>
-          </mat-menu> -->
         </div>
-        <!-- <div fxHide.gt-md>
-          <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Theme, notifications and profile menu">
-            <mat-icon><i class="bi bi-list"></i></mat-icon>
-          </button>
-          <mat-menu #menu="matMenu">
-            <button mat-menu-item (click)="setTheme()">
-              <mat-icon> <i class="bi bi-sun"></i> </mat-icon>
-              <span>Theme</span>
-            </button>
-            <button mat-menu-item>
-              <mat-icon><i class="bi bi-bell"></i></mat-icon>
-              <span>Notifications</span>
-            </button>
-            <button mat-menu-item>
-              <mat-icon><i class="bi bi-person-circle"></i></mat-icon>
-              <span>Profile</span>
-            </button>
-          </mat-menu>
-        </div> -->
       </div>
     </div>
-    <!-- <div fxFlexFill fxLayout="row" class="px-3 py-2 info-banner">
-      <div class="container">
-        <div class="d-flex justify-content-between align-items-center w-100">
-          <small class="d-flex align-items-center">
-            <span class="me-1">Market Cap:</span>
-            <b class="brand-text">$1,000,000,000,000</b>
-            <i matTooltip="Sum of total coin market caps" class="bi bi-info-circle ms-1"></i>
-          </small>
-          <small class="d-flex align-items-center">
-            <span class="me-1">BTC Dominance:</span>
-            <b class="brand-text">66%</b>
-            <i
-              matTooltip="Percentage BTC market cap vs alt coins (i.e. ETH, ADA, etc.)"
-              class="bi bi-info-circle ms-1"
-            ></i>
-          </small>
-          <small class="d-flex align-items-center">
-            <span class="me-1">BTC Sentiment:</span>
-            <b class="brand-text">Bullish</b>
-            <i matTooltip='Most addresses are "in the money" or profitable' class="bi bi-info-circle ms-1"></i>
-          </small>
-          <small class="d-flex align-items-center">
-            <span class="me-1">New BTC Adresses:</span>
-            <b class="brand-text">{{ blockChainInfo.new_addresses || 0 | number }}</b>
-            <i matTooltip="New BTC addresses for the past day" class="bi bi-info-circle ms-1"></i>
-          </small>
-        </div>
-      </div>
-    </div> -->
   </div>
 </nav>

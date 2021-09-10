@@ -13,12 +13,16 @@
   button {
     // overflow: hidden;
     border-radius: $default-brdr-radius;
-    width: 100% !important;
-    background-color: transparent !important;
+    width: 100%;
+    background-color:  $bg-color;
     // box-shadow: 0px 1px 3px 0px $shadow !important;
     // transition: 0.2s ease-in-out;
     cursor: pointer;
     color: $font;
+    &:hover {
+      box-shadow: 0px 3px 3px 1px $shadow !important;
+      background-color: lighten($bg-color, 3%) !important;
+    }
     // &:hover {
     //   box-shadow: 0px 3px 3px 1px $shadow !important;
     //   // background-color: lighten($bg-color, 3%) !important;
@@ -30,10 +34,7 @@
     //   background-color: transparent !important;
     // }
   }
-  ::ng-deep .slick-slide {
-    width: 100%;
-    padding: 10px 5px;
-  }
+
 }
 
 .dark.theme-container {

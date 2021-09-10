@@ -17,7 +17,7 @@
   $border: $header-border;
   $text-shadow: $primary-text-shadow;
   @if $light-theme != true {
-    $brand: $primary-color;
+    $brand: $dark-primary-color;
     $font: $dark-primary-font-color;
     $font-2: $dark-primary-font-color;
     $bg-color: $dark-secondary-background;
@@ -62,7 +62,7 @@
       font-size: 1.15rem;
     }
     &.active {
-      color: $primary-color !important;
+      color: $brand !important;
       opacity: 1;
       text-shadow: 0 0 11px $text-shadow;
       display: flex;

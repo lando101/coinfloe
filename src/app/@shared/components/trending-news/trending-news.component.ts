@@ -12,7 +12,8 @@ import { NewsSource2 } from 'src/models/news.model';
 export class TrendingNewsComponent implements AfterViewInit {
   @Input() theme: string;
   allNewsS2: NewsSource2[];
-
+  isDragging = false;
+  startPosition = 0;
   customOptions: OwlOptions = {
     items: 4,
     loop: false,
@@ -26,91 +27,19 @@ export class TrendingNewsComponent implements AfterViewInit {
     responsive: {
       0: {
         items: 1,
-        nav: true,
       },
       400: {
         items: 2,
-        nav: true,
       },
       740: {
         items: 3,
-        nav: true,
       },
       940: {
         items: 4,
       },
     },
-    nav: true,
+    nav: false,
   };
-
-  slideConfig = {
-    slidesToShow: 5,
-    slidesToScroll: 3,
-    dots: false,
-    infinite: true,
-    autoplay: true,
-    autoplaySpeed: 14000,
-    responsive: [
-      {
-        breakpoint: 2250,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 2,
-          dots: false,
-        },
-      },
-      {
-        breakpoint: 1860,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 2,
-          dots: false,
-        },
-      },
-      {
-        breakpoint: 992,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          dots: false,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-      // You can unslick at a given breakpoint now by adding:
-      // settings: "unslick"
-      // instead of a settings object
-    ],
-  };
-
-  slickInit(e: any) {
-    // console.log('slick initialized');
-  }
-
-  breakpoint(e: any) {
-    console.log('breakpoint');
-    console.log(e);
-  }
-
-  afterChange(e: any) {
-    // console.log('afterChange');
-  }
-
-  beforeChange(e: any) {
-    // console.log('beforeChange');
-  }
 
   constructor(private cryptoDataService: CryptoDataServiceService, private newService: NewsService) {}
 

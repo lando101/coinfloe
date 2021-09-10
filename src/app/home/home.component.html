@@ -1,6 +1,8 @@
-<div [ngClass.gt-lg]="'px-5'" class="mx-5 py-4">
+<div>
   <div fxFlexFill fxLayout="column" fxLayoutGap="28px">
     <app-market-cap
+    [ngClass.gt-lg]="'px-5'"
+    class="mx-5 pt-4"
       [theme]="theme"
       [globalData]="globalData"
       [globalMetrics]="globalMetrics"
@@ -8,7 +10,7 @@
     ></app-market-cap>
     <app-trending-news [theme]="theme"></app-trending-news>
     <div class="text-start w-100">
-      <div class="mb-3">
+      <div [ngClass.gt-lg]="'px-5'" class="mb-3 mx-5">
         <div fxLayout="row" fxLayoutGap="6px">
           <h5 class="mb-0">
             <fa-icon [icon]="['fab', 'hotjar']" class="hot"></fa-icon>
@@ -29,7 +31,7 @@
       ></app-top-gainers>
     </div>
     <div class="w-100 text-start">
-      <div class="mb-3">
+      <div [ngClass.gt-lg]="'px-5'" class="mb-3 mx-5">
         <div fxLayout="row" fxLayoutGap="6px">
           <h5 class="mb-0">
             <fa-icon [icon]="['fas', 'icicles']" class="cold"></fa-icon>
@@ -50,7 +52,7 @@
       ></app-top-losers>
     </div>
     <div class="text-start">
-      <div class="mb-3">
+      <div [ngClass.gt-lg]="'px-5'" class="mb-3 mx-5">
         <div fxLayout="row" fxLayoutGap="6px">
           <h5 class="mb-0">
             <fa-icon [icon]="['fas', 'award']" class="award"></fa-icon>
@@ -63,7 +65,7 @@
           </div>
         </div>
     </div>
-    <div [ngClass.gt-lg]="'coin-table-container-lg'" [ngClass]="'coin-table-container-sm'">
+    <div>
       <app-coin-table
       (addFavOutput)="addFavorite($event)"
       (removeFavOutput)="removeFavorite($event)"

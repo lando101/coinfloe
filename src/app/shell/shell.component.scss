@@ -69,7 +69,7 @@
   $border: $header-border;
   $shadow: $ticker-shadow;
   @if $light-theme != true {
-    $brand: $primary-color;
+    $brand: $dark-primary-color;
     $font: $dark-primary-font-color;
     $bg-color: $dark-body-background;
     $bg-color-light: $dark-secondary-background;

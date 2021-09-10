@@ -14,7 +14,7 @@ label {
 @mixin progress-mixin($theme: positive) {
   $brand: $primary-color;
   @if $theme == negative {
-    $brand: $primary-color;
+    $brand: $dark-primary-color;
   }
   ::ng-deep .mat-progress-bar-fill::after {
     background-color: $postive !important;

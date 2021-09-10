@@ -1,34 +1,30 @@
 <div class="text-start {{ theme }} theme-container">
-  <!-- <h5 class="fw-bold">Top Losers</h5> -->
-  <owl-carousel-o *ngIf="coins?.length > 1; else loading" class="w-100" [options]="customOptions">
-    <ng-template [width]="225" *ngFor="let coin of coins?.slice(0, 12)" carouselSlide>
-      <button aTilt [tiltSettings]="tileSettings" class="p-0" (click)="openBottomSheet(coin)">
-        <app-coin-card [coin]="coin" [theme]="theme"></app-coin-card>
-      </button>
-    </ng-template>
-  </owl-carousel-o>
-  <!-- <ngx-slick-carousel
-    *ngIf="coins?.length > 1; else loading"
-    class="carousel"
-    #slickModal="slick-carousel"
-    [config]="slideConfig"
-    (init)="slickInit($event)"
-    (breakpoint)="breakpoint($event)"
-    (afterChange)="afterChange($event)"
-    (beforeChange)="beforeChange($event)"
-  >
-    <div ngxSlickItem *ngFor="let coin of coins?.slice(0, 10)" class="slide">
-      <div class="p-2 slick-slide">
-        <button class="p-0" aTilt [tiltSettings]="tileSettings" (click)="openBottomSheet(coin)">
+  <div class="position-relative" *ngIf="coins?.length > 1; else loading">
+    <owl-carousel-o #owlCar  class="w-100" [options]="customOptions" (changed)="startPosition = $event.startPosition" (dragging)="isDragging = $event.dragging">
+      <ng-template [width]="90" carouselSlide>
+      </ng-template>
+      <ng-template [width]="225" *ngFor="let coin of coins?.slice(0, 12)" carouselSlide>
+        <button [disabled]="isDragging" aTilt [tiltSettings]="tileSettings" class="p-0" (click)="openBottomSheet(coin)">
           <app-coin-card [coin]="coin" [theme]="theme"></app-coin-card>
         </button>
-      </div>
+      </ng-template>
+    </owl-carousel-o>
+    <div class="owl-fade-left d-flex justify-content-center align-items-center">
+      <button *ngIf="startPosition!=0" mat-icon-button class="btn owl-dir-button" (click)="owlCar.prev()">
+        <i class="bi bi-chevron-left"></i>
+      </button>
     </div>
-  </ngx-slick-carousel> -->
+    <div class="owl-fade-right d-flex justify-content-center align-items-center">
+      <button mat-icon-button class="btn owl-dir-button" (click)="owlCar.next()">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </div>
 </div>
 
 <ng-template #loading>
   <owl-carousel-o class="w-100" [options]="customOptions">
+    <ng-template [width]="90" carouselSlide></ng-template>
     <ng-template [width]="225" carouselSlide>
       <app-coin-card-loader [theme]="theme"></app-coin-card-loader>
     </ng-template>

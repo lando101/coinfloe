@@ -12,8 +12,12 @@ export class TopLosersComponent implements AfterContentInit {
   @Input() theme: string;
   @Input() coins: Coin[];
   @Input() showBottomSheet: boolean;
+
   @Output() showCoinDetails = new EventEmitter<boolean>();
   @Output() coin = new EventEmitter<Coin>();
+
+  isDragging = false;
+  startPosition = 0;
   tileSettings = {
     reverse: true, // reverse the tilt direction
     max: 6, // max tilt rotation (degrees)
@@ -36,12 +40,7 @@ export class TopLosersComponent implements AfterContentInit {
     gyroscopeMinAngleY: -45, // This is the bottom limit of the device angle on Y axis, meaning that a device rotated at this angle would tilt the element as if the mouse was on the top border of the element;
     gyroscopeMaxAngleY: 45, // This is the top limit of the device angle on Y axis, meaning that a device rotated at this angle would tilt the element as if the mouse was on the bottom border of the element;
   };
-  slides = [
-    { img: 'http://placehold.it/350x150/000000' },
-    { img: 'http://placehold.it/350x150/111111' },
-    { img: 'http://placehold.it/350x150/333333' },
-    { img: 'http://placehold.it/350x150/666666' },
-  ];
+
   customOptions: OwlOptions = {
     items: 4,
     loop: false,
@@ -55,99 +54,23 @@ export class TopLosersComponent implements AfterContentInit {
     responsive: {
       0: {
         items: 1,
-        nav: true,
       },
       400: {
         items: 2,
-        nav: true,
       },
       740: {
         items: 3,
-        nav: true,
       },
       940: {
         items: 4,
       },
     },
-    nav: true,
+    nav: false,
   };
-  slideConfig = {
-    slidesToShow: 6,
-    slidesToScroll: 6,
-    dots: false,
-    infinite: false,
-    responsive: [
-      {
-        breakpoint: 2250,
-        settings: {
-          slidesToShow: 5,
-          slidesToScroll: 5,
-          dots: false,
-        },
-      },
-      {
-        breakpoint: 1860,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 4,
-          dots: false,
-        },
-      },
-      {
-        breakpoint: 1490,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-          dots: false,
-        },
-      },
-      {
-        breakpoint: 1280,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 2,
-        },
-      },
-      {
-        breakpoint: 1042,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-        },
-      },
-      // You can unslick at a given breakpoint now by adding:
-      // settings: "unslick"
-      // instead of a settings object
-    ],
-    // autoplay: true,
-    // autoplaySpeed: 7000,
-  };
+
   constructor(private bottomSheetService: BottomSheetService) {}
 
   ngOnChanges(changes: SimpleChanges): void {}
-  addSlide() {
-    this.slides.push({ img: 'http://placehold.it/350x150/777777' });
-  }
-
-  removeSlide() {
-    this.slides.length = this.slides.length - 1;
-  }
-
-  slickInit(e: any) {
-    // console.log('slick initialized');
-  }
-
-  breakpoint(e: any) {
-    // console.log('breakpoint');
-  }
-
-  afterChange(e: any) {
-    // console.log('afterChange');
-  }
-
-  beforeChange(e: any) {
-    // console.log('beforeChange');
-  }
 
   ngAfterContentInit(): void {}
 

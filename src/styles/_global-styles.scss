@@ -193,6 +193,38 @@
  padding: 10px 0px;
 }
 
+::ng-deep .owl-fade-left {
+  height: 100%;
+  width: 90px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  background: linear-gradient(
+90deg, #f3f3f3, #f3f3f3, transparent);
+  z-index: 3;
+  color: transparent;
+}
+
+::ng-deep .owl-fade-right {
+  height: 100%;
+  width: 90px;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  background: linear-gradient(
+90deg, transparent, #f3f3f3, #f3f3f3);
+  z-index: 3;
+  color: transparent;
+}
+
+::ng-deep .owl-dir-button {
+  width: 35px !important;
+  height: 35px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
 //owl carousel -- DARK
 ::ng-deep .dark .owl-theme .owl-dots .owl-dot span {
   width: 8px !important;

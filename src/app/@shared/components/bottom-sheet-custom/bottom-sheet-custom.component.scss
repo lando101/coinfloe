@@ -39,7 +39,7 @@
   $shadow: $card-shadow;
 
   @if $light-theme != true {
-    $brand: $primary-color;
+    $brand: $dark-primary-color;
     $font: $dark-primary-font-color;
     $bg-color: $dark-secondary-background;
     $bg-color-alt: $dark-body-background;
