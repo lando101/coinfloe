@@ -1,5 +1,5 @@
-<div class="text-start {{ theme }} theme-container w-100">
-  <div [ngClass.gt-lg]="'px-5'" class="mb-3 mx-5">
+<div class="text-start {{ theme }} theme-container w-100 ">
+  <div class="mb-3">
     <h5 class="fw-bold mb-0">Today's Trending News</h5>
     <small class="fw-bold text-faint">Hottest news over the past day</small>
   </div>
@@ -8,7 +8,7 @@
       <app-news-card [theme]="theme" [article]="article"></app-news-card>
     </ng-template>
   </owl-carousel-o> -->
-  <div class="position-relative" *ngIf="allNewsS2?.length > 0; else loading">
+  <div class="position-relative owl-width-xl" *ngIf="allNewsS2?.length > 0; else loading">
     <owl-carousel-o #owlCar  class="w-100" [options]="customOptions" (changed)="startPosition = $event.startPosition" (dragging)="isDragging = $event.dragging">
       <ng-template [width]="90" carouselSlide>
       </ng-template>
@@ -16,12 +16,12 @@
         <app-news-card [theme]="theme" [article]="article"></app-news-card>
       </ng-template>
     </owl-carousel-o>
-    <div class="owl-fade-left d-flex justify-content-center align-items-center">
+    <div class="d-flex justify-content-start align-items-center" [ngClass.gt-lg]="'owl-fade-left-xl'" [ngClass]="'owl-fade-left'">
       <button *ngIf="startPosition!=0" mat-icon-button class="btn owl-dir-button" (click)="owlCar.prev()">
         <i class="bi bi-chevron-left"></i>
       </button>
     </div>
-    <div class="owl-fade-right d-flex justify-content-center align-items-center">
+    <div class="d-flex justify-content-end align-items-center"  [ngClass.gt-lg]="'owl-fade-right-xl'" [ngClass]="'owl-fade-right'">
       <button mat-icon-button class="btn owl-dir-button" (click)="owlCar.next()">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -30,29 +30,31 @@
 </div>
 
 <ng-template #loading>
-  <owl-carousel-o class="w-100" [options]="customOptions">
-    <ng-template [width]="90" carouselSlide>
-    </ng-template>
-    <ng-template [width]="280" carouselSlide>
-      <app-news-card-loader [theme]="theme"></app-news-card-loader>
-    </ng-template>
-    <ng-template [width]="280" carouselSlide>
-      <app-news-card-loader [theme]="theme"></app-news-card-loader>
-    </ng-template>
-    <ng-template [width]="280" carouselSlide>
-      <app-news-card-loader [theme]="theme"></app-news-card-loader>
-    </ng-template>
-    <ng-template [width]="280" carouselSlide>
-      <app-news-card-loader [theme]="theme"></app-news-card-loader>
-    </ng-template>
-    <ng-template [width]="280" carouselSlide>
-      <app-news-card-loader [theme]="theme"></app-news-card-loader>
-    </ng-template>
-    <ng-template [width]="280" carouselSlide>
-      <app-news-card-loader [theme]="theme"></app-news-card-loader>
-    </ng-template>
-    <ng-template [width]="280" carouselSlide>
-      <app-news-card-loader [theme]="theme"></app-news-card-loader>
-    </ng-template>
-  </owl-carousel-o>
+  <div class="position-relative owl-width-xl">
+    <owl-carousel-o class="w-100" [options]="customOptions">
+      <ng-template [width]="90" carouselSlide>
+      </ng-template>
+      <ng-template [width]="280" carouselSlide>
+        <app-news-card-loader [theme]="theme"></app-news-card-loader>
+      </ng-template>
+      <ng-template [width]="280" carouselSlide>
+        <app-news-card-loader [theme]="theme"></app-news-card-loader>
+      </ng-template>
+      <ng-template [width]="280" carouselSlide>
+        <app-news-card-loader [theme]="theme"></app-news-card-loader>
+      </ng-template>
+      <ng-template [width]="280" carouselSlide>
+        <app-news-card-loader [theme]="theme"></app-news-card-loader>
+      </ng-template>
+      <ng-template [width]="280" carouselSlide>
+        <app-news-card-loader [theme]="theme"></app-news-card-loader>
+      </ng-template>
+      <ng-template [width]="280" carouselSlide>
+        <app-news-card-loader [theme]="theme"></app-news-card-loader>
+      </ng-template>
+      <ng-template [width]="280" carouselSlide>
+        <app-news-card-loader [theme]="theme"></app-news-card-loader>
+      </ng-template>
+    </owl-carousel-o>
+  </div>
 </ng-template>

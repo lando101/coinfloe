@@ -1,7 +1,7 @@
-<div class="text-start {{ theme }} theme-container w-100 position-relative">
-  <div class="position-relative" *ngIf="coins?.length > 1; else loading">
+<div class="text-start {{ theme }} theme-container w-100 position-relative owl-width-xl">
+  <div class="position-relative" *ngIf="coins?.length > 0; else loading">
     <owl-carousel-o #owlCar  class="w-100" [options]="customOptions" (changed)="startPosition = $event.startPosition" (dragging)="isDragging = $event.dragging">
-      <ng-template [width]="90" carouselSlide>
+      <ng-template fxHide.lt-md [width]="90" carouselSlide>
       </ng-template>
       <ng-template [width]="225" *ngFor="let coin of coins?.slice(0, 12)" carouselSlide>
         <button [disabled]="isDragging" aTilt [tiltSettings]="tileSettings" class="p-0" (click)="openBottomSheet(coin)">
@@ -9,12 +9,12 @@
         </button>
       </ng-template>
     </owl-carousel-o>
-    <div class="owl-fade-left d-flex justify-content-center align-items-center">
+    <div class="d-flex justify-content-start align-items-center" [ngClass.gt-lg]="'owl-fade-left-xl'" [ngClass]="'owl-fade-left'">
       <button *ngIf="startPosition!=0" mat-icon-button class="btn owl-dir-button" (click)="owlCar.prev()">
         <i class="bi bi-chevron-left"></i>
       </button>
     </div>
-    <div class="owl-fade-right d-flex justify-content-center align-items-center">
+    <div class="d-flex justify-content-end align-items-center"  [ngClass.gt-lg]="'owl-fade-right-xl'" [ngClass]="'owl-fade-right'">
       <button mat-icon-button class="btn owl-dir-button" (click)="owlCar.next()">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -23,28 +23,34 @@
 </div>
 
 <ng-template #loading>
-  <owl-carousel-o class="w-100" [options]="customOptions">
-    <ng-template [width]="90" carouselSlide></ng-template>
-    <ng-template [width]="225" carouselSlide>
-      <app-coin-card-loader [theme]="theme"></app-coin-card-loader>
-    </ng-template>
-    <ng-template [width]="225" carouselSlide>
-      <app-coin-card-loader [theme]="theme"></app-coin-card-loader>
-    </ng-template>
-    <ng-template [width]="225" carouselSlide>
-      <app-coin-card-loader [theme]="theme"></app-coin-card-loader>
-    </ng-template>
-    <ng-template [width]="225" carouselSlide>
-      <app-coin-card-loader [theme]="theme"></app-coin-card-loader>
-    </ng-template>
-    <ng-template [width]="225" carouselSlide>
-      <app-coin-card-loader [theme]="theme"></app-coin-card-loader>
-    </ng-template>
-    <ng-template [width]="225" carouselSlide>
-      <app-coin-card-loader [theme]="theme"></app-coin-card-loader>
-    </ng-template>
-    <ng-template [width]="225" carouselSlide>
-      <app-coin-card-loader [theme]="theme"></app-coin-card-loader>
-    </ng-template>
-  </owl-carousel-o>
+    <div class="position-relative">
+      <owl-carousel-o class="w-100" [options]="customOptions">
+        <ng-template [width]="90" carouselSlide></ng-template>
+        <ng-template [width]="225" carouselSlide>
+          <app-coin-card-loader [theme]="theme"></app-coin-card-loader>
+        </ng-template>
+        <ng-template [width]="225" carouselSlide>
+          <app-coin-card-loader [theme]="theme"></app-coin-card-loader>
+        </ng-template>
+        <ng-template [width]="225" carouselSlide>
+          <app-coin-card-loader [theme]="theme"></app-coin-card-loader>
+        </ng-template>
+        <ng-template [width]="225" carouselSlide>
+          <app-coin-card-loader [theme]="theme"></app-coin-card-loader>
+        </ng-template>
+        <ng-template [width]="225" carouselSlide>
+          <app-coin-card-loader [theme]="theme"></app-coin-card-loader>
+        </ng-template>
+        <ng-template [width]="225" carouselSlide>
+          <app-coin-card-loader [theme]="theme"></app-coin-card-loader>
+        </ng-template>
+        <ng-template [width]="225" carouselSlide>
+          <app-coin-card-loader [theme]="theme"></app-coin-card-loader>
+        </ng-template>
+      </owl-carousel-o>
+      <div class="d-flex justify-content-start align-items-center" [ngClass.gt-lg]="'owl-fade-left-xl'" [ngClass]="'owl-fade-left'">
+      </div>
+      <div class="d-flex justify-content-end align-items-center"  [ngClass.gt-lg]="'owl-fade-right-xl'" [ngClass]="'owl-fade-right'">
+      </div>
+    </div>
 </ng-template>

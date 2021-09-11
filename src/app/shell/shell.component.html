@@ -29,7 +29,7 @@
             (sideNavToggle)="openSidenav($event)"
           ></app-header>
           <div fxLayout="row">
-            <div fxFlex.lt-lg="100" fxFlex.gt-md="75">
+            <div fxFlex.lt-xl="100" fxFlex.gt-lg="75">
               <!-- <div class="router-wrapper"
               [@rotateCubeToLeft]="getState(o)">
               </div> -->
@@ -59,7 +59,7 @@
               <router-outlet #o="outlet"></router-outlet>
               <app-footer *ngIf="router.url != '/coins'"></app-footer>
             </div>
-            <div fxFlex.gt-md="25" fxHide.lt-lg class="widgets-container">
+            <div fxFlex.gt-lg="25" fxHide.lt-xl class="widgets-container">
               <div class="w-100">
                 <div>
                   <!-- <app-coin-rating-widget></app-coin-rating-widget>

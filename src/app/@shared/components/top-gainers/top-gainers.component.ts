@@ -56,15 +56,15 @@ export class TopGainersComponent implements AfterContentInit {
     responsive: {
       0: {
         items: 1,
-        nav: true,
+        nav: false,
       },
       400: {
         items: 2,
-        nav: true,
+        nav: false,
       },
       740: {
         items: 3,
-        nav: true,
+        nav: false,
       },
       940: {
         items: 4,

@@ -193,9 +193,9 @@
  padding: 10px 0px;
 }
 
-::ng-deep .owl-fade-left {
+::ng-deep .owl-fade-left-xl {
   height: 100%;
-  width: 90px;
+  width: 112px;
   position: absolute;
   left: 0px;
   top: 0px;
@@ -205,9 +205,9 @@
   color: transparent;
 }
 
-::ng-deep .owl-fade-right {
+::ng-deep .owl-fade-right-xl {
   height: 100%;
-  width: 90px;
+  width: 112px;
   position: absolute;
   right: 0px;
   top: 0px;
@@ -215,6 +215,32 @@
 90deg, transparent, #f3f3f3, #f3f3f3);
   z-index: 3;
   color: transparent;
+}
+
+::ng-deep .owl-fade-left {
+  height: 100%;
+  width: 6em;
+  position: absolute;
+  left: 24px;
+  top: 0px;
+  background: linear-gradient(
+90deg,#f3f3f3,#f3f3f3,transparent);
+  z-index: 3;
+  color: transparent;
+  padding: 0px 10px;
+}
+
+::ng-deep .owl-fade-right {
+  height: 100%;
+  width: 6em;
+  position: absolute;
+  right: 24px;
+  top: 0px;
+  background: linear-gradient(
+90deg,transparent,#f3f3f3,#f3f3f3);
+  z-index: 3;
+  color: transparent;
+  padding: 0px 10px;
 }
 
 ::ng-deep .owl-dir-button {
@@ -234,4 +260,11 @@
 
 ::ng-deep .dark .owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span {
   background: #bcbcbd !important;
+}
+
+// carousel sizing
+
+.owl-width-xl{
+  width: calc(100% + 10em) !important;
+  margin-left: -5em !important;
 }

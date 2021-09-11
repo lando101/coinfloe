@@ -1,4 +1,4 @@
-<div [ngClass.gt-lg]="'px-5'" class="mx-5" class="news-wrapper position-relative {{ theme }} theme-container">
+<div [ngClass.gt-lg]="'px-5'" class="mx-5 py-3" class="news-wrapper position-relative {{ theme }} theme-container">
   <div [ngClass]="{ 'search-go-still': searchText }" class="container position-relative">
     <div class="position-absolute search-bar-wrapper w-100" [ngStyle]="{ 'z-index': 2 }">
       <app-news-search-bar
@@ -74,7 +74,7 @@
                 </mat-chip>
               </mat-chip-list>
             </div>
-            <div *ngIf="selectedChip.label === 'All'; else topic">
+            <div fxLayout="column" fxLayoutGap="30px" *ngIf="selectedChip.label === 'All'; else topic">
               <app-trending-news [theme]="theme"></app-trending-news>
               <app-news-list [start]="12" [end]="50" [use_api]="true" [theme]="theme"></app-news-list>
             </div>
