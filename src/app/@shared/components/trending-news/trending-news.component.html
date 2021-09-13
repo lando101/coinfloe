@@ -16,6 +16,12 @@
         <app-news-card [theme]="theme" [article]="article"></app-news-card>
       </ng-template>
     </owl-carousel-o>
+    <!-- <div class="w-100 my-3" fxLayout="row" fxLayoutAlign="center center">
+      <div class="w-50">
+        <mat-progress-bar mode="determinate" value="{{((owlCar?.slidesOutputData?.startPosition+1)/(owlCar?.slidesData?.length-1))*100 || 0}}"></mat-progress-bar>
+      </div>
+    </div> -->
+
     <!-- <div *ngIf="startPosition!=0" class="d-flex justify-content-center align-items-center" [ngClass.gt-lg]="'owl-fade-left-xl'" [ngClass]="'owl-fade-left'">
       <button  mat-icon-button class="btn owl-dir-button" (click)="owlCar.prev()">
         <i class="bi bi-chevron-left"></i>
@@ -31,7 +37,7 @@
         <i class="bi bi-chevron-left"></i>
       </button>
     </div>
-    <div class="d-flex justify-content-center align-items-center" [ngClass]="'owl-fade-right'">
+    <div class="d-flex justify-content-center align-items-center" (click)="print(owlCar)" [ngClass]="'owl-fade-right'">
       <button mat-icon-button class="btn owl-dir-button" (click)="owlCar.next()">
         <i class="bi bi-chevron-right"></i>
       </button>

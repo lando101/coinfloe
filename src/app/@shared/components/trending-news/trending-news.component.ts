@@ -20,7 +20,7 @@ export class TrendingNewsComponent implements AfterViewInit {
     mouseDrag: true,
     touchDrag: true,
     pullDrag: true,
-    dots: false,
+    dots: true,
     autoWidth: true,
     navSpeed: 260,
     navText: ['<', '>'],
@@ -58,5 +58,9 @@ export class TrendingNewsComponent implements AfterViewInit {
         },
       });
     }, 500);
+  }
+
+  print(event: any) {
+    console.log(event);
   }
 }

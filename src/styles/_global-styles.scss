@@ -280,3 +280,18 @@
 //   width: calc(100% + 6em)!important;
 //   margin-left: -3em!important;
 // }
+
+// material progress bar
+::ng-deep .mat-progress-bar-fill:after {
+  background-color: #c5c5c5 !important;
+}
+
+::ng-deep .mat-progress-bar-buffer {
+  background-color: #e4e4e4 !important;
+  border-radius: 50px !important;
+}
+
+::ng-deep .mat-progress-bar {
+  height: 2px !important;
+  border-radius: 50px !important;
+}
