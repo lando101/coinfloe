@@ -140,20 +140,19 @@ export class CoinTableComponent implements OnChanges {
             name: data.CoinInfo.FullName,
             symbol: data.CoinInfo.Name,
             imgUrl: `https://www.cryptocompare.com${data.CoinInfo.ImageUrl}`,
-            price: data.RAW.USD.PRICE,
-            returnPct24h: data.RAW.USD.CHANGEPCT24HOUR,
-            return24h: data.RAW.USD.CHANGE24HOUR,
-            volume24hUSD: data.RAW.USD.TOTALVOLUME24HTO,
-            volume24h: data.RAW.USD.TOTALVOLUME24H,
-            mrktcap: data.RAW.USD.MKTCAP,
-            supply: data.RAW.USD.SUPPLY,
+            price: data.RAW?.USD.PRICE,
+            returnPct24h: data.RAW?.USD.CHANGEPCT24HOUR,
+            return24h: data.RAW?.USD.CHANGE24HOUR,
+            volume24hUSD: data.RAW?.USD.TOTALVOLUME24HTO,
+            volume24h: data.RAW?.USD.TOTALVOLUME24H,
+            mrktcap: data.RAW?.USD.MKTCAP,
+            supply: data.RAW?.USD.SUPPLY,
             rating: data.CoinInfo.Rating.Weiss.TechnologyAdoptionRating || '-',
-            high: data.RAW.USD.HIGH24HOUR,
-            low: data.RAW.USD.LOW24HOUR,
+            high: data.RAW?.USD.HIGH24HOUR,
+            low: data.RAW?.USD.LOW24HOUR,
             favorite: data.FAVORITE,
           });
         }
-        3;
       });
       this.coinFilteredData = this.coinData;
 

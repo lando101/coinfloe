@@ -10,6 +10,7 @@ import { ThemeService } from '@app/services/theme.service';
 import { PerfectScrollbarComponent, PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { BottomSheetService } from '@app/services/bottom-sheet.service';
 import { ChangeDetectorRef } from '@angular/core';
+import { DeviceDetectorService } from 'ngx-device-detector';
 
 import {
   fadeInOnEnterAnimation,
@@ -75,6 +76,7 @@ import { fadeIn, fadeInDown, fadeInUp, fadeOut } from 'ng-animate';
 export class ShellComponent implements OnInit {
   @ViewChild('perfectscroll') perfectScroll: PerfectScrollbarComponent;
   @ViewChild('drawer2', { static: false }) sidenav!: MatSidenav;
+  deviceInfo: any = null;
   menuOpen = true;
   backDrop = false;
   theme: string = '';
@@ -108,8 +110,11 @@ export class ShellComponent implements OnInit {
     private titleService: Title,
     private authenticationService: AuthenticationService,
     private credentialsService: CredentialsService,
-    public router: Router
-  ) {}
+    public router: Router,
+    private deviceService: DeviceDetectorService
+  ) {
+    this.epicFunction();
+  }
 
   ngOnInit() {
     // Automatically close side menu on screens > sm breakpoint
@@ -182,6 +187,18 @@ export class ShellComponent implements OnInit {
         this.cd.detectChanges();
       }
     });
+  }
+
+  epicFunction() {
+    console.log('hello `Home` component');
+    this.deviceInfo = this.deviceService.getDeviceInfo();
+    const isMobile = this.deviceService.isMobile();
+    const isTablet = this.deviceService.isTablet();
+    const isDesktopDevice = this.deviceService.isDesktop();
+    console.log(this.deviceInfo);
+    console.log(isMobile); // returns if the device is a mobile device (android / iPhone / windows-phone etc)
+    console.log(isTablet); // returns if the device us a tablet (iPad etc)
+    console.log(isDesktopDevice); // returns if the app is running on a Desktop browser.
   }
 
   backToTop() {

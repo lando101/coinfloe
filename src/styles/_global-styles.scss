@@ -193,6 +193,11 @@
  padding: 10px 0px;
 }
 
+
+::ng-deep .owl-carousel .owl-stage-outer {
+    overflow: visible;
+}
+
 ::ng-deep .owl-fade-left-xl {
   height: 100%;
   width: 112px;
@@ -221,10 +226,10 @@
   height: 100%;
   width: 6em;
   position: absolute;
-  left: 24px;
+  left: -3rem;
   top: 0px;
   background: linear-gradient(
-90deg,#f3f3f3,#f3f3f3,transparent);
+90deg,#f3f3f3,#f3f3f3,rgba(255, 255, 255, 0));
   z-index: 3;
   color: transparent;
   padding: 0px 10px;
@@ -234,10 +239,10 @@
   height: 100%;
   width: 6em;
   position: absolute;
-  right: 24px;
+  right: -3rem;
   top: 0px;
   background: linear-gradient(
-90deg,transparent,#f3f3f3,#f3f3f3);
+90deg,rgba(255, 255, 255, 0),#f3f3f3,#f3f3f3);
   z-index: 3;
   color: transparent;
   padding: 0px 10px;
@@ -262,9 +267,16 @@
   background: #bcbcbd !important;
 }
 
-// carousel sizing
-
-.owl-width-xl{
-  width: calc(100% + 10em) !important;
-  margin-left: -5em !important;
+::ng-deep .dark .owl-fade-right {
+  background: linear-gradient(90deg,rgba(255,255,255,0),#1a1a20,#1a1a20);
 }
+
+::ng-deep .dark .owl-fade-left {
+  background: linear-gradient(90deg,#1a1a20,#1a1a20, rgba(255,255,255,0));
+}
+
+// carousel sizing
+// .owl-width-xl{
+//   width: calc(100% + 6em)!important;
+//   margin-left: -3em!important;
+// }

@@ -60,22 +60,36 @@ export class CryptoDataServiceService {
     if (params) {
       return this._httpClient.get(routes.allCryptos(params)).pipe(
         map((body: any) => {
-          if (this.coinsArray !== body.data.Data) {
-            this.setCryptoData(body.data.Data);
-            this.coinsArray = body.data.Data;
+          const result: Coin[] = body.data.Data;
+          const tempCoins: Coin[] = [];
+          result.forEach((coin) => {
+            if (!!coin?.RAW?.USD) {
+              tempCoins.push(coin);
+            }
+          });
+          if (this.coinsArray !== tempCoins) {
+            this.setCryptoData(tempCoins);
+            this.coinsArray = tempCoins;
           }
-          return body.data.Data;
+          return tempCoins;
         }),
         catchError(() => of('Error, couldnt get cryptos'))
       );
     } else {
       return this._httpClient.get(routes.allCryptos(this.defaultQuery)).pipe(
         map((body: any) => {
-          if (this.coinsArray !== body.data.Data) {
-            this.setCryptoData(body.data.Data);
-            this.coinsArray = body.data.Data;
+          const result: Coin[] = body.data.Data;
+          const tempCoins: Coin[] = [];
+          result.forEach((coin) => {
+            if (!!coin?.RAW?.USD) {
+              tempCoins.push(coin);
+            }
+          });
+          if (this.coinsArray !== tempCoins) {
+            this.setCryptoData(tempCoins);
+            this.coinsArray = tempCoins;
           }
-          return body.data.Data;
+          return tempCoins;
         }),
         catchError(() => of('Error, couldnt get cryptos'))
       );

@@ -56,16 +56,6 @@ export class HomeComponent implements AfterViewInit {
   }
   ngAfterViewInit() {
     this.isLoading = true;
-    // this.getCryptosList();
-    // this.cryptoService.coinsObs.subscribe((data) => {
-    //   if (data != '') {
-    //     // console.log('HOME');
-    //     // console.log(data);
-    //     this.coins = data;
-    //     this.orderPCTGains24h(this.coins);
-    //     this.selectedCoin = this.coins[0];
-    //   }
-    // });
     setTimeout(() => {
       this.getCoins().then((coins: Coin[]) => {
         // doing this for better page load performance
