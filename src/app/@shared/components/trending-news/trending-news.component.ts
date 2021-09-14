@@ -11,6 +11,7 @@ import { NewsSource2 } from 'src/models/news.model';
 })
 export class TrendingNewsComponent implements AfterViewInit {
   @Input() theme: string;
+  @Input() page: string;
   allNewsS2: NewsSource2[];
   isDragging = false;
   startPosition = 0;
