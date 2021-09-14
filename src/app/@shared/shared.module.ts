@@ -27,6 +27,7 @@ import { CoinCardLoaderComponent } from './components/loaders/coin-card-loader/c
 import { NewsLoaderTallComponent } from './components/loaders/news-loader-tall/news-loader-tall.component';
 import { NewsLoaderShortComponent } from './components/loaders/news-loader-short/news-loader-short.component';
 import { CryptoInfoComponent } from './components/crypto-info/crypto-info.component';
+import { NgxGaugeModule } from 'ngx-gauge';
 
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faSquare, faCheckSquare } from '@fortawesome/free-solid-svg-icons';
@@ -48,7 +49,7 @@ import { CoinMarqueeItemComponent } from './components/cards/coin-marquee-item/c
 import { CoinTableComponent } from './components/coin-table/coin-table.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { NewsItemLoaderComponent } from './components/loaders/news-item-loader/news-item-loader.component';
-
+import { GaugeComponent } from './components/widgets/gauge/gauge.component';
 @NgModule({
   imports: [
     FlexLayoutModule,
@@ -63,6 +64,7 @@ import { NewsItemLoaderComponent } from './components/loaders/news-item-loader/n
     FormsModule,
     CarouselModule,
     MomentModule,
+    NgxGaugeModule,
     MomentModule.forRoot({
       relativeTimeThresholdOptions: {
         m: 59,
@@ -103,6 +105,7 @@ import { NewsItemLoaderComponent } from './components/loaders/news-item-loader/n
     CoinMarqueeItemComponent,
     CoinTableComponent,
     NewsItemLoaderComponent,
+    GaugeComponent,
   ],
   exports: [
     LoaderComponent,
@@ -135,6 +138,7 @@ import { NewsItemLoaderComponent } from './components/loaders/news-item-loader/n
     NewsSearchBarComponent,
     CoinMarqueeItemComponent,
     CoinTableComponent,
+    GaugeComponent,
   ],
   providers: [{ provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } }],
   bootstrap: [CoinsListsComponent],

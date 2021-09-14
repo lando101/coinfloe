@@ -7,7 +7,8 @@ h6 {
   -webkit-box-orient: vertical;
   white-space: normal;
   text-align: left;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
+  line-height: 1.35;
 }
 p {
   overflow: hidden;
@@ -17,12 +18,15 @@ p {
   white-space: normal;
   text-align: left;
   font-size: 0.85rem;
+  opacity: 0.7;
   -webkit-line-clamp: 3;
 }
 
 .img-container {
-  margin: 0;
-  border-radius: 0;
+  margin: .35rem;
+  border-radius: 15px;
+  border-bottom-right-radius: 6px;
+  border-bottom-left-radius: 6px;
   overflow: hidden;
 }
 
@@ -56,14 +60,16 @@ p {
       // background-color: lighten($bg-color, 3%) !important;
     }
     .card-body {
-      padding: 0.75rem 1.05rem;
+      padding: .85rem .65rem;
+      padding-top: .45rem;
       .time-ago-text {
-        position: absolute;
-        bottom: 15px;
+        // position: absolute;
+        // bottom: 15px;
         font-weight: bold;
+        font-size: .8em !important;
       }
       label {
-        font-size: 0.9rem;
+        font-size: 0.8rem;
       }
     }
   }
