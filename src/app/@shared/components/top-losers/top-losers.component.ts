@@ -25,12 +25,12 @@ export class TopLosersComponent implements AfterContentInit {
     startY: 0, // the starting tilt on the Y axis, in degrees.
     perspective: 1000, // Transform perspective, the lower the more extreme the tilt gets.
     scale: 1.02, // 2 = 200%, 1.5 = 150%, etc..
-    speed: 400, // Speed of the enter/exit transition
+    speed: 350, // Speed of the enter/exit transition
     transition: true, // Set a transition on enter/exit.
     reset: true, // If the tilt effect has to be reset on exit.
     easing: 'cubic-bezier(.03,.98,.52,.99)', // Easing on enter/exit.
     glare: true, // if it should have a "glare" effect
-    'max-glare': 1, // the maximum "glare" opacity (1 = 100%, 0.5 = 50%)
+    'max-glare': 0.08, // the maximum "glare" opacity (1 = 100%, 0.5 = 50%)
     'glare-prerender': false, // false = VanillaTilt creates the glare elements for you, otherwise
     // you need to add .js-tilt-glare>.js-tilt-glare-inner by yourself
     // you need to add .js-tilt-glare>.js-tilt-glare-inner by yourself

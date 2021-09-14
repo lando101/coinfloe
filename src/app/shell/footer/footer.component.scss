@@ -1,8 +1,5 @@
 @import "../../../styles/index";
 
-.footer-wrapper {
-}
-
 @mixin theme-mixin($light-theme: true) {
   $brand: $primary-color;
   $font: $primary-font-color;

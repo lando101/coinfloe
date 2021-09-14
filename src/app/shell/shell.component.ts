@@ -37,14 +37,14 @@ import { fadeIn, fadeInDown, fadeInUp, fadeOut } from 'ng-animate';
       transition(':enter', [
         useAnimation(fadeIn, {
           params: {
-            timing: 1,
+            timing: 0.18,
           },
         }),
       ]),
       transition(':leave', [
         useAnimation(fadeOut, {
           params: {
-            timing: 1,
+            timing: 0.18,
           },
         }),
       ]),

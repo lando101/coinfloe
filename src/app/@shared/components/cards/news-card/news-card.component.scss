@@ -36,7 +36,7 @@ p {
   $shadow: $card-shadow;
   $font: $primary-font-color;
   @if $light-theme != true {
-    $bg-color: $dark-secondary-background;
+    $bg-color: $dark-card-background;
     $shadow: $dark-card-shadow;
     $font: $dark-primary-font-color;
   }
