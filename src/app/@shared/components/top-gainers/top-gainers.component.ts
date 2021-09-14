@@ -48,7 +48,7 @@ export class TopGainersComponent implements AfterContentInit {
     mouseDrag: true,
     touchDrag: true,
     pullDrag: true,
-    dots: false,
+    dots: true,
     autoWidth: true,
     navSpeed: 260,
     stagePadding: 30,
