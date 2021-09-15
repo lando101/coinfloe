@@ -29,7 +29,7 @@ import { NewsLoaderShortComponent } from './components/loaders/news-loader-short
 import { CryptoInfoComponent } from './components/crypto-info/crypto-info.component';
 import { NgxGaugeModule } from 'ngx-gauge';
 
-import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faSquare, faCheckSquare } from '@fortawesome/free-solid-svg-icons';
 import { faEthereum, faGithub, faMedium, faStackOverflow } from '@fortawesome/free-brands-svg-icons';
 import { TrendingNewsComponent } from './components/trending-news/trending-news.component';
@@ -50,6 +50,7 @@ import { CoinTableComponent } from './components/coin-table/coin-table.component
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { NewsItemLoaderComponent } from './components/loaders/news-item-loader/news-item-loader.component';
 import { GaugeComponent } from './components/widgets/gauge/gauge.component';
+import { NgApexchartsModule } from 'ng-apexcharts';
 @NgModule({
   imports: [
     FlexLayoutModule,
@@ -65,6 +66,8 @@ import { GaugeComponent } from './components/widgets/gauge/gauge.component';
     CarouselModule,
     MomentModule,
     NgxGaugeModule,
+    NgApexchartsModule,
+    FontAwesomeModule,
     MomentModule.forRoot({
       relativeTimeThresholdOptions: {
         m: 59,

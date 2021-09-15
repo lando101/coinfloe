@@ -1,4 +1,4 @@
-<div *ngIf="!!globalData && !!globalMetrics && !!tradingSignals" class="{{ theme }} theme-container text-start mt-4">
+<div *ngIf="!!globalData && !!globalMetrics && !!tradingSignals" class="{{ theme }} theme-container text-start mt-4 mb-2">
   <div fxLayout="row">
     <h4 class="d-flex flex-wrap fw-normal">
       Today's market cap is <b class="mx-2">${{ globalData.quote.USD.total_market_cap | number: '1.0-2' }}</b>
@@ -14,6 +14,23 @@
         {{ globalMetrics.market_cap_change_percentage_24h_usd | number: '1.0-2' }}%
       </small>
     </h4>
+  </div>
+  <div fxLayout="row" fxLayoutGap="35px">
+    <app-gauge
+    [theme]="theme"
+    [color]="'#ff9400'"
+    [icon]="'bitcoin'"
+    [title]="'BTC Dominance'"
+    [desc]="'BTC percentage of total market cap'"
+    [currentValue]="globalData.btc_dominance"></app-gauge>
+    <app-gauge
+    [theme]="theme"
+    [color]="'#414977'"
+    [icon]="'ethereum'"
+    [title]="'ETH Dominance'"
+    [desc]="'ETH percentage of total market cap'"
+    [currentValue]="globalData.eth_dominance"></app-gauge>
+
   </div>
   <!-- <div class="mt-1" fxLayout="row wrap" fxLayoutGap="25px">
     <div fxLayout="column" class="py-3 pe-3 ps-0 justify-content-between align-items-start stat-card">

@@ -1,13 +1,12 @@
 <!-- <div [ngClass.gt-lg]="'mx-5'" [ngClass.lt-xl]="'mx-3'" class="mx-5 py-3"> -->
 <div class="mx-5 py-3">
+  <app-market-cap
+  [theme]="theme"
+  [globalData]="globalData"
+  [globalMetrics]="globalMetrics"
+  [tradingSignals]="tradingSignals"
+></app-market-cap>
   <div fxFlexFill fxLayout="column" fxLayoutGap="40px">
-    <app-market-cap
-      [theme]="theme"
-      [globalData]="globalData"
-      [globalMetrics]="globalMetrics"
-      [tradingSignals]="tradingSignals"
-    ></app-market-cap>
-    <app-gauge></app-gauge>
     <div class="text-start w-100">
       <div fxLayout="row" class="justify-content-between">
         <div class="mb-3">
