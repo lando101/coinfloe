@@ -1,0 +1,16 @@
+<div id="chart" class="{{theme}} theme-container">
+  <div fxLayout="row" fxLayoutGap="10px" class="widget-container p-2 px-0">
+    <div fxFlex="80px" class="position-relative">
+      <apx-chart
+      [series]="chartOptions.series"
+      [chart]="chartOptions.chart"
+      [plotOptions]="chartOptions.plotOptions"
+      [labels]="chartOptions.labels"
+      [stroke]="chartOptions.stroke"
+      [fill]="chartOptions.fill"
+    ></apx-chart>
+    </div>
+    <div fxFlex="auto">
+     </div>
+  </div>
+</div>

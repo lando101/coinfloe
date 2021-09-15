@@ -1,0 +1,53 @@
+@import "../../../../../styles/index";
+
+@mixin theme-mixin($light-theme: true) {
+  $bg-color: $white-background;
+  $shadow: $card-shadow;
+  $font: $primary-font-color;
+  @if $light-theme != true {
+    $bg-color: $dark-card-background;
+    $shadow: $dark-card-shadow;
+    $font: $dark-primary-font-color;
+  }
+  .widget-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    // background-color: $bg-color;
+    overflow: hidden;
+    // border-radius: $default-brdr-radius;
+    width: 305px;
+    height: 95px;
+    // box-shadow: 0px 1px 3px 0px $shadow !important;
+    border: none;
+    .icon-container{
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 1.3rem;
+      opacity: 1;
+    }
+    .percent{
+      font-weight: 300;
+    }
+    .title{
+      font-weight: 800;
+      font-size: .8rem;
+    }
+    .desc{
+      font-weight: 700;
+      font-size: .8rem;
+      opacity: .55;
+    }
+  }
+}
+
+.theme-container{
+  @include theme-mixin($light-theme: true);
+}
+
+.dark.theme-container{
+  @include theme-mixin($light-theme: false);
+}
+

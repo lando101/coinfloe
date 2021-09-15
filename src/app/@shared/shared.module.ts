@@ -51,6 +51,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { NewsItemLoaderComponent } from './components/loaders/news-item-loader/news-item-loader.component';
 import { GaugeComponent } from './components/widgets/gauge/gauge.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
+import { MultiGaugeComponent } from './components/widgets/multi-gauge/multi-gauge.component';
 @NgModule({
   imports: [
     FlexLayoutModule,
@@ -109,6 +110,7 @@ import { NgApexchartsModule } from 'ng-apexcharts';
     CoinTableComponent,
     NewsItemLoaderComponent,
     GaugeComponent,
+    MultiGaugeComponent,
   ],
   exports: [
     LoaderComponent,
@@ -142,6 +144,8 @@ import { NgApexchartsModule } from 'ng-apexcharts';
     CoinMarqueeItemComponent,
     CoinTableComponent,
     GaugeComponent,
+    MultiGaugeComponent,
+    CarouselModule,
   ],
   providers: [{ provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } }],
   bootstrap: [CoinsListsComponent],

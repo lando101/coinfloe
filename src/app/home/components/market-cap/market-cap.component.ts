@@ -5,6 +5,7 @@ import { faEthereum, faBitcoin } from '@fortawesome/free-brands-svg-icons';
 import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { faDotCircle, faLaptopCode, faSadTear, faSmileBeam } from '@fortawesome/free-solid-svg-icons';
 import { TradingSignals } from 'src/models/coin-trading-signals.model';
+import { OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
   selector: 'app-market-cap',
@@ -17,6 +18,38 @@ export class MarketCapComponent implements OnInit {
   @Input() globalMetrics: GlobalMetrics;
   @Input() tradingSignals: TradingSignals;
 
+  isDragging = false;
+  startPosition = 0;
+  customOptions: OwlOptions = {
+    items: 4,
+    loop: false,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    dots: true,
+    autoWidth: true,
+    navSpeed: 260,
+    stagePadding: 30,
+    navText: ['<', '>'],
+    responsive: {
+      0: {
+        items: 1,
+        nav: false,
+      },
+      400: {
+        items: 2,
+        nav: false,
+      },
+      740: {
+        items: 3,
+        nav: false,
+      },
+      940: {
+        items: 4,
+      },
+    },
+    nav: false,
+  };
   constructor(private library: FaIconLibrary) {
     library.addIcons(faEthereum, faBitcoin, faDotCircle, faLaptopCode, faSmileBeam, faSadTear);
   }
