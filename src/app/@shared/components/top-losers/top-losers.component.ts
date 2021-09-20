@@ -1,7 +1,7 @@
 import { AfterContentInit, Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { BottomSheetService } from '@app/services/bottom-sheet.service';
 import { OwlOptions } from 'ngx-owl-carousel-o';
-import { Coin } from 'src/models/coins.model';
+import { Coin, CoinCG } from 'src/models/coins.model';
 
 @Component({
   selector: 'app-top-losers',
@@ -10,7 +10,7 @@ import { Coin } from 'src/models/coins.model';
 })
 export class TopLosersComponent implements AfterContentInit {
   @Input() theme: string;
-  @Input() coins: Coin[];
+  @Input() coins: CoinCG[];
   @Input() showBottomSheet: boolean;
 
   @Output() showCoinDetails = new EventEmitter<boolean>();
@@ -79,7 +79,7 @@ export class TopLosersComponent implements AfterContentInit {
   //   this.showCoinDetails.emit(true);
   //   this.coin.emit(coin);
   // }
-  openBottomSheet(coin: Coin) {
-    this.bottomSheetService.setState(true, coin);
+  openBottomSheet(coin: CoinCG) {
+    // this.bottomSheetService.setState(true, coin);
   }
 }

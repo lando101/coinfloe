@@ -73,10 +73,10 @@ export class CoinsListsComponent implements OnChanges {
     // console.log('COINS');
     // console.log(this.Coins);
     if (this.Coins) {
-      console.log('COIN LIST');
-      console.log(this.Coins);
-      console.log(changes);
-      console.log('COIN LIST');
+      // console.log('COIN LIST');
+      // console.log(this.Coins);
+      // console.log(changes);
+      // console.log('COIN LIST');
       this.orderByMarkCap(this.Coins);
       // this.localCoins = this.Coins;
     }

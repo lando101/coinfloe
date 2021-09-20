@@ -1,7 +1,7 @@
 import { AfterContentInit, AfterViewInit, Component, OnInit } from '@angular/core';
 import { filter, finalize } from 'rxjs/operators';
 
-import { Coin, USD } from 'src/models/coins.model';
+import { Coin, CoinCG, USD } from 'src/models/coins.model';
 import { CryptoDataServiceService, CryptoQuery } from '@app/services/crypto-data-service.service';
 import { ThemeService } from '@app/services/theme.service';
 import { GroupByPipe, KeysPipe, OrderByPipe, PairsPipe, FlattenPipe } from 'ngx-pipes';
@@ -14,6 +14,8 @@ import { UserService } from '@app/services/user.service';
 import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { faAward, faIcicles } from '@fortawesome/free-solid-svg-icons';
 import { faHotjar } from '@fortawesome/free-brands-svg-icons';
+import { CgCoinDataService } from '@app/services/cg-coin-data.service';
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -25,8 +27,11 @@ export class HomeComponent implements AfterViewInit {
   quote: string | undefined;
   isLoading = false;
   coins: Coin[] = [];
+  allCoins: CoinCG[] = [];
   topGainerCoins: Coin[] = [];
+  topGainers: CoinCG[] = [];
   topLoserCoins: Coin[] = [];
+  topLosers: CoinCG[] = [];
   topCoins: Coin[] = [];
   bottomSheet: boolean;
   selectedCoin: Coin = {};
@@ -45,6 +50,7 @@ export class HomeComponent implements AfterViewInit {
   };
   constructor(
     private cryptoService: CryptoDataServiceService,
+    private coinCGService: CgCoinDataService,
     private themeService: ThemeService,
     private orderByPipe: OrderByPipe,
     private flattenPipe: FlattenPipe,
@@ -57,20 +63,24 @@ export class HomeComponent implements AfterViewInit {
   ngAfterViewInit() {
     this.isLoading = true;
     setTimeout(() => {
-      this.getCoins().then((coins: Coin[]) => {
-        // doing this for better page load performance
-        this.userService.user$.subscribe((user: User) => {
-          if (user) {
-            this.user = user;
-            // alert('THERE IS A USER');
-            if (coins.length > 1) {
-              this.findFavorites(coins);
-              // alert('THERE IS A USER AND FINDING FAVS');
-            }
-          }
-        });
-      });
+      // this.getCoins().then((coins: Coin[]) => {
+      //   // doing this for better page load performance
+      //   this.userService.user$.subscribe((user: User) => {
+      //     if (user) {
+      //       this.user = user;
+      //       // alert('THERE IS A USER');
+      //       if (coins.length > 1) {
+      //         this.findFavorites(coins);
+      //         // alert('THERE IS A USER AND FINDING FAVS');
+      //       }
+      //     }
+      //   });
+      // });
     }, 250);
+    // interval(0).subscribe(() => {
+    //   this.getCoinsCG();
+    // });
+    this.getCoinsCG();
 
     this.bottomSheetService.bottomSheetShow.subscribe((data) => {
       this.bottomSheet = data;
@@ -102,21 +112,35 @@ export class HomeComponent implements AfterViewInit {
   }
   ngOnInit() {}
 
-  getCoins() {
-    const promise = new Promise((resolve, reject) => {
-      this.cryptoService.getCryptoData().subscribe((coins: Coin[]) => {
-        this.isLoading = true;
-        if (coins) {
-          this.coins = coins;
-          this.orderPCTGains24h(this.coins);
-          this.selectedCoin = this.coins[0];
-          resolve(coins);
-        } else {
-          reject('No coins');
-        }
-      });
+  // getCoins() {
+  //   const promise = new Promise((resolve, reject) => {
+  //     this.cryptoService.getCryptoData().subscribe((coins: Coin[]) => {
+  //       this.isLoading = true;
+  //       if (coins) {
+  //         this.coins = coins;
+  //         this.orderPCTGains24h(this.coins);
+  //         this.selectedCoin = this.coins[0];
+  //         resolve(coins);
+  //       } else {
+  //         reject('No coins');
+  //       }
+  //     });
+  //   });
+  //   return promise;
+  // }
+
+  // get top 250 coins from coin gecko
+  getCoinsCG() {
+    this.coinCGService.$coins.subscribe((coins: CoinCG[]) => {
+      if (!!coins) {
+        this.findTopGainers(coins);
+        this.findTopLosers(coins);
+        this.allCoins = coins;
+        console.log('HOME SEES CG COINS');
+        console.log(coins);
+        console.log('HOME SEES CG COINS');
+      }
     });
-    return promise;
   }
 
   findFavorites(coins: Coin[]) {
@@ -125,7 +149,7 @@ export class HomeComponent implements AfterViewInit {
     const promise = new Promise((resolve, reject) => {
       coins.forEach((coin) => {
         const match = this.user.favorite_coins.find((fav) => coin.CoinInfo.Name.toLowerCase() === fav.toLowerCase());
-        console.log(coin);
+        // console.log(coin);
         if (match) {
           coin.FAVORITE = true;
         } else {
@@ -136,35 +160,49 @@ export class HomeComponent implements AfterViewInit {
       resolve('');
     }).then(() => {
       this.coins = tempCoins;
-      this.orderPCTGains24h(this.coins);
+      // this.orderPCTGains24h(this.coins);
       this.selectedCoin = this.coins[0];
     });
 
     return promise;
   }
 
-  // order raw USD information by PCT gain
-  orderPCTGains24h(coins: Coin[]) {
-    let tempArray: USD[] = [];
-    coins.forEach((coin) => {
-      tempArray.push(coin?.RAW?.USD);
-    });
-    tempArray = this.orderByPipe.transform(tempArray, 'CHANGEPCT24HOUR');
+  findTopGainers(coins: CoinCG[]) {
+    let orderedCoins: CoinCG[] = [];
 
-    this.findMatch(tempArray);
+    orderedCoins = this.orderByPipe.transform(coins, '-price_change_percentage_24h');
+    this.topGainers = orderedCoins;
   }
+
+  findTopLosers(coins: CoinCG[]) {
+    let orderedCoins: CoinCG[] = [];
+
+    orderedCoins = this.orderByPipe.transform(coins, 'price_change_percentage_24h');
+    this.topLosers = orderedCoins;
+  }
+
+  // order raw USD information by PCT gain
+  // orderPCTGains24h(coins: Coin[]) {
+  //   let tempArray: USD[] = [];
+  //   coins.forEach((coin) => {
+  //     tempArray.push(coin?.RAW?.USD);
+  //   });
+  //   tempArray = this.orderByPipe.transform(tempArray, 'CHANGEPCT24HOUR');
+
+  //   this.findMatch(tempArray);
+  // }
 
   // find match with USD data and Coin data
-  findMatch(coinUSD: USD[]) {
-    let tempArray: Coin[] = [];
-    coinUSD.forEach((coin) => {
-      let match: Coin = this.coins.find((x) => x?.CoinInfo?.Name.toLowerCase() === coin?.FROMSYMBOL?.toLowerCase());
-      tempArray.push(match);
-    });
-    this.topGainerCoins = tempArray;
-    // alert('is loading');
-    this.isLoading = false;
-  }
+  // findMatch(coinUSD: USD[]) {
+  //   let tempArray: Coin[] = [];
+  //   coinUSD.forEach((coin) => {
+  //     let match: Coin = this.coins.find((x) => x?.CoinInfo?.Name.toLowerCase() === coin?.FROMSYMBOL?.toLowerCase());
+  //     tempArray.push(match);
+  //   });
+  //   this.topGainerCoins = tempArray;
+  //   // alert('is loading');
+  //   this.isLoading = false;
+  // }
 
   setSelectedCoin(event: any) {
     this.selectedCoin = event;

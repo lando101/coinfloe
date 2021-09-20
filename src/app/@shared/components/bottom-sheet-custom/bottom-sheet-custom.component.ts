@@ -70,9 +70,9 @@ export class BottomSheetCustomComponent implements OnInit {
     this.bottomSheetService.coin.subscribe((data: Coin) => {
       this.coin = data;
       if (!!this.coin) {
-        console.log('BOTTOM SHEET COIN');
-        console.log(this.coin);
-        console.log('BOTTOM SHEET COIN');
+        // console.log('BOTTOM SHEET COIN');
+        // console.log(this.coin);
+        // console.log('BOTTOM SHEET COIN');
         this.load();
       }
     });

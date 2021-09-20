@@ -61,7 +61,7 @@ export class NewsTilesComponent implements OnInit {
   }
 
   breakpoint(e: any) {
-    console.log('breakpoint');
+    // console.log('breakpoint');
   }
 
   afterChange(e: any) {

@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MediaChange, MediaObserver } from '@angular/flex-layout';
 import { MatSidenav } from '@angular/material/sidenav';
 import { filter, finalize, map } from 'rxjs/operators';
-import { Coin } from 'src/models/coins.model';
+import { Coin, CoinCG } from 'src/models/coins.model';
 
 import { UntilDestroy, untilDestroyed } from '@core';
 import { CryptoDataServiceService, CryptoQuery } from '@app/services/crypto-data-service.service';
@@ -26,6 +26,7 @@ import { of } from 'rxjs';
 import { trigger, transition, useAnimation } from '@angular/animations';
 import { rotateCubeToLeft, rotateCubeToRight } from 'ngx-router-animations';
 import { fadeIn, fadeInDown, fadeInUp, fadeOut } from 'ng-animate';
+import { CgCoinDataService } from '@app/services/cg-coin-data.service';
 
 @UntilDestroy()
 @Component({
@@ -111,7 +112,8 @@ export class ShellComponent implements OnInit {
     private authenticationService: AuthenticationService,
     private credentialsService: CredentialsService,
     public router: Router,
-    private deviceService: DeviceDetectorService
+    private deviceService: DeviceDetectorService,
+    private coinCGService: CgCoinDataService
   ) {
     this.epicFunction();
   }
@@ -140,10 +142,24 @@ export class ShellComponent implements OnInit {
       // console.log(data);
       if (data) {
         this.coins = data;
-        console.log('SHELL');
-        console.log(data);
-        console.log('SHELL');
+        // console.log('SHELL');
+        // console.log(data);
+        // console.log('SHELL');
       }
+    });
+
+    // this.coinCGService
+    //   .getTop250Coins()
+    //   .then((result: CoinCG[]) => {
+    //     console.log('COIN GECKO TOP 250');
+    //     console.log(result);
+    //     console.log('COIN GECKO TOP 250');
+    //   })
+    //   .catch(() => 'Error getting data');
+    this.coinCGService.getTop250Coins().subscribe((data) => {
+      console.log('COIN GECKO TOP 250');
+      console.log(data);
+      console.log('COIN GECKO TOP 250');
     });
 
     this.cryptoService.getCryptoBlockChainData().subscribe((data) => {

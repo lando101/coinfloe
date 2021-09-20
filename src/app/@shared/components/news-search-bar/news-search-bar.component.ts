@@ -35,7 +35,7 @@ export class NewsSearchBarComponent implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes);
+    // console.log(changes);
     const search = changes.recent_search.currentValue;
     const lastSearch = changes.recent_search.previousValue;
     if (!!search) {
@@ -64,7 +64,7 @@ export class NewsSearchBarComponent implements OnInit {
   search() {
     const keywords_string = this.keywordsFound.join(',');
 
-    console.log(`Search String: ${keywords_string}`);
+    // console.log(`Search String: ${keywords_string}`);
     this.searchResults.emit(null);
     this.newsService.getNewsSearch(keywords_string).then((data: NewsSource2[]) => {
       const result: NewsSourceSearch = {

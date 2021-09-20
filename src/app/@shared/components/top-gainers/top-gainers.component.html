@@ -4,7 +4,7 @@
       <!-- <ng-template fxHide.lt-md [width]="90" carouselSlide>
       </ng-template> -->
       <ng-template [width]="225" *ngFor="let coin of coins?.slice(0, 12)" carouselSlide>
-        <button [disabled]="isDragging" aTilt [tiltSettings]="tileSettings" class="p-0" (click)="openBottomSheet(coin)">
+        <button *ngIf="coin.price_change_percentage_24h > 0" [disabled]="isDragging" aTilt [tiltSettings]="tileSettings" class="p-0" (click)="openBottomSheet(coin)">
           <app-coin-card [coin]="coin" [theme]="theme"></app-coin-card>
         </button>
       </ng-template>

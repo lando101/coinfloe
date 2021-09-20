@@ -43,7 +43,7 @@
         (coin)="setSelectedCoin($event)"
         (showCoinDetails)="displayCoin($event)"
         [theme]="theme"
-        [coins]="topGainerCoins"
+        [coins]="topGainers"
       ></app-top-gainers>
     </div>
     <div class="w-100 text-start">
@@ -70,7 +70,7 @@
         (coin)="setSelectedCoin($event)"
         (showCoinDetails)="displayCoin($event)"
         [theme]="theme"
-        [coins]="topGainerCoins"
+        [coins]="topLosers"
       ></app-top-losers>
     </div>
     <div class="text-start">
@@ -88,12 +88,18 @@
         </div>
     </div>
     <div [ngClass]="'coin-table-container'">
-      <app-coin-table
+      <!-- <app-coin-table
       (addFavOutput)="addFavorite($event)"
       (removeFavOutput)="removeFavorite($event)"
       [loading]="isLoading"
       [fullView]="false"
-      [coins]="coins"
+      [coins]="allCoins"
+      [theme]="theme"
+      [count]="10"></app-coin-table> -->
+      <app-coin-table
+      [loading]="isLoading"
+      [fullView]="false"
+      [coins]="allCoins"
       [theme]="theme"
       [count]="10"></app-coin-table>
     </div>

@@ -52,6 +52,7 @@ import { NewsItemLoaderComponent } from './components/loaders/news-item-loader/n
 import { GaugeComponent } from './components/widgets/gauge/gauge.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { MultiGaugeComponent } from './components/widgets/multi-gauge/multi-gauge.component';
+import { ShortNumberPipePipe } from '@app/pipes/ShortNumberPipe.pipe';
 @NgModule({
   imports: [
     FlexLayoutModule,
@@ -111,6 +112,7 @@ import { MultiGaugeComponent } from './components/widgets/multi-gauge/multi-gaug
     NewsItemLoaderComponent,
     GaugeComponent,
     MultiGaugeComponent,
+    ShortNumberPipePipe,
   ],
   exports: [
     LoaderComponent,

@@ -52,9 +52,9 @@ export class GaugeComponent implements OnInit {
   ngOnChanges(changes: SimpleChanges): void {
     const value = changes?.currentValue?.currentValue;
     const theme = changes?.theme?.currentValue;
-    console.log('CHANGE IN GAUGE');
-    console.log(value);
-    console.log('CHANGE IN GAUGE');
+    // console.log('CHANGE IN GAUGE');
+    // console.log(value);
+    // console.log('CHANGE IN GAUGE');
     if (value > 0) {
       this.chartOptions = {
         series: [value],

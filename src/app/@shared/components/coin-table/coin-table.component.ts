@@ -10,7 +10,7 @@ import {
   Output,
   ElementRef,
 } from '@angular/core';
-import { Coin } from 'src/models/coins.model';
+import { Coin, CoinCG } from 'src/models/coins.model';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
@@ -28,6 +28,8 @@ export interface CoinTableData {
   price: number;
   returnPct24h: number;
   return24h: number;
+  returnPct7d: number;
+  returnPct30d: number;
   volume24h: number;
   volume24hUSD: number;
   mrktcap: number;
@@ -58,10 +60,11 @@ export class CoinTableComponent implements OnChanges {
     'price',
     '24h',
     'amountChange24h',
+    '7d',
+    '30d',
     'volume24h',
     'marketcap',
     'supply',
-    'rating',
     'range',
   ];
   dataSource: MatTableDataSource<CoinTableData>;
@@ -69,11 +72,11 @@ export class CoinTableComponent implements OnChanges {
   @ViewChild(MatSort) sort: MatSort;
 
   @Input() loading: boolean;
-  @Input() coins: Coin[];
+  @Input() coins: CoinCG[];
   @Input() theme: string;
   @Input() count: number;
   @Input() fullView = true;
-  @Output() addFavOutput = new EventEmitter<Coin>();
+  @Output() addFavOutput = new EventEmitter<CoinCG>();
   @Output() removeFavOutput = new EventEmitter<Coin>();
 
   coinData: CoinTableData[] = [];
@@ -133,26 +136,27 @@ export class CoinTableComponent implements OnChanges {
         this.show = false;
       }
       this.coinData = [];
-      const coins: Coin[] = changes.coins.currentValue.slice(0, this.count || changes?.coins?.currentValue?.length);
-      coins.map((data: Coin) => {
-        if (!!data.RAW?.USD) {
-          this.coinData.push({
-            name: data.CoinInfo.FullName,
-            symbol: data.CoinInfo.Name,
-            imgUrl: `https://www.cryptocompare.com${data.CoinInfo.ImageUrl}`,
-            price: data.RAW?.USD.PRICE,
-            returnPct24h: data.RAW?.USD.CHANGEPCT24HOUR,
-            return24h: data.RAW?.USD.CHANGE24HOUR,
-            volume24hUSD: data.RAW?.USD.TOTALVOLUME24HTO,
-            volume24h: data.RAW?.USD.TOTALVOLUME24H,
-            mrktcap: data.RAW?.USD.MKTCAP,
-            supply: data.RAW?.USD.SUPPLY,
-            rating: data.CoinInfo.Rating.Weiss.TechnologyAdoptionRating || '-',
-            high: data.RAW?.USD.HIGH24HOUR,
-            low: data.RAW?.USD.LOW24HOUR,
-            favorite: data.FAVORITE,
-          });
-        }
+      const coins: CoinCG[] = changes.coins.currentValue.slice(0, this.count || changes?.coins?.currentValue?.length);
+      coins.map((coin: CoinCG) => {
+        this.coinData.push({
+          name: coin.name,
+          symbol: coin.symbol,
+          imgUrl: coin.image,
+          price: coin.current_price,
+          returnPct24h: coin.price_change_percentage_24h,
+          return24h: coin.price_change_24h,
+          returnPct7d: coin.price_change_percentage_7d_in_currency,
+          returnPct30d: coin.price_change_percentage_30d_in_currency,
+          volume24hUSD: coin.total_volume,
+          volume24h: 0,
+          mrktcap: coin.market_cap,
+          supply: coin.total_supply || null,
+          rating: '-',
+          high: coin.high_24h,
+          low: coin.low_24h,
+          // favorite: data.FAVORITE,
+          favorite: false,
+        });
       });
       this.coinFilteredData = this.coinData;
 
@@ -167,32 +171,32 @@ export class CoinTableComponent implements OnChanges {
         this.show = true;
       }
     }
-    console.log('CHANGE');
+    // console.log('CHANGE');
   }
 
   applyFilter(event: Event) {
-    console.log(event.target);
+    // console.log(event.target);
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
-    console.log(this.dataSource.filteredData);
+    // console.log(this.dataSource.filteredData);
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
   }
 
   toggleFavorite(selectedCoin: CoinTableData) {
-    const coin: Coin = this.coins.find((x) => x.CoinInfo.Name === selectedCoin.symbol);
-    selectedCoin.favorite = !selectedCoin.favorite;
-    if (coin.FAVORITE) {
-      this.removeFavorite(coin);
-    } else {
-      this.addFavorite(coin);
-    }
+    // const coin: Coin = this.coins.find((x) => x.CoinInfo.Name === selectedCoin.symbol);
+    // selectedCoin.favorite = !selectedCoin.favorite;
+    // if (coin.FAVORITE) {
+    //   this.removeFavorite(coin);
+    // } else {
+    //   this.addFavorite(coin);
+    // }
   }
 
   addFavorite(coin: Coin) {
-    coin.FAVORITE = true; // assuming db will successfully handle event
-    this.addFavOutput.emit(coin);
+    // coin.FAVORITE = true; // assuming db will successfully handle event
+    // this.addFavOutput.emit(coin);
   }
   removeFavorite(coin: Coin) {
     coin.FAVORITE = false; // assuming db will successfully handle event
@@ -200,8 +204,8 @@ export class CoinTableComponent implements OnChanges {
   }
 
   openBottomSheet(coin: CoinTableData) {
-    const viewCoin = this.coins.find((x) => x.CoinInfo.Name === coin.symbol);
-    this.bottomSheetService.setState(true, viewCoin);
+    // const viewCoin = this.coins.find((x) => x.CoinInfo.Name === coin.symbol);
+    // this.bottomSheetService.setState(true, viewCoin);
   }
 
   order(chip: ChipFilters) {
@@ -244,6 +248,6 @@ export class CoinTableComponent implements OnChanges {
       this.dataSource.sort = this.sort;
       this.show = true;
     }, 1);
-    console.log(this.coinFilteredData);
+    // console.log(this.coinFilteredData);
   }
 }

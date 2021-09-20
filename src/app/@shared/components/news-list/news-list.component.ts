@@ -45,9 +45,9 @@ export class NewsListComponent implements OnInit {
 
   getGeneralNews() {
     this.newsService._generalNews.subscribe((data) => {
-      console.log('NEWS LIST');
-      console.log(data);
-      console.log('NEWS LIST');
+      // console.log('NEWS LIST');
+      // console.log(data);
+      // console.log('NEWS LIST');
       this.news = data;
     });
 

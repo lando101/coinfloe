@@ -120,7 +120,7 @@ export class CryptoChartComponent implements OnInit {
   constructor(private cryptoDataService: CryptoDataServiceService, private ref: ChangeDetectorRef) {}
 
   ngOnInit(): void {
-    console.log(this.chipList);
+    // console.log(this.chipList);
     this.selectedChip = this.chipList[6]; // set 5y selected
     this.hoverPrice = Number(this.coin.RAW.USD.PRICE | 0);
 
@@ -135,7 +135,7 @@ export class CryptoChartComponent implements OnInit {
 
       if (this.priceData.Data) {
         this.formateDateTime(data, 'daily');
-        console.log(this.filterDailyData);
+        // console.log(this.filterDailyData);
         this.show = false;
         document.getElementById('cryptochart').innerHTML = '';
         this.createNewChart();

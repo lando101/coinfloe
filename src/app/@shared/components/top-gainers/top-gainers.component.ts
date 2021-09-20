@@ -1,7 +1,7 @@
 import { AfterContentInit } from '@angular/core';
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { BottomSheetService } from '@app/services/bottom-sheet.service';
-import { Coin } from 'src/models/coins.model';
+import { Coin, CoinCG } from 'src/models/coins.model';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 @Component({
   selector: 'app-top-gainers',
@@ -10,11 +10,11 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 })
 export class TopGainersComponent implements AfterContentInit {
   @Input() theme: string;
-  @Input() coins: Coin[];
+  @Input() coins: CoinCG[];
 
   @Input() showBottomSheet: boolean;
   @Output() showCoinDetails = new EventEmitter<boolean>();
-  @Output() coin = new EventEmitter<Coin>();
+  @Output() coin = new EventEmitter<CoinCG>();
 
   isDragging = false;
   startPosition = 0;
@@ -80,19 +80,19 @@ export class TopGainersComponent implements AfterContentInit {
   ngOnChanges(changes: SimpleChanges): void {
     //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
     //Add '${implements OnChanges}' to the class.
-    if (changes.coins?.currentValue?.length > 0) {
-      // this.coins = this.coins.reverse();
-      let tempArray: Coin[] = this.coins;
-      this.coins = [];
-      tempArray.forEach((coin, index) => {
-        // removing coins without proper data
-        if (!!coin?.RAW?.USD?.MKTCAP) {
-          this.coins.push(coin);
-        }
-      });
-      this.coins.reverse();
-      // this.coins.splice(0, 1); // removing empty coin
-    }
+    // if (changes.coins?.currentValue?.length > 0) {
+    //   // this.coins = this.coins.reverse();
+    //   let tempArray: Coin[] = this.coins;
+    //   this.coins = [];
+    //   tempArray.forEach((coin, index) => {
+    //     // removing coins without proper data
+    //     if (!!coin?.RAW?.USD?.MKTCAP) {
+    //       this.coins.push(coin);
+    //     }
+    //   });
+    //   this.coins.reverse();
+    //   // this.coins.splice(0, 1); // removing empty coin
+    // }
   }
 
   // openBottomSheet(coin: Coin) {
@@ -105,7 +105,7 @@ export class TopGainersComponent implements AfterContentInit {
     console.log(event);
   }
 
-  openBottomSheet(coin: Coin) {
-    this.bottomSheetService.setState(true, coin);
+  openBottomSheet(coin: CoinCG) {
+    // this.bottomSheetService.setState(true, coin);
   }
 }

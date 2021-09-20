@@ -5,39 +5,40 @@
       <div fxLayout="row" class="mb-2">
         <div class="d-flex justify-content-center me-2">
           <div class="img-container">
-            <img [src]="imgURL"/>
+            <img [src]="coin?.image"/>
           </div>
         </div>
         <div fxLayout="column" class="d-flex justify-content-start align-items-start">
-          <h6 class="card-title mb-1 fw-bold text-start">{{ coin?.CoinInfo?.FullName }}</h6>
-          <small class="fw-bold text-faint">{{ coin?.CoinInfo?.Name }}</small>
+          <h6 class="card-title mb-1 fw-bold text-start">{{ coin?.name }}</h6>
+          <small class="fw-bold text-faint text-uppercase">{{ coin?.symbol }}</small>
         </div>
       </div>
 
       <!-- <h6 class="card-subtitle mb-2 text-muted">{{ coin?.RAW?.USD?.CHANGEPCT24HOUR / 100 | percent }}</h6> -->
       <div fxLayout="column" class="mt-3 text-start" fxLayoutGap="10px">
         <div fxLayout="row" class="align-items-baseline" fxLayoutGap="5px">
-          <h6 class="fw-bold mb-0">{{ coin?.RAW?.USD?.PRICE | currency }}</h6>
+          <h6 class="fw-bold mb-0">{{ coin?.current_price | currency }}</h6>
           <small
             class="d-flex justify-content-end fw-bold"
             [ngClass]="{
-              'text-positive': coin?.RAW?.USD?.CHANGEPCT24HOUR > 0,
-              'text-negative': coin?.RAW?.USD?.CHANGEPCT24HOUR < 0
+              'text-positive': coin?.price_change_percentage_24h > 0,
+              'text-negative': coin?.price_change_percentage_24h < 0
             }"
           >
-            <i *ngIf="coin?.RAW?.USD?.CHANGEPCT24HOUR > 0" class="bi bi-arrow-up-short"></i>
-            <i *ngIf="coin?.RAW?.USD?.CHANGEPCT24HOUR < 0" class="bi bi-arrow-down-short"></i>
-            {{ coin?.RAW?.USD?.CHANGEPCT24HOUR / 100 | percent: '0.1-2' }}
+            <i *ngIf="coin?.price_change_percentage_24h > 0" class="bi bi-arrow-up-short"></i>
+            <i *ngIf="coin?.price_change_percentage_24h < 0" class="bi bi-arrow-down-short"></i>
+            {{ coin?.price_change_percentage_24h / 100 | percent: '0.1-2' }}
           </small>
         </div>
         <div fxLayout="row">
           <div fxFlex="50" fxLayout="column">
             <small class="text-faint fw-bold">Market Cap</small>
-            <label class="mb-0">{{ coin?.DISPLAY?.USD?.MKTCAP }}</label>
+            <label class="mb-0">{{ coin?.market_cap | shortNumber }}</label>
           </div>
           <div fxFlex="50" fxLayout="column">
             <small class="text-faint fw-bold">24h Change</small>
-            <label class="mb-0">{{ coin?.RAW?.USD?.CHANGE24HOUR | currency }}</label>
+            <label
+            class="mb-0">{{ coin?.price_change_24h | currency }}</label>
           </div>
         </div>
       </div>
