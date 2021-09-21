@@ -110,7 +110,6 @@ export class HomeComponent implements AfterViewInit {
       // console.log('BTC TRADING SIGNALS');
     });
   }
-  ngOnInit() {}
 
   // getCoins() {
   //   const promise = new Promise((resolve, reject) => {

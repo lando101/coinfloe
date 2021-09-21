@@ -64,7 +64,7 @@ export class CoinTableComponent implements OnChanges {
     '30d',
     'volume24h',
     'marketcap',
-    'supply',
+    // 'supply',
     'range',
   ];
   dataSource: MatTableDataSource<CoinTableData>;
@@ -119,8 +119,10 @@ export class CoinTableComponent implements OnChanges {
     { name: 'Market Cap', width: 135.3, direction: 1, active: true, key: 'mrktcap' },
     { name: 'Price', width: 89.4, direction: 0, active: false, key: 'price' },
     { name: '24h %', width: 99.75, direction: 0, active: false, key: 'returnPct24h' },
+    { name: '7d %', width: 99.75, direction: 0, active: false, key: 'returnPct7d' },
+    { name: '30d %', width: 99.75, direction: 0, active: false, key: 'returnPct30d' },
     { name: '24h Change', width: 138.35, direction: 0, active: false, key: 'return24h' },
-    { name: '24h Volume', width: 139.33, direction: 0, active: false, key: 'volume24hUSD' },
+    // { name: '24h Volume', width: 139.33, direction: 0, active: false, key: 'volume24hUSD' },
     // { name: 'Weiss Rating', width: 143.75, direction: 0, active: false, key: 'rating' },
   ];
 
@@ -209,6 +211,7 @@ export class CoinTableComponent implements OnChanges {
   }
 
   order(chip: ChipFilters) {
+    this.show = false;
     const key = chip.key;
     const activeChip = this.chips.find((x) => x.active === true);
 

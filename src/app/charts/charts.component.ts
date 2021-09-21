@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { filter, finalize } from 'rxjs/operators';
 
-import { Coin } from 'src/models/coins.model';
+import { Coin, CoinCG } from 'src/models/coins.model';
 import { CryptoDataServiceService, CryptoQuery } from '@app/services/crypto-data-service.service';
 import { ThemeService } from '@app/services/theme.service';
 import { fadeInOnEnterAnimation, fadeOutOnLeaveAnimation } from 'angular-animations';
 import { UserService } from '@app/services/user.service';
 import { User } from 'src/models/user.model';
+import { CgCoinDataService } from '@app/services/cg-coin-data.service';
 
 @Component({
   selector: 'app-charts',
@@ -16,6 +17,7 @@ import { User } from 'src/models/user.model';
 })
 export class ChartsComponent implements OnInit {
   coins: Coin[] = [];
+  allCoins: CoinCG[] = [];
   theme: string = '';
   bottomSheet: boolean;
   selectedCoin: Coin = {};
@@ -25,6 +27,7 @@ export class ChartsComponent implements OnInit {
 
   constructor(
     private cryptoService: CryptoDataServiceService,
+    private coinCGService: CgCoinDataService,
     private themeService: ThemeService,
     private userService: UserService
   ) {}
@@ -57,6 +60,7 @@ export class ChartsComponent implements OnInit {
       });
     });
     // }, 250);
+    this.getCoinsCG();
 
     this.themeService.themeTypeBS.subscribe((data) => {
       if (data) {
@@ -65,6 +69,16 @@ export class ChartsComponent implements OnInit {
     });
   }
 
+  //
+  getCoinsCG() {
+    this.coinCGService.$coins.subscribe((coins: CoinCG[]) => {
+      this.isLoading = true;
+      if (!!coins) {
+        this.allCoins = coins;
+        this.isLoading = false;
+      }
+    });
+  }
   getCoins() {
     const promise = new Promise((resolve, reject) => {
       this.cryptoService.getCryptoData().subscribe((coins: Coin[]) => {
