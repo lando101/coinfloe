@@ -148,6 +148,7 @@ import { ShortNumberPipePipe } from '@app/pipes/ShortNumberPipe.pipe';
     GaugeComponent,
     MultiGaugeComponent,
     CarouselModule,
+    ShortNumberPipePipe,
   ],
   providers: [{ provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } }],
   bootstrap: [CoinsListsComponent],

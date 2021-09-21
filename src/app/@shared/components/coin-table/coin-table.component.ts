@@ -59,7 +59,7 @@ export class CoinTableComponent implements OnChanges {
     'name',
     'price',
     '24h',
-    'amountChange24h',
+    // 'amountChange24h',
     '7d',
     '30d',
     'volume24h',

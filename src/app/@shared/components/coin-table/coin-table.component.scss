@@ -35,7 +35,9 @@ th {
 }
 
 .coin-name {
-  font-size: 0.95rem;
+  // font-size: 0.95rem;
+  font-size: 1.05rem;
+  font-weight: 800;
 }
 .img-container {
   height: 28px;
@@ -163,6 +165,7 @@ th {
     td.mat-footer-cell {
       border-bottom-color: $border;
       color: $font;
+      max-width: 140px;
     }
 
     .table-height-calc{
