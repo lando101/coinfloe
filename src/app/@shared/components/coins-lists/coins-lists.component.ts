@@ -120,7 +120,7 @@ export class CoinsListsComponent implements OnChanges {
   }
 
   openBottomSheet(coin: Coin) {
-    this.bottomSheetService.setState(true, coin);
+    // this.bottomSheetService.setState(true, coin);
   }
 
   toggleFavorite(coin: Coin) {

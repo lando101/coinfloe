@@ -6,7 +6,7 @@
     [@fadeOutDownOnLeave]
     class="inner-container"
   >
-    <div *ngIf="!!coin" fxFlexFill>
+    <div *ngIf="!!viewingCoin" fxFlexFill>
       <div>
         <button mat-icon-button (click)="closeBottomSheet()">
           <svg
@@ -28,40 +28,40 @@
           <div class="crypto-header" fxLayout="column">
             <div class="d-flex justify-content-start align-items-center mb-2">
               <div class="img-container me-2">
-                <img [src]="imgURL" (error)="prettyImgURL = imgURL" />
+                <img [src]="viewingCoin.image"/>
               </div>
-              <h2 class="m-0 fw-bold">{{ coin.CoinInfo.FullName }}</h2>
+              <h2 class="m-0 fw-bold">{{ viewingCoin.name}}</h2>
             </div>
             <div class="d-flex justify-content-start align-items-center">
-              <h4 class="fw-bold price-label mb-0">{{ coin.RAW.USD.PRICE | currency }}</h4>
+              <h4 class="fw-bold price-label mb-0">{{ viewingCoin.current_price | currency }}</h4>
               <label
                 class="d-flex justify-content-end mb-0 ms-2"
                 [ngClass]="{
-                  'text-positive': coin?.RAW?.USD?.CHANGEPCT24HOUR > 0,
-                  'text-negative': coin?.RAW?.USD?.CHANGEPCT24HOUR < 0
+                  'text-positive': viewingCoin.price_change_percentage_24h > 0,
+                  'text-negative': viewingCoin.price_change_percentage_24h < 0
                 }"
               >
-                <i *ngIf="coin?.RAW?.USD?.CHANGEPCT24HOUR > 0" class="bi bi-arrow-up-short"></i>
-                <i *ngIf="coin?.RAW?.USD?.CHANGEPCT24HOUR < 0" class="bi bi-arrow-down-short"></i>
-                {{ coin?.RAW?.USD?.CHANGEPCT24HOUR / 100 | percent: '0.1-2' }}
+                <i *ngIf="viewingCoin.price_change_percentage_24h > 0" class="bi bi-arrow-up-short"></i>
+                <i *ngIf="viewingCoin.price_change_percentage_24h < 0" class="bi bi-arrow-down-short"></i>
+                {{ viewingCoin.price_change_percentage_24h / 100 | percent: '0.1-2' }}
               </label>
             </div>
             <div class="d-flex justify-content-start align-items-center my-3" fxLayout="row" fxLayoutGap="15px">
               <div class="crypto-stat-container py-2 px-3" fxLayout="column">
                 <small class="text-faint mb-1">Market Cap</small>
-                <label class="fw-bold mb-0">{{ coin.RAW.USD.MKTCAP | currency }}</label>
+                <label class="fw-bold mb-0">{{ viewingCoin.market_cap| currency }}</label>
               </div>
               <div class="crypto-stat-container py-2 px-3" fxLayout="column">
                 <small class="text-faint mb-1">24h Volume</small>
-                <label class="fw-bold mb-0">{{ coin.RAW.USD.VOLUME24HOUR | number }}</label>
+                <label class="fw-bold mb-0">${{ viewingCoin.total_volume | shortNumber }}</label>
               </div>
               <div class="crypto-stat-container py-2 px-3" fxLayout="column">
                 <small class="text-faint mb-1">24h High</small>
-                <label class="fw-bold mb-0">{{ coin.RAW.USD.HIGH24HOUR | currency }}</label>
+                <label class="fw-bold mb-0">{{ viewingCoin.high_24h | currency }}</label>
               </div>
               <div class="crypto-stat-container py-2 px-3" fxLayout="column">
                 <small class="text-faint mb-1">24h Low</small>
-                <label class="fw-bold mb-0">{{ coin.RAW.USD.LOW24HOUR | currency }}</label>
+                <label class="fw-bold mb-0">{{ viewingCoin.low_24h | currency }}</label>
               </div>
             </div>
           </div>
@@ -107,7 +107,7 @@
           </div>
         </div>
         <div class="p-3 section-container" fxLayout="column" fxFlex="30">
-          <app-crypto-info [theme]="theme" [coin]="coin" [coinInfo]="coinInfo"></app-crypto-info>
+          <app-crypto-info [theme]="theme" [coin]="viewingCoin" [coinInfo]="coinInfo"></app-crypto-info>
         </div>
       </div>
     </div>

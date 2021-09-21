@@ -1,13 +1,13 @@
-<div class="{{ theme }} theme-container">
+<div *ngIf="!!coin" class="{{ theme }} theme-container">
   <div>
     <h5>
-      <b>About {{ coin.CoinInfo.FullName }}</b>
+      <b>About {{ coin.symbol }}</b>
     </h5>
   </div>
-  <div>
+  <!-- <div>
     <p class="mb-1">{{ coinInfo.description }}</p>
     <a href="{{ coinInfo.urls.website[0] }}" target="_blank">
-      Visit {{ coin.CoinInfo.FullName }} project <i class="ms-1 bi bi-box-arrow-up-right"></i>
+      Visit {{ coin.name }} project <i class="ms-1 bi bi-box-arrow-up-right"></i>
     </a>
     <div fxLayout="column" class="my-3">
       <div
@@ -43,7 +43,7 @@
         <label *ngIf="coin.CoinInfo.MaxSupply > 0; else unknown">{{ coin.CoinInfo.MaxSupply | number }}</label>
       </div>
     </div>
-  </div>
+  </div> -->
 </div>
 
 <ng-template #unknown>

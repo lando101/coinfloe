@@ -106,6 +106,6 @@ export class TopGainersComponent implements AfterContentInit {
   }
 
   openBottomSheet(coin: CoinCG) {
-    // this.bottomSheetService.setState(true, coin);
+    this.bottomSheetService.setState(true, coin);
   }
 }

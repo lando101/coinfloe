@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { CoinInfoExpanded } from 'src/models/coin-info.model';
-import { Coin } from 'src/models/coins.model';
+import { Coin, CoinCG } from 'src/models/coins.model';
 
 @Component({
   selector: 'app-crypto-info',
@@ -9,7 +9,7 @@ import { Coin } from 'src/models/coins.model';
 })
 export class CryptoInfoComponent implements OnInit {
   @Input() theme: string;
-  @Input() coin: Coin;
+  @Input() coin: CoinCG;
   @Input() coinInfo: CoinInfoExpanded;
 
   constructor() {}

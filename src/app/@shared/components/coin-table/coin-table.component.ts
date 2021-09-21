@@ -206,8 +206,8 @@ export class CoinTableComponent implements OnChanges {
   }
 
   openBottomSheet(coin: CoinTableData) {
-    // const viewCoin = this.coins.find((x) => x.CoinInfo.Name === coin.symbol);
-    // this.bottomSheetService.setState(true, viewCoin);
+    const viewCoin = this.coins.find((x) => x.symbol === coin.symbol);
+    this.bottomSheetService.setState(true, viewCoin);
   }
 
   order(chip: ChipFilters) {

@@ -59,7 +59,7 @@ export class MarketCapComponent implements OnInit {
   ngOnChanges(changes: SimpleChanges): void {
     //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
     //Add '${implements OnChanges}' to the class.
-    // console.log(this.globalData);
-    // console.log(this.globalMetrics);
+    console.log(this.globalData);
+    console.log(this.globalMetrics);
   }
 }

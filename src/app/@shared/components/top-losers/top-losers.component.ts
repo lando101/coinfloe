@@ -80,6 +80,6 @@ export class TopLosersComponent implements AfterContentInit {
   //   this.coin.emit(coin);
   // }
   openBottomSheet(coin: CoinCG) {
-    // this.bottomSheetService.setState(true, coin);
+    this.bottomSheetService.setState(true, coin);
   }
 }

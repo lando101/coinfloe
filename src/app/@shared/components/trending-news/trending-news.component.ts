@@ -45,20 +45,29 @@ export class TrendingNewsComponent implements AfterViewInit {
   constructor(private cryptoDataService: CryptoDataServiceService, private newService: NewsService) {}
 
   ngAfterViewInit(): void {
-    setTimeout(() => {
-      // doing this for better page load performance
-      this.newService.getAllNews2().subscribe({
-        next: (data) => {
-          // console.log('NEWS TILE');
-          this.allNewsS2 = data.data.data;
-          // console.log(this.allNewsS2);
-          // console.log('NEWS TILE');
-        },
-        error: (error) => {
-          console.log(error);
-        },
-      });
-    }, 500);
+    // setTimeout(() => {
+    //   // doing this for better page load performance
+    //   this.newService.getAllNews2().subscribe({
+    //     next: (data) => {
+    //       // console.log('NEWS TILE');
+    //       this.allNewsS2 = data.data.data;
+    //       // console.log(this.allNewsS2);
+    //       // console.log('NEWS TILE');
+    //     },
+    //     error: (error) => {
+    //       console.log(error);
+    //     },
+    //   });
+    // }, 500);
+
+    this.newService._generalNews.subscribe({
+      next: (news) => {
+        this.allNewsS2 = news;
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
   }
 
   print(event: any) {

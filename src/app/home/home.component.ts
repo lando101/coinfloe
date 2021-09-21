@@ -99,7 +99,7 @@ export class HomeComponent implements AfterViewInit {
     });
 
     // coin market cap data
-    this.cryptoService.getGlobalMetrics().subscribe((data: GlobalMetrics) => {
+    this.coinCGService.$globalMetrics.subscribe((data: GlobalMetrics) => {
       this.globalMetrics = data;
     });
 

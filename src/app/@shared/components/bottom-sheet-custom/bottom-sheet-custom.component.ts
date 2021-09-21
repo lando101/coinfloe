@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
-import { Coin } from 'src/models/coins.model';
+import { Coin, CoinCG } from 'src/models/coins.model';
 import {
   fadeInOnEnterAnimation,
   fadeOutOnLeaveAnimation,
@@ -11,6 +11,8 @@ import { ThemeService } from '@app/services/theme.service';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { CryptoDataServiceService, CryptoQuery } from '@app/services/crypto-data-service.service';
 import { CoinInfoExpanded } from 'src/models/coin-info.model';
+import { CgCoinDataService } from '@app/services/cg-coin-data.service';
+import { Subject, Subscription, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-bottom-sheet-custom',
@@ -34,8 +36,10 @@ import { CoinInfoExpanded } from 'src/models/coin-info.model';
 export class BottomSheetCustomComponent implements OnInit {
   // @Input() visible: boolean;
   // @Input() coin: Coin;
+
   visible: boolean;
   coin: Coin;
+  viewingCoin: CoinCG;
   @Output() hideCoinDetails = new EventEmitter<boolean>();
   params: CryptoQuery = {};
   coinInfo: CoinInfoExpanded;
@@ -49,10 +53,13 @@ export class BottomSheetCustomComponent implements OnInit {
   prettyImgURL = '';
   theme: string = '';
 
+  private unsubscribe: Subject<boolean> = new Subject<boolean>();
+
   constructor(
     private bottomSheetService: BottomSheetService,
     private themeService: ThemeService,
-    private cryptoDataService: CryptoDataServiceService
+    private cryptoDataService: CryptoDataServiceService,
+    private coinCGService: CgCoinDataService
   ) {}
 
   ngOnInit(): void {
@@ -67,12 +74,16 @@ export class BottomSheetCustomComponent implements OnInit {
     this.bottomSheetService.bottomSheetShow.subscribe((data: boolean) => {
       this.visible = data;
     });
-    this.bottomSheetService.coin.subscribe((data: Coin) => {
-      this.coin = data;
-      if (!!this.coin) {
+    this.bottomSheetService.coin.subscribe((data: CoinCG) => {
+      this.viewingCoin = data;
+
+      if (!!this.viewingCoin) {
         // console.log('BOTTOM SHEET COIN');
         // console.log(this.coin);
         // console.log('BOTTOM SHEET COIN');
+        console.log('VIEWING COIN');
+        console.log(data);
+        console.log('VIEWING COIN');
         this.load();
       }
     });
@@ -99,20 +110,9 @@ export class BottomSheetCustomComponent implements OnInit {
   }
 
   load() {
-    this.imgURL = `https://www.cryptocompare.com${this.coin?.CoinInfo.ImageUrl}`;
-    this.prettyImgURL = `https://cryptologos.cc/logos/${this.coin?.CoinInfo?.FullName.replace(
-      ' ',
-      '-'
-    ).toLowerCase()}-${this.coin?.CoinInfo?.Name.toLowerCase()}-logo.png?v=010`;
-    if (!!this.coin) {
-      this.params = {
-        coin: this.coin.CoinInfo.FullName,
-        symbol: this.coin.CoinInfo.Name,
-        limit: 100,
-        fiat: 'USD',
-      };
-      this.getCoinInfo();
-    }
+    // this.getCoinInfo();
+    this.getCoinOHLC();
+    this.getCoinInfo();
   }
 
   closeBottomSheet() {
@@ -121,10 +121,34 @@ export class BottomSheetCustomComponent implements OnInit {
     // this.hideCoinDetails.emit(false);
   }
 
+  getCoinOHLC() {
+    this.coinCGService
+      .getCoinOhlc(this.viewingCoin.id, 7)
+      .pipe(takeUntil(this.unsubscribe))
+      .subscribe({
+        next: (data: any) => {
+          console.log(data);
+        },
+      });
+  }
+
   // get coin info from coin market cap
   getCoinInfo() {
-    this.cryptoDataService.getCoinInfo(this.params).subscribe((data: any) => {
-      this.coinInfo = data;
-    });
+    this.coinCGService
+      .getCoinInfo(this.viewingCoin.id)
+      .pipe(takeUntil(this.unsubscribe))
+      .subscribe({
+        next: (data: any) => {
+          console.log(data);
+        },
+      });
+  }
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    this.unsubscribe.next(true);
+    // Unsubscribe from the subject
+    this.unsubscribe.unsubscribe();
   }
 }

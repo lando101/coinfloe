@@ -125,6 +125,6 @@ export class SearchComponent implements OnInit {
 
     // this.showCoinDetails.emit(true);
     // this.coin.emit(coin);
-    this.bottomSheetService.setState(true, match);
+    // this.bottomSheetService.setState(true, match);
   }
 }

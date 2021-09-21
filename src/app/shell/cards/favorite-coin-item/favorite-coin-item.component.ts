@@ -54,6 +54,6 @@ export class FavoriteCoinItemComponent implements OnInit {
   }
 
   openBottomSheet(coin: Coin) {
-    this.bottomSheetService.setState(true, coin);
+    // this.bottomSheetService.setState(true, coin);
   }
 }

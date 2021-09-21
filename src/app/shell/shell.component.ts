@@ -27,6 +27,7 @@ import { trigger, transition, useAnimation } from '@angular/animations';
 import { rotateCubeToLeft, rotateCubeToRight } from 'ngx-router-animations';
 import { fadeIn, fadeInDown, fadeInUp, fadeOut } from 'ng-animate';
 import { CgCoinDataService } from '@app/services/cg-coin-data.service';
+import { NewsService } from '@app/services/news.service';
 
 @UntilDestroy()
 @Component({
@@ -85,6 +86,7 @@ export class ShellComponent implements OnInit {
   showProfile: boolean = null;
   marqueePlay = true;
   marqueeInit = false;
+  showSheet = false;
 
   coins: Coin[] = [];
   scrollTop = false;
@@ -113,7 +115,8 @@ export class ShellComponent implements OnInit {
     private credentialsService: CredentialsService,
     public router: Router,
     private deviceService: DeviceDetectorService,
-    private coinCGService: CgCoinDataService
+    private coinCGService: CgCoinDataService,
+    private newsService: NewsService
   ) {
     this.epicFunction();
   }
@@ -139,32 +142,19 @@ export class ShellComponent implements OnInit {
     });
 
     this.cryptoService.coinsObs.subscribe((data) => {
-      // console.log(data);
       if (data) {
         this.coins = data;
-        // console.log('SHELL');
-        // console.log(data);
-        // console.log('SHELL');
       }
     });
 
-    // this.coinCGService
-    //   .getTop250Coins()
-    //   .then((result: CoinCG[]) => {
-    //     console.log('COIN GECKO TOP 250');
-    //     console.log(result);
-    //     console.log('COIN GECKO TOP 250');
-    //   })
-    //   .catch(() => 'Error getting data');
-    this.coinCGService.getTop250Coins().subscribe((data) => {
-      console.log('COIN GECKO TOP 250');
-      console.log(data);
-      console.log('COIN GECKO TOP 250');
-    });
+    // initing data
+    this.coinCGService.getTop250Coins().subscribe((data) => {});
 
-    this.cryptoService.getCryptoBlockChainData().subscribe((data) => {
-      // console.log(data);
-    });
+    this.coinCGService.getGlobalMetrics().subscribe();
+
+    this.newsService.getAllNews2().subscribe((data) => {});
+
+    this.cryptoService.getCryptoBlockChainData().subscribe((data) => {});
 
     // this.cryptoService.getAllNews();
 
@@ -182,9 +172,13 @@ export class ShellComponent implements OnInit {
     this.bottomSheetService.bottomSheetShow.subscribe((data) => {
       if (data === true) {
         this.marqueePlay = false;
+        this.showSheet = true;
         // this.config.wheelSpeed = 0;
       } else {
         this.marqueePlay = true;
+        setTimeout(() => {
+          this.showSheet = false;
+        }, 300);
 
         this.config.wheelSpeed = 0.25;
       }
