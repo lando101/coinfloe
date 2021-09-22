@@ -43,6 +43,8 @@ export class BottomSheetCustomComponent implements OnInit {
   @Output() hideCoinDetails = new EventEmitter<boolean>();
   params: CryptoQuery = {};
   coinInfo: CoinInfo;
+  candleData: number[] = [];
+  priceData: any[] = [];
 
   public config: PerfectScrollbarConfigInterface = {
     wheelSpeed: 0.25,
@@ -123,11 +125,19 @@ export class BottomSheetCustomComponent implements OnInit {
 
   getCoinOHLC() {
     this.coinCGService
-      .getCoinOhlc(this.viewingCoin.id, 7)
+      .getCoinOhlc(this.viewingCoin.id, 'max')
       .pipe(takeUntil(this.unsubscribe))
       .subscribe({
-        next: (data: any) => {
+        next: (data: any[]) => {
           console.log(data);
+          this.candleData = data;
+          this.priceData = [];
+          data.forEach((numbers) => {
+            this.priceData.push([numbers[0], numbers[3]]);
+          });
+          console.log('PRICE DATA');
+          console.log(this.priceData);
+          console.log('PRICE DATA');
         },
       });
   }

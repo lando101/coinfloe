@@ -70,7 +70,7 @@ export class CgCoinDataService {
         console.log('COIN OHLC DATA');
         console.log(coinOhlc);
         console.log('COIN OHLC DATA');
-        return result;
+        return coinOhlc;
       }),
       catchError(() => of('Error, could not get coin info'))
     );

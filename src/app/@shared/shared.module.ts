@@ -58,6 +58,7 @@ import 'prismjs';
 import 'prismjs/components/prism-typescript.min.js';
 import 'prismjs/plugins/line-numbers/prism-line-numbers.js';
 import 'prismjs/plugins/line-highlight/prism-line-highlight.js';
+import { CryptoLineChartComponent } from './components/crypto-line-chart/crypto-line-chart.component';
 @NgModule({
   imports: [
     FlexLayoutModule,
@@ -130,6 +131,7 @@ import 'prismjs/plugins/line-highlight/prism-line-highlight.js';
     GaugeComponent,
     MultiGaugeComponent,
     ShortNumberPipePipe,
+    CryptoLineChartComponent,
   ],
   exports: [
     LoaderComponent,
@@ -166,6 +168,7 @@ import 'prismjs/plugins/line-highlight/prism-line-highlight.js';
     MultiGaugeComponent,
     CarouselModule,
     ShortNumberPipePipe,
+    CryptoLineChartComponent,
   ],
   providers: [{ provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } }],
   bootstrap: [CoinsListsComponent],

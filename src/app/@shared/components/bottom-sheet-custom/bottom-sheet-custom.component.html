@@ -75,7 +75,8 @@
 
           <div class="my-4 left-content">
             <perfect-scrollbar #perfectscroll class="ps" [config]="config">
-              <app-crypto-chart [theme]="theme" [coin]="coin"></app-crypto-chart>
+              <!-- <app-crypto-chart [theme]="theme" [coin]="coin"></app-crypto-chart> -->
+              <app-crypto-line-chart [chartData]="priceData"></app-crypto-line-chart>
               <div>
                 <mat-tab-group>
                   <mat-tab>
