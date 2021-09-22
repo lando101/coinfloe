@@ -12,7 +12,7 @@ export class HighLowProgressComponent implements OnInit {
   @Input() high24h: number;
   @Input() low24h: number;
   @Input() showPercent = true;
-
+  @Input() rangeLabel: string;
   @Input() showPrice = true;
   high: number;
   low: number;

@@ -16,6 +16,6 @@
     <mat-progress-bar mode="determinate" value="{{ progress }}"></mat-progress-bar>
   </div>
   <div *ngIf="showPercent" class="w-100 text-end">
-    <label class="progress-desc text-faint">{{ progress / 100 | percent }} of 24h range</label>
+    <label class="progress-desc">{{ progress / 100 | percent }} of <b>{{rangeLabel || '24h'}}</b> range</label>
   </div>
 </div>

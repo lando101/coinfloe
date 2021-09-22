@@ -37,6 +37,7 @@ export interface CoinInfo {
   genesis_date: Date;
   sentiment_votes_up_percentage: number;
   sentiment_votes_down_percentage: number;
+  ico_data: IcoData;
   market_cap_rank: number;
   coingecko_rank: number;
   coingecko_score: number;
@@ -109,6 +110,38 @@ export interface ReposURL {
   bitbucket: any[];
 }
 
+export interface IcoData {
+  ico_start_date: Date;
+  ico_end_date: Date;
+  short_desc: string;
+  description: null;
+  // links: IcoDataLinks;
+  softcap_currency: string;
+  hardcap_currency: string;
+  total_raised_currency: string;
+  softcap_amount: null;
+  hardcap_amount: string;
+  total_raised: null;
+  quote_pre_sale_currency: string;
+  base_pre_sale_amount: string;
+  quote_pre_sale_amount: string;
+  quote_public_sale_currency: string;
+  base_public_sale_amount: number;
+  quote_public_sale_amount: number;
+  accepting_currencies: string;
+  country_origin: string;
+  pre_sale_start_date: null;
+  pre_sale_end_date: null;
+  whitelist_url: string;
+  whitelist_start_date: null;
+  whitelist_end_date: null;
+  bounty_detail_url: string;
+  amount_for_sale: null;
+  kyc_required: boolean;
+  whitelist_available: null;
+  pre_sale_available: null;
+  pre_sale_ended: boolean;
+}
 export interface MarketData {
   current_price: { [key: string]: number };
   total_value_locked: null;

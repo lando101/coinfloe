@@ -1,76 +1,121 @@
 <div *ngIf="!!coinInfo" class="{{ theme }} theme-container">
-  <div>
-    <h5>
-      <b>About {{ coin.name }}</b>
-    </h5>
-  </div>
-  <div>
-    <!-- <p class="mb-1">{{ coinInfo.description.en }}</p> -->
-    <div *ngIf="!!coinInfo.description.en" fxLayout="column" fxLayoutGap="5px">
-      <small class="fw-bold text-faint">Description</small>
-      <div class="about-content" [ngClass]="{'content-expanded': expanded, 'content-minimized': !expanded}">
-        <markdown class="variable-binding" [data]="coinInfo.description.en"></markdown>
-      </div>
-      <div class="w-100 d-flex align-items-center justify-content-center">
-        <button mat-flat-button class="btn see-more-btn" (click)="expanded = !expanded">
-          <div *ngIf="!expanded" fxLayout="column" fxLayoutGap="-5px">
-            <span >See more</span>
-            <i class="bi bi-chevron-down"></i>
-          </div>
-          <div *ngIf="expanded" fxLayout="column" fxLayoutGap="-5px">
-            <i class="bi bi-chevron-up"></i>
-            <span >See less</span>
-          </div>
-        </button>
+  <div fxLayout="column" fxLayoutGap="15px">
+    <div>
+      <h5>
+        <b>{{ coin.name }} Info</b>
+      </h5>
+      <div>
+        <span class="pill">Rank #{{coinInfo.market_cap_rank}}</span>
       </div>
     </div>
     <div>
-      <small class="fw-bold fw-bold text-faint">Categories</small>
-      <mat-chip-list *ngIf="coinInfo.categories.length>0">
-        <mat-chip *ngFor="let category of coinInfo.categories">
-          {{category}}
-        </mat-chip>
-      </mat-chip-list>
-    </div>
+      <!-- <p class="mb-1">{{ coinInfo.description.en }}</p> -->
+      <div class="info-container" *ngIf="!!coinInfo.description.en" fxLayout="column" fxLayoutGap="5px">
+        <small class="fw-bold text-faint">About</small>
+        <div class="about-content" [ngClass]="{'content-expanded': expanded, 'content-minimized': !expanded}">
+          <markdown class="variable-binding" [data]="coinInfo.description.en"></markdown>
+          <a href="{{ coinInfo.links.homepage[0] }}" target="_blank">
+            Visit {{ coin.name }} project <i class="ms-1 bi bi-box-arrow-up-right"></i>
+          </a>
+        </div>
+        <div class="w-100 d-flex align-items-center justify-content-center">
+          <button mat-flat-button class="btn see-more-btn" (click)="expanded = !expanded">
+            <div *ngIf="!expanded" fxLayout="column" fxLayoutGap="-5px">
+              <span >See more</span>
+              <i class="bi bi-chevron-down"></i>
+            </div>
+            <div *ngIf="expanded" fxLayout="column" fxLayoutGap="-5px">
+              <i class="bi bi-chevron-up"></i>
+              <span >See less</span>
+            </div>
+          </button>
+        </div>
+      </div>
+      <div fxLayout="column" class="my-3">
+        <div class="py-2 info-container">
+          <h6 class="text-faint mb-1">Last 24h</h6>
+          <div>
+            <label class="fw-bold text-faint info-label mb-1">24h Range</label>
+            <app-high-low-progress
+            [showPercent]="true"
+            [price]="coin.current_price"
+            [low24h]="coin.low_24h"
+            [high24h]="coin.high_24h"
+          ></app-high-low-progress>
+          </div>
+        </div>
+        <div class="py-2 info-container">
+          <h6 class="text-faint mb-1">All Time High</h6>
+          <div fxLayout="column" fxLayoutGap="10px">
+            <div class="mt-1">
+              <div fxLayout="row" class="align-items-baseline" fxLayoutGap="5px">
+                <h5 class="fw-bold mb-1">{{coinInfo.market_data.ath.usd | currency}}</h5>
+                <small
+                class="d-flex justify-content-end fw-bold"
+                [ngClass]="{
+                  'text-positive': coinInfo.market_data.ath_change_percentage.usd > 0,
+                  'text-negative': coinInfo.market_data.ath_change_percentage.usd < 0
+                }"
+              >
+                <i *ngIf="coinInfo.market_data.ath_change_percentage.usd > 0" class="bi bi-arrow-up-short"></i>
+                <i *ngIf="coinInfo.market_data.ath_change_percentage.usd < 0" class="bi bi-arrow-down-short"></i>
+                {{ coinInfo.market_data.ath_change_percentage.usd / 100 | percent: '0.1-2' }}
+              </small>
+              </div>
+              <div fxLayout="row" class="text-faint" fxLayoutAlign="start center" fxLayoutGap="3px">
+                <i _ngcontent-kck-c167="" class="bi bi-clock-fill me-1"></i>
+                <label class="fw-bold info-label">ATH occured {{ coinInfo.market_data.ath_date.usd | amTimeAgo }}</label>
+              </div>
+            </div>
+          <div>
+            <label class="fw-bold text-faint info-label mb-1">ATH Range</label>
+            <app-high-low-progress
+            [showPercent]="true"
+            [price]="coin.current_price"
+            [low24h]="coinInfo.market_data.atl.usd"
+            [high24h]="coinInfo.market_data.ath.usd"
+            [rangeLabel]="'lifetime'"
+          ></app-high-low-progress>
 
-    <!-- <a href="{{ coinInfo.urls.website[0] }}" target="_blank">
-      Visit {{ coin.name }} project <i class="ms-1 bi bi-box-arrow-up-right"></i>
-    </a> -->
-    <div fxLayout="column" class="my-3">
-      <!-- <div
-        *ngIf="!!coin.CoinInfo.AssetLaunchDate"
-        fxLayout="row"
-        class="p-2 align-items-between justify-content-between about-item"
-      >
-        <label>Launch Date</label>
-        <label>{{ coin.CoinInfo.AssetLaunchDate }}</label>
+          </div>
+          </div>
+          </div>
+        <div class="pt-2" *ngIf="coinInfo.categories.length>0">
+          <small class="fw-bold fw-bold text-faint">Tags</small>
+          <mat-chip-list >
+            <mat-chip *ngFor="let category of coinInfo.categories">
+              {{category}}
+            </mat-chip>
+          </mat-chip-list>
+        </div>
+        <!-- <div
+          *ngIf="!!coin.CoinInfo.Algorithm"
+          fxLayout="row"
+          class="p-2 align-items-between justify-content-between about-item"
+        >
+          <label>Algorithm</label>
+          <label>{{ coin.CoinInfo.Algorithm }}</label>
+        </div> -->
+        <!-- <div
+          *ngIf="!!coin.CoinInfo.ProofType"
+          fxLayout="row"
+          class="p-2 align-items-between justify-content-between about-item"
+        >
+          <label>Proof Type</label>
+          <label>{{ coin.CoinInfo.ProofType }}</label>
+        </div> -->
+        <!-- <div
+          *ngIf="!!coin.CoinInfo.MaxSupply"
+          fxLayout="row"
+          class="p-2 align-items-between justify-content-between about-item"
+        >
+          <label>Max Supply</label>
+          <label *ngIf="coin.CoinInfo.MaxSupply > 0; else unknown">{{ coin.CoinInfo.MaxSupply | number }}</label>
+        </div> -->
       </div>
-      <div
-        *ngIf="!!coin.CoinInfo.Algorithm"
-        fxLayout="row"
-        class="p-2 align-items-between justify-content-between about-item"
-      >
-        <label>Algorithm</label>
-        <label>{{ coin.CoinInfo.Algorithm }}</label>
-      </div>
-      <div
-        *ngIf="!!coin.CoinInfo.ProofType"
-        fxLayout="row"
-        class="p-2 align-items-between justify-content-between about-item"
-      >
-        <label>Proof Type</label>
-        <label>{{ coin.CoinInfo.ProofType }}</label>
-      </div>
-      <div
-        *ngIf="!!coin.CoinInfo.MaxSupply"
-        fxLayout="row"
-        class="p-2 align-items-between justify-content-between about-item"
-      >
-        <label>Max Supply</label>
-        <label *ngIf="coin.CoinInfo.MaxSupply > 0; else unknown">{{ coin.CoinInfo.MaxSupply | number }}</label>
-      </div>
-    </div> -->
+    </div>
   </div>
+
 </div>
 
 <ng-template #unknown>

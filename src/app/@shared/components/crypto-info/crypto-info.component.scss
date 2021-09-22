@@ -4,9 +4,13 @@
 @mixin theme-mixin($light-theme: true) {
   $bg-color: $primary-background;
   $border: $primary-border-light;
+  $border-dark: $border-darkest;
+  $font: $primary-font-color;
   @if $light-theme != true {
     $bg-color: $dark-primary-background;
     $border: $dark-primary-border-dark;
+    $border-dark:  $dark-primary-border-dark;
+    $font: $dark-primary-font-color;
   }
 
   background-color: $bg-color;
@@ -14,6 +18,18 @@
   border-radius: $default-brdr-radius;
   padding: 20px 30px;
   border: 1px solid $border;
+  color: $font;
+  .pill{
+    padding: 6px 13px;
+    border-radius: 50px;
+    background-color: $font;
+    color: $bg-color;
+    font-weight: 800;
+    font-size: .75rem;
+  }
+  h6{
+    font-weight: 800 !important;
+  }
   p {
     font-size: 0.87rem;
     line-height: 1.75;
@@ -24,6 +40,15 @@
   label {
     font-size: 0.95rem;
   }
+  .info-container{
+    border-bottom: 1px solid $border-dark;
+    .info-label {
+      margin-bottom: 0px;
+      font-size: .75rem;
+      font-weight: 800 !important;
+    }
+  }
+
   .about-item {
     border-bottom: 1px solid $border;
     &:last-child {
@@ -34,9 +59,6 @@
 
 .see-more-btn{
   font-size: .85rem;
-  // i{
-  //   margin-bottom
-  // }
 }
 
 .about-content{
@@ -55,7 +77,7 @@
 
 .content-minimized{
   max-height: 190px;
-  -webkit-line-clamp: 8;
+  -webkit-line-clamp: 6;
 }
 .dark.theme-container {
   @include theme-mixin($light-theme: false);
