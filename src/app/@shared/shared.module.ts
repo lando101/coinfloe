@@ -53,6 +53,11 @@ import { GaugeComponent } from './components/widgets/gauge/gauge.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { MultiGaugeComponent } from './components/widgets/multi-gauge/multi-gauge.component';
 import { ShortNumberPipePipe } from '@app/pipes/ShortNumberPipe.pipe';
+import { MarkdownModule, MarkedOptions } from 'ngx-markdown';
+import 'prismjs';
+import 'prismjs/components/prism-typescript.min.js';
+import 'prismjs/plugins/line-numbers/prism-line-numbers.js';
+import 'prismjs/plugins/line-highlight/prism-line-highlight.js';
 @NgModule({
   imports: [
     FlexLayoutModule,
@@ -70,6 +75,18 @@ import { ShortNumberPipePipe } from '@app/pipes/ShortNumberPipe.pipe';
     NgxGaugeModule,
     NgApexchartsModule,
     FontAwesomeModule,
+    MarkdownModule.forRoot({
+      markedOptions: {
+        provide: MarkedOptions,
+        useValue: {
+          gfm: true,
+          breaks: true,
+          pedantic: false,
+          smartLists: true,
+          smartypants: false,
+        },
+      },
+    }),
     MomentModule.forRoot({
       relativeTimeThresholdOptions: {
         m: 59,

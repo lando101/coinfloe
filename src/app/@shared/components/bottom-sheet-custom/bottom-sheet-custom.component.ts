@@ -10,7 +10,7 @@ import { BottomSheetService } from '@app/services/bottom-sheet.service';
 import { ThemeService } from '@app/services/theme.service';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { CryptoDataServiceService, CryptoQuery } from '@app/services/crypto-data-service.service';
-import { CoinInfoExpanded } from 'src/models/coin-info.model';
+import { CoinInfo, CoinInfoExpanded } from 'src/models/coin-info.model';
 import { CgCoinDataService } from '@app/services/cg-coin-data.service';
 import { Subject, Subscription, takeUntil } from 'rxjs';
 
@@ -42,7 +42,7 @@ export class BottomSheetCustomComponent implements OnInit {
   viewingCoin: CoinCG;
   @Output() hideCoinDetails = new EventEmitter<boolean>();
   params: CryptoQuery = {};
-  coinInfo: CoinInfoExpanded;
+  coinInfo: CoinInfo;
 
   public config: PerfectScrollbarConfigInterface = {
     wheelSpeed: 0.25,
@@ -139,6 +139,7 @@ export class BottomSheetCustomComponent implements OnInit {
       .pipe(takeUntil(this.unsubscribe))
       .subscribe({
         next: (data: any) => {
+          this.coinInfo = data;
           console.log(data);
         },
       });

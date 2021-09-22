@@ -23,8 +23,6 @@ import { CookieModule } from 'ngx-cookie';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { LoadingBarModule } from '@ngx-loading-bar/core';
 import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
-import { RouterModule } from '@angular/router';
-import { CarouselModule } from 'ngx-owl-carousel-o';
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: 'AIzaSyAeKsUc-gOCa5HV9wAzlAbBY06UQYistE0',

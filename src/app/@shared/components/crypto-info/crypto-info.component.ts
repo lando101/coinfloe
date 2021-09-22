@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
-import { CoinInfoExpanded } from 'src/models/coin-info.model';
+import { CoinInfo, CoinInfoExpanded } from 'src/models/coin-info.model';
 import { Coin, CoinCG } from 'src/models/coins.model';
 
 @Component({
@@ -10,8 +10,24 @@ import { Coin, CoinCG } from 'src/models/coins.model';
 export class CryptoInfoComponent implements OnInit {
   @Input() theme: string;
   @Input() coin: CoinCG;
-  @Input() coinInfo: CoinInfoExpanded;
+  @Input() coinInfo: CoinInfo;
+  expanded = false;
+  markdown = `## Markdown __rulez__!
+---
 
+### Syntax highlight
+\`\`\`typescript
+const language = 'typescript';
+\`\`\`
+
+### Lists
+1. Ordered list
+2. Another bullet point
+   - Unordered list
+   - Another unordered bullet
+
+### Blockquote
+> Blockquote to the max`;
   constructor() {}
 
   ngOnInit(): void {

@@ -1,16 +1,43 @@
-<div *ngIf="!!coin" class="{{ theme }} theme-container">
+<div *ngIf="!!coinInfo" class="{{ theme }} theme-container">
   <div>
     <h5>
-      <b>About {{ coin.symbol }}</b>
+      <b>About {{ coin.name }}</b>
     </h5>
   </div>
-  <!-- <div>
-    <p class="mb-1">{{ coinInfo.description }}</p>
-    <a href="{{ coinInfo.urls.website[0] }}" target="_blank">
+  <div>
+    <!-- <p class="mb-1">{{ coinInfo.description.en }}</p> -->
+    <div *ngIf="!!coinInfo.description.en" fxLayout="column" fxLayoutGap="5px">
+      <small class="fw-bold text-faint">Description</small>
+      <div class="about-content" [ngClass]="{'content-expanded': expanded, 'content-minimized': !expanded}">
+        <markdown class="variable-binding" [data]="coinInfo.description.en"></markdown>
+      </div>
+      <div class="w-100 d-flex align-items-center justify-content-center">
+        <button mat-flat-button class="btn see-more-btn" (click)="expanded = !expanded">
+          <div *ngIf="!expanded" fxLayout="column" fxLayoutGap="-5px">
+            <span >See more</span>
+            <i class="bi bi-chevron-down"></i>
+          </div>
+          <div *ngIf="expanded" fxLayout="column" fxLayoutGap="-5px">
+            <i class="bi bi-chevron-up"></i>
+            <span >See less</span>
+          </div>
+        </button>
+      </div>
+    </div>
+    <div>
+      <small class="fw-bold fw-bold text-faint">Categories</small>
+      <mat-chip-list *ngIf="coinInfo.categories.length>0">
+        <mat-chip *ngFor="let category of coinInfo.categories">
+          {{category}}
+        </mat-chip>
+      </mat-chip-list>
+    </div>
+
+    <!-- <a href="{{ coinInfo.urls.website[0] }}" target="_blank">
       Visit {{ coin.name }} project <i class="ms-1 bi bi-box-arrow-up-right"></i>
-    </a>
+    </a> -->
     <div fxLayout="column" class="my-3">
-      <div
+      <!-- <div
         *ngIf="!!coin.CoinInfo.AssetLaunchDate"
         fxLayout="row"
         class="p-2 align-items-between justify-content-between about-item"
@@ -42,8 +69,8 @@
         <label>Max Supply</label>
         <label *ngIf="coin.CoinInfo.MaxSupply > 0; else unknown">{{ coin.CoinInfo.MaxSupply | number }}</label>
       </div>
-    </div>
-  </div> -->
+    </div> -->
+  </div>
 </div>
 
 <ng-template #unknown>
