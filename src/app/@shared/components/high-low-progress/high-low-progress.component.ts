@@ -14,6 +14,7 @@ export class HighLowProgressComponent implements OnInit {
   @Input() showPercent = true;
   @Input() rangeLabel: string;
   @Input() showPrice = true;
+  @Input() largeLabel = false;
   high: number;
   low: number;
   progress: number;

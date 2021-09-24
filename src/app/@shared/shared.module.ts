@@ -59,6 +59,10 @@ import 'prismjs/components/prism-typescript.min.js';
 import 'prismjs/plugins/line-numbers/prism-line-numbers.js';
 import 'prismjs/plugins/line-highlight/prism-line-highlight.js';
 import { CryptoLineChartComponent } from './components/crypto-line-chart/crypto-line-chart.component';
+import { AthWidgetComponent } from './components/widgets/ath-widget/ath-widget.component';
+import { LiquidityWidgetComponent } from './components/widgets/liquidity-widget/liquidity-widget.component';
+import { SocialMetricsWidgetComponent } from './components/widgets/social-metrics-widget/social-metrics-widget.component';
+import { MarketInfoWidgetComponent } from './components/widgets/market-info-widget/market-info-widget.component';
 @NgModule({
   imports: [
     FlexLayoutModule,
@@ -132,6 +136,10 @@ import { CryptoLineChartComponent } from './components/crypto-line-chart/crypto-
     MultiGaugeComponent,
     ShortNumberPipePipe,
     CryptoLineChartComponent,
+    AthWidgetComponent,
+    LiquidityWidgetComponent,
+    SocialMetricsWidgetComponent,
+    MarketInfoWidgetComponent,
   ],
   exports: [
     LoaderComponent,

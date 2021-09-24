@@ -24,7 +24,7 @@
         </button>
       </div>
       <div fxFlexFill fxLayout="row" class="ps-3 pt-3 pe-3">
-        <div class="p-3 section-container" fxLayout="column" fxFlex="70">
+        <div class="p-3 section-container" fxLayout="column" fxFlex.gt-lg="80" fxFlex.lt-xl="70">
           <div class="crypto-header" fxLayout="column">
             <div class="mb-2">
               <div class="d-flex justify-content-start align-items-center">
@@ -114,7 +114,7 @@
             </perfect-scrollbar>
           </div>
         </div>
-        <div class="p-3 section-container" fxLayout="column" fxFlex="30">
+        <div class="p-3 section-container" fxLayout="column" fxFlex.gt-lg="20" fxFlex.lt-xl="30">
           <app-crypto-info [theme]="theme" [coin]="viewingCoin" [coinInfo]="coinInfo"></app-crypto-info>
         </div>
       </div>

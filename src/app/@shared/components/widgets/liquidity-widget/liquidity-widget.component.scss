@@ -1,0 +1,39 @@
+@import "../../../../../styles/index";
+
+@mixin theme-mixin($light-theme: true){
+  $bg-color: $primary-background;
+  $border: $primary-border-light;
+  $border-dark: $border-darkest;
+  $font: $primary-font-color;
+  $secondary-font: $secondary-font-color;
+  @if $light-theme !=true {
+    $bg-color: $dark-primary-background;
+    $border: $dark-primary-border-dark;
+    $border-dark:  $dark-primary-border-dark;
+    $font: $dark-primary-font-color;
+    $secondary-font: $dark-text-color;
+  }
+  .info-header{
+    color: $secondary-font;
+    opacity: .7;
+  }
+
+  .info-row{
+    border-bottom: 1px solid $border;
+    .info-title{
+      color:  $secondary-font;
+      font-weight: 800;
+    }
+    .info-data{
+      font-weight: 800;
+    }
+  }
+}
+
+.theme-container{
+  @include theme-mixin($light-theme: true);
+}
+
+.dark.theme-container {
+  @include theme-mixin($light-theme: false);
+}

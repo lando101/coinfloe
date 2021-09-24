@@ -8,9 +8,9 @@
         <span class="pill">Rank #{{coinInfo.market_cap_rank}}</span>
       </div>
     </div>
-    <div>
+    <div fxLayout="column" fxLayoutGap="10px">
       <!-- <p class="mb-1">{{ coinInfo.description.en }}</p> -->
-      <div class="info-container" *ngIf="!!coinInfo.description.en" fxLayout="column" fxLayoutGap="5px">
+      <div class="mb-2" *ngIf="!!coinInfo.description.en" fxLayout="column" fxLayoutGap="5px">
         <small class="fw-bold text-faint">About</small>
         <div class="about-content" [ngClass]="{'content-expanded': expanded, 'content-minimized': !expanded}">
           <markdown class="variable-binding" [data]="coinInfo.description.en"></markdown>
@@ -19,7 +19,7 @@
           </a>
         </div>
         <div class="w-100 d-flex align-items-center justify-content-center">
-          <button mat-flat-button class="btn see-more-btn" (click)="expanded = !expanded">
+          <button mat-flat-button class="p-0 px-3 btn see-more-btn" (click)="expanded = !expanded">
             <div *ngIf="!expanded" fxLayout="column" fxLayoutGap="-5px">
               <span >See more</span>
               <i class="bi bi-chevron-down"></i>
@@ -31,7 +31,18 @@
           </button>
         </div>
       </div>
-      <div fxLayout="column" class="my-3">
+      <div class="widget-container">
+        <app-market-info-widget [theme]="theme" [marketData]="coinInfo.market_data"></app-market-info-widget>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px">
+        <div fxFlex="50" class="widget-container">
+          <app-liquidity-widget [theme]="theme"></app-liquidity-widget>
+        </div>
+        <div fxFlex="50" class="widget-container">
+          <app-social-metrics-widget></app-social-metrics-widget>
+        </div>
+      </div>
+      <!-- <div fxLayout="column" class="my-3">
         <div class="py-2 info-container">
           <h6 class="text-faint mb-1">Last 24h</h6>
           <div>
@@ -79,7 +90,7 @@
 
           </div>
           </div>
-          </div>
+          </div> -->
         <div class="pt-2" *ngIf="coinInfo.categories.length>0">
           <small class="fw-bold fw-bold text-faint">Tags</small>
           <mat-chip-list >
@@ -88,35 +99,11 @@
             </mat-chip>
           </mat-chip-list>
         </div>
-        <!-- <div
-          *ngIf="!!coin.CoinInfo.Algorithm"
-          fxLayout="row"
-          class="p-2 align-items-between justify-content-between about-item"
-        >
-          <label>Algorithm</label>
-          <label>{{ coin.CoinInfo.Algorithm }}</label>
-        </div> -->
-        <!-- <div
-          *ngIf="!!coin.CoinInfo.ProofType"
-          fxLayout="row"
-          class="p-2 align-items-between justify-content-between about-item"
-        >
-          <label>Proof Type</label>
-          <label>{{ coin.CoinInfo.ProofType }}</label>
-        </div> -->
-        <!-- <div
-          *ngIf="!!coin.CoinInfo.MaxSupply"
-          fxLayout="row"
-          class="p-2 align-items-between justify-content-between about-item"
-        >
-          <label>Max Supply</label>
-          <label *ngIf="coin.CoinInfo.MaxSupply > 0; else unknown">{{ coin.CoinInfo.MaxSupply | number }}</label>
-        </div> -->
       </div>
     </div>
   </div>
 
-</div>
+<!-- </div> -->
 
 <ng-template #unknown>
   <label>Not available </label>
