@@ -1,4 +1,24 @@
 <div class="{{theme}} theme-container">
   <small class="fw-bold info-header">Liquidity Score</small>
-
+  <div class="position-relative" *ngIf="liquidity>0">
+    <div id="chart">
+      <apx-chart
+        [series]="chartOptions.series"
+        [chart]="chartOptions.chart"
+        [plotOptions]="chartOptions.plotOptions"
+        [labels]="chartOptions.labels"
+        [fill]="chartOptions.fill"
+        [stroke]="chartOptions.stroke"
+        [colors]="chartOptions.colors"
+      ></apx-chart>
+    </div>
+    <div class="metric-container">
+      <label class="text-center">{{liquidity | number: '0.1-2'}}</label>
+      <small *ngIf="liquidity <=20" class="fw-bold text-faint text-center">Very Low</small>
+      <small *ngIf="liquidity <= 40 && liquidity > 20" class="fw-bold text-faint text-center">Low</small>
+      <small *ngIf="liquidity <= 70 && liquidity > 40" class="fw-bold text-faint text-center">Moderate</small>
+      <small *ngIf="liquidity <= 95 && liquidity > 70" class="fw-bold text-faint text-center">High</small>
+      <small *ngIf="liquidity > 95" class="fw-bold text-faint text-center">Very High</small>
+    </div>
+  </div>
 </div>

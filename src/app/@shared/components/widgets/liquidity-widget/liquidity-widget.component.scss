@@ -28,6 +28,22 @@
       font-weight: 800;
     }
   }
+  #chart {
+    height: 115px;
+  }
+
+  .metric-container{
+    position: absolute;
+    top: 25px;
+    left: 50%;
+    transform: translate(-50%,50%);
+    display: flex;
+    flex-direction: column;
+    label{
+      font-size: 1.3rem;
+      font-weight: 800 !important;
+    }
+  }
 }
 
 .theme-container{
