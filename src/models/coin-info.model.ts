@@ -54,13 +54,13 @@ export interface CoinInfo {
 }
 
 export interface CommunityData {
-  facebook_likes: null;
+  facebook_likes: any;
   twitter_followers: number;
   reddit_average_posts_48h: number;
   reddit_average_comments_48h: number;
   reddit_subscribers: number;
   reddit_accounts_active_48h: number;
-  telegram_channel_user_count: null;
+  telegram_channel_user_count: any;
 }
 
 export interface Description {

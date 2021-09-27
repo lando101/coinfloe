@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { CoinInfo, CoinInfoExpanded } from 'src/models/coin-info.model';
 import { Coin, CoinCG } from 'src/models/coins.model';
 
@@ -11,6 +12,11 @@ export class CryptoInfoComponent implements OnInit {
   @Input() theme: string;
   @Input() coin: CoinCG;
   @Input() coinInfo: CoinInfo;
+
+  public config: PerfectScrollbarConfigInterface = {
+    suppressScrollX: true,
+  };
+
   expanded = false;
   markdown = `## Markdown __rulez__!
 ---

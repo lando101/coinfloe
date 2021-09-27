@@ -1,6 +1,6 @@
-<div *ngIf="!!coinInfo" class="{{ theme }} theme-container">
+<div *ngIf="!!coinInfo" class="{{ theme }} theme-container pb-0">
   <div fxLayout="column" fxLayoutGap="15px">
-    <div>
+    <div class="p-3 pb-0">
       <h5>
         <b>{{ coin.name }} Info</b>
       </h5>
@@ -8,98 +8,56 @@
         <span class="pill">Rank #{{coinInfo.market_cap_rank}}</span>
       </div>
     </div>
-    <div fxLayout="column" fxLayoutGap="12px">
-      <!-- <p class="mb-1">{{ coinInfo.description.en }}</p> -->
-      <div class="mb-2" *ngIf="!!coinInfo.description.en" fxLayout="column" fxLayoutGap="5px">
-        <small class="fw-bold text-faint">About</small>
-        <div class="about-content" [ngClass]="{'content-expanded': expanded, 'content-minimized': !expanded}">
-          <markdown class="variable-binding" [data]="coinInfo.description.en"></markdown>
-          <a href="{{ coinInfo.links.homepage[0] }}" target="_blank">
-            Visit {{ coin.name }} project <i class="ms-1 bi bi-box-arrow-up-right"></i>
-          </a>
-        </div>
-        <div class="w-100 d-flex align-items-center justify-content-center">
-          <button mat-flat-button class="p-0 px-3 btn see-more-btn" (click)="expanded = !expanded">
-            <div *ngIf="!expanded" fxLayout="column" fxLayoutGap="-5px">
-              <span >See more</span>
-              <i class="bi bi-chevron-down"></i>
+    <perfect-scrollbar [config]="config" class="ps">
+      <div class="info-inner-container p-3">
+        <div class="pb-3" fxLayout="column" fxLayoutGap="12px">
+          <div class="mb-2" *ngIf="!!coinInfo.description.en" fxLayout="column" fxLayoutGap="5px">
+            <small class="fw-bold text-faint">About</small>
+            <div class="about-content" [ngClass]="{'content-expanded': expanded, 'content-minimized': !expanded}">
+              <markdown class="variable-binding" [data]="coinInfo.description.en"></markdown>
+              <a href="{{ coinInfo.links.homepage[0] }}" target="_blank">
+                Visit {{ coin.name }} project <i class="ms-1 bi bi-box-arrow-up-right"></i>
+              </a>
             </div>
-            <div *ngIf="expanded" fxLayout="column" fxLayoutGap="-5px">
-              <i class="bi bi-chevron-up"></i>
-              <span >See less</span>
+            <div class="w-100 d-flex align-items-center justify-content-center">
+              <button mat-flat-button class="p-0 px-3 btn see-more-btn" (click)="expanded = !expanded">
+                <div *ngIf="!expanded" fxLayout="column" fxLayoutGap="-5px">
+                  <span >See more</span>
+                  <i class="bi bi-chevron-down"></i>
+                </div>
+                <div *ngIf="expanded" fxLayout="column" fxLayoutGap="-5px">
+                  <i class="bi bi-chevron-up"></i>
+                  <span >See less</span>
+                </div>
+              </button>
             </div>
-          </button>
-        </div>
-      </div>
-      <div class="widget-container">
-        <app-market-info-widget [theme]="theme" [marketData]="coinInfo.market_data"></app-market-info-widget>
-      </div>
-      <div fxFlex="160px" fxLayout="row" fxLayoutGap="12px">
-        <div fxFlex="50" class="widget-container">
-          <app-liquidity-widget [theme]="theme" [liquidity]="coinInfo.liquidity_score"></app-liquidity-widget>
-        </div>
-        <div fxFlex="50" class="widget-container">
-          <app-social-metrics-widget></app-social-metrics-widget>
-        </div>
-      </div>
-      <!-- <div fxLayout="column" class="my-3">
-        <div class="py-2 info-container">
-          <h6 class="text-faint mb-1">Last 24h</h6>
-          <div>
-            <label class="fw-bold text-faint info-label mb-1">24h Range</label>
-            <app-high-low-progress
-            [showPercent]="true"
-            [price]="coin.current_price"
-            [low24h]="coin.low_24h"
-            [high24h]="coin.high_24h"
-          ></app-high-low-progress>
           </div>
-        </div>
-        <div class="py-2 info-container">
-          <h6 class="text-faint mb-1">All Time High</h6>
-          <div fxLayout="column" fxLayoutGap="10px">
-            <div class="mt-1">
-              <div fxLayout="row" class="align-items-baseline" fxLayoutGap="5px">
-                <h5 class="fw-bold mb-1">{{coinInfo.market_data.ath.usd | currency}}</h5>
-                <small
-                class="d-flex justify-content-end fw-bold"
-                [ngClass]="{
-                  'text-positive': coinInfo.market_data.ath_change_percentage.usd > 0,
-                  'text-negative': coinInfo.market_data.ath_change_percentage.usd < 0
-                }"
-              >
-                <i *ngIf="coinInfo.market_data.ath_change_percentage.usd > 0" class="bi bi-arrow-up-short"></i>
-                <i *ngIf="coinInfo.market_data.ath_change_percentage.usd < 0" class="bi bi-arrow-down-short"></i>
-                {{ coinInfo.market_data.ath_change_percentage.usd / 100 | percent: '0.1-2' }}
-              </small>
-              </div>
-              <div fxLayout="row" class="text-faint" fxLayoutAlign="start center" fxLayoutGap="3px">
-                <i _ngcontent-kck-c167="" class="bi bi-clock-fill me-1"></i>
-                <label class="fw-bold info-label">ATH occured {{ coinInfo.market_data.ath_date.usd | amTimeAgo }}</label>
-              </div>
+          <div class="widget-container">
+            <app-market-info-widget [theme]="theme" [marketData]="coinInfo.market_data"></app-market-info-widget>
+          </div>
+          <div fxFlex="160px" fxLayout="row" fxLayoutGap="12px">
+            <div fxFlex="50" class="widget-container">
+              <app-liquidity-widget [theme]="theme" [liquidity]="coinInfo.liquidity_score"></app-liquidity-widget>
             </div>
-          <div>
-            <label class="fw-bold text-faint info-label mb-1">ATH Range</label>
-            <app-high-low-progress
-            [showPercent]="true"
-            [price]="coin.current_price"
-            [low24h]="coinInfo.market_data.atl.usd"
-            [high24h]="coinInfo.market_data.ath.usd"
-            [rangeLabel]="'lifetime'"
-          ></app-high-low-progress>
+            <div fxFlex="50" class="widget-container">
+              <app-social-metrics-widget [theme]="theme" [communityScore]="coinInfo.community_score" [communityInfo]="coinInfo.community_data" [links]="coinInfo.links"></app-social-metrics-widget>
+            </div>
+          </div>
+          <div class="widget-container">
+            <app-ath-widget [theme]="theme" [marketData]="coinInfo.market_data"></app-ath-widget>
+          </div>
+            <div class="pt-2" *ngIf="coinInfo.categories.length>0" fxLayout="column" fxLayoutGap="5px">
+              <small class="fw-bold fw-bold text-faint">Tags</small>
+              <mat-chip-list >
+                <mat-chip *ngFor="let category of coinInfo.categories">
+                  {{category}}
+                </mat-chip>
+              </mat-chip-list>
+            </div>
+        </div>
+        </div>
+    </perfect-scrollbar>
 
-          </div>
-          </div>
-          </div> -->
-        <div class="pt-2" *ngIf="coinInfo.categories.length>0">
-          <small class="fw-bold fw-bold text-faint">Tags</small>
-          <mat-chip-list >
-            <mat-chip *ngFor="let category of coinInfo.categories">
-              {{category}}
-            </mat-chip>
-          </mat-chip-list>
-        </div>
-      </div>
     </div>
   </div>
 

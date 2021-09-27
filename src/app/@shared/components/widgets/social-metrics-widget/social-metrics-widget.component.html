@@ -1,1 +1,73 @@
-<p>social-metrics-widget works!</p>
+<div fx-layout="column" fxFlexFill class="{{theme}} theme-container">
+  <div fxLayout="column" fxFlexFill fxLayoutGap="7px">
+  <small class="fw-bold info-header">Social</small>
+
+    <!-- <div fxLayout="row" class="justify-content-between">
+      <div>
+        <i class="bi bi-facebook"></i>
+        <small>Facebook</small>
+      </div>
+      <div>
+        <small>{{communityInfo.facebook_likes}}</small>
+      </div>
+    </div> -->
+
+    <div fxLayout="column">
+      <small class="info-title">Community Score</small>
+      <div fxLayout="row">
+        <div fxFlex="40" fxLayout="row" class="align-items-end">
+          <label class="big-info">{{communityScore || 0 | number: '0.1-2'}}</label>
+          <small class="mb-1">/100</small>
+        </div>
+        <div fxFlex="60">
+
+        </div>
+      </div>
+    </div>
+
+    <div fxFlex="auto">
+      <a matTooltip="Visit Twitter" target="_blank" [href]="'https://twitter.com/'+links.twitter_screen_name" class="btn-transparent w-100">
+        <div fxLayout="row" class="justify-content-between">
+        <div>
+          <i class="twitter bi bi-twitter"></i>
+          <small class="info-title">Twitter</small>
+        </div>
+        <div>
+          <small class="info-data">{{communityInfo.twitter_followers || 0 | shortNumber}}</small>
+        </div>
+      </div>
+      </a>
+      <a matTooltip="Visit Reddit" target="_blank" [href]="links.subreddit_url" class="btn-transparent w-100">
+        <div fxLayout="row" class="justify-content-between">
+          <div>
+            <i class="reddit bi bi-reddit"></i>
+            <small class="info-title">Reddit</small>
+          </div>
+          <div>
+            <small class="info-data">{{communityInfo.reddit_subscribers || 0 | shortNumber}}</small>
+          </div>
+        </div>
+      </a>
+    </div>
+
+
+    <!-- <div fxLayout="row" class="justify-content-between">
+      <div>
+        <i class="bi bi-telegram"></i>
+        <small class="info-title">Telegram</small>
+      </div>
+      <div>
+        <small class="info-data">{{communityInfo.telegram_channel_user_count| shortNumber}}</small>
+      </div>
+    </div> -->
+    <!-- <div fxLayout="row" class="justify-content-between">
+      <div>
+        <i class="bi bi-github"></i>
+        <small class="info-title">GitHub</small>
+      </div>
+      <div>
+        <small class="info-data">{{communityInfo.telegram_channel_user_count| shortNumber}}</small>
+      </div>
+    </div> -->
+  </div>
+</div>

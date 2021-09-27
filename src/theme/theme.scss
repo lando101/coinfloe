@@ -52,6 +52,10 @@ body {
   overflow-x: hidden;
 }
 
+.fw-super-bold{
+  font-weight: 800 !important;
+}
+
 .text-faint {
   opacity: 0.7;
 }
@@ -75,4 +79,21 @@ body {
 
 .award{
   color: #f9c508;
+}
+
+.twitter{
+  color: #1DA1F2;
+}
+
+.reddit{
+  color: #FF5700;
+}
+
+// buttons
+.btn-transparent{
+  border: none;
+  padding: 0px;
+  background: none;
+  text-decoration: none !important;
+  cursor: pointer;
 }

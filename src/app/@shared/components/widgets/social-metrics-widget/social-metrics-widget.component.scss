@@ -1,0 +1,58 @@
+@import "../../../../../styles/index";
+
+@mixin theme-mixin($light-theme: true){
+  $bg-color: $primary-background;
+  $border: $primary-border-light;
+  $border-dark: $border-darkest;
+  $font: $primary-font-color;
+  $secondary-font: $secondary-font-color;
+  @if $light-theme !=true {
+    $bg-color: $dark-primary-background;
+    $border: $dark-primary-border-dark;
+    $border-dark:  $dark-primary-border-dark;
+    $font: $dark-primary-font-color;
+    $secondary-font: $dark-text-color;
+  }
+
+  .big-info{
+    font-weight: 800;
+    font-size: 1.5rem;
+  }
+  .info-header{
+    color: $secondary-font;
+    opacity: .7;
+  }
+
+  .info-row{
+    border-bottom: 1px solid $border;
+  }
+  .info-title{
+    color:  $secondary-font;
+    font-weight: 800;
+  }
+  .info-data{
+    font-weight: 800;
+  }
+
+
+  .metric-container{
+    position: absolute;
+    top: 25px;
+    left: 50%;
+    transform: translate(-50%,50%);
+    display: flex;
+    flex-direction: column;
+    label{
+      font-size: 1.3rem;
+      font-weight: 800 !important;
+    }
+  }
+}
+
+.theme-container{
+  @include theme-mixin($light-theme: true);
+}
+
+.dark.theme-container {
+  @include theme-mixin($light-theme: false);
+}
