@@ -1,4 +1,27 @@
 <div fxFlex class="{{ theme }} theme-container">
+  <div
+  fxLayout="row"
+  fxLayoutGap="10px"
+  class="w-100 py-1 ticker-container justify-content-end align-items-center"
+>
+  <div [@fade] *ngIf="marqueeInit" fxFlex="auto">
+    <ng-ticker [stopOnHover]="true" [playState]="marqueePlay" [speed]="'165s'">
+      <div fxLayout="row">
+        <div *ngFor="let coin of coins | slice: 0:20">
+          <app-coin-marquee-item [theme]="theme" [coin]="coin"></app-coin-marquee-item>
+        </div>
+      </div>
+    </ng-ticker>
+  </div>
+  <div class="d-flex justify-content-end px-2" fxFlex="50px">
+    <button matTooltip="Toggle marquee play/pause" mat-icon-button (click)="marqueePlay = !marqueePlay">
+      <i
+        [ngClass]="{ 'bi-stop-circle-fill': marqueePlay, 'bi-play-circle': !marqueePlay }"
+        class="bi"
+      ></i>
+    </button>
+  </div>
+</div>
   <mat-drawer-container autosize [hasBackdrop]="false">
     <mat-drawer #drawer [mode]="'side'" [opened]="menuOpen">
       <app-side-nav></app-side-nav>
@@ -33,29 +56,7 @@
               <!-- <div class="router-wrapper"
               [@rotateCubeToLeft]="getState(o)">
               </div> -->
-              <div
-                fxLayout="row"
-                fxLayoutGap="10px"
-                class="w-100 py-1 ticker-container justify-content-end align-items-center"
-              >
-                <div [@fade] *ngIf="marqueeInit" fxFlex="auto">
-                  <ng-ticker [stopOnHover]="true" [playState]="marqueePlay" [speed]="'165s'">
-                    <div fxLayout="row">
-                      <div *ngFor="let coin of coins | slice: 0:20">
-                        <app-coin-marquee-item [theme]="theme" [coin]="coin"></app-coin-marquee-item>
-                      </div>
-                    </div>
-                  </ng-ticker>
-                </div>
-                <div class="d-flex justify-content-end px-2" fxFlex="50px">
-                  <button matTooltip="Toggle marquee play/pause" mat-icon-button (click)="marqueePlay = !marqueePlay">
-                    <i
-                      [ngClass]="{ 'bi-stop-circle-fill': marqueePlay, 'bi-play-circle': !marqueePlay }"
-                      class="bi"
-                    ></i>
-                  </button>
-                </div>
-              </div>
+
               <router-outlet #o="outlet"></router-outlet>
               <app-footer *ngIf="router.url != '/coins'"></app-footer>
             </div>
