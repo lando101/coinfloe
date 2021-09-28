@@ -3,21 +3,23 @@
 
 @mixin theme-mixin($light-theme: true) {
   $bg-color: $primary-background;
+  $bg-color-light: $primary-background-lighter;
   $border: $primary-border-light;
   $border-dark: $border-darkest;
   $font: $primary-font-color;
   @if $light-theme != true {
     $bg-color: $dark-primary-background;
+    $bg-color-light: $dark-card-background;
     $border: $dark-primary-border-dark;
     $border-dark:  $dark-primary-border-dark;
     $font: $dark-primary-font-color;
   }
 
-  background-color: $bg-color;
+  background-color: transparent;
   height: auto;
   border-radius: $default-brdr-radius;
   // padding: 12px;
-  border: 1px solid $border;
+  // border: 1px solid $border;
   color: $font;
   .pill{
     padding: 6px 13px;
@@ -55,14 +57,15 @@
       border-bottom: none;
     }
   }
-  .widget-container{
+  ::ng-deep .widget-container{
     padding: 12px;
-    background: transparent;
+    background: $bg-color-light;
     border-radius: 15px;
-    backdrop-filter: brightness(1.04);
+    // border: 1px solid $border;
+    box-shadow: rgb(0 0 0 / 10%) 0px 1px 3px 0px, rgb(0 0 0 / 6%) 0px 1px 2px 0px;
   }
   .info-inner-container{
-    max-height: calc(100vh - 200px);
+    height: calc(100vh - 200px);
     padding-bottom: 15px;
   }
 }

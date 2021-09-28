@@ -76,7 +76,21 @@
           <div class="my-4 left-content">
             <perfect-scrollbar #perfectscroll class="ps" [config]="config">
               <!-- <app-crypto-chart [theme]="theme" [coin]="coin"></app-crypto-chart> -->
-              <app-crypto-line-chart [chartData]="priceData"></app-crypto-line-chart>
+              <mat-chip-list>
+                <owl-carousel-o class="w-100" [options]="customOptions">
+                  <ng-template [width]="chip.width" *ngFor="let chip of chips" carouselSlide>
+                    <mat-chip
+                        (click)="getCoinOHLC(chip)"
+                        [selected]="selectedChip === chip"
+                        class="example-box">
+                        <span class="d-flex align-items-center justify-content-end">
+                          {{chip.name}}
+                        </span>
+                      </mat-chip>
+                  </ng-template>
+                </owl-carousel-o>
+              </mat-chip-list>
+              <app-crypto-line-chart [coinID]="viewingCoin.id" [chartData]="priceData"></app-crypto-line-chart>
               <div>
                 <mat-tab-group>
                   <mat-tab>
@@ -114,7 +128,7 @@
             </perfect-scrollbar>
           </div>
         </div>
-        <div class="p-3 section-container" fxLayout="column" fxFlex.gt-lg="395px" fxFlex.lt-xl="395px">
+        <div class="p-3 section-container crypto-info-container" fxLayout="column" fxFlex.gt-lg="395px" fxFlex.lt-xl="395px">
           <app-crypto-info [theme]="theme" [coin]="viewingCoin" [coinInfo]="coinInfo"></app-crypto-info>
         </div>
       </div>

@@ -1,4 +1,6 @@
-<div fx-layout="column" fxFlexFill class="{{theme}} theme-container">
+
+<div class="widget-container" *ngIf="show" [@fadeInUp]>
+  <div fx-layout="column" fxFlexFill class="{{theme}} theme-container">
   <div fxLayout="column" fxFlexFill fxLayoutGap="7px">
   <small class="fw-bold info-header">Social</small>
 
@@ -70,4 +72,6 @@
       </div>
     </div> -->
   </div>
+</div>
+
 </div>

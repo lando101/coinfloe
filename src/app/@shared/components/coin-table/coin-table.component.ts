@@ -45,7 +45,7 @@ export interface ChipFilters {
   width?: number;
   direction?: number;
   active: boolean;
-  key: string;
+  key: string | number;
 }
 
 @Component({

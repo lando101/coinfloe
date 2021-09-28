@@ -54,6 +54,9 @@
   display: flex;
   justify-content: center;
   z-index: 11;
+  .crypto-info-container {
+    border-left: 1px solid $border;
+  }
   .outer-click-container {
     position: absolute;
     bottom: 0px;

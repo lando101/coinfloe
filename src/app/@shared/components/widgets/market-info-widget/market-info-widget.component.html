@@ -1,90 +1,93 @@
 
-<div class="{{theme}} theme-container">
-  <small class="fw-bold info-header">Market</small>
-  <div fxLayout="column" fxLayoutGap="10px" class="mt-2">
-    <div fxLayout="row" class="align-items-end" fxLayoutGap="5px">
-      <h4 class="fw-super-bold mb-0">{{marketData.current_price.usd | currency}}</h4>
-      <small
-      class="d-flex justify-content-end fw-bold"
-      [ngClass]="{
-        'text-positive': marketData.price_change_percentage_24h > 0,
-        'text-negative': marketData.price_change_percentage_24h< 0
-      }"
-    >
-      <i *ngIf="marketData.price_change_percentage_24h > 0" class="bi bi-arrow-up-short"></i>
-      <i *ngIf="marketData.price_change_percentage_24h < 0" class="bi bi-arrow-down-short"></i>
-      {{ marketData.price_change_percentage_24h / 100 | percent: '0.1-2' }}
-    </small>
+<div class="widget-container" *ngIf="show" [@fadeInUp]>
+  <div class="{{theme}} theme-container" >
+    <small class="fw-bold info-header">Market</small>
+    <div fxLayout="column" fxLayoutGap="10px" class="mt-2">
+      <div fxLayout="row" class="align-items-end" fxLayoutGap="5px">
+        <h4 class="fw-super-bold mb-0">{{marketData.current_price.usd | currency}}</h4>
+        <small
+        class="d-flex justify-content-end fw-bold"
+        [ngClass]="{
+          'text-positive': marketData.price_change_percentage_24h > 0,
+          'text-negative': marketData.price_change_percentage_24h< 0
+        }"
+      >
+        <i *ngIf="marketData.price_change_percentage_24h > 0" class="bi bi-arrow-up-short"></i>
+        <i *ngIf="marketData.price_change_percentage_24h < 0" class="bi bi-arrow-down-short"></i>
+        {{ marketData.price_change_percentage_24h / 100 | percent: '0.1-2' }}
+      </small>
+      </div>
+      <div class="mini-widget-container">
+        <small class="fw-bold text-faint info-label mb-1">24h Range</small>
+        <app-high-low-progress
+        [showPercent]="true"
+        [price]="marketData.current_price.usd"
+        [low24h]="marketData.low_24h.usd"
+        [high24h]="marketData.high_24h.usd"
+        [largeLabel]="true"
+      ></app-high-low-progress>
+      </div>
+      <div>
+        <div fxLayout="row" class="info-row justify-content-between py-2">
+          <small class="info-title">Market Cap</small>
+          <small class="info-data">${{marketData.market_cap.usd | shortNumber}}</small>
+        </div>
+        <div fxLayout="row" class="info-row justify-content-between py-2">
+          <small class="info-title">Total Volume</small>
+          <small class="info-data">${{marketData.total_volume.usd | shortNumber}}</small>
+        </div>
+        <div fxLayout="row" class="info-row justify-content-between py-2">
+          <small class="info-title">7d %</small>
+          <small class="info-data"
+          [ngClass]="{
+            'text-positive': marketData.price_change_percentage_7d_in_currency.usd > 0,
+            'text-negative': marketData.price_change_percentage_7d_in_currency.usd< 0
+          }">
+          <i *ngIf="marketData.price_change_percentage_7d_in_currency.usd  > 0" class="bi bi-arrow-up-short"></i>
+          <i *ngIf="marketData.price_change_percentage_7d_in_currency.usd  < 0" class="bi bi-arrow-down-short"></i>
+          {{marketData.price_change_percentage_7d_in_currency.usd/100 | percent: '0.1-2'}}
+        </small>
+        </div>
+        <div fxLayout="row" class="info-row justify-content-between py-2">
+          <small class="info-title">14d %</small>
+          <small class="info-data"
+          [ngClass]="{
+            'text-positive': marketData.price_change_percentage_14d_in_currency.usd > 0,
+            'text-negative': marketData.price_change_percentage_14d_in_currency.usd< 0
+          }">
+          <i *ngIf="marketData.price_change_percentage_14d_in_currency.usd  > 0" class="bi bi-arrow-up-short"></i>
+          <i *ngIf="marketData.price_change_percentage_14d_in_currency.usd  < 0" class="bi bi-arrow-down-short"></i>
+          {{marketData.price_change_percentage_14d_in_currency.usd/100 | percent: '0.1-2'}}
+        </small>
+        </div>
+        <div fxLayout="row" class="info-row justify-content-between py-2">
+          <small class="info-title">30d %</small>
+          <small class="info-data"
+          [ngClass]="{
+            'text-positive': marketData.price_change_percentage_30d_in_currency.usd > 0,
+            'text-negative': marketData.price_change_percentage_30d_in_currency.usd< 0
+          }">
+          <i *ngIf="marketData.price_change_percentage_30d_in_currency.usd  > 0" class="bi bi-arrow-up-short"></i>
+          <i *ngIf="marketData.price_change_percentage_30d_in_currency.usd  < 0" class="bi bi-arrow-down-short"></i>
+          {{marketData.price_change_percentage_30d_in_currency.usd/100 | percent: '0.1-2'}}
+        </small>
+        </div>
+        <div fxLayout="row" class="info-row justify-content-between py-2">
+          <small class="info-title">1y %</small>
+          <small class="info-data"
+          [ngClass]="{
+            'text-positive': marketData.price_change_percentage_1y_in_currency.usd > 0,
+            'text-negative': marketData.price_change_percentage_1y_in_currency.usd< 0
+          }">
+          <i *ngIf="marketData.price_change_percentage_1y_in_currency.usd  > 0" class="bi bi-arrow-up-short"></i>
+          <i *ngIf="marketData.price_change_percentage_1y_in_currency.usd  < 0" class="bi bi-arrow-down-short"></i>
+          {{marketData.price_change_percentage_1y_in_currency.usd/100 | percent: '0.1-2'}}
+        </small>
+        </div>
+      </div>
     </div>
-    <div class="mini-widget-container">
-      <small class="fw-bold text-faint info-label mb-1">24h Range</small>
-      <app-high-low-progress
-      [showPercent]="true"
-      [price]="marketData.current_price.usd"
-      [low24h]="marketData.low_24h.usd"
-      [high24h]="marketData.high_24h.usd"
-      [largeLabel]="true"
-    ></app-high-low-progress>
-    </div>
-    <div>
-      <div fxLayout="row" class="info-row justify-content-between py-2">
-        <small class="info-title">Market Cap</small>
-        <small class="info-data">${{marketData.market_cap.usd | shortNumber}}</small>
-      </div>
-      <div fxLayout="row" class="info-row justify-content-between py-2">
-        <small class="info-title">Total Volume</small>
-        <small class="info-data">${{marketData.total_volume.usd | shortNumber}}</small>
-      </div>
-      <div fxLayout="row" class="info-row justify-content-between py-2">
-        <small class="info-title">7d %</small>
-        <small class="info-data"
-        [ngClass]="{
-          'text-positive': marketData.price_change_percentage_7d_in_currency.usd > 0,
-          'text-negative': marketData.price_change_percentage_7d_in_currency.usd< 0
-        }">
-        <i *ngIf="marketData.price_change_percentage_7d_in_currency.usd  > 0" class="bi bi-arrow-up-short"></i>
-        <i *ngIf="marketData.price_change_percentage_7d_in_currency.usd  < 0" class="bi bi-arrow-down-short"></i>
-        {{marketData.price_change_percentage_7d_in_currency.usd/100 | percent: '0.1-2'}}
-      </small>
-      </div>
-      <div fxLayout="row" class="info-row justify-content-between py-2">
-        <small class="info-title">14d %</small>
-        <small class="info-data"
-        [ngClass]="{
-          'text-positive': marketData.price_change_percentage_14d_in_currency.usd > 0,
-          'text-negative': marketData.price_change_percentage_14d_in_currency.usd< 0
-        }">
-        <i *ngIf="marketData.price_change_percentage_14d_in_currency.usd  > 0" class="bi bi-arrow-up-short"></i>
-        <i *ngIf="marketData.price_change_percentage_14d_in_currency.usd  < 0" class="bi bi-arrow-down-short"></i>
-        {{marketData.price_change_percentage_14d_in_currency.usd/100 | percent: '0.1-2'}}
-      </small>
-      </div>
-      <div fxLayout="row" class="info-row justify-content-between py-2">
-        <small class="info-title">30d %</small>
-        <small class="info-data"
-        [ngClass]="{
-          'text-positive': marketData.price_change_percentage_30d_in_currency.usd > 0,
-          'text-negative': marketData.price_change_percentage_30d_in_currency.usd< 0
-        }">
-        <i *ngIf="marketData.price_change_percentage_30d_in_currency.usd  > 0" class="bi bi-arrow-up-short"></i>
-        <i *ngIf="marketData.price_change_percentage_30d_in_currency.usd  < 0" class="bi bi-arrow-down-short"></i>
-        {{marketData.price_change_percentage_30d_in_currency.usd/100 | percent: '0.1-2'}}
-      </small>
-      </div>
-      <div fxLayout="row" class="info-row justify-content-between py-2">
-        <small class="info-title">1y %</small>
-        <small class="info-data"
-        [ngClass]="{
-          'text-positive': marketData.price_change_percentage_1y_in_currency.usd > 0,
-          'text-negative': marketData.price_change_percentage_1y_in_currency.usd< 0
-        }">
-        <i *ngIf="marketData.price_change_percentage_1y_in_currency.usd  > 0" class="bi bi-arrow-up-short"></i>
-        <i *ngIf="marketData.price_change_percentage_1y_in_currency.usd  < 0" class="bi bi-arrow-down-short"></i>
-        {{marketData.price_change_percentage_1y_in_currency.usd/100 | percent: '0.1-2'}}
-      </small>
-      </div>
-    </div>
-  </div>
 
+  </div>
 </div>
+
 

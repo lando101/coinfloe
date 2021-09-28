@@ -1,28 +1,28 @@
-<div fxLayout="row" class="justify-content-between">
+<!-- <div fxLayout="row" class="justify-content-between">
   <div fxLayout="row">
 <button
-  (click)="updateOptions( '1m' )"
-  [class.active]="activeOptionButton=='1m'"
+  (click)="updateOptions( '1d' )"
+  [class.active]="activeOptionButton=='1d'"
 >
-  1M
+  1d
+</button>
+<button
+  (click)="updateOptions( '7d' )"
+  [class.active]="activeOptionButton=='7d'"
+>
+  7d
+</button>
+<button
+  (click)="updateOptions( '30d' )"
+  [class.active]="activeOptionButton=='30d'"
+>
+  30d
 </button>
 <button
   (click)="updateOptions( '6m' )"
   [class.active]="activeOptionButton=='6m'"
 >
-  6M
-</button>
-<button
-  (click)="updateOptions( '1y' )"
-  [class.active]="activeOptionButton=='1y'"
->
-  1Y
-</button>
-<button
-  (click)="updateOptions( '1yd' )"
-  [class.active]="activeOptionButton=='1yd'"
->
-  1YD
+  6m
 </button>
 <button
   (click)="updateOptions( 'all' )"
@@ -34,10 +34,12 @@
   <div>
 <button (click)="reset()">Reset</button>
   </div>
-</div>
-
-<apx-chart
+</div> -->
+<div class="chart-container">
+  <div
   *ngIf="show"
+  [@fadeIn]>
+  <apx-chart
   #chart
   [series]="chartOptions.series"
   [chart]="chartOptions.chart"
@@ -50,3 +52,6 @@
   [tooltip]="chartOptions.tooltip"
   [annotations]="chartOptions.annotations"
 ></apx-chart>
+  </div>
+</div>
+

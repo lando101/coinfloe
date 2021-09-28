@@ -1,4 +1,6 @@
+import { trigger, transition, useAnimation } from '@angular/animations';
 import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { fadeInUp, fadeOutDown } from 'ng-animate';
 import {
   ApexNonAxisChartSeries,
   ApexPlotOptions,
@@ -21,17 +23,44 @@ export type ChartOptions = {
   selector: 'app-liquidity-widget',
   templateUrl: './liquidity-widget.component.html',
   styleUrls: ['./liquidity-widget.component.scss'],
+  animations: [
+    trigger('fadeInUp', [
+      transition(':enter', [
+        useAnimation(fadeInUp, {
+          params: {
+            timing: 0.15,
+            a: '20px',
+            b: '0px',
+          },
+        }),
+      ]),
+      transition(':leave', [
+        useAnimation(fadeOutDown, {
+          params: {
+            timing: 0.15,
+            a: '0px',
+            b: '60px',
+          },
+        }),
+      ]),
+    ]),
+  ],
 })
 export class LiquidityWidgetComponent implements OnChanges {
   @Input() theme: string;
   @Input() liquidity: number;
   @ViewChild('chart') chart: ChartComponent;
+  show: boolean;
   public chartOptions: Partial<ChartOptions>;
   constructor() {}
 
   ngOnChanges(changes: SimpleChanges): void {
     //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
     //Add '${implements OnChanges}' to the class.
+    if (!!this.liquidity)
+      setTimeout(() => {
+        this.show = true;
+      }, 600);
     this.chartOptions = {
       series: [this.liquidity],
       colors: ['#24ccff'],
