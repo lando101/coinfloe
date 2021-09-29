@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
-import { Coin } from 'src/models/coins.model';
+import { Coin, CoinCG } from 'src/models/coins.model';
 
 @Component({
   selector: 'app-coin-marquee-item',
@@ -7,7 +7,7 @@ import { Coin } from 'src/models/coins.model';
   styleUrls: ['./coin-marquee-item.component.scss'],
 })
 export class CoinMarqueeItemComponent implements OnInit {
-  @Input() coin: Coin;
+  @Input() coin: CoinCG;
   @Input() theme: string;
   imgURL: string;
 
@@ -16,8 +16,8 @@ export class CoinMarqueeItemComponent implements OnInit {
   ngOnInit(): void {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (!!changes?.coin?.currentValue) {
-      this.imgURL = `https://www.cryptocompare.com${this.coin?.CoinInfo.ImageUrl}`;
-    }
+    // if (!!changes?.coin?.currentValue) {
+    //   this.imgURL = `https://www.cryptocompare.com${this.coin?.CoinInfo.ImageUrl}`;
+    // }
   }
 }

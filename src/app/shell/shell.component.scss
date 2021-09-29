@@ -40,6 +40,7 @@
   left: 0;
   right: 0;
   height: auto;
+  margin-top: 30px;
   position: absolute;
   // background: linear-gradient(317deg, #a2a2a21a, transparent);
 }
@@ -81,7 +82,8 @@
   }
 
   background-color: $bg-color !important;
-
+  width: 100vw;
+  height: 100vh;
   .mat-drawer-container {
     background-color: $bg-color !important;
     color: $font;
@@ -120,6 +122,7 @@
 
   .mat-drawer.mat-drawer-side {
     z-index: 2;
+    margin-top: 30px;
   }
 
   ::ng-deep .scroll-box::-webkit-scrollbar {
@@ -154,23 +157,26 @@
     box-shadow: -2px 0px 7px 0px #1d1d1d0f !important;
   }
   .ticker-container {
-    background: $bg-color-light;
-    color: $font;
+    background: #121212;
+    color: $dark-primary-font-color;
     // padding: 4px 0px;
-    height: 40px;
+    height: 30px;
     position: sticky;
-    top: 75px;
-    box-shadow: 0px 2px 5px $shadow;
-    border-bottom: 1px solid $border;
+    top: 0;
+    // box-shadow: 0px 2px 5px $shadow;
+    // border-bottom: 1px solid $border;
     z-index: 4;
     // font-family: "DotGothic16", sans-serif;
     button {
-      width: 25px;
-      height: 25px;
+      width: 20px;
+      height: 20px;
       border-radius: 5px;
       font-size: 1.1rem;
       opacity: 0.7;
       transition: 0.2s ease-in-out;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       & :hover {
         opacity: 1;
       }

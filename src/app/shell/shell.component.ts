@@ -88,7 +88,7 @@ export class ShellComponent implements OnInit {
   marqueeInit = false;
   showSheet = false;
 
-  coins: Coin[] = [];
+  coins: CoinCG[] = [];
   scrollTop = false;
   user_name = '';
   title_display = '';
@@ -141,14 +141,18 @@ export class ShellComponent implements OnInit {
       }
     });
 
-    this.cryptoService.coinsObs.subscribe((data) => {
+    // this.cryptoService.coinsObs.subscribe((data) => {
+    //   if (data) {
+    //     this.coins = data;
+    //   }
+    // });
+
+    // initing data
+    this.coinCGService.getTop250Coins().subscribe((data) => {
       if (data) {
         this.coins = data;
       }
     });
-
-    // initing data
-    this.coinCGService.getTop250Coins().subscribe((data) => {});
 
     this.coinCGService.getGlobalMetrics().subscribe();
 

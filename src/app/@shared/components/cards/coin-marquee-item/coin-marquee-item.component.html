@@ -1,25 +1,25 @@
-<div class="{{ theme }} theme-container px-3" fxLayout="row" fxLayoutAlign="between center" fxLayoutGap="30px">
+<div class="dark theme-container px-3" fxLayout="row" fxLayoutAlign="between center" fxLayoutGap="30px">
   <div fxLayoutGap="7px" fxLayout="row" fxLayoutAlign="center center">
     <div class="img-container">
-      <img class="w-100 h-100" [src]="imgURL"/>
+      <img class="w-100 h-100" [src]="coin.image"/>
     </div>
     <div fxLayout="column">
-      <label>{{ coin.CoinInfo.FullName }}</label>
-      <small class="text-faint">{{ coin.CoinInfo.Name }}</small>
+      <!-- <label>{{ coin.name }}</label> -->
+      <small class="text-faint text-uppercase">{{ coin.symbol }}</small>
     </div>
   </div>
-  <div fxLayout="column">
-    <label class="text-end">{{ coin.RAW.USD.PRICE | currency }}</label>
+  <div fxLayout="row" fxLayoutGap="5px">
+    <label class="text-end">{{ coin.current_price | currency }}</label>
     <small
       class="d-flex justify-content-end fw-bold"
       [ngClass]="{
-        'text-positive': coin?.RAW?.USD?.CHANGEPCT24HOUR > 0,
-        'text-negative': coin?.RAW?.USD?.CHANGEPCT24HOUR < 0
+        'text-positive': coin.market_cap_change_percentage_24h > 0,
+        'text-negative': coin.market_cap_change_percentage_24h < 0
       }"
     >
-      <i *ngIf="coin?.RAW?.USD?.CHANGEPCT24HOUR > 0" class="bi bi-arrow-up-short"></i>
-      <i *ngIf="coin?.RAW?.USD?.CHANGEPCT24HOUR < 0" class="bi bi-arrow-down-short"></i>
-      {{ coin?.RAW?.USD?.CHANGEPCT24HOUR / 100 | percent: '0.1-2' }}
+      <i *ngIf="coin?.market_cap_change_percentage_24h > 0" class="bi bi-arrow-up-short"></i>
+      <i *ngIf="coin?.market_cap_change_percentage_24h < 0" class="bi bi-arrow-down-short"></i>
+      {{ coin?.market_cap_change_percentage_24h / 100 | percent: '0.1-2' }}
     </small>
   </div>
 </div>
