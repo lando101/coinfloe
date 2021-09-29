@@ -15,7 +15,7 @@
       </small>
     </h4>
   </div>
-  <div fxLayout="row" fxLayoutGap="35px">
+  <div fxLayout="row" fxLayoutGap="35px" class="position-relative">
     <owl-carousel-o #owlCar  class="w-100" [options]="customOptions" (changed)="startPosition = $event.startPosition" (dragging)="isDragging = $event.dragging">
       <!-- <ng-template fxHide.lt-md [width]="90" carouselSlide>
       </ng-template> -->

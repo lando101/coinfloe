@@ -14,6 +14,8 @@ import { CoinInfo, CoinInfoExpanded } from 'src/models/coin-info.model';
 import { CgCoinDataService } from '@app/services/cg-coin-data.service';
 import { Subject, Subscription, takeUntil } from 'rxjs';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { trigger, transition, useAnimation } from '@angular/animations';
+import { bounceIn, fadeIn, fadeInUp, fadeOut, fadeOutDown } from 'ng-animate';
 export interface ChipFilterChart {
   name: string;
   width?: number;
@@ -46,6 +48,66 @@ export interface ChartData {
     fadeOutOnLeaveAnimation({
       duration: 300,
     }),
+    trigger('fadeIn', [
+      transition(':enter', [
+        useAnimation(fadeIn, {
+          params: {
+            timing: 0.15,
+            // a: '20px',
+            // b: '0px',
+          },
+        }),
+      ]),
+      transition(':leave', [
+        useAnimation(fadeOut, {
+          params: {
+            timing: 0.15,
+            // a: '0px',
+            // b: '60px',
+          },
+        }),
+      ]),
+    ]),
+    trigger('expand', [
+      transition(':enter', [
+        useAnimation(fadeIn, {
+          params: {
+            timing: 0.15,
+            // a: '20px',
+            // b: '0px',
+          },
+        }),
+      ]),
+      transition(':leave', [
+        useAnimation(fadeOut, {
+          params: {
+            timing: 0.15,
+            // a: '0px',
+            // b: '60px',
+          },
+        }),
+      ]),
+    ]),
+    trigger('fadeInUp', [
+      transition(':enter', [
+        useAnimation(fadeInUp, {
+          params: {
+            timing: 0.15,
+            a: '20px',
+            b: '0px',
+          },
+        }),
+      ]),
+      transition(':leave', [
+        useAnimation(fadeOutDown, {
+          params: {
+            timing: 0.15,
+            a: '0px',
+            b: '60px',
+          },
+        }),
+      ]),
+    ]),
   ],
 })
 export class BottomSheetCustomComponent implements OnInit {
@@ -54,6 +116,9 @@ export class BottomSheetCustomComponent implements OnInit {
   @Output() hideCoinDetails = new EventEmitter<boolean>();
 
   visible: boolean;
+  showInfo: boolean;
+  showChips: boolean;
+  showTabs: boolean;
   coin: Coin;
   viewingCoin: CoinCG;
   params: CryptoQuery = {};
@@ -140,6 +205,15 @@ export class BottomSheetCustomComponent implements OnInit {
         console.log('VIEWING COIN');
         console.log(data);
         console.log('VIEWING COIN');
+        setTimeout(() => {
+          this.showInfo = true;
+        }, 500);
+        setTimeout(() => {
+          this.showChips = true;
+        }, 900);
+        setTimeout(() => {
+          this.showTabs = true;
+        }, 1300);
         this.load();
       }
     });
