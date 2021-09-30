@@ -16,6 +16,8 @@ import { Subject, Subscription, takeUntil } from 'rxjs';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { trigger, transition, useAnimation } from '@angular/animations';
 import { bounceIn, fadeIn, fadeInUp, fadeOut, fadeOutDown } from 'ng-animate';
+import { NewsService } from '@app/services/news.service';
+import { NewsSource2 } from 'src/models/news.model';
 export interface ChipFilterChart {
   name: string;
   width?: number;
@@ -121,6 +123,7 @@ export class BottomSheetCustomComponent implements OnInit {
   showTabs: boolean;
   coin: Coin;
   viewingCoin: CoinCG;
+  coinNews: NewsSource2[] = [];
   params: CryptoQuery = {};
   coinInfo: CoinInfo;
   candleData: number[] = [];
@@ -169,7 +172,7 @@ export class BottomSheetCustomComponent implements OnInit {
   };
 
   public config: PerfectScrollbarConfigInterface = {
-    wheelSpeed: 0.25,
+    // wheelSpeed: 0.25,
     // suppressScrollY: false,
   };
 
@@ -183,7 +186,8 @@ export class BottomSheetCustomComponent implements OnInit {
     private bottomSheetService: BottomSheetService,
     private themeService: ThemeService,
     private cryptoDataService: CryptoDataServiceService,
-    private coinCGService: CgCoinDataService
+    private coinCGService: CgCoinDataService,
+    private newsService: NewsService
   ) {}
 
   ngOnInit(): void {
@@ -202,6 +206,7 @@ export class BottomSheetCustomComponent implements OnInit {
       this.viewingCoin = data;
 
       if (!!this.viewingCoin) {
+        this.getCoinNews();
         console.log('VIEWING COIN');
         console.log(data);
         console.log('VIEWING COIN');
@@ -267,6 +272,25 @@ export class BottomSheetCustomComponent implements OnInit {
           console.log(data);
         },
       });
+  }
+
+  // get coin news
+  getCoinNews() {
+    this.newsService.getCoinNews(this.viewingCoin.symbol).then((news: NewsSource2[]) => {
+      console.log('coin news');
+      console.log(news);
+      console.log('coin news');
+      this.coinNews = news;
+      if (news.length < 10) {
+        this.newsService._generalNews.pipe(takeUntil(this.unsubscribe)).subscribe((generalNews: NewsSource2[]) => {
+          if (generalNews) {
+            generalNews.forEach((article) => {
+              this.coinNews.push(article);
+            });
+          }
+        });
+      }
+    });
   }
 
   ngOnDestroy(): void {

@@ -7,7 +7,7 @@
     class="inner-container"
   >
     <div *ngIf="!!viewingCoin" fxFlexFill>
-      <div>
+      <div class="close-sheet-container">
         <button mat-icon-button (click)="closeBottomSheet()">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -23,16 +23,19 @@
           </svg>
         </button>
       </div>
-      <div fxFlexFill fxLayout="row" class="ps-3 pt-3 pe-3">
-        <div class="p-3 section-container" fxLayout="column" fxFlex.gt-lg="auto" fxFlex.lt-xl="auto">
-          <div class="crypto-header-container">
+      <div fxFlexFill fxLayout="row">
+
+        <div class="section-container" fxLayout="column" fxFlex.gt-lg="auto" fxFlex.lt-xl="auto">
+        <perfect-scrollbar #perfectscroll class="ps" [config]="config">
+
+          <div class="crypto-header-container px-3 pt-3">
             <div *ngIf="showInfo" [@fadeIn] class="crypto-header" fxLayout="column">
               <div class="mb-2">
                 <div class="d-flex justify-content-start align-items-center">
                   <div class="img-container me-2">
                     <img [src]="viewingCoin.image"/>
                   </div>
-                  <h2 class="m-0 fw-bold">{{ viewingCoin.name}}</h2>
+                  <h3 class="m-0 fw-super-bold">{{ viewingCoin.name}}</h3>
                 </div>
                 <div class="mt-1" *ngIf="!!coinInfo?.ico_data?.short_desc">
                   <label class="text-faint">{{coinInfo.ico_data.short_desc}}</label>
@@ -40,9 +43,9 @@
               </div>
 
               <div class="d-flex justify-content-start align-items-end h-100">
-                <h4 class="fw-bold price-label mb-0">{{ viewingCoin.current_price | currency }}</h4>
-                <label
-                  class="d-flex justify-content-end mb-0 ms-1"
+                <h2 class="fw-super-bold price-label mb-0">{{ viewingCoin.current_price | currency }}</h2>
+                <h5
+                  class="d-flex justify-content-end mb-1 ms-1 fw-super-bold"
                   [ngClass]="{
                     'text-positive': viewingCoin.price_change_percentage_24h > 0,
                     'text-negative': viewingCoin.price_change_percentage_24h < 0
@@ -51,7 +54,7 @@
                   <i *ngIf="viewingCoin.price_change_percentage_24h > 0" class="bi bi-arrow-up-short"></i>
                   <i *ngIf="viewingCoin.price_change_percentage_24h < 0" class="bi bi-arrow-down-short"></i>
                   {{ viewingCoin.price_change_percentage_24h / 100 | percent: '0.1-2' }}
-                </label>
+                </h5>
               </div>
 
               <div class="d-flex justify-content-start align-items-center my-3" fxLayout="row" fxLayoutGap="15px">
@@ -74,10 +77,10 @@
               </div>
             </div>
           </div>
-          <div class="my-2 left-content">
-            <perfect-scrollbar #perfectscroll class="ps" [config]="config">
+          <div class="my-2 left-content" fxLayout="column">
+            <!-- <perfect-scrollbar #perfectscroll class="ps" [config]="config"> -->
               <!-- <app-crypto-chart [theme]="theme" [coin]="coin"></app-crypto-chart> -->
-              <div class="chart-container">
+              <div class="chart-container px-3">
                 <div *ngIf="showChips" [@expand]>
                 <div class="mt-0">
                   <div>
@@ -101,8 +104,17 @@
               </div>
               </div>
 
-              <div [@fadeInUp] *ngIf="showTabs">
-                <mat-tab-group>
+              <div [@fadeInUp] *ngIf="showTabs && !!coinNews" class="px-3">
+                <app-news-list
+                [title]="viewingCoin.symbol.toUpperCase() + ' News'"
+                [description]="viewingCoin.symbol.toUpperCase() + ' latest news'"
+                [start]="0"
+                [end]="10"
+                [newsFromParent]="coinNews"
+                [use_api]="false"
+                [theme]="theme"
+              ></app-news-list>
+                <!-- <mat-tab-group>
                   <mat-tab>
                     <ng-template mat-tab-label>
                       <div class="d-flex align-items-center tab-header">
@@ -133,10 +145,11 @@
                       </div>
                     </ng-template>
                   </mat-tab>
-                </mat-tab-group>
+                </mat-tab-group> -->
               </div>
-            </perfect-scrollbar>
           </div>
+        </perfect-scrollbar>
+
         </div>
         <div class="p-3 section-container crypto-info-container" fxLayout="column" fxFlex.gt-lg="395px" fxFlex.lt-xl="395px">
           <app-crypto-info [theme]="theme" [coin]="viewingCoin" [coinInfo]="coinInfo"></app-crypto-info>

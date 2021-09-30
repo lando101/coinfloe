@@ -56,13 +56,11 @@
                 }"
               ></i>
             </button>
-            <div class="img-container">
-              <img
-                class="w-100 h-100"
-                [src]="element.imgUrl"
-                alt="{{ element.name }} logo img"
-              />
-            </div>
+            <img
+            class="img-container"
+            [src]="element.imgUrl"
+            alt="{{ element.name }} logo img"
+          />
             <div fxLayout="column" fxLayoutGap="5px">
               <span class="coin-name">{{ element.name }}</span>
               <small class="fw-bold text-faint desc-text text-uppercase">{{ element.symbol }}</small>
