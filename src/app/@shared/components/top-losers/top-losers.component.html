@@ -3,7 +3,7 @@
     <owl-carousel-o #owlCar  class="w-100" [options]="customOptions" (changed)="startPosition = $event.startPosition" (dragging)="isDragging = $event.dragging">
       <!-- <ng-template fxHide.lt-md [width]="90" carouselSlide>
       </ng-template> -->
-      <ng-template [width]="225" *ngFor="let coin of coins?.slice(0, 12)" carouselSlide>
+      <ng-template [width]="225" *ngFor="let coin of coins?.slice(0, 15)" carouselSlide>
         <button *ngIf="coin.price_change_percentage_24h < 0" [disabled]="isDragging" aTilt [tiltSettings]="tileSettings" class="p-0" (click)="openBottomSheet(coin)">
           <app-coin-card [coin]="coin" [theme]="theme"></app-coin-card>
         </button>
@@ -36,6 +36,15 @@
   <div class="position-relative">
     <owl-carousel-o class="w-100" [options]="customOptions">
       <!-- <ng-template [width]="90" carouselSlide></ng-template> -->
+      <ng-template [width]="225" carouselSlide>
+        <app-coin-card-loader [theme]="theme"></app-coin-card-loader>
+      </ng-template>
+      <ng-template [width]="225" carouselSlide>
+        <app-coin-card-loader [theme]="theme"></app-coin-card-loader>
+      </ng-template>
+      <ng-template [width]="225" carouselSlide>
+        <app-coin-card-loader [theme]="theme"></app-coin-card-loader>
+      </ng-template>
       <ng-template [width]="225" carouselSlide>
         <app-coin-card-loader [theme]="theme"></app-coin-card-loader>
       </ng-template>

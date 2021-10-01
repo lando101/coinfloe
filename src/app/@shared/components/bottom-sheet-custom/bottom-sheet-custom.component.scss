@@ -35,6 +35,7 @@
   $font: $primary-font-color;
   $bg-color: $primary-background-lighter;
   $bg-color-alt: $primary-background-lighter;
+  $bg-contrast: $white-background;
   $border: $header-border;
   $shadow: $card-shadow;
 
@@ -43,6 +44,7 @@
     $font: $dark-primary-font-color;
     $bg-color: $dark-secondary-background;
     $bg-color-alt: $dark-body-background;
+    $bg-contrast: $dark-body-background;
     $border: $dark-header-border;
     $shadow: $dark-card-shadow;
   }
@@ -91,8 +93,9 @@
     }
     .crypto-stat-container {
       border-radius: $default-brdr-radius;
-      box-shadow: rgb(0 0 0 / 10%) 0px 1px 3px 0px, rgb(0 0 0 / 6%) 0px 1px 2px 0px;
-      background: $bg-color-alt;
+      // box-shadow: rgb(0 0 0 / 10%) 0px 1px 3px 0px, rgb(0 0 0 / 6%) 0px 1px 2px 0px;
+      border: 1px solid $border;
+      background: $bg-contrast;
     }
     .tab-icon {
       font-size: 1.15rem;

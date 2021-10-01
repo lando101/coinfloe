@@ -8,7 +8,7 @@
     <owl-carousel-o #owlCar  class="w-100" [options]="customOptions" (changed)="startPosition = $event.startPosition" (dragging)="isDragging = $event.dragging">
       <!-- <ng-template [width]="90" carouselSlide>
       </ng-template> -->
-      <ng-template [width]="280" *ngFor="let article of allNewsS2?.slice(0, 10)" carouselSlide>
+      <ng-template [width]="280" *ngFor="let article of allNewsS2?.slice(0, 15)" carouselSlide>
         <app-news-card [theme]="theme" [article]="article"></app-news-card>
       </ng-template>
     </owl-carousel-o>
@@ -44,6 +44,15 @@
 <ng-template #loading>
   <div class="position-relative">
     <owl-carousel-o class="w-100" [options]="customOptions">
+      <ng-template [width]="280" carouselSlide>
+        <app-news-card-loader [theme]="theme"></app-news-card-loader>
+      </ng-template>
+      <ng-template [width]="280" carouselSlide>
+        <app-news-card-loader [theme]="theme"></app-news-card-loader>
+      </ng-template>
+      <ng-template [width]="280" carouselSlide>
+        <app-news-card-loader [theme]="theme"></app-news-card-loader>
+      </ng-template>
       <ng-template [width]="280" carouselSlide>
         <app-news-card-loader [theme]="theme"></app-news-card-loader>
       </ng-template>

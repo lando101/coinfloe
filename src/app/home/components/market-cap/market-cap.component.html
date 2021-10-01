@@ -37,9 +37,9 @@
         [desc]="'ETH percentage of total market cap'"
         [currentValue]="globalData.eth_dominance"></app-gauge>
       </ng-template>
-      <ng-template [width]="345" carouselSlide>
+      <!-- <ng-template [width]="345" carouselSlide>
         <app-multi-gauge [theme]="theme"></app-multi-gauge>
-      </ng-template>
+      </ng-template> -->
     </owl-carousel-o>
     <div *ngIf="startPosition!=0" class="d-flex justify-content-center align-items-center" [ngClass]="'owl-fade-left'">
       <button  mat-icon-button class="btn owl-dir-button" (click)="owlCar.prev()">

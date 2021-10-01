@@ -59,20 +59,20 @@
 
               <div class="d-flex justify-content-start align-items-center my-3" fxLayout="row" fxLayoutGap="15px">
                 <div class="crypto-stat-container py-2 px-3" fxLayout="column">
-                  <small class="text-faint mb-1">Market Cap</small>
-                  <label class="fw-bold mb-0">{{ viewingCoin.market_cap| currency }}</label>
+                  <small class="text-faint fw-bold">Market Cap</small>
+                  <h5 class="fw-super-bold mb-0">{{ viewingCoin.market_cap | shortNumber }}</h5>
                 </div>
                 <div class="crypto-stat-container py-2 px-3" fxLayout="column">
-                  <small class="text-faint mb-1">24h Volume</small>
-                  <label class="fw-bold mb-0">${{ viewingCoin.total_volume | shortNumber }}</label>
+                  <small class="text-faint fw-bold">24h Volume</small>
+                  <h5 class="fw-super-bold mb-0">${{ viewingCoin.total_volume | shortNumber }}</h5>
                 </div>
                 <div class="crypto-stat-container py-2 px-3" fxLayout="column">
-                  <small class="text-faint mb-1">24h High</small>
-                  <label class="fw-bold mb-0">{{ viewingCoin.high_24h | currency }}</label>
+                  <small class="text-faint fw-bold">24h High</small>
+                  <h5 class="fw-super-bold mb-0 text-positive">{{ viewingCoin.high_24h | currency }}</h5>
                 </div>
                 <div class="crypto-stat-container py-2 px-3" fxLayout="column">
-                  <small class="text-faint mb-1">24h Low</small>
-                  <label class="fw-bold mb-0">{{ viewingCoin.low_24h | currency }}</label>
+                  <small class="text-faint fw-bold">24h Low</small>
+                  <h5 class="fw-super-bold mb-0 text-negative">{{ viewingCoin.low_24h | currency }}</h5>
                 </div>
               </div>
             </div>
