@@ -293,6 +293,10 @@ export class BottomSheetCustomComponent implements OnInit {
     });
   }
 
+  outsideStuff() {
+    console.log('OUTSIDE CLICK');
+  }
+
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.

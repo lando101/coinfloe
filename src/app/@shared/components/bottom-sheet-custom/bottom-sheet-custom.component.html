@@ -1,5 +1,5 @@
 <div *ngIf="visible" [@fadeInOnEnter] [@fadeOutOnLeave] class="w-100 h-100 bottom-sheet-wrapper {{ theme }}">
-  <div class="outer-click-container" (click)="closeBottomSheet()"></div>
+  <div class="outer-click-container"></div>
   <div
     *ngIf="visible"
     [@fadeInUpOnEnter]
@@ -8,7 +8,7 @@
   >
     <div *ngIf="!!viewingCoin" fxFlexFill>
       <div class="close-sheet-container">
-        <button mat-icon-button (click)="closeBottomSheet()">
+        <button mat-icon-button (click)="closeBottomSheet()" (clickOutside)="outsideStuff()" >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"
@@ -24,10 +24,8 @@
         </button>
       </div>
       <div fxFlexFill fxLayout="row">
-
         <div class="section-container" fxLayout="column" fxFlex.gt-lg="auto" fxFlex.lt-xl="auto">
         <perfect-scrollbar #perfectscroll class="ps" [config]="config">
-
           <div class="crypto-header-container px-3 pt-3">
             <div *ngIf="showInfo" [@fadeIn] class="crypto-header" fxLayout="column">
               <div class="mb-2">
