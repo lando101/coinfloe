@@ -1,6 +1,6 @@
-<div class="outer-click-container" (click)="closeBottomSheet()"></div>
+<!-- <div class="outer-click-container" (click)="closeBottomSheet()"></div> -->
 <div *ngIf="visible" [@fadeInOnEnter] [@fadeOutOnLeave] class="w-100 h-100 bottom-sheet-wrapper {{ theme }}">
-  <div *ngIf="visible" [@fadeInUpOnEnter] [@fadeOutDownOnLeave] class="inner-container">
+  <div *ngIf="visible" [@fadeInUpOnEnter] [@fadeOutDownOnLeave] class="inner-container" (clickOutside)="closeBottomSheet()" [delayClickOutsideInit]="true">
     <div *ngIf="!!viewingCoin" fxFlexFill>
       <div class="close-sheet-container">
         <button mat-icon-button (click)="closeBottomSheet()">

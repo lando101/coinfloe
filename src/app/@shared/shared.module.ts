@@ -63,6 +63,7 @@ import { AthWidgetComponent } from './components/widgets/ath-widget/ath-widget.c
 import { LiquidityWidgetComponent } from './components/widgets/liquidity-widget/liquidity-widget.component';
 import { SocialMetricsWidgetComponent } from './components/widgets/social-metrics-widget/social-metrics-widget.component';
 import { MarketInfoWidgetComponent } from './components/widgets/market-info-widget/market-info-widget.component';
+import { ClickOutsideModule } from 'ng-click-outside';
 @NgModule({
   imports: [
     FlexLayoutModule,
@@ -75,6 +76,7 @@ import { MarketInfoWidgetComponent } from './components/widgets/market-info-widg
     AngularTiltModule,
     AvatarModule,
     FormsModule,
+    ClickOutsideModule,
     CarouselModule,
     MomentModule,
     NgxGaugeModule,
@@ -177,6 +179,7 @@ import { MarketInfoWidgetComponent } from './components/widgets/market-info-widg
     CarouselModule,
     ShortNumberPipePipe,
     CryptoLineChartComponent,
+    ClickOutsideModule,
   ],
   providers: [{ provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } }],
   bootstrap: [CoinsListsComponent],

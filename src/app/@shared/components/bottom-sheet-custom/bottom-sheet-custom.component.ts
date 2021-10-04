@@ -294,6 +294,7 @@ export class BottomSheetCustomComponent implements OnInit {
   }
 
   outsideStuff() {
+    alert('TEST');
     console.log('OUTSIDE CLICK');
   }
 
