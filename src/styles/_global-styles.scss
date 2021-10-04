@@ -70,6 +70,7 @@
   background-color: #ececec !important;
 }
 
+// material global styles
 ::ng-deep .mat-bottom-sheet-container {
   max-height: none !important;
   padding: 0px !important;
@@ -77,12 +78,28 @@
 
 ::ng-deep .mat-chip.mat-standard-chip.mat-chip-selected.mat-primary {
   background-color: $primary-color !important;
-  color: white;
+  color: white !important;
+}
+
+::ng-deep .dark .mat-chip.mat-standard-chip.mat-chip-selected.mat-primary {
+  background-color: $primary-color !important;
+  color: white !important;
 }
 
 ::ng-deep .mat-standard-chip {
   font-weight: bold !important;
 }
+
+.dark .mat-chip.mat-standard-chip{
+  background-color: #33333c !important;
+  color: #dcdcdc !important;
+}
+
+.mat-chip.mat-standard-chip{
+  background-color: #e0e0e0 !important;
+  color: #000000de !important;
+}
+
 
 ::ng-deep .mat-tab-label {
   opacity: 1 !important;
@@ -283,6 +300,7 @@
 ::ng-deep .dark .owl-fade-left {
   background: linear-gradient(90deg, #151519, #151519, rgba(255, 255, 255, 0));
 }
+
 
 // carousel sizing
 // .owl-width-xl{
