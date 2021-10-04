@@ -70,6 +70,16 @@
   background-color: #ececec !important;
 }
 
+.rounded-pill-light{
+  color: #141414 !important;
+  background: #e9e9e9 !important;
+}
+
+.rounded-pill-dark{
+  color: #b9b9b9!important;
+  background: #151519!important;
+}
+
 // material global styles
 ::ng-deep .mat-bottom-sheet-container {
   max-height: none !important;

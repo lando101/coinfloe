@@ -37,6 +37,7 @@ export interface CoinTableData {
   rating: string;
   high?: number;
   low?: number;
+  rank?: any;
   favorite?: boolean;
 }
 
@@ -156,6 +157,7 @@ export class CoinTableComponent implements OnChanges {
           rating: '-',
           high: coin.high_24h,
           low: coin.low_24h,
+          rank: coin.market_cap_rank,
           // favorite: data.FAVORITE,
           favorite: false,
         });

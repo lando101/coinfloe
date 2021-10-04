@@ -103,6 +103,20 @@
           [theme]="theme"
           [count]="10"
         ></app-coin-table>
+        <div fxLayout="row" class="justify-content-center my-4">
+          <button
+            aTilt
+            [tiltSettings]="tileSettings"
+            class="btn btn-primary fw-bold"
+            mat-flat-button
+            routerLinkActive="active"
+            routerLink="/coins"
+          >
+            <span fxLayout="row" fxLayoutGap="5px" class="align-items-center">
+              View All Coins
+            </span>
+          </button>
+        </div>
       </div>
       <div></div>
     </div>

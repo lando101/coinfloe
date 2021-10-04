@@ -61,9 +61,10 @@
     right: 20px;
     top: 10px;
     z-index: 3;
-    border-radius: 12px;
+    border-radius: 8px;
     background-color: $bg-color-alt;
     color: $font;
+    overflow: hidden;
   }
   .crypto-info-container {
     border-left: 1px solid $border;

@@ -9,8 +9,12 @@
           </div>
         </div>
         <div fxLayout="column" class="d-flex justify-content-start align-items-start">
-          <h6 class="card-title mb-1 fw-bold text-start">{{ coin?.name }}</h6>
-          <small class="fw-bold text-faint text-uppercase">{{ coin?.symbol }}</small>
+          <h6 class="card-title mb-1 fw-super-bold text-start">{{ coin?.name }}</h6>
+          <div fxLayout="row" fxLayoutGap="5px">
+            <small class="fw-bold text-faint text-uppercase">{{ coin?.symbol }}</small>
+            <span class="badge rounded-pill rounded-pill-{{theme}}">#{{coin.market_cap_rank}}</span>
+          </div>
+
         </div>
       </div>
 
@@ -33,11 +37,11 @@
         <div fxLayout="row">
           <div fxFlex="50" fxLayout="column">
             <small class="text-faint fw-bold">Market Cap</small>
-            <label class="mb-0">{{ coin?.market_cap | shortNumber }}</label>
+            <label class="fw-super-bold mb-0">{{ coin?.market_cap | shortNumber }}</label>
           </div>
           <div fxFlex="50" fxLayout="column">
             <small class="text-faint fw-bold">24h Change</small>
-            <label class="mb-0">{{ coin?.price_change_24h | currency }}</label>
+            <label class="fw-super-bold mb-0">{{ coin?.price_change_24h | currency }}</label>
           </div>
         </div>
       </div>

@@ -56,7 +56,10 @@
               <img class="img-container" [src]="element.imgUrl" alt="{{ element.name }} logo img" />
               <div fxLayout="column" fxLayoutGap="5px">
                 <span class="coin-name">{{ element.name }}</span>
-                <small class="fw-bold text-faint desc-text text-uppercase">{{ element.symbol }}</small>
+                <div fxLayout="row" fxLayoutGap="5px">
+                  <span class="badge rounded-pill rounded-pill-{{theme}}">#{{ element.rank }}</span>
+                  <small class="fw-super-bold text-faint desc-text text-uppercase">{{ element.symbol }}</small>
+                </div>
               </div>
             </div>
           </td>
@@ -64,11 +67,16 @@
 
         <!-- Name Column -->
         <ng-container matColumnDef="price">
-          <th mat-header-cell *matHeaderCellDef class="text-end">Price</th>
+          <th mat-header-cell *matHeaderCellDef class="text-end">Price (24h)</th>
           <td mat-cell *matCellDef="let element">
             <div fxLayout="column" class="align-items-end">
               <label>{{ element.price | currency }}</label>
-              <small class="text-faint">{{ element.return24h | currency }}</small>
+              <small
+              [ngClass]="{
+                'text-positive': element.return24h > 0,
+                'text-negative': element.return24h < 0
+              }"
+              >{{ element.return24h | currency }}</small>
             </div>
           </td>
         </ng-container>
