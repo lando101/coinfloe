@@ -15,7 +15,7 @@
 }
 
 .section-container {
-  height: calc(100vh - 20px);
+  height: calc(100vh - 32px);
   overflow-x: hidden;
   overflow-y: auto;
 }
@@ -34,7 +34,7 @@
   $brand: $primary-color;
   $font: $primary-font-color;
   $bg-color: $primary-background-lighter;
-  $bg-color-alt: $primary-background-lighter;
+  $bg-color-alt: $alt-btn-background;
   $bg-contrast: $white-background;
   $border: $header-border;
   $shadow: $card-shadow;
@@ -43,7 +43,7 @@
     $brand: $dark-primary-color;
     $font: $dark-primary-font-color;
     $bg-color: $dark-secondary-background;
-    $bg-color-alt: $dark-body-background;
+    $bg-color-alt: $dark-alt-btn-background;
     $bg-contrast: $dark-body-background;
     $border: $dark-header-border;
     $shadow: $dark-card-shadow;
@@ -59,7 +59,11 @@
   .close-sheet-container {
     position: absolute;
     right: 20px;
-    top: 0px;
+    top: 10px;
+    z-index: 3;
+    border-radius: 12px;
+    background-color: $bg-color-alt;
+    color: $font;
   }
   .crypto-info-container {
     border-left: 1px solid $border;

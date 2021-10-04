@@ -43,6 +43,7 @@ export class CryptoInfoComponent implements OnChanges {
   };
 
   expanded = false;
+  descToggleText = 'See More';
   markdown = `## Markdown __rulez__!
 ---
 
@@ -71,6 +72,15 @@ const language = 'typescript';
       setTimeout(() => {
         this.showDesc = true;
       }, 200);
+    }
+  }
+
+  toggleDesc() {
+    this.expanded = !this.expanded;
+    if (this.expanded) {
+      this.descToggleText = 'See Less';
+    } else {
+      this.descToggleText = 'See More';
     }
   }
 }

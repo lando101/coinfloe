@@ -1,6 +1,6 @@
 <!-- <div class="outer-click-container" (click)="closeBottomSheet()"></div> -->
-<div *ngIf="visible" [@fadeInOnEnter] [@fadeOutOnLeave] class="w-100 h-100 bottom-sheet-wrapper {{ theme }}">
-  <div *ngIf="visible" [@fadeInUpOnEnter] [@fadeOutDownOnLeave] class="inner-container" (clickOutside)="closeBottomSheet()" [delayClickOutsideInit]="true">
+<div *ngIf="visible" [@fadeInOnEnter] [@fadeOutOnLeave] class="w-100 h-100 bottom-sheet-wrapper {{ theme }}" [excludeBeforeClick]="true" [exclude]="'.see-more-btn, .see-more-label, .text, .icon'" (clickOutside)="closeBottomSheet()" [delayClickOutsideInit]="true">
+  <div *ngIf="visible" [@fadeInUpOnEnter] [@fadeOutDownOnLeave] class="inner-container">
     <div *ngIf="!!viewingCoin" fxFlexFill>
       <div class="close-sheet-container">
         <button mat-icon-button (click)="closeBottomSheet()">
@@ -145,12 +145,14 @@
           </perfect-scrollbar>
         </div>
         <div
-          class="p-3 section-container crypto-info-container"
+          class="section-container crypto-info-container"
           fxLayout="column"
           fxFlex.gt-lg="395px"
           fxFlex.lt-xl="395px"
         >
+        <perfect-scrollbar #perfectscroll class="ps" [config]="config">
           <app-crypto-info [theme]="theme" [coin]="viewingCoin" [coinInfo]="coinInfo"></app-crypto-info>
+        </perfect-scrollbar>
         </div>
       </div>
     </div>
