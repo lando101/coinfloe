@@ -5,7 +5,7 @@
         <b>{{ coin.name }} Info</b>
       </h5>
       <div>
-        <span class="pill">Rank #{{coinInfo.market_cap_rank}}</span>
+        <span class="pill">Rank #{{ coinInfo.market_cap_rank }}</span>
       </div>
     </div>
     <perfect-scrollbar [config]="config" class="ps">
@@ -13,7 +13,7 @@
         <div [@fadeInUp] *ngIf="showDesc" class="pb-3" fxLayout="column" fxLayoutGap="15px">
           <div class="mb-2" *ngIf="!!coinInfo.description.en" fxLayout="column" fxLayoutGap="5px">
             <small class="fw-bold text-faint">About</small>
-            <div class="about-content" [ngClass]="{'content-expanded': expanded, 'content-minimized': !expanded}">
+            <div class="about-content" [ngClass]="{ 'content-expanded': expanded, 'content-minimized': !expanded }">
               <markdown class="variable-binding" [data]="coinInfo.description.en"></markdown>
               <a href="{{ coinInfo.links.homepage[0] }}" target="_blank">
                 Visit {{ coin.name }} project <i class="ms-1 bi bi-box-arrow-up-right"></i>
@@ -22,12 +22,12 @@
             <div class="w-100 d-flex align-items-center justify-content-center">
               <button mat-flat-button class="p-0 px-3 btn see-more-btn" (click)="expanded = !expanded">
                 <div *ngIf="!expanded" fxLayout="column" fxLayoutGap="-5px">
-                  <span >See more</span>
+                  <span>See more</span>
                   <i class="bi bi-chevron-down"></i>
                 </div>
                 <div *ngIf="expanded" fxLayout="column" fxLayoutGap="-5px">
                   <i class="bi bi-chevron-up"></i>
-                  <span >See less</span>
+                  <span>See less</span>
                 </div>
               </button>
             </div>
@@ -40,13 +40,18 @@
               <app-liquidity-widget [theme]="theme" [liquidity]="coinInfo.liquidity_score"></app-liquidity-widget>
             </div>
             <div fxFlex="50">
-              <app-social-metrics-widget [theme]="theme" [communityScore]="coinInfo.community_score" [communityInfo]="coinInfo.community_data" [links]="coinInfo.links"></app-social-metrics-widget>
+              <app-social-metrics-widget
+                [theme]="theme"
+                [communityScore]="coinInfo.community_score"
+                [communityInfo]="coinInfo.community_data"
+                [links]="coinInfo.links"
+              ></app-social-metrics-widget>
             </div>
           </div>
           <div>
             <app-ath-widget [theme]="theme" [marketData]="coinInfo.market_data"></app-ath-widget>
           </div>
-            <!-- <div class="pt-2" *ngIf="coinInfo.categories.length>0" fxLayout="column" fxLayoutGap="5px">
+          <!-- <div class="pt-2" *ngIf="coinInfo.categories.length>0" fxLayout="column" fxLayoutGap="5px">
               <small class="fw-bold fw-bold text-faint">Tags</small>
               <mat-chip-list >
                 <mat-chip *ngFor="let category of coinInfo.categories">
@@ -55,11 +60,10 @@
               </mat-chip-list>
             </div> -->
         </div>
-        </div>
+      </div>
     </perfect-scrollbar>
-
-    </div>
   </div>
+</div>
 
 <!-- </div> -->
 

@@ -1,10 +1,23 @@
 <div class="text-start {{ theme }} theme-container w-100 position-relative">
   <div class="position-relative" *ngIf="coins?.length > 1; else loading">
-    <owl-carousel-o #owlCar  class="w-100" [options]="customOptions" (changed)="startPosition = $event.startPosition" (dragging)="isDragging = $event.dragging">
+    <owl-carousel-o
+      #owlCar
+      class="w-100"
+      [options]="customOptions"
+      (changed)="startPosition = $event.startPosition"
+      (dragging)="isDragging = $event.dragging"
+    >
       <!-- <ng-template fxHide.lt-md [width]="90" carouselSlide>
       </ng-template> -->
       <ng-template [width]="225" *ngFor="let coin of coins?.slice(0, 15)" carouselSlide>
-        <button *ngIf="coin.price_change_percentage_24h < 0" [disabled]="isDragging" aTilt [tiltSettings]="tileSettings" class="p-0" (click)="openBottomSheet(coin)">
+        <button
+          *ngIf="coin.price_change_percentage_24h < 0"
+          [disabled]="isDragging"
+          aTilt
+          [tiltSettings]="tileSettings"
+          class="p-0"
+          (click)="openBottomSheet(coin)"
+        >
           <app-coin-card [coin]="coin" [theme]="theme"></app-coin-card>
         </button>
       </ng-template>
@@ -19,8 +32,12 @@
         <i class="bi bi-chevron-right"></i>
       </button>
     </div> -->
-    <div *ngIf="startPosition!=0" class="d-flex justify-content-center align-items-center" [ngClass]="'owl-fade-left'">
-      <button  mat-icon-button class="btn owl-dir-button" (click)="owlCar.prev()">
+    <div
+      *ngIf="startPosition != 0"
+      class="d-flex justify-content-center align-items-center"
+      [ngClass]="'owl-fade-left'"
+    >
+      <button mat-icon-button class="btn owl-dir-button" (click)="owlCar.prev()">
         <i class="bi bi-chevron-left"></i>
       </button>
     </div>
@@ -70,7 +87,6 @@
         <app-coin-card-loader [theme]="theme"></app-coin-card-loader>
       </ng-template>
     </owl-carousel-o>
-    <div class="d-flex justify-content-center align-items-center" [ngClass]="'owl-fade-right'">
-    </div>
+    <div class="d-flex justify-content-center align-items-center" [ngClass]="'owl-fade-right'"></div>
   </div>
 </ng-template>

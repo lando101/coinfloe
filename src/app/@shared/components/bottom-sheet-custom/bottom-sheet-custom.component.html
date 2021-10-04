@@ -1,14 +1,9 @@
+<div class="outer-click-container" (click)="closeBottomSheet()"></div>
 <div *ngIf="visible" [@fadeInOnEnter] [@fadeOutOnLeave] class="w-100 h-100 bottom-sheet-wrapper {{ theme }}">
-  <div class="outer-click-container"></div>
-  <div
-    *ngIf="visible"
-    [@fadeInUpOnEnter]
-    [@fadeOutDownOnLeave]
-    class="inner-container"
-  >
+  <div *ngIf="visible" [@fadeInUpOnEnter] [@fadeOutDownOnLeave] class="inner-container">
     <div *ngIf="!!viewingCoin" fxFlexFill>
       <div class="close-sheet-container">
-        <button mat-icon-button (click)="closeBottomSheet()" (clickOutside)="outsideStuff()" >
+        <button mat-icon-button (click)="closeBottomSheet()">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"
@@ -25,93 +20,94 @@
       </div>
       <div fxFlexFill fxLayout="row">
         <div class="section-container" fxLayout="column" fxFlex.gt-lg="auto" fxFlex.lt-xl="auto">
-        <perfect-scrollbar #perfectscroll class="ps" [config]="config">
-          <div class="crypto-header-container px-3 pt-3">
-            <div *ngIf="showInfo" [@fadeIn] class="crypto-header" fxLayout="column">
-              <div class="mb-2">
-                <div class="d-flex justify-content-start align-items-center">
-                  <div class="img-container me-2">
-                    <img [src]="viewingCoin.image"/>
+          <perfect-scrollbar #perfectscroll class="ps" [config]="config">
+            <div class="crypto-header-container px-3 pt-3">
+              <div *ngIf="showInfo" [@fadeIn] class="crypto-header" fxLayout="column">
+                <div class="mb-2">
+                  <div class="d-flex justify-content-start align-items-center">
+                    <div class="img-container me-2">
+                      <img [src]="viewingCoin.image" />
+                    </div>
+                    <h3 class="m-0 fw-super-bold">{{ viewingCoin.name }}</h3>
                   </div>
-                  <h3 class="m-0 fw-super-bold">{{ viewingCoin.name}}</h3>
+                  <div class="mt-1" *ngIf="!!coinInfo?.ico_data?.short_desc">
+                    <label class="text-faint">{{ coinInfo.ico_data.short_desc }}</label>
+                  </div>
                 </div>
-                <div class="mt-1" *ngIf="!!coinInfo?.ico_data?.short_desc">
-                  <label class="text-faint">{{coinInfo.ico_data.short_desc}}</label>
-                </div>
-              </div>
 
-              <div class="d-flex justify-content-start align-items-end h-100">
-                <h2 class="fw-super-bold price-label mb-0">{{ viewingCoin.current_price | currency }}</h2>
-                <h5
-                  class="d-flex justify-content-end mb-1 ms-1 fw-super-bold"
-                  [ngClass]="{
-                    'text-positive': viewingCoin.price_change_percentage_24h > 0,
-                    'text-negative': viewingCoin.price_change_percentage_24h < 0
-                  }"
-                >
-                  <i *ngIf="viewingCoin.price_change_percentage_24h > 0" class="bi bi-arrow-up-short"></i>
-                  <i *ngIf="viewingCoin.price_change_percentage_24h < 0" class="bi bi-arrow-down-short"></i>
-                  {{ viewingCoin.price_change_percentage_24h / 100 | percent: '0.1-2' }}
-                </h5>
-              </div>
+                <div class="d-flex justify-content-start align-items-end h-100">
+                  <h2 class="fw-super-bold price-label mb-0">{{ viewingCoin.current_price | currency }}</h2>
+                  <h5
+                    class="d-flex justify-content-end mb-1 ms-1 fw-super-bold"
+                    [ngClass]="{
+                      'text-positive': viewingCoin.price_change_percentage_24h > 0,
+                      'text-negative': viewingCoin.price_change_percentage_24h < 0
+                    }"
+                  >
+                    <i *ngIf="viewingCoin.price_change_percentage_24h > 0" class="bi bi-arrow-up-short"></i>
+                    <i *ngIf="viewingCoin.price_change_percentage_24h < 0" class="bi bi-arrow-down-short"></i>
+                    {{ viewingCoin.price_change_percentage_24h / 100 | percent: '0.1-2' }}
+                  </h5>
+                </div>
 
-              <div class="d-flex justify-content-start align-items-center my-3" fxLayout="row" fxLayoutGap="15px">
-                <div class="crypto-stat-container py-2 px-3" fxLayout="column">
-                  <small class="text-faint fw-bold">Market Cap</small>
-                  <h5 class="fw-super-bold mb-0">{{ viewingCoin.market_cap | shortNumber }}</h5>
-                </div>
-                <div class="crypto-stat-container py-2 px-3" fxLayout="column">
-                  <small class="text-faint fw-bold">24h Volume</small>
-                  <h5 class="fw-super-bold mb-0">${{ viewingCoin.total_volume | shortNumber }}</h5>
-                </div>
-                <div class="crypto-stat-container py-2 px-3" fxLayout="column">
-                  <small class="text-faint fw-bold">24h High</small>
-                  <h5 class="fw-super-bold mb-0 text-positive">{{ viewingCoin.high_24h | currency }}</h5>
-                </div>
-                <div class="crypto-stat-container py-2 px-3" fxLayout="column">
-                  <small class="text-faint fw-bold">24h Low</small>
-                  <h5 class="fw-super-bold mb-0 text-negative">{{ viewingCoin.low_24h | currency }}</h5>
+                <div class="d-flex justify-content-start align-items-center my-3" fxLayout="row" fxLayoutGap="15px">
+                  <div class="crypto-stat-container py-2 px-3" fxLayout="column">
+                    <small class="text-faint fw-bold">Market Cap</small>
+                    <h5 class="fw-super-bold mb-0">{{ viewingCoin.market_cap | shortNumber }}</h5>
+                  </div>
+                  <div class="crypto-stat-container py-2 px-3" fxLayout="column">
+                    <small class="text-faint fw-bold">24h Volume</small>
+                    <h5 class="fw-super-bold mb-0">${{ viewingCoin.total_volume | shortNumber }}</h5>
+                  </div>
+                  <div class="crypto-stat-container py-2 px-3" fxLayout="column">
+                    <small class="text-faint fw-bold">24h High</small>
+                    <h5 class="fw-super-bold mb-0 text-positive">{{ viewingCoin.high_24h | currency }}</h5>
+                  </div>
+                  <div class="crypto-stat-container py-2 px-3" fxLayout="column">
+                    <small class="text-faint fw-bold">24h Low</small>
+                    <h5 class="fw-super-bold mb-0 text-negative">{{ viewingCoin.low_24h | currency }}</h5>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="my-2 left-content" fxLayout="column">
-            <!-- <perfect-scrollbar #perfectscroll class="ps" [config]="config"> -->
+            <div class="my-2 left-content" fxLayout="column">
+              <!-- <perfect-scrollbar #perfectscroll class="ps" [config]="config"> -->
               <!-- <app-crypto-chart [theme]="theme" [coin]="coin"></app-crypto-chart> -->
               <div class="chart-container px-3">
                 <div *ngIf="showChips" [@expand]>
-                <div class="mt-0">
-                  <div>
-                  <mat-chip-list>
-                    <owl-carousel-o class="w-100" [options]="customOptions">
-                      <ng-template [width]="chip.width" *ngFor="let chip of chips" carouselSlide>
-                        <mat-chip
-                            (click)="getCoinOHLC(chip)"
-                            [selected]="selectedChip === chip"
-                            class="example-box">
-                            <span class="d-flex align-items-center justify-content-end">
-                              {{chip.name}}
-                            </span>
-                          </mat-chip>
-                      </ng-template>
-                    </owl-carousel-o>
-                  </mat-chip-list>
+                  <div class="mt-0">
+                    <div>
+                      <mat-chip-list>
+                        <owl-carousel-o class="w-100" [options]="customOptions">
+                          <ng-template [width]="chip.width" *ngFor="let chip of chips" carouselSlide>
+                            <mat-chip
+                              (click)="getCoinOHLC(chip)"
+                              [selected]="selectedChip === chip"
+                              class="example-box"
+                            >
+                              <span class="d-flex align-items-center justify-content-end">
+                                {{ chip.name }}
+                              </span>
+                            </mat-chip>
+                          </ng-template>
+                        </owl-carousel-o>
+                      </mat-chip-list>
+                    </div>
                   </div>
+                  <app-crypto-line-chart [coinID]="viewingCoin.id" [chartData]="priceData"></app-crypto-line-chart>
                 </div>
-              <app-crypto-line-chart [coinID]="viewingCoin.id" [chartData]="priceData"></app-crypto-line-chart>
-              </div>
               </div>
 
               <div [@fadeInUp] *ngIf="showTabs && !!coinNews" class="px-3">
                 <app-news-list
-                [title]="viewingCoin.symbol.toUpperCase() + ' News'"
-                [description]="viewingCoin.symbol.toUpperCase() + ' latest news'"
-                [start]="0"
-                [end]="10"
-                [newsFromParent]="coinNews"
-                [use_api]="false"
-                [theme]="theme"
-              ></app-news-list>
+                  [title]="viewingCoin.symbol.toUpperCase() + ' News'"
+                  [description]="viewingCoin.symbol.toUpperCase() + ' latest news'"
+                  [start]="0"
+                  [end]="10"
+                  [newsFromParent]="coinNews"
+                  [use_api]="false"
+                  [theme]="theme"
+                ></app-news-list>
                 <!-- <mat-tab-group>
                   <mat-tab>
                     <ng-template mat-tab-label>
@@ -145,11 +141,15 @@
                   </mat-tab>
                 </mat-tab-group> -->
               </div>
-          </div>
-        </perfect-scrollbar>
-
+            </div>
+          </perfect-scrollbar>
         </div>
-        <div class="p-3 section-container crypto-info-container" fxLayout="column" fxFlex.gt-lg="395px" fxFlex.lt-xl="395px">
+        <div
+          class="p-3 section-container crypto-info-container"
+          fxLayout="column"
+          fxFlex.gt-lg="395px"
+          fxFlex.lt-xl="395px"
+        >
           <app-crypto-info [theme]="theme" [coin]="viewingCoin" [coinInfo]="coinInfo"></app-crypto-info>
         </div>
       </div>

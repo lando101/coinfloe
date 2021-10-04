@@ -14,7 +14,7 @@
   }
 }
 
-.section-container{
+.section-container {
   height: calc(100vh - 20px);
   overflow-x: hidden;
   overflow-y: auto;
@@ -56,7 +56,7 @@
   display: flex;
   justify-content: center;
   z-index: 11;
-  .close-sheet-container{
+  .close-sheet-container {
     position: absolute;
     right: 20px;
     top: 0px;
@@ -64,16 +64,7 @@
   .crypto-info-container {
     border-left: 1px solid $border;
   }
-  .outer-click-container {
-    position: absolute;
-    bottom: 0px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    height: 100vh;
-    align-items: flex-end;
-    // background: #4a4a4a0a;
-  }
+
   .inner-container {
     position: absolute;
     bottom: 0px;
@@ -101,17 +92,17 @@
       font-size: 1.15rem;
       margin-right: 5px;
     }
-    .crypto-header-container{
+    .crypto-header-container {
       height: auto;
       .crypto-header {
         border-bottom: 1px solid $border;
       }
     }
 
-    .chart-container{
+    .chart-container {
       height: 416px;
     }
-    .chips-container{
+    .chips-container {
       height: 60px;
     }
 
@@ -131,7 +122,16 @@
     border-top-left-radius: 0 !important;
   }
 }
-
+.outer-click-container {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  align-items: flex-end;
+  // background: #4a4a4a0a;
+}
 .dark.bottom-sheet-wrapper {
   @include theme-mixin($light-theme: false);
 }

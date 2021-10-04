@@ -4,7 +4,7 @@
  */
 //  @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap");
 
- // stylelint-disable-next-line selector-max-universal
+// stylelint-disable-next-line selector-max-universal
 * {
   box-sizing: border-box;
 }
@@ -38,7 +38,7 @@ body {
   h4 {
     font-weight: bold !important;
   }
-  p{
+  p {
     font-weight: 500 !important;
     font-family: sans-serif !important;
   }
@@ -48,11 +48,11 @@ body {
   background-color: transparent !important;
 }
 
-.overflow-x-hidden{
+.overflow-x-hidden {
   overflow-x: hidden;
 }
 
-.fw-super-bold{
+.fw-super-bold {
   font-weight: 800 !important;
 }
 
@@ -69,28 +69,28 @@ body {
   color: #dc3545;
 }
 
-.hot{
+.hot {
   color: #ff3b00;
 }
 
-.cold{
+.cold {
   color: #4c94ff;
 }
 
-.award{
+.award {
   color: #f9c508;
 }
 
-.twitter{
-  color: #1DA1F2;
+.twitter {
+  color: #1da1f2;
 }
 
-.reddit{
-  color: #FF5700;
+.reddit {
+  color: #ff5700;
 }
 
 // buttons
-.btn-transparent{
+.btn-transparent {
   border: none;
   padding: 0px;
   background: none;

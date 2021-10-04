@@ -1,4 +1,4 @@
-<div class="{{theme}} theme-container">
+<div class="{{ theme }} theme-container">
   <div *ngIf="fullView" class="w-100 px-4">
     <mat-form-field appearance="standard">
       <mat-label>Filter coins</mat-label>
@@ -9,150 +9,143 @@
     <mat-chip-list>
       <owl-carousel-o class="w-100" [options]="customOptions">
         <ng-template [width]="chip.width" *ngFor="let chip of chips" carouselSlide>
-          <mat-chip
-              (click)="order(chip)"
-              [selected]="selectedChip === chip"
-              class="example-box">
-              <span class="d-flex align-items-center justify-content-end">
-                {{chip.name}}
-                <div class="filter-direction-container">
-                  <ng-container *ngIf="chip.direction === 1 || chip.direction === 2; else inactive">
-                    <span *ngIf="chip.direction===1">
-                      <i class="bi bi-arrow-up"></i>
-                    </span>
-                    <span *ngIf="chip.direction===2">
-                      <i class="bi bi-arrow-down"></i>
-                    </span>
-                  </ng-container>
-                  <ng-template #inactive>
-                    <span class="inactive-container">
-                      <i class="bi bi-dash"></i>
-                      <i class="bi bi-arrow-up"></i>
-                    </span>
-                  </ng-template>
-                </div>
-              </span>
-            </mat-chip>
+          <mat-chip (click)="order(chip)" [selected]="selectedChip === chip" class="example-box">
+            <span class="d-flex align-items-center justify-content-end">
+              {{ chip.name }}
+              <div class="filter-direction-container">
+                <ng-container *ngIf="chip.direction === 1 || chip.direction === 2; else inactive">
+                  <span *ngIf="chip.direction === 1">
+                    <i class="bi bi-arrow-up"></i>
+                  </span>
+                  <span *ngIf="chip.direction === 2">
+                    <i class="bi bi-arrow-down"></i>
+                  </span>
+                </ng-container>
+                <ng-template #inactive>
+                  <span class="inactive-container">
+                    <i class="bi bi-dash"></i>
+                    <i class="bi bi-arrow-up"></i>
+                  </span>
+                </ng-template>
+              </div>
+            </span>
+          </mat-chip>
         </ng-template>
       </owl-carousel-o>
     </mat-chip-list>
   </div>
-  <div #cryptochart id="chartContainer" class="table-container" [ngClass]="{'table-height-calc': fullView}">
+  <div #cryptochart id="chartContainer" class="table-container" [ngClass]="{ 'table-height-calc': fullView }">
     <table class="w-100" *ngIf="show; else loader" mat-table [dataSource]="dataSource">
       <!-- Name Column -->
       <div>
-      <!-- Position Column -->
-      <ng-container matColumnDef="name" sticky>
-        <th mat-header-cell *matHeaderCellDef class="sticky-column-header">
-          <span class="ms-5">Coin</span>
-        </th>
-        <td mat-cell *matCellDef="let element">
-          <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
-            <button mat-icon-button (click)="toggleFavorite(element)" class="fav-button">
-              <i
-                [ngClass]="{
-                  'heart-icon bi bi-heart-fill': element.favorite === true,
-                  'text-very-faint bi bi-heart': element.favorite === false
-                }"
-              ></i>
-            </button>
-            <img
-            class="img-container"
-            [src]="element.imgUrl"
-            alt="{{ element.name }} logo img"
-          />
-            <div fxLayout="column" fxLayoutGap="5px">
-              <span class="coin-name">{{ element.name }}</span>
-              <small class="fw-bold text-faint desc-text text-uppercase">{{ element.symbol }}</small>
+        <!-- Position Column -->
+        <ng-container matColumnDef="name" sticky>
+          <th mat-header-cell *matHeaderCellDef class="sticky-column-header">
+            <span class="ms-5">Coin</span>
+          </th>
+          <td mat-cell *matCellDef="let element">
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+              <button mat-icon-button (click)="toggleFavorite(element)" class="fav-button">
+                <i
+                  [ngClass]="{
+                    'heart-icon bi bi-heart-fill': element.favorite === true,
+                    'text-very-faint bi bi-heart': element.favorite === false
+                  }"
+                ></i>
+              </button>
+              <img class="img-container" [src]="element.imgUrl" alt="{{ element.name }} logo img" />
+              <div fxLayout="column" fxLayoutGap="5px">
+                <span class="coin-name">{{ element.name }}</span>
+                <small class="fw-bold text-faint desc-text text-uppercase">{{ element.symbol }}</small>
+              </div>
             </div>
-          </div>
-        </td>
-      </ng-container>
+          </td>
+        </ng-container>
 
-      <!-- Name Column -->
-      <ng-container matColumnDef="price">
-        <th mat-header-cell *matHeaderCellDef class="text-end">Price</th>
-        <td mat-cell *matCellDef="let element">
-          <div fxLayout="column" class="align-items-end">
-            <label>{{ element.price | currency }}</label>
-            <small class="text-faint">{{ element.return24h | currency }}</small>
-          </div>
-        </td>
-      </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="price">
+          <th mat-header-cell *matHeaderCellDef class="text-end">Price</th>
+          <td mat-cell *matCellDef="let element">
+            <div fxLayout="column" class="align-items-end">
+              <label>{{ element.price | currency }}</label>
+              <small class="text-faint">{{ element.return24h | currency }}</small>
+            </div>
+          </td>
+        </ng-container>
 
-      <!-- Weight Column -->
-      <ng-container matColumnDef="24h">
-        <th mat-header-cell *matHeaderCellDef class="text-end">24h %</th>
-        <td mat-cell *matCellDef="let element">
-          <span
-            class="d-flex justify-content-end"
-            [ngClass]="{
-              'text-positive': element.returnPct24h > 0,
-              'text-negative': element.returnPct24h < 0
-            }"
-          >
-            <i *ngIf="element.returnPct24h > 0" class="bi bi-arrow-up-short"></i>
-            <i *ngIf="element.returnPct24h < 0" class="bi bi-arrow-down-short"></i>
-            {{ element.returnPct24h / 100 | percent: '0.1-2' }}
-          </span>
-        </td>
-      </ng-container>
+        <!-- Weight Column -->
+        <ng-container matColumnDef="24h">
+          <th mat-header-cell *matHeaderCellDef class="text-end">24h %</th>
+          <td mat-cell *matCellDef="let element">
+            <span
+              class="d-flex justify-content-end"
+              [ngClass]="{
+                'text-positive': element.returnPct24h > 0,
+                'text-negative': element.returnPct24h < 0
+              }"
+            >
+              <i *ngIf="element.returnPct24h > 0" class="bi bi-arrow-up-short"></i>
+              <i *ngIf="element.returnPct24h < 0" class="bi bi-arrow-down-short"></i>
+              {{ element.returnPct24h / 100 | percent: '0.1-2' }}
+            </span>
+          </td>
+        </ng-container>
 
-      <!-- <ng-container matColumnDef="amountChange24h">
+        <!-- <ng-container matColumnDef="amountChange24h">
         <th mat-header-cell *matHeaderCellDef>24h Change</th>
         <td
         mat-cell
         *matCellDef="let element">{{ element.return24h | currency }}</td>
       </ng-container> -->
 
-      <ng-container matColumnDef="7d">
-        <th mat-header-cell *matHeaderCellDef class="text-end">7d %</th>
-        <td mat-cell *matCellDef="let element">
-          <span
-            class="d-flex justify-content-end"
-            [ngClass]="{
-              'text-positive': element.returnPct7d > 0,
-              'text-negative': element.returnPct7d < 0
-            }"
-          >
-            <i *ngIf="element.returnPct7d > 0" class="bi bi-arrow-up-short"></i>
-            <i *ngIf="element.returnPct7d < 0" class="bi bi-arrow-down-short"></i>
-            {{ element.returnPct7d / 100 | percent: '0.1-2' }}
-          </span>
-        </td>
-      </ng-container>
-      <ng-container matColumnDef="30d">
-        <th mat-header-cell *matHeaderCellDef class="text-end">30d %</th>
-        <td mat-cell *matCellDef="let element">
-          <span
-            class="d-flex justify-content-end"
-            [ngClass]="{
-              'text-positive': element.returnPct30d > 0,
-              'text-negative': element.returnPct30d < 0
-            }"
-          >
-            <i *ngIf="element.returnPct30d > 0" class="bi bi-arrow-up-short"></i>
-            <i *ngIf="element.returnPct30d < 0" class="bi bi-arrow-down-short"></i>
-            {{ element.returnPct30d / 100 | percent: '0.1-2' }}
-          </span>
-        </td>
-      </ng-container>
-      <ng-container matColumnDef="volume24h">
-        <th mat-header-cell *matHeaderCellDef class="text-end">24h Volume</th>
-        <td mat-cell *matCellDef="let element">
-          <div fxLayout="column" fxLayoutGap="5px" class="align-items-end">
-            <span>${{ element.volume24hUSD | shortNumber}}</span>
-            <!-- <small class="fw-bold text-faint desc-text">{{ element.volume24h | number }} {{element.symbol}}</small> -->
-          </div>
-        </td>
-      </ng-container>
-      <!-- Symbol Column -->
-      <ng-container matColumnDef="marketcap">
-        <th mat-header-cell *matHeaderCellDef class="text-end">Market Cap.</th>
-        <td mat-cell *matCellDef="let element" class="text-end">${{ element.mrktcap | shortNumber }}</td>
-      </ng-container>
+        <ng-container matColumnDef="7d">
+          <th mat-header-cell *matHeaderCellDef class="text-end">7d %</th>
+          <td mat-cell *matCellDef="let element">
+            <span
+              class="d-flex justify-content-end"
+              [ngClass]="{
+                'text-positive': element.returnPct7d > 0,
+                'text-negative': element.returnPct7d < 0
+              }"
+            >
+              <i *ngIf="element.returnPct7d > 0" class="bi bi-arrow-up-short"></i>
+              <i *ngIf="element.returnPct7d < 0" class="bi bi-arrow-down-short"></i>
+              {{ element.returnPct7d / 100 | percent: '0.1-2' }}
+            </span>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="30d">
+          <th mat-header-cell *matHeaderCellDef class="text-end">30d %</th>
+          <td mat-cell *matCellDef="let element">
+            <span
+              class="d-flex justify-content-end"
+              [ngClass]="{
+                'text-positive': element.returnPct30d > 0,
+                'text-negative': element.returnPct30d < 0
+              }"
+            >
+              <i *ngIf="element.returnPct30d > 0" class="bi bi-arrow-up-short"></i>
+              <i *ngIf="element.returnPct30d < 0" class="bi bi-arrow-down-short"></i>
+              {{ element.returnPct30d / 100 | percent: '0.1-2' }}
+            </span>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="volume24h">
+          <th mat-header-cell *matHeaderCellDef class="text-end">24h Volume</th>
+          <td mat-cell *matCellDef="let element">
+            <div fxLayout="column" fxLayoutGap="5px" class="align-items-end">
+              <span>${{ element.volume24hUSD | shortNumber }}</span>
+              <!-- <small class="fw-bold text-faint desc-text">{{ element.volume24h | number }} {{element.symbol}}</small> -->
+            </div>
+          </td>
+        </ng-container>
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="marketcap">
+          <th mat-header-cell *matHeaderCellDef class="text-end">Market Cap.</th>
+          <td mat-cell *matCellDef="let element" class="text-end">${{ element.mrktcap | shortNumber }}</td>
+        </ng-container>
 
-      <!-- <ng-container matColumnDef="supply">
+        <!-- <ng-container matColumnDef="supply">
         <th mat-header-cell *matHeaderCellDef>Supply</th>
         <td mat-cell *matCellDef="let element">
           <span *ngIf="element.supply; else empty">{{ element.supply | number }}</span>
@@ -161,17 +154,17 @@
         </td>
       </ng-container> -->
 
-      <ng-container matColumnDef="range">
-        <th mat-header-cell *matHeaderCellDef class="text-end">24h Range</th>
-        <td mat-cell *matCellDef="let element">
-          <app-high-low-progress
-            [showPercent]="false"
-            [price]="element.price"
-            [low24h]="element.low"
-            [high24h]="element.high"
-          ></app-high-low-progress>
-        </td>
-      </ng-container>
+        <ng-container matColumnDef="range">
+          <th mat-header-cell *matHeaderCellDef class="text-end">24h Range</th>
+          <td mat-cell *matCellDef="let element">
+            <app-high-low-progress
+              [showPercent]="false"
+              [price]="element.price"
+              [low24h]="element.low"
+              [high24h]="element.high"
+            ></app-high-low-progress>
+          </td>
+        </ng-container>
       </div>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
@@ -181,7 +174,13 @@
       </tr>
     </table>
   </div>
-  <mat-paginator *ngIf="fullView" [color] [pageSizeOptions]="[50, 100]" showFirstLastButtons aria-label="Select page of periodic elements">
+  <mat-paginator
+    *ngIf="fullView"
+    [color]
+    [pageSizeOptions]="[50, 100]"
+    showFirstLastButtons
+    aria-label="Select page of periodic elements"
+  >
   </mat-paginator>
 </div>
 
@@ -191,6 +190,4 @@
   </div>
 </ng-template>
 
-<ng-template #empty>
-  NA
-</ng-template>
+<ng-template #empty> NA </ng-template>

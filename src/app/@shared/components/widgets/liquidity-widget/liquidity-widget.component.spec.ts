@@ -8,9 +8,8 @@ describe('LiquidityWidgetComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LiquidityWidgetComponent ]
-    })
-    .compileComponents();
+      declarations: [LiquidityWidgetComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

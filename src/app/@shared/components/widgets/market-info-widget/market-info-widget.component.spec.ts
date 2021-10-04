@@ -8,9 +8,8 @@ describe('MarketInfoWidgetComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MarketInfoWidgetComponent ]
-    })
-    .compileComponents();
+      declarations: [MarketInfoWidgetComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

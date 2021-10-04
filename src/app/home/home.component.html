@@ -1,11 +1,11 @@
 <!-- <div [ngClass.gt-lg]="'mx-5'" [ngClass.lt-xl]="'mx-3'" class="mx-5 py-3"> -->
 <div class="mx-5 py-3">
   <app-market-cap
-  [theme]="theme"
-  [globalData]="globalData"
-  [globalMetrics]="globalMetrics"
-  [tradingSignals]="tradingSignals"
-></app-market-cap>
+    [theme]="theme"
+    [globalData]="globalData"
+    [globalMetrics]="globalMetrics"
+    [tradingSignals]="tradingSignals"
+  ></app-market-cap>
   <div fxFlexFill fxLayout="column" fxLayoutGap="40px">
     <div class="text-start w-100">
       <div fxLayout="row" class="justify-content-between">
@@ -13,11 +13,13 @@
           <h5 class="fw-bold mb-0">Today's Trending News</h5>
           <small class="fw-bold text-faint">Hottest news over the past day</small>
         </div>
-        <div  class="d-flex justify-content-end align-items-center">
-          <button routerLink="/news" class="btn btn-link text-decoration-none p-0 rounded"><small class="px-1">View More</small></button>
+        <div class="d-flex justify-content-end align-items-center">
+          <button routerLink="/news" class="btn btn-link text-decoration-none p-0 rounded">
+            <small class="px-1">View More</small>
+          </button>
         </div>
       </div>
-    <app-trending-news [page]="'home'" [theme]="theme"></app-trending-news>
+      <app-trending-news [page]="'home'" [theme]="theme"></app-trending-news>
     </div>
     <div class="text-start w-100">
       <!-- <div [ngClass.gt-lg]="'px-5'" class="mb-3 mx-5"> -->
@@ -28,14 +30,14 @@
               <fa-icon [icon]="['fab', 'hotjar']" class="hot"></fa-icon>
             </h5>
             <div fxLayout="column">
-              <h5 class="fw-bold mb-0">
-                Top Gainers
-              </h5>
+              <h5 class="fw-bold mb-0">Top Gainers</h5>
               <small class="fw-bold text-faint">Coins with the highest percentage gains</small>
             </div>
           </div>
           <div class="d-flex justify-content-end align-items-center">
-            <button class="btn btn-link text-decoration-none p-0 rounded" routerLink="/coins"><small class="px-1">View More</small></button>
+            <button class="btn btn-link text-decoration-none p-0 rounded" routerLink="/coins">
+              <small class="px-1">View More</small>
+            </button>
           </div>
         </div>
       </div>
@@ -55,14 +57,14 @@
               <fa-icon [icon]="['fas', 'icicles']" class="cold"></fa-icon>
             </h5>
             <div fxLayout="column">
-              <h5 class="fw-bold mb-0">
-                Top Losers
-              </h5>
+              <h5 class="fw-bold mb-0">Top Losers</h5>
               <small class="fw-bold text-faint">Coins with the highest percentage losses</small>
             </div>
           </div>
           <div class="d-flex justify-content-end align-items-center">
-            <button class="btn btn-link text-decoration-none p-0 rounded" routerLink="/coins"><small class="px-1">View More</small></button>
+            <button class="btn btn-link text-decoration-none p-0 rounded" routerLink="/coins">
+              <small class="px-1">View More</small>
+            </button>
           </div>
         </div>
       </div>
@@ -80,15 +82,13 @@
             <fa-icon [icon]="['fas', 'award']" class="award"></fa-icon>
           </h5>
           <div fxLayout="column">
-            <h5 class="fw-bold mb-0">
-              Top Coins
-            </h5>
+            <h5 class="fw-bold mb-0">Top Coins</h5>
             <small class="fw-bold text-faint">Top 10 coins based on market cap</small>
           </div>
         </div>
-    </div>
-    <div [ngClass]="'coin-table-container'">
-      <!-- <app-coin-table
+      </div>
+      <div [ngClass]="'coin-table-container'">
+        <!-- <app-coin-table
       (addFavOutput)="addFavorite($event)"
       (removeFavOutput)="removeFavorite($event)"
       [loading]="isLoading"
@@ -96,15 +96,15 @@
       [coins]="allCoins"
       [theme]="theme"
       [count]="10"></app-coin-table> -->
-      <app-coin-table
-      [loading]="isLoading"
-      [fullView]="false"
-      [coins]="allCoins"
-      [theme]="theme"
-      [count]="10"></app-coin-table>
-    </div>
-    <div>
-  </div>
+        <app-coin-table
+          [loading]="isLoading"
+          [fullView]="false"
+          [coins]="allCoins"
+          [theme]="theme"
+          [count]="10"
+        ></app-coin-table>
+      </div>
+      <div></div>
     </div>
   </div>
 </div>

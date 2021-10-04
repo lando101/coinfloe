@@ -61,36 +61,36 @@
   </div>
   <div class="transition-smooth news-articles-wrapper" [ngClass]="{ 'transform-bg': searchText }">
     <div class="w-100">
-               <div class="my-4">
-            <div fxLayout="column" fxLayoutGap="5px" class="mb-4">
-              <small class="fw-bold">Quick topics</small>
-              <mat-chip-list #chipList [selectable]="true" aria-label="topic selection">
-                <mat-chip
-                  [selected]="selectedChip.label === chip.label"
-                  *ngFor="let chip of chips"
-                  (click)="chipSelection(chip)"
-                >
-                  <span class="text-capitalize">{{ chip.label }}</span>
-                </mat-chip>
-              </mat-chip-list>
-            </div>
-            <div fxLayout="column" fxLayoutGap="30px" *ngIf="selectedChip.label === 'All'; else topic">
-              <app-trending-news [theme]="theme"></app-trending-news>
-              <app-news-list [start]="12" [end]="50" [use_api]="true" [theme]="theme"></app-news-list>
-            </div>
-          </div>
+      <div class="my-4">
+        <div fxLayout="column" fxLayoutGap="5px" class="mb-4">
+          <small class="fw-bold">Quick topics</small>
+          <mat-chip-list #chipList [selectable]="true" aria-label="topic selection">
+            <mat-chip
+              [selected]="selectedChip.label === chip.label"
+              *ngFor="let chip of chips"
+              (click)="chipSelection(chip)"
+            >
+              <span class="text-capitalize">{{ chip.label }}</span>
+            </mat-chip>
+          </mat-chip-list>
+        </div>
+        <div fxLayout="column" fxLayoutGap="30px" *ngIf="selectedChip.label === 'All'; else topic">
+          <app-trending-news [theme]="theme"></app-trending-news>
+          <app-news-list [start]="12" [end]="50" [use_api]="true" [theme]="theme"></app-news-list>
+        </div>
+      </div>
 
-          <ng-template #topic>
-            <app-news-list
-              [title]="selectedChip.label + ' News'"
-              [description]="selectedChip.desc"
-              [start]="0"
-              [end]="50"
-              [newsFromParent]="topicResults"
-              [use_api]="false"
-              [theme]="theme"
-            ></app-news-list>
-          </ng-template>
+      <ng-template #topic>
+        <app-news-list
+          [title]="selectedChip.label + ' News'"
+          [description]="selectedChip.desc"
+          [start]="0"
+          [end]="50"
+          [newsFromParent]="topicResults"
+          [use_api]="false"
+          [theme]="theme"
+        ></app-news-list>
+      </ng-template>
       <!-- <mat-tab-group class="{{ theme }}" mat-align-tabs="start">
         <mat-tab label="Articles">
           <ng-template mat-tab-label>

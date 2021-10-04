@@ -36,22 +36,19 @@
   </div>
 </div> -->
 <div class="chart-container">
-  <div
-  *ngIf="show"
-  [@fadeIn]>
-  <apx-chart
-  #chart
-  [series]="chartOptions.series"
-  [chart]="chartOptions.chart"
-  [colors]="chartOptions.colors"
-  [yaxis]="chartOptions.yaxis"
-  [dataLabels]="chartOptions.dataLabels"
-  [markers]="chartOptions.markers"
-  [stroke]="chartOptions.stroke"
-  [xaxis]="chartOptions.xaxis"
-  [tooltip]="chartOptions.tooltip"
-  [annotations]="chartOptions.annotations"
-></apx-chart>
+  <div *ngIf="show" [@fadeIn]>
+    <apx-chart
+      #chart
+      [series]="chartOptions.series"
+      [chart]="chartOptions.chart"
+      [colors]="chartOptions.colors"
+      [yaxis]="chartOptions.yaxis"
+      [dataLabels]="chartOptions.dataLabels"
+      [markers]="chartOptions.markers"
+      [stroke]="chartOptions.stroke"
+      [xaxis]="chartOptions.xaxis"
+      [tooltip]="chartOptions.tooltip"
+      [annotations]="chartOptions.annotations"
+    ></apx-chart>
   </div>
 </div>
-

@@ -1,41 +1,38 @@
-
 <div class="widget-container" *ngIf="show" [@fadeInUp]>
-  <div class="{{theme}} theme-container">
+  <div class="{{ theme }} theme-container">
     <small class="fw-bold info-header">All Time High</small>
     <div fxLayout="column" fxLayoutGap="15px" class="mt-2">
       <div fxLayout="column" fxLayoutGap="5px">
         <div fxLayout="row" class="align-items-end" fxLayoutGap="5px">
-          <h4 class="fw-super-bold mb-0">{{marketData.ath.usd | currency}}</h4>
+          <h4 class="fw-super-bold mb-0">{{ marketData.ath.usd | currency }}</h4>
           <small
-          class="d-flex justify-content-end fw-bold"
-          [ngClass]="{
-            'text-positive': marketData.ath_change_percentage.usd > 0,
-            'text-negative': marketData.ath_change_percentage.usd < 0
-          }"
-        >
-          <i *ngIf="marketData.ath_change_percentage.usd > 0" class="bi bi-arrow-up-short"></i>
-          <i *ngIf="marketData.ath_change_percentage.usd < 0" class="bi bi-arrow-down-short"></i>
-          {{ marketData.ath_change_percentage.usd / 100 | percent: '0.1-2' }}
-        </small>
+            class="d-flex justify-content-end fw-bold"
+            [ngClass]="{
+              'text-positive': marketData.ath_change_percentage.usd > 0,
+              'text-negative': marketData.ath_change_percentage.usd < 0
+            }"
+          >
+            <i *ngIf="marketData.ath_change_percentage.usd > 0" class="bi bi-arrow-up-short"></i>
+            <i *ngIf="marketData.ath_change_percentage.usd < 0" class="bi bi-arrow-down-short"></i>
+            {{ marketData.ath_change_percentage.usd / 100 | percent: '0.1-2' }}
+          </small>
         </div>
         <small *ngIf="!!time" class="info-title">
           <i class="bi bi-clock-fill me-1"></i>
-          {{time | amTimeAgo}}
+          {{ time | amTimeAgo }}
         </small>
       </div>
       <div class="mini-widget-container">
         <small class="fw-bold text-faint info-label mb-1">ATH Range</small>
         <app-high-low-progress
-        [showPercent]="true"
-        [price]="marketData.current_price.usd "
-        [low24h]="marketData.atl.usd"
-        [high24h]="marketData.ath.usd"
-        [largeLabel]="true"
-        [rangeLabel]="'lifetime'"
-      ></app-high-low-progress>
+          [showPercent]="true"
+          [price]="marketData.current_price.usd"
+          [low24h]="marketData.atl.usd"
+          [high24h]="marketData.ath.usd"
+          [largeLabel]="true"
+          [rangeLabel]="'lifetime'"
+        ></app-high-low-progress>
       </div>
     </div>
   </div>
 </div>
-
-

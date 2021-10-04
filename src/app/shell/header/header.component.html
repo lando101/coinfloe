@@ -2,12 +2,7 @@
   <div fxFlexFill fxLayout="column">
     <div fxFlexFill fxLayout="row" class="px-3 mb-2">
       <div fxLayoutAlign="center center" fxFlex="65px">
-        <button
-          matTooltip="Toggle Menu"
-          (click)="toggleLeftNav()"
-          mat-icon-button
-          aria-label="toggle side navigation"
-        >
+        <button matTooltip="Toggle Menu" (click)="toggleLeftNav()" mat-icon-button aria-label="toggle side navigation">
           <div [ngClass]="{ open: !navOpen }" class="open icon nav-icon-8">
             <span></span>
             <span></span>
@@ -20,13 +15,19 @@
         <app-search [theme]="theme"></app-search>
         <div fxLayout="row">
           <button matTooltip="Toggle Theme" aTilt [tiltSettings]="tileSettings" mat-icon-button (click)="setTheme()">
-            <i *ngIf="theme==='light'" class="bi bi-sun"></i>
-            <i *ngIf="theme==='dark'" class="bi bi-moon"></i>
+            <i *ngIf="theme === 'light'" class="bi bi-sun"></i>
+            <i *ngIf="theme === 'dark'" class="bi bi-moon"></i>
           </button>
           <!-- <button matTooltip="View Theme" aTilt [tiltSettings]="tileSettings" mat-icon-button (click)="toggleSideNav(false)">
             <i class="bi bi-bell"></i>
           </button> -->
-          <button matTooltip="View Profile" aTilt [tiltSettings]="tileSettings" mat-icon-button (click)="toggleSideNav(true)">
+          <button
+            matTooltip="View Profile"
+            aTilt
+            [tiltSettings]="tileSettings"
+            mat-icon-button
+            (click)="toggleSideNav(true)"
+          >
             <i class="bi bi-person-circle"></i>
           </button>
         </div>

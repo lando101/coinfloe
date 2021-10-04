@@ -23,7 +23,7 @@ p {
 }
 
 .img-container {
-  margin: .35rem;
+  margin: 0.35rem;
   border-radius: 15px;
   border-bottom-right-radius: 6px;
   border-bottom-left-radius: 6px;
@@ -60,13 +60,13 @@ p {
       // background-color: lighten($bg-color, 3%) !important;
     }
     .card-body {
-      padding: .85rem .65rem;
-      padding-top: .45rem;
+      padding: 0.85rem 0.65rem;
+      padding-top: 0.45rem;
       .time-ago-text {
         // position: absolute;
         // bottom: 15px;
         font-weight: bold;
-        font-size: .8em !important;
+        font-size: 0.8em !important;
       }
       label {
         font-size: 0.8rem;

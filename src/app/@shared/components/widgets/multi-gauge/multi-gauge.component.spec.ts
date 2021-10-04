@@ -8,9 +8,8 @@ describe('MultiGaugeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MultiGaugeComponent ]
-    })
-    .compileComponents();
+      declarations: [MultiGaugeComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

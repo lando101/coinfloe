@@ -2,11 +2,15 @@
   <div *ngIf="showPrice" fxLayout="row" class="justify-content-between mb-1">
     <div fxLayout="column" class="align-items-start">
       <!-- <small>Low</small> -->
-      <label [ngClass]="{'large-label': largeLabel, 'small-label': !largeLabel}" class="mb-0">{{ low | currency }}</label>
+      <label [ngClass]="{ 'large-label': largeLabel, 'small-label': !largeLabel }" class="mb-0">{{
+        low | currency
+      }}</label>
     </div>
     <div fxLayout="column" class="align-items-end">
       <!-- <small>High</small> -->
-      <label [ngClass]="{'large-label': largeLabel, 'small-label': !largeLabel}" class="mb-0">{{ high | currency }}</label>
+      <label [ngClass]="{ 'large-label': largeLabel, 'small-label': !largeLabel }" class="mb-0">{{
+        high | currency
+      }}</label>
     </div>
   </div>
   <div
@@ -16,6 +20,8 @@
     <mat-progress-bar mode="determinate" value="{{ progress }}"></mat-progress-bar>
   </div>
   <div *ngIf="showPercent" class="w-100 text-start">
-    <label class="progress-desc">{{ progress / 100 | percent }} of <b>{{rangeLabel || '24h'}}</b> range</label>
+    <label class="progress-desc"
+      >{{ progress / 100 | percent }} of <b>{{ rangeLabel || '24h' }}</b> range</label
+    >
   </div>
 </div>

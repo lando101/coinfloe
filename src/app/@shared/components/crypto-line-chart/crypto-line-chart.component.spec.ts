@@ -8,9 +8,8 @@ describe('CryptoLineChartComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CryptoLineChartComponent ]
-    })
-    .compileComponents();
+      declarations: [CryptoLineChartComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

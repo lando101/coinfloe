@@ -8,9 +8,8 @@ describe('SocialMetricsWidgetComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SocialMetricsWidgetComponent ]
-    })
-    .compileComponents();
+      declarations: [SocialMetricsWidgetComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

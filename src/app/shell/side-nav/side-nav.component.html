@@ -18,12 +18,11 @@
             <span class="d-flex justify-content-start align-items-center text-capitalize">
               <span *ngIf="router.url !== link.route; else active">
                 <i *ngIf="link.type != 'fa'" class="{{ link.icon_class }}"></i>
-                <fa-icon *ngIf="link.type === 'fa'"  [icon]="['fas', 'coins']" class=""></fa-icon>
+                <fa-icon *ngIf="link.type === 'fa'" [icon]="['fas', 'coins']" class=""></fa-icon>
               </span>
 
-
               <ng-template #active>
-                <i *ngIf="link.type==='bs'" class="{{ link.active_icon_class }}"></i>
+                <i *ngIf="link.type === 'bs'" class="{{ link.active_icon_class }}"></i>
                 <fa-icon *ngIf="link.type === 'fa'" [icon]="['fas', 'coins']" class="btc-icon"></fa-icon>
               </ng-template>
               <span class="ms-2 mb-0 button-label"
@@ -55,12 +54,11 @@
             <span class="d-flex justify-content-start align-items-center text-capitalize">
               <span *ngIf="router.url !== link.route; else active">
                 <i *ngIf="link.type != 'fa'" class="{{ link.icon_class }}"></i>
-                <fa-icon *ngIf="link.type === 'fa'"  [icon]="['fas', 'coins']" class=""></fa-icon>
+                <fa-icon *ngIf="link.type === 'fa'" [icon]="['fas', 'coins']" class=""></fa-icon>
               </span>
 
-
               <ng-template #active>
-                <i *ngIf="link.type==='bs'" class="{{ link.active_icon_class }}"></i>
+                <i *ngIf="link.type === 'bs'" class="{{ link.active_icon_class }}"></i>
                 <fa-icon *ngIf="link.type === 'fa'" [icon]="['fas', 'coins']" class="btc-icon"></fa-icon>
               </ng-template>
             </span>

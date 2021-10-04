@@ -9,7 +9,7 @@
     $shadow: $dark-card-shadow;
     $font: $dark-primary-font-color;
   }
-  .widget-container{
+  .widget-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -20,7 +20,7 @@
     height: 95px;
     // box-shadow: 0px 1px 3px 0px $shadow !important;
     border: none;
-    .icon-container{
+    .icon-container {
       position: absolute;
       left: 50%;
       top: 50%;
@@ -28,26 +28,25 @@
       font-size: 1.3rem;
       opacity: 1;
     }
-    .percent{
+    .percent {
       font-weight: 300;
     }
-    .title{
+    .title {
       font-weight: 800;
-      font-size: .8rem;
+      font-size: 0.8rem;
     }
-    .desc{
+    .desc {
       font-weight: 700;
-      font-size: .8rem;
-      opacity: .55;
+      font-size: 0.8rem;
+      opacity: 0.55;
     }
   }
 }
 
-.theme-container{
+.theme-container {
   @include theme-mixin($light-theme: true);
 }
 
-.dark.theme-container{
+.dark.theme-container {
   @include theme-mixin($light-theme: false);
 }
-

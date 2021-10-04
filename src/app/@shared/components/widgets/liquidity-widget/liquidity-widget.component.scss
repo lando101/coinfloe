@@ -1,6 +1,6 @@
 @import "../../../../../styles/index";
 
-@mixin theme-mixin($light-theme: true){
+@mixin theme-mixin($light-theme: true) {
   $bg-color: $primary-background;
   $border: $primary-border-light;
   $border-dark: $border-darkest;
@@ -9,22 +9,22 @@
   @if $light-theme !=true {
     $bg-color: $dark-primary-background;
     $border: $dark-primary-border-dark;
-    $border-dark:  $dark-primary-border-dark;
+    $border-dark: $dark-primary-border-dark;
     $font: $dark-primary-font-color;
     $secondary-font: $dark-text-color;
   }
-  .info-header{
+  .info-header {
     color: $secondary-font;
-    opacity: .7;
+    opacity: 0.7;
   }
 
-  .info-row{
+  .info-row {
     border-bottom: 1px solid $border;
-    .info-title{
-      color:  $secondary-font;
+    .info-title {
+      color: $secondary-font;
       font-weight: 800;
     }
-    .info-data{
+    .info-data {
       font-weight: 800;
     }
   }
@@ -32,21 +32,21 @@
     height: 115px;
   }
 
-  .metric-container{
+  .metric-container {
     position: absolute;
     top: 25px;
     left: 50%;
-    transform: translate(-50%,50%);
+    transform: translate(-50%, 50%);
     display: flex;
     flex-direction: column;
-    label{
+    label {
       font-size: 1.3rem;
       font-weight: 800 !important;
     }
   }
 }
 
-.theme-container{
+.theme-container {
   @include theme-mixin($light-theme: true);
 }
 

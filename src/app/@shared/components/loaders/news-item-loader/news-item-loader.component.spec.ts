@@ -8,9 +8,8 @@ describe('NewsItemLoaderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NewsItemLoaderComponent ]
-    })
-    .compileComponents();
+      declarations: [NewsItemLoaderComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

@@ -11,7 +11,7 @@
     $bg-color: $dark-primary-background;
     $bg-color-light: $dark-card-background;
     $border: $dark-primary-border-dark;
-    $border-dark:  $dark-primary-border-dark;
+    $border-dark: $dark-primary-border-dark;
     $font: $dark-primary-font-color;
   }
 
@@ -21,15 +21,15 @@
   // padding: 12px;
   // border: 1px solid $border;
   color: $font;
-  .pill{
+  .pill {
     padding: 6px 13px;
     border-radius: 50px;
     background-color: $font;
     color: $bg-color;
     font-weight: 800;
-    font-size: .75rem;
+    font-size: 0.75rem;
   }
-  h6{
+  h6 {
     font-weight: 800 !important;
   }
   p {
@@ -42,11 +42,11 @@
   label {
     font-size: 0.95rem;
   }
-  .info-container{
+  .info-container {
     border-bottom: 1px solid $border-dark;
     .info-label {
       margin-bottom: 0px;
-      font-size: .75rem;
+      font-size: 0.75rem;
       font-weight: 800 !important;
     }
   }
@@ -57,38 +57,38 @@
       border-bottom: none;
     }
   }
-  ::ng-deep .widget-container{
+  ::ng-deep .widget-container {
     padding: 12px;
     background: $bg-color-light;
     border-radius: 15px;
     border: 1px solid $border;
     // box-shadow: rgb(0 0 0 / 10%) 0px 1px 3px 0px, rgb(0 0 0 / 6%) 0px 1px 2px 0px;
   }
-  .info-inner-container{
+  .info-inner-container {
     height: calc(100vh - 200px);
     padding-bottom: 15px;
   }
 }
 
-.see-more-btn{
-  font-size: .85rem;
+.see-more-btn {
+  font-size: 0.85rem;
 }
 
-.about-content{
+.about-content {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   white-space: normal;
-  font-size: .85rem;
+  font-size: 0.85rem;
   // transition: 1s cubic-bezier(.40, .09, 0, .96);
 }
 
-.content-expanded{
+.content-expanded {
   height: auto;
 }
 
-.content-minimized{
+.content-minimized {
   max-height: 190px;
   -webkit-line-clamp: 4;
 }

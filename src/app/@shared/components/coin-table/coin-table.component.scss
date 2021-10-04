@@ -22,8 +22,6 @@ th {
   font-size: 0.95rem !important;
 }
 
-
-
 .mat-table {
   font-family: "Manrope", sans-serif;
   font-weight: 600;
@@ -45,30 +43,29 @@ th {
 }
 .fav-button {
   background-color: transparent !important;
-  font-size: .9rem;
+  font-size: 0.9rem;
   border-radius: 100%;
   .heart-icon {
     color: #dc3545;
   }
 }
 
-
-.loader-container{
+.loader-container {
   height: calc(100vh - 313px);
 }
 
-@mixin theme-mixin ($light-theme: true){
+@mixin theme-mixin($light-theme: true) {
   $bg-color: $table-bg-color;
   $header-bg-color: $primary-background;
   $font: $primary-font-color;
-  $border: darken($primary-border-light,5%);
+  $border: darken($primary-border-light, 5%);
   @if $light-theme != true {
     $bg-color: $dark-secondary-background;
     $header-bg-color: $dark-body-background;
     $font: $dark-primary-font-color;
     $border: lighten($dark-primary-border-dark, 45%);
   }
-  .chip-list-container{
+  .chip-list-container {
     border-top: 1px solid $border;
     border-bottom: 1px solid $border;
     overflow: hidden;
@@ -88,26 +85,26 @@ th {
     ::ng-deep .slick-disabled {
       display: none !important;
     }
-    .filter-direction-container{
+    .filter-direction-container {
       width: 25px;
       height: 25px;
       display: flex;
       align-items: center;
       justify-content: flex-end;
       position: relative;
-      .inactive-container{
+      .inactive-container {
         width: 100%;
         height: 100%;
         display: flex;
         align-items: center;
         justify-content: flex-end;
-        .bi-arrow-up{
+        .bi-arrow-up {
           // width: 100%;
           position: absolute;
           opacity: 0;
           // visibility: hidden;
         }
-        .bi-dash{
+        .bi-dash {
           position: absolute;
         }
       }
@@ -117,14 +114,14 @@ th {
       cursor: pointer;
     }
 
-    mat-chip:hover{
-      .inactive-container{
-        .bi-dash{
+    mat-chip:hover {
+      .inactive-container {
+        .bi-dash {
           opacity: 0;
-          animation: hide-dash .2s;
+          animation: hide-dash 0.2s;
         }
-        .bi-arrow-up{
-          animation: show-arrow .38s;
+        .bi-arrow-up {
+          animation: show-arrow 0.38s;
           top: 2px;
           opacity: 1;
         }
@@ -132,29 +129,29 @@ th {
     }
   }
   @keyframes hide-dash {
-    0%{
-      opacity: 1
+    0% {
+      opacity: 1;
     }
-    100%{
+    100% {
       opacity: 0;
     }
   }
 
   @keyframes show-arrow {
-    0%{
+    0% {
       opacity: 0;
       top: 7px;
     }
-    70%{
+    70% {
       opacity: 0;
       top: 7px;
     }
-    100%{
+    100% {
       opacity: 1;
       top: 2px;
     }
   }
-  .table-container{
+  .table-container {
     overflow: auto;
     border-top: 1px solid $border;
     mat-row,
@@ -168,11 +165,11 @@ th {
       max-width: 140px;
     }
 
-    .table-height-calc{
+    .table-height-calc {
       height: calc(100vh - 313px);
     }
 
-    .sticky-column-header{
+    .sticky-column-header {
       z-index: 3 !important;
     }
 
@@ -195,15 +192,15 @@ th {
       background: $header-bg-color;
       z-index: 1;
     }
-    ::ng-deep .mat-paginator-container{
+    ::ng-deep .mat-paginator-container {
       color: darken($font, 10%) !important;
-      .mat-button-disabled{
+      .mat-button-disabled {
         color: darken($font, 10%) !important;
-        opacity: .4 !important;
+        opacity: 0.4 !important;
       }
     }
   }
-  ::ng-deep .owl-next{
+  ::ng-deep .owl-next {
     top: -11px;
     right: -1px;
     position: absolute;
@@ -216,13 +213,17 @@ th {
     font-size: 20px;
     color: $font !important;
     background: linear-gradient(
-      90deg
-      , transparent, darken($bg-color, 3%), darken($bg-color, 3%), darken($bg-color, 3%)) !important;
+      90deg,
+      transparent,
+      darken($bg-color, 3%),
+      darken($bg-color, 3%),
+      darken($bg-color, 3%)
+    ) !important;
   }
 
-  ::ng-deep .owl-prev{
+  ::ng-deep .owl-prev {
     top: -11px;
-    left:-10px;
+    left: -10px;
     position: absolute;
     height: 53px;
     display: flex;
@@ -233,11 +234,15 @@ th {
     font-size: 20px;
     color: $font !important;
     background: linear-gradient(
-      90deg
-      , darken($bg-color, 3%), darken($bg-color, 3%), darken($bg-color, 3%), transparent) !important;
+      90deg,
+      darken($bg-color, 3%),
+      darken($bg-color, 3%),
+      darken($bg-color, 3%),
+      transparent
+    ) !important;
   }
 
-  ::ng-deep .disabled{
+  ::ng-deep .disabled {
     display: none;
   }
 
@@ -246,21 +251,21 @@ th {
     display: flex;
     align-items: center;
     justify-content: center;
-}
+  }
 
   ::ng-deep .owl-carousel {
     padding: 0px 8px;
   }
 
   ::ng-deep .owl-theme .owl-nav {
-   margin: 0px !important
+    margin: 0px !important;
   }
 }
 
-.theme-container{
+.theme-container {
   @include theme-mixin($light-theme: true);
 }
-.dark.theme-container{
+.dark.theme-container {
   @include theme-mixin($light-theme: false);
 }
 
@@ -276,5 +281,3 @@ th {
 .slick-slide {
   width: auto !important;
 }
-
-
