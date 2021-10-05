@@ -106,6 +106,8 @@ export class TopGainersComponent implements AfterContentInit {
   }
 
   openBottomSheet(coin: CoinCG) {
-    this.bottomSheetService.setState(true, coin);
+    if (!this.isDragging) {
+      this.bottomSheetService.setState(true, coin);
+    }
   }
 }

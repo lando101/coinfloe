@@ -69,8 +69,4 @@ export class TrendingNewsComponent implements AfterViewInit {
       },
     });
   }
-
-  print(event: any) {
-    console.log(event);
-  }
 }
