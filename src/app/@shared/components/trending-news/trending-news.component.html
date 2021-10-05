@@ -43,8 +43,10 @@
         <i class="bi bi-chevron-left"></i>
       </button>
     </div>
-    <div class="d-flex justify-content-center align-items-center" (click)="print(owlCar)" [ngClass]="'owl-fade-right'">
-      <button mat-icon-button class="btn owl-dir-button dir-buttons" (click)="owlCar.next()">
+    <div class="d-flex justify-content-center align-items-center" [ngClass]="'owl-fade-right'">
+      <button
+      *ngIf="owlCar?.carouselLoaded && !owlCar?.dotsData?.dots[owlCar?.dotsData?.dots?.length-1]?.active"
+      mat-icon-button class="btn owl-dir-button dir-buttons" (click)="owlCar.next()">
         <i class="bi bi-chevron-right"></i>
       </button>
     </div>

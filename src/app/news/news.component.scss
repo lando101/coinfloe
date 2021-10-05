@@ -10,7 +10,9 @@
     margin-top: 75px;
   }
 }
-
+h2{
+  border-bottom: 1px solid #80808029;
+}
 @mixin theme-mixin($light-theme: true) {
   $bg-color: $white-background;
   $primary-bg-color: $primary-background;

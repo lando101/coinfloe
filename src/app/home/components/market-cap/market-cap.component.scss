@@ -1,5 +1,9 @@
 @import "../../../../styles/index";
 
+.market-info-container{
+  height: 173px;
+}
+
 @mixin theme-mixin($light-theme: true) {
   $bg-color: $white-background;
   $border-color: $primary-border-light;

@@ -1,4 +1,4 @@
-import { AfterContentInit } from '@angular/core';
+import { AfterContentInit, ViewChild } from '@angular/core';
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { BottomSheetService } from '@app/services/bottom-sheet.service';
 import { Coin, CoinCG } from 'src/models/coins.model';

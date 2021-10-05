@@ -15,7 +15,7 @@
             routerLink="{{ link.route }}"
             mat-button
           >
-            <span class="d-flex justify-content-start align-items-center text-capitalize">
+            <span class="d-flex justify-content-start align-items-center text-capitalize py-1">
               <span *ngIf="router.url !== link.route; else active">
                 <i *ngIf="link.type != 'fa'" class="{{ link.icon_class }}"></i>
                 <fa-icon *ngIf="link.type === 'fa'" [icon]="['fas', 'coins']" class=""></fa-icon>

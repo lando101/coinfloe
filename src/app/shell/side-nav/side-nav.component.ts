@@ -22,10 +22,10 @@ export class SideNavComponent implements OnInit {
   activeLink: Links = null;
   links: Links[] = [
     {
-      name: 'home',
+      name: 'explore',
       route: '/home',
-      icon_class: 'bi bi-house',
-      active_icon_class: 'bi bi-house-fill',
+      icon_class: 'bi bi-binoculars',
+      active_icon_class: 'bi bi-binoculars-fill',
       type: 'bs',
     },
     {
